@@ -9,13 +9,6 @@ const NotFound = defineComponent({
 });
 
 export const routes: RouteRecordRaw[] = [
-  {
-    name: "Home",
-    path: "/",
-    component: Home,
-  },
-  {
-    path: "/:pathMatch(.*)",
-    component: NotFound,
-  },
+  { path: "/", component: Home },
+  { path: "/:pathMatch(.*)*", component: NotFound },
 ];
