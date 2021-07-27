@@ -6,7 +6,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "lint": "eslint --ext js,ts,vue src/",
-    "format": "npm run lint --fix && prettier -w ."
+    "format": "npm run lint -- --fix && prettier -w ."
   },
   "dependencies": {
     "vue": "^3.0.5",
