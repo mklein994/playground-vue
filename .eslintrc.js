@@ -16,6 +16,7 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["vue", "@typescript-eslint", "simple-import-sort"],
+  ignorePatterns: ["dist/"],
   rules: {
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
