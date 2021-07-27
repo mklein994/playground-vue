@@ -1,20 +1,28 @@
 <template>
-  <ul>
-    <li v-for="link of links" :key="link.path">
-      <RouterLink :to="link.path">{{ link.name }}</RouterLink>
-    </li>
-  </ul>
+  <nav class="links">
+    <ul>
+      <li
+        v-for="link of links"
+        :key="link.path"
+        :class="$route.path === link.path ? 'active' : ''"
+      >
+        <RouterLink :to="link.path">{{ link.name }}</RouterLink>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-
-import { routes } from "../routes";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "Home",
   setup: () => {
-    const links = computed(() => routes.filter((x) => x.name !== undefined));
+    const router = useRouter();
+    const links = computed(() =>
+      router.getRoutes().filter((x) => x.name !== undefined)
+    );
 
     return {
       links,
@@ -22,3 +30,14 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.links ul {
+  list-style-type: circle;
+}
+
+.active {
+  list-style-type: disc;
+  color: green;
+}
+</style>
