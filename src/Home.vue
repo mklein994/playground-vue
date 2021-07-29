@@ -36,6 +36,10 @@ export default defineComponent({
   list-style-type: circle;
 }
 
+li {
+  text-transform: capitalize;
+}
+
 .active {
   list-style-type: disc;
   color: green;
