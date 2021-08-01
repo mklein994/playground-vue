@@ -10,7 +10,7 @@ import { routes } from "./routes";
 
 const router = createRouter({
   routes,
-  history: createWebHistory("/"),
+  history: createWebHistory(),
 });
 
 createApp(App).use(router).mount("#app");
