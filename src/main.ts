@@ -1,4 +1,5 @@
-import "modern-normalize/modern-normalize.css";
+// import "modern-normalize/modern-normalize.css";
+import "./tailwind.css";
 import "./style.css";
 
 import { createApp } from "vue";
