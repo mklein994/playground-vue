@@ -31,7 +31,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 .links ul {
   margin: 0;
   padding: 0;

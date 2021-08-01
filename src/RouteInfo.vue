@@ -21,7 +21,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 pre {
   margin: 0;
   padding: 0;
