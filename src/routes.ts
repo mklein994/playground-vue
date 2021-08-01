@@ -1,7 +1,7 @@
 import { defineComponent, h } from "vue";
 import { RouteRecordRaw } from "vue-router";
 
-const modules = import.meta.glob("./components/*.vue");
+const modules = import.meta.glob("./views/*.vue");
 
 const NotFound = defineComponent({
   name: "NotFound",
