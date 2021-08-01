@@ -1,9 +1,10 @@
 <template>
   <nav class="links">
-    <ul>
+    <ul class="links-list">
       <li
         v-for="link of links"
         :key="link.path"
+        class="link"
         :class="$route.path === link.path ? 'active' : ''"
       >
         <RouterLink :to="link.path">{{ link.name }}</RouterLink>
@@ -32,14 +33,14 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.links ul {
+.links-list {
   margin: 0;
   padding: 0;
   list-style-type: circle;
   list-style-position: inside;
 }
 
-li {
+.link {
   text-transform: capitalize;
 }
 
