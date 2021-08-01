@@ -8,6 +8,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
+  name: "Counter",
   setup() {
     const fruits = [
       "apple",
@@ -52,30 +53,16 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.fruit-list {
-  margin-left: 1rem;
-  padding-left: 1rem;
-}
 @counter-style fruit-digits {
   system: fixed;
   symbols: 🥇 🥈 🥉;
   suffix: " ";
 }
 
-:root {
+.fruit-list {
+  margin-left: 1rem;
+  padding-left: 1rem;
+  list-style: fruit-digits;
   counter-reset: fruit-digits;
 }
-
-.fruit-list {
-  list-style: fruit-digits;
-}
-
-/* .fruit-list > * { */
-/*   counter-increment: fruit-digits; */
-/* } */
-
-/* .fruit-list > *::after { */
-/*   content: " " counter(fruit, lower-roman); */
-/* } */
-
 </style>
