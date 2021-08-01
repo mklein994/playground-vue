@@ -1,4 +1,5 @@
 <template>
+  <RouteInfo />
   <Home />
   <RouterView />
 </template>
@@ -7,9 +8,10 @@
 import { defineComponent } from "vue";
 
 import Home from "./Home.vue";
+import RouteInfo from "./RouteInfo.vue";
 
 export default defineComponent({
   name: "App",
-  components: { Home },
+  components: { Home, RouteInfo },
 });
 </script>

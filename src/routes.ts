@@ -1,12 +1,15 @@
 import { defineComponent, h } from "vue";
 import { RouteRecordRaw } from "vue-router";
 
-import Home from "./Home.vue";
 const modules = import.meta.glob("./components/*.vue");
 
 const NotFound = defineComponent({
   name: "NotFound",
   render: () => h("h1", "404 Not Found"),
+});
+
+const Empty = defineComponent({
+  name: "Empty",
 });
 
 const componentRoutes: RouteRecordRaw[] = [];
@@ -24,7 +27,7 @@ for (const key in modules) {
 }
 
 export const routes: RouteRecordRaw[] = [
-  { path: "/", component: Home },
+  { path: "/", component: Empty },
   ...componentRoutes,
   { path: "/:pathMatch(.*)*", component: NotFound },
 ];

@@ -33,7 +33,10 @@ export default defineComponent({
 
 <style>
 .links ul {
+  margin: 0;
+  padding: 0;
   list-style-type: circle;
+  list-style-position: inside;
 }
 
 li {
