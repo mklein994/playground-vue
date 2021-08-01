@@ -1,16 +1,9 @@
-import { defineComponent, h } from "vue";
 import { RouteRecordRaw } from "vue-router";
 
+import Empty from "./Empty.vue";
+import NotFound from "./NotFound.vue";
+
 const modules = import.meta.glob("./views/*.vue");
-
-const NotFound = defineComponent({
-  name: "NotFound",
-  render: () => h("h1", "404 Not Found"),
-});
-
-const Empty = defineComponent({
-  name: "Empty",
-});
 
 const componentRoutes: RouteRecordRaw[] = [];
 
