@@ -1,6 +1,5 @@
 <template>
-  <RouteInfo />
-  <Home />
+  <Home class="home" />
   <RouterView />
 </template>
 
@@ -8,10 +7,15 @@
 import { defineComponent } from "vue";
 
 import Home from "./Home.vue";
-import RouteInfo from "./RouteInfo.vue";
 
 export default defineComponent({
   name: "App",
-  components: { Home, RouteInfo },
+  components: { Home },
 });
 </script>
+
+<style>
+.home {
+  padding: 1rem;
+}
+</style>

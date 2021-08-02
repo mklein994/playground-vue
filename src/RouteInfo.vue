@@ -22,18 +22,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-pre {
-  margin: 0;
-  padding: 0;
-}
-
 .component-name {
-  position: fixed;
-  top: 0;
-  right: 0;
-  padding: 0.125rem 0.25rem;
+  margin: 0;
   border: 1px solid black;
-  border-top: none;
-  border-right: none;
+  padding: 0.125rem 0.25rem;
+  display: inline-block;
 }
 </style>
