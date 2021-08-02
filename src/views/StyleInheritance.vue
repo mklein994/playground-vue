@@ -1,13 +1,18 @@
 <template>
-  <ChildOne />
-  <ChildTwo />
+  <p class="child zero">Parent</p>
+  <div class="child-zero">
+    <p>Parent</p>
+    <p class="child zero">Parent</p>
+    <ChildOne />
+    <ChildTwo />
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
-import ChildOne from "../components/ChildOne.vue";
-import ChildTwo from "../components/ChildTwo.vue";
+import ChildOne from "../components/style-inheritance/ChildOne.vue";
+import ChildTwo from "../components/style-inheritance/ChildTwo.vue";
 
 export default defineComponent({
   name: "StyleInheritance",
@@ -18,7 +23,20 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
+.child-zero > {
+  .child {
+    color: green;
+  }
+
+  .child::after {
+    content: " (parent)";
+  }
+}
+</style>
+
+<!--
+<style scoped>
 .child {
   color: green;
 }
@@ -27,3 +45,4 @@ export default defineComponent({
   content: " (parent)";
 }
 </style>
+-->
