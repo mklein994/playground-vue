@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <button class="nav-button" @click="toggleMenu">
+      <RouteInfo class="route-info" />
       <svg
         v-if="!menuOpen"
         class="h-6 w-6"
@@ -30,7 +31,6 @@
           d="M6 18L18 6M6 6l12 12"
         />
       </svg>
-      <RouteInfo class="route-info" />
     </button>
     <nav v-if="menuOpen" class="links">
       <ul class="links-list">
@@ -81,19 +81,23 @@ export default defineComponent({
 
 <style scoped>
 .home {
+  position: fixed;
+  inset-inline-end: 0;
+  inset-block-end: 0;
   background-color: #f9fafbee;
-  width: 100%;
   display: grid;
 }
 
 .nav-button {
   display: flex;
   justify-content: space-between;
+  gap: 0.5rem;
   align-items: center;
   width: 100%;
 }
 
 .links-list {
+  text-align: end;
   margin: 0;
   padding: 0;
   list-style-type: circle;
