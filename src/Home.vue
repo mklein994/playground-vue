@@ -4,7 +4,7 @@
       <RouteInfo class="route-info" />
       <svg
         v-if="!menuOpen"
-        class="h-6 w-6"
+        class="icon"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -19,7 +19,7 @@
       </svg>
       <svg
         v-else
-        class="h-6 w-6"
+        class="icon"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -111,5 +111,10 @@ export default defineComponent({
 .active {
   list-style-type: disc;
   color: green;
+}
+
+.icon {
+  height: 1.5rem;
+  width: 1.5rem;
 }
 </style>
