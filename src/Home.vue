@@ -1,6 +1,18 @@
 <template>
   <div v-if="menuOpen" class="background" @click="toggleMenu"></div>
   <div class="home" :class="{ 'menu-shadow': menuOpen }">
+    <nav v-if="menuOpen" class="links">
+      <ul class="links-list">
+        <li
+          v-for="link of links"
+          :key="link.path"
+          class="link"
+          :class="$route.path === link.path ? 'active' : ''"
+        >
+          <RouterLink :to="link.path">{{ link.name }}</RouterLink>
+        </li>
+      </ul>
+    </nav>
     <button class="nav-button" @click="toggleMenu">
       <RouteInfo class="route-info" />
       <svg
@@ -33,18 +45,6 @@
         />
       </svg>
     </button>
-    <nav v-if="menuOpen" class="links">
-      <ul class="links-list">
-        <li
-          v-for="link of links"
-          :key="link.path"
-          class="link"
-          :class="$route.path === link.path ? 'active' : ''"
-        >
-          <RouterLink :to="link.path">{{ link.name }}</RouterLink>
-        </li>
-      </ul>
-    </nav>
   </div>
 </template>
 
@@ -93,7 +93,9 @@ export default defineComponent({
   inset-block-end: 0;
   background-color: #f9fafbee;
   display: grid;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  min-width: 30ch;
 }
 
 .menu-shadow {
@@ -109,7 +111,6 @@ export default defineComponent({
 }
 
 .links-list {
-  text-align: end;
   margin: 0;
   padding: 0;
   list-style-type: circle;
