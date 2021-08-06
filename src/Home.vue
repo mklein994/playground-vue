@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div v-if="menuOpen" class="background"></div>
+  <div class="home" :class="{ 'menu-shadow': menuOpen }">
     <button class="nav-button" @click="toggleMenu">
       <RouteInfo class="route-info" />
       <svg
@@ -80,12 +81,23 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.background {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0 0 0 / 0.25);
+}
+
 .home {
   position: fixed;
   inset-inline-end: 0;
   inset-block-end: 0;
   background-color: #f9fafbee;
   display: grid;
+  padding: 1rem;
+}
+
+.menu-shadow {
+  box-shadow: inset 10px 10px 20px 0 rgb(0 0 0 / 10%);
 }
 
 .nav-button {

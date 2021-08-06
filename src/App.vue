@@ -1,5 +1,5 @@
 <template>
-  <Home class="home" />
+  <Home />
   <RouterView />
 </template>
 
@@ -13,9 +13,3 @@ export default defineComponent({
   components: { Home },
 });
 </script>
-
-<style>
-.home {
-  padding: 1rem;
-}
-</style>
