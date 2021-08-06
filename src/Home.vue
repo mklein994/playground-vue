@@ -1,5 +1,5 @@
 <template>
-  <div v-if="menuOpen" class="background"></div>
+  <div v-if="menuOpen" class="background" @click="toggleMenu"></div>
   <div class="home" :class="{ 'menu-shadow': menuOpen }">
     <button class="nav-button" @click="toggleMenu">
       <RouteInfo class="route-info" />
