@@ -1,0 +1,39 @@
+<template>
+  <div class="nth-child-component">
+    <div
+      v-for="kind in ['nth-child', 'sibling']"
+      :key="kind"
+      class="item-list"
+      :class="kind"
+    >
+      <p v-for="i in 10" :key="i" class="item">Item {{ i }}</p>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "NthChild",
+});
+</script>
+
+<style scoped>
+.nth-child-component {
+  padding: 1rem;
+}
+
+.item-list {
+  display: flex;
+  gap: 1rem;
+}
+
+.item-list.nth-child > .item:nth-child(n + 2) {
+  color: tomato;
+}
+
+.item-list.sibling > .item + .item {
+  color: blue;
+}
+</style>
