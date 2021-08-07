@@ -1,6 +1,6 @@
 <template>
   <div v-if="menuOpen" class="background" @click="toggleMenu"></div>
-  <div class="home" :class="{ 'menu-shadow': menuOpen }">
+  <div class="home" :class="{ 'menu-open': menuOpen }">
     <nav v-if="menuOpen" class="links">
       <ul class="links-list">
         <li
@@ -98,7 +98,7 @@ export default defineComponent({
   min-width: 30ch;
 }
 
-.menu-shadow {
+.menu-open {
   box-shadow: inset 10px 10px 20px 0 rgb(0 0 0 / 10%);
 }
 
