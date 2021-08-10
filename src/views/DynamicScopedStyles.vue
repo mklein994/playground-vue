@@ -15,7 +15,7 @@ import { computed, defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "DynamicScopedStyles",
-  setup() {
+  setup: () => {
     const showRedClass = ref(false);
 
     const toggleClass = () => (showRedClass.value = !showRedClass.value);

@@ -9,7 +9,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Counter",
-  setup() {
+  setup: () => {
     const fruits = [
       "apple",
       "banana",
