@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@tailwindcss/forms': ^0.3.3
   '@types/tailwindcss': ^2.2.1
   '@typescript-eslint/eslint-plugin': ^4.29.1
   '@typescript-eslint/parser': ^4.29.1
@@ -28,6 +29,7 @@ dependencies:
   vue-router: 4.0.11_vue@3.2.1
 
 devDependencies:
+  '@tailwindcss/forms': 0.3.3_tailwindcss@2.2.7
   '@types/tailwindcss': 2.2.1
   '@typescript-eslint/eslint-plugin': 4.29.1_d4376362794b743c19f4cba25c7fc6f5
   '@typescript-eslint/parser': 4.29.1_eslint@7.32.0+typescript@4.3.5
@@ -153,6 +155,15 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.11.1
+    dev: true
+
+  /@tailwindcss/forms/0.3.3_tailwindcss@2.2.7:
+    resolution: {integrity: sha512-U8Fi/gq4mSuaLyLtFISwuDYzPB73YzgozjxOIHsK6NXgg/IWD1FLaHbFlWmurAMyy98O+ao74ksdQefsquBV1Q==}
+    peerDependencies:
+      tailwindcss: '>=2.0.0'
+    dependencies:
+      mini-svg-data-uri: 1.3.3
+      tailwindcss: 2.2.7_7b69a43ec4689fa7484dee35f79a7806
     dev: true
 
   /@types/estree/0.0.48:
@@ -1510,6 +1521,11 @@ packages:
     dependencies:
       braces: 3.0.2
       picomatch: 2.3.0
+    dev: true
+
+  /mini-svg-data-uri/1.3.3:
+    resolution: {integrity: sha512-+fA2oRcR1dJI/7ITmeQJDrYWks0wodlOz0pAEhKYJ2IVc1z0AnwJUsKY2fzFmPAM3Jo9J0rBx8JAA9QQSJ5PuA==}
+    hasBin: true
     dev: true
 
   /minimatch/3.0.4:
