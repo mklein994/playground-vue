@@ -88,7 +88,7 @@ export default defineComponent({
 
   setup: () => {
     const wght = ref(100);
-    const italic = ref(0);
+    const italic = ref(false);
 
     return {
       wght,
