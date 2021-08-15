@@ -7,7 +7,7 @@
           v-for="link of links"
           :key="link.path"
           class="link"
-          :class="$route.path === link.path ? 'active' : ''"
+          :class="route.path === link.path ? 'active' : ''"
         >
           <RouterLink :to="link.path">{{ link.name }}</RouterLink>
         </li>
@@ -48,42 +48,30 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-import { useRouter } from "vue-router";
+<script lang="ts" setup>
+import { computed, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 import RouteInfo from "./RouteInfo.vue";
 
-export default defineComponent({
-  components: {
-    RouteInfo,
-  },
-  setup: () => {
-    const router = useRouter();
-    const links = computed(() =>
-      router.getRoutes().filter((x) => x.name !== undefined)
-    );
+const route = useRoute();
+const router = useRouter();
+const links = computed(() =>
+  router.getRoutes().filter((x) => x.name !== undefined)
+);
 
-    const menuOpen = ref(false);
+const menuOpen = ref(false);
 
-    const toggleMenu = () => {
-      menuOpen.value = !menuOpen.value;
-    };
-
-    return {
-      links,
-      menuOpen,
-      toggleMenu,
-    };
-  },
-});
+const toggleMenu = () => {
+  menuOpen.value = !menuOpen.value;
+};
 </script>
 
 <style scoped>
 .background {
   position: fixed;
   inset: 0;
-  background-color: rgba(0 0 0 / 0.25);
+  background-color: rgb(0 0 0 / 0.25);
 }
 
 .home {
