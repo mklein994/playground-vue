@@ -84,8 +84,6 @@
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
-  name: "VariableFonts",
-
   setup: () => {
     const wght = ref(100);
     const italic = ref(false);

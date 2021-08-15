@@ -15,7 +15,6 @@ import ChildOne from "../components/style-inheritance/ChildOne.vue";
 import ChildTwo from "../components/style-inheritance/ChildTwo.vue";
 
 export default defineComponent({
-  name: "StyleInheritance",
   components: {
     ChildOne,
     ChildTwo,

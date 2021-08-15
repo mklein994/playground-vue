@@ -8,7 +8,6 @@
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
-  name: "Grid",
   setup: () => {
     const fruits = ref(["apple", "banana", "cherry"]);
 

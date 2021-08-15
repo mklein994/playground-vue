@@ -9,7 +9,6 @@ import { defineComponent } from "vue";
 import Home from "./Home.vue";
 
 export default defineComponent({
-  name: "App",
   components: { Home },
 });
 </script>

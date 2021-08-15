@@ -11,8 +11,6 @@
 import { defineComponent, ref, useCssModule } from "vue";
 
 export default defineComponent({
-  name: "CssModules",
-
   setup: () => {
     const css = useCssModule();
 

@@ -55,7 +55,6 @@ import { useRouter } from "vue-router";
 import RouteInfo from "./RouteInfo.vue";
 
 export default defineComponent({
-  name: "Home",
   components: {
     RouteInfo,
   },

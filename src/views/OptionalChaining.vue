@@ -9,8 +9,6 @@
 import { computed, defineComponent, ref } from "vue";
 
 export default defineComponent({
-  name: "OptionalChaining",
-
   setup: () => {
     const fruits = ref([
       { id: "apple", name: "Apple", store: { name: "Superstore" } },

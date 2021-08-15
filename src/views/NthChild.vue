@@ -14,9 +14,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({
-  name: "NthChild",
-});
+export default defineComponent({});
 </script>
 
 <style scoped>

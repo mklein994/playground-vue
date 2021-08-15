@@ -13,7 +13,6 @@ import { defineComponent } from "vue";
 import ChildThree from "./ChildThree.vue";
 
 export default defineComponent({
-  name: "ChildOne",
   components: {
     ChildThree,
   },
