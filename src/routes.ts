@@ -20,7 +20,7 @@ for (const key in modules) {
 }
 
 export const routes: RouteRecordRaw[] = [
-  { path: "/", component: Empty },
+  { path: "/", name: "home", component: Empty },
   ...componentRoutes,
   { path: "/:pathMatch(.*)*", component: NotFound },
 ];
