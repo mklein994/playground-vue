@@ -7,16 +7,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
+<script lang="ts" setup>
 import ChildFour from "./ChildFour.vue";
-
-export default defineComponent({
-  components: {
-    ChildFour,
-  },
-});
 </script>
 
 <!--

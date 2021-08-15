@@ -7,20 +7,12 @@
   <pre>{{ foo }}</pre>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, useCssModule } from "vue";
+<script lang="ts" setup>
+import { ref, useCssModule } from "vue";
 
-export default defineComponent({
-  setup: () => {
-    const css = useCssModule();
+const css = useCssModule();
 
-    const foo = ref<string>(css.foo);
-
-    return {
-      foo,
-    };
-  },
-});
+const foo = ref<string>(css.foo);
 </script>
 
 <style module>

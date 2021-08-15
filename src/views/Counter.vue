@@ -4,51 +4,42 @@
   </ol>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  setup: () => {
-    const fruits = [
-      "apple",
-      "banana",
-      "cherry",
-      "placebit",
-      "latine",
-      "quid",
-      "si",
-      "nos",
-      "non",
-      "interpretum",
-      "fungimur",
-      "munere",
-      "sed",
-      "tuemur",
-      "ea",
-      "quae",
-      "sint",
-      "coniuncta",
-      "explicabo",
-      "brevi",
-      "nullus",
-      "in",
-      "ipsis",
-      "error",
-      "est",
-      "finibus",
-      "bonorum",
-      "et",
-      "malorum",
-      "fere",
-      "a",
-      "nobis",
-      "philosophia",
-    ];
-    return {
-      fruits,
-    };
-  },
-});
+<script lang="ts" setup>
+const fruits = [
+  "apple",
+  "banana",
+  "cherry",
+  "placebit",
+  "latine",
+  "quid",
+  "si",
+  "nos",
+  "non",
+  "interpretum",
+  "fungimur",
+  "munere",
+  "sed",
+  "tuemur",
+  "ea",
+  "quae",
+  "sint",
+  "coniuncta",
+  "explicabo",
+  "brevi",
+  "nullus",
+  "in",
+  "ipsis",
+  "error",
+  "est",
+  "finibus",
+  "bonorum",
+  "et",
+  "malorum",
+  "fere",
+  "a",
+  "nobis",
+  "philosophia",
+];
 </script>
 
 <style scoped>

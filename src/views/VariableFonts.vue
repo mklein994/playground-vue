@@ -80,20 +80,11 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script lang="ts" setup>
+import { ref } from "vue";
 
-export default defineComponent({
-  setup: () => {
-    const wght = ref(100);
-    const italic = ref(false);
-
-    return {
-      wght,
-      italic,
-    };
-  },
-});
+const wght = ref(100);
+const italic = ref(false);
 </script>
 
 <style scoped>

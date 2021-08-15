@@ -4,18 +4,10 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script lang="ts" setup>
+import { ref } from "vue";
 
-export default defineComponent({
-  setup: () => {
-    const fruits = ref(["apple", "banana", "cherry"]);
-
-    return {
-      fruits,
-    };
-  },
-});
+const fruits = ref(["apple", "banana", "cherry"]);
 </script>
 
 <style lang="scss">

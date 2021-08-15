@@ -10,25 +10,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+<script lang="ts" setup>
+import { computed, ref } from "vue";
 
-export default defineComponent({
-  setup: () => {
-    const showRedClass = ref(false);
+const showRedClass = ref(false);
 
-    const toggleClass = () => (showRedClass.value = !showRedClass.value);
+const toggleClass = () => (showRedClass.value = !showRedClass.value);
 
-    const fooClass = computed(() =>
-      showRedClass.value ? "red-class" : "blue-class"
-    );
-
-    return {
-      fooClass,
-      toggleClass,
-    };
-  },
-});
+const fooClass = computed(() =>
+  showRedClass.value ? "red-class" : "blue-class"
+);
 </script>
 
 <style scoped>

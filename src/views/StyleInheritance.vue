@@ -8,18 +8,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
+<script lang="ts" setup>
 import ChildOne from "../components/style-inheritance/ChildOne.vue";
 import ChildTwo from "../components/style-inheritance/ChildTwo.vue";
-
-export default defineComponent({
-  components: {
-    ChildOne,
-    ChildTwo,
-  },
-});
 </script>
 
 <style lang="scss">
