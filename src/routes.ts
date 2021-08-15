@@ -1,6 +1,7 @@
+import { defineComponent } from "vue";
 import { RouteRecordRaw } from "vue-router";
 
-import Empty from "./Empty.vue";
+const Empty = defineComponent({});
 import NotFound from "./NotFound.vue";
 
 const modules = import.meta.glob("./views/*.vue");
