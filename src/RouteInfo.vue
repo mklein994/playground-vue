@@ -1,5 +1,5 @@
 <template>
-  <pre class="component-name">{{ componentName }}</pre>
+  <pre class="route-name">{{ routeName }}</pre>
 </template>
 
 <script lang="ts">
@@ -10,22 +10,21 @@ export default defineComponent({
   setup: () => {
     const route = useRoute();
 
-    const componentName = computed(
-      () => route.matched[0]?.components.default?.name ?? "(unknown)"
-    );
+    const routeName = computed(() => route.name ?? "(unknown)");
 
     return {
-      componentName,
+      routeName,
     };
   },
 });
 </script>
 
 <style scoped>
-.component-name {
+.route-name {
   margin: 0;
   border: 1px solid black;
   padding: 0.125rem 0.25rem;
   display: inline-block;
+  text-transform: capitalize;
 }
 </style>
