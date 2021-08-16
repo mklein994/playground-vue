@@ -13,12 +13,17 @@
 
 <style scoped>
 .nth-child-component {
+  display: grid;
+  justify-content: start;
+  gap: 1rem;
   padding: 1rem;
 }
 
 .item-list {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+  border: 1px solid lightblue;
 }
 
 .item-list.nth-child > .item:nth-child(n + 2) {
