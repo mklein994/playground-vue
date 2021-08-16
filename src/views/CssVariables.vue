@@ -6,6 +6,7 @@
       iucunditate quadam percipitur sensibus, sed maximam voluptatem illam.
     </p>
     <input type="text" name="color" @input="updateColor" />
+    <input type="color" name="color-input" @change="updateColor" />
   </div>
 </template>
 
