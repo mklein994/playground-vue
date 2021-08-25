@@ -15,6 +15,8 @@ specifiers:
   eslint-plugin-vue: ^7.16.0
   modern-normalize: ^1.1.0
   postcss: ^8.3.6
+  postcss-dir-pseudo-class: ^5.0.0
+  postcss-logical: ^4.0.2
   prettier: ^2.3.2
   sass: ^1.38.1
   tailwindcss: ^2.2.7
@@ -43,6 +45,8 @@ devDependencies:
   eslint-plugin-simple-import-sort: 7.0.0_eslint@7.32.0
   eslint-plugin-vue: 7.16.0_eslint@7.32.0
   postcss: 8.3.6
+  postcss-dir-pseudo-class: 5.0.0
+  postcss-logical: 4.0.2
   prettier: 2.3.2
   sass: 1.38.1
   tailwindcss: 2.2.7_8b238584a104f535cc123d61e89214a6
@@ -745,6 +749,12 @@ packages:
     resolution: {integrity: sha512-IiJwMC8rdZE0+xiEZHeru6YoONC4rfPMqGm2W85jMIbkFvv5nFTwJVFHam2eFrN6txmoUYFAFXiv8ICVeTO0MA==}
     dev: true
 
+  /cssesc/2.0.0:
+    resolution: {integrity: sha512-MsCAG1z9lPdoO/IUMLSBWBSVxVtJ1395VGIQ+Fc2gNdkQ1hNDnQdw3YhA71WJCBW1vdwA0cAnk/DnW6bqoEUYg==}
+    engines: {node: '>=4'}
+    hasBin: true
+    dev: true
+
   /cssesc/3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
@@ -1314,6 +1324,10 @@ packages:
     engines: {node: '>=0.8.19'}
     dev: true
 
+  /indexes-of/1.0.1:
+    resolution: {integrity: sha1-8w9xbI4r00bHtn0985FVZqfAVgc=}
+    dev: true
+
   /inflight/1.0.6:
     resolution: {integrity: sha1-Sb1jMdfQLQwJvJEKEHW6gWW1bfk=}
     dependencies:
@@ -1663,6 +1677,14 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
+  /postcss-dir-pseudo-class/5.0.0:
+    resolution: {integrity: sha512-3pm4oq8HYWMZePJY+5ANriPs3P07q+LW6FAdTlkFH2XqDdP4HeeJYMOzn0HYLhRSjBO3fhiqSwwU9xEULSrPgw==}
+    engines: {node: '>=4.0.0'}
+    dependencies:
+      postcss: 7.0.36
+      postcss-selector-parser: 5.0.0
+    dev: true
+
   /postcss-js/3.0.3:
     resolution: {integrity: sha512-gWnoWQXKFw65Hk/mi2+WTQTHdPD5UJdDXZmX073EY/B3BWnYjO4F4t0VneTCnCGQ5E5GsCdMkzPaTXwl3r5dJw==}
     engines: {node: '>=10.0'}
@@ -1683,6 +1705,13 @@ packages:
       import-cwd: 3.0.0
       lilconfig: 2.0.3
       yaml: 1.10.2
+    dev: true
+
+  /postcss-logical/4.0.2:
+    resolution: {integrity: sha512-tlX1n19np6/JznvyymZM6SIe0FymD5Ngwcg2j825vNKhADu0p1PTgEmsCjakCbvn78kaIFzYTI32NpgOEwgifQ==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      postcss: 7.0.36
     dev: true
 
   /postcss-modules-extract-imports/3.0.0_postcss@8.3.6:
@@ -1752,6 +1781,15 @@ packages:
       postcss-selector-parser: 6.0.6
     dev: true
 
+  /postcss-selector-parser/5.0.0:
+    resolution: {integrity: sha512-w+zLE5Jhg6Liz8+rQOWEAwtwkyqpfnmsinXjXg6cY7YIONZZtgvE0v2O0uhQBs0peNomOJwWRKt6JBfTdTd3OQ==}
+    engines: {node: '>=4'}
+    dependencies:
+      cssesc: 2.0.0
+      indexes-of: 1.0.1
+      uniq: 1.0.1
+    dev: true
+
   /postcss-selector-parser/6.0.6:
     resolution: {integrity: sha512-9LXrvaaX3+mcv5xkg5kFwqSzSH1JIObIx51PrndZwlmznwXRfxMddDvo9gve3gVR8ZTKgoFDdWkbRFmEhT4PMg==}
     engines: {node: '>=4'}
@@ -1766,6 +1804,15 @@ packages:
 
   /postcss-value-parser/4.1.0:
     resolution: {integrity: sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==}
+    dev: true
+
+  /postcss/7.0.36:
+    resolution: {integrity: sha512-BebJSIUMwJHRH0HAQoxN4u1CN86glsrwsW0q7T+/m44eXOUAxSNdHRkNZPYz5vVUbg17hFgOQDE7fZk7li3pZw==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      chalk: 2.4.2
+      source-map: 0.6.1
+      supports-color: 6.1.0
     dev: true
 
   /postcss/8.3.6:
@@ -2092,6 +2139,13 @@ packages:
       has-flag: 3.0.0
     dev: true
 
+  /supports-color/6.1.0:
+    resolution: {integrity: sha512-qe1jfm1Mg7Nq/NSh6XE24gPXROEVsWHxC1LIx//XNlD9iw7YZQGjZNjYN7xGaEG6iKdA8EtNFW6R0gjnVXp+wQ==}
+    engines: {node: '>=6'}
+    dependencies:
+      has-flag: 3.0.0
+    dev: true
+
   /supports-color/7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
@@ -2212,6 +2266,10 @@ packages:
     resolution: {integrity: sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
+
+  /uniq/1.0.1:
+    resolution: {integrity: sha1-sxxa6CVIRKOoKBVBzisEuGWnNP8=}
     dev: true
 
   /universalify/2.0.0:
