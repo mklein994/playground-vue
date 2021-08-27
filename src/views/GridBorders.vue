@@ -275,23 +275,17 @@ const list = computed<Map<number, ItemRow>>(() =>
 const contentStyleList = ref();
 const itemStyleList = ref();
 
-function handleContentStyleUpdate({
-  name,
-  value,
-}: {
-  name: string;
-  value: string;
-}) {
+function handleContentStyleUpdate(
+  name: string | undefined,
+  value: string | undefined
+) {
   contentStyleList.value = `${name}: ${value};`;
 }
 
-function handleItemStyleUpdate({
-  name,
-  value,
-}: {
-  name: string;
-  value: string;
-}) {
+function handleItemStyleUpdate(
+  name: string | undefined,
+  value: string | undefined
+) {
   itemStyleList.value = `${name}: ${value};`;
 }
 </script>

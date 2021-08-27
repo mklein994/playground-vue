@@ -9,7 +9,7 @@
     <label>value</label>
     <select
       v-model="kindValue"
-      @change="$emit('updateStyle', { name: kindName, value: kindValue })"
+      @change="$emit('updateStyle', kindName, kindValue)"
     >
       <option value=""></option>
       <option v-for="value of kindValues" :key="value">{{ value }}</option>
@@ -24,8 +24,16 @@ const props = defineProps<{
   kind: "item" | "content";
 }>();
 
-const kindName = ref();
-const kindValue = ref();
+defineEmits<{
+  (
+    event: "updateStyle",
+    name: string | undefined,
+    value: string | undefined
+  ): void;
+}>();
+
+const kindName = ref<string>();
+const kindValue = ref<string>();
 
 const gridContentNames = ["align-content", "justify-content", "place-content"];
 
