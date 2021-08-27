@@ -18,8 +18,15 @@ module.exports = {
   },
   plugins: ["vue", "@typescript-eslint", "simple-import-sort"],
   ignorePatterns: ["dist/"],
+  globals: {
+    defineProps: "readonly",
+    defineEmits: "readonly",
+    defineExpose: "readonly",
+    defineDefaults: "readonly",
+  },
   rules: {
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
+    "vue/script-setup-uses-vars": "warn",
   },
 };
