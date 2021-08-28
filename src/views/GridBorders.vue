@@ -31,36 +31,15 @@
       <legend>item</legend>
       <GridPicker kind="item" @updateStyle="handleItemStyleUpdate" />
     </fieldset>
-
-    <!-- <GridInput id="align-items" v-model="alignItems" :items="gridItemsValues" -->
-    <!--   >align-items</GridInput -->
-    <!-- > -->
-    <!-- <GridInput v-model="justifyItems" :items="gridItemsValues" -->
-    <!--   >justify-items</GridInput -->
-    <!-- > -->
-    <!-- <GridInput v-model="placeItems" :items="gridItemsValues" -->
-    <!--   >place-items</GridInput -->
-    <!-- > -->
-
-    <!-- <GridInput v-model="alignContent" :items="gridContentValues" -->
-    <!--   >align-content</GridInput -->
-    <!-- > -->
-    <!-- <GridInput v-model="justifyContent" :items="gridContentValues" -->
-    <!--   >justify-content</GridInput -->
-    <!-- > -->
-    <!-- <GridInput v-model="placeContent" :items="gridContentValues" -->
-    <!--   >place-content</GridInput -->
-    <!-- > -->
   </div>
 
   <div class="wrapper">
     <strong>Grid</strong>
-    <div class="grid" :class="classes" :style="contentStyleList">
+    <div class="grid" :style="contentStyleList">
       <div
         v-for="item of items"
         :key="item.id"
         class="grid-row"
-        :class="classes"
         :style="itemStyleList"
       >
         <div :class="item.class">
@@ -163,7 +142,6 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 
-import GridInput from "../components/grid-borders/GridInput.vue";
 import GridPicker from "../components/grid-borders/GridPicker.vue";
 
 interface Item {
@@ -175,70 +153,8 @@ interface Item {
 
 type ItemRow = { items: Item[]; specialRow: boolean };
 
-// CSS Grid *-items:
-//   - align-items
-//   - align-self
-//   - justify-items
-//   - justify-self
-//   - place-items
-//   - place-self
-const gridItemsValues = [
-  "auto",
-  "normal",
-  "start",
-  "end",
-  "center",
-  "stretch",
-  "baseline",
-  "first baseline",
-  "last baseline",
-];
-
-// CSS Grid *-content:
-//   - align-content
-//   - justify-content
-//   - place-content
-const gridContentValues = [
-  "normal",
-  "start",
-  "end",
-  "center",
-  "stretch",
-  "space-around",
-  "space-between",
-  "space-evenly",
-  "baseline",
-  "first baseline",
-  "last baseline",
-];
-
 const columnCount = ref(3);
 const itemCount = ref(15);
-
-const alignItems = ref();
-const alignSelf = ref();
-const justifyItems = ref();
-const justifySelf = ref();
-const placeItems = ref();
-const placeSelf = ref();
-const alignContent = ref();
-const justifyContent = ref();
-const placeContent = ref();
-
-const classes = {
-  "grid-align-items": alignItems.value,
-  "grid-justify-items": justifyItems.value,
-  "grid-place-items": placeItems.value,
-  "grid-align-content": alignContent.value,
-  "grid-justify-content": justifyContent.value,
-  "grid-place-content": placeContent.value,
-};
-
-const selfClasses = {
-  "grid-align-self": alignSelf.value,
-  "grid-justify-self": justifySelf.value,
-  "grid-place-self": placeSelf.value,
-};
 
 const items = computed<Item[]>(() =>
   Array.from({ length: itemCount.value }, (_, index) => {
@@ -269,9 +185,6 @@ const list = computed<Map<number, ItemRow>>(() =>
   }, new Map())
 );
 
-// const contentStyleList = ref<string[]>([]);
-// const itemStyleList = ref<string[]>([]);
-
 const contentStyleList = ref();
 const itemStyleList = ref();
 
@@ -297,55 +210,11 @@ function handleItemStyleUpdate(
   padding: 1em;
 }
 
-.grid-align-items {
-  align-items: v-bind("alignItems");
-}
-
-.grid-align-self {
-  align-self: v-bind("alignSelf");
-}
-
-.grid-justify-items {
-  justify-items: v-bind("justifyItems");
-}
-
-.grid-justify-self {
-  justify-self: v-bind("justifySelf");
-}
-
-.grid-place-items {
-  place-items: v-bind("placeItems");
-}
-
-.grid-place-self {
-  place-self: v-bind("placeSelf");
-}
-
-.grid-align-content {
-  align-content: v-bind("alignContent");
-}
-
-.grid-justify-content {
-  justify-content: v-bind("justifyContent");
-}
-
-.grid-place-content {
-  place-content: v-bind("placeContent");
-}
-
 .wrapper {
   --border-color: blue;
   --border-width: 1px;
 
   --column-count: v-bind("columnCount");
-
-  /* --align-items: v-bind("alignItems"); */
-  /* --justify-items: v-bind("justifyItems"); */
-  /* --place-items: v-bind("placeItems"); */
-
-  /* --align-content: v-bind("alignContent"); */
-  /* --justify-content: v-bind("justifyContent"); */
-  /* --place-content: v-bind("placeContent"); */
 
   display: grid;
   row-gap: 1em;
@@ -363,15 +232,12 @@ function handleItemStyleUpdate(
 }
 
 .special::before {
-  /* .special::after { */
   content: "*";
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(var(--column-count), auto);
-  /* justify-content: var(--justify-content); */
-  /* justify-items: var(--justify-items); */
   row-gap: var(--border-width);
   background-color: var(--border-color);
 }
@@ -381,20 +247,15 @@ function handleItemStyleUpdate(
   background-color: white;
 }
 
-.grid .grid-row {
-}
-
 .subgrid {
   display: grid;
   grid-template-columns: repeat(var(--column-count), auto);
-  /* justify-content: var(--justify-content); */
 }
 
 .subgrid .row {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: subgrid;
-  /* justify-content: var(--justify-content); */
 }
 
 .contents {
@@ -403,37 +264,21 @@ function handleItemStyleUpdate(
 }
 
 .contents .row {
-  /* grid-column: 1 / -1; */
   display: contents;
-}
-
-.contents .item {
-  /* border-top: 1px solid purple; */
 }
 
 .list .row {
   display: grid;
   grid-auto-flow: column;
-  /* justify-content: var(--justify-content); */
-}
-
-.list .row:nth-child(n + 2) {
-  /* border-top: var(--border-width) solid var(--border-color); */
-}
-
-.table .row:nth-child(n + 2) {
-  /* border-top: var(--border-width) solid var(--border-color); */
 }
 
 .table-grid .row {
   display: grid;
   grid-template-columns: repeat(var(--column-count), auto);
-  /* justify-content: var(--justify-content); */
 }
 
 :where(.subgrid, .contents, .list, .table-grid, .table)
   .special-row:nth-child(n + 2) {
-  /* :where(.subgrid, .list, .table-grid, .table) .special-row:not(:first-child) { */
   border-top: 1px solid green;
 }
 </style>
