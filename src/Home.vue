@@ -83,6 +83,7 @@ const toggleMenu = () => {
   gap: 1rem;
   padding: 1rem 1.5rem;
   min-width: 30ch;
+  z-index: 1;
 }
 
 .menu-open {
