@@ -1,8 +1,8 @@
 <template>
-  <Home />
+  <Navigation />
   <RouterView />
 </template>
 
 <script lang="ts" setup>
-import Home from "./Home.vue";
+import Navigation from "./Navigation.vue";
 </script>
