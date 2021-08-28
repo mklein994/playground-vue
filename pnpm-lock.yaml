@@ -12,14 +12,14 @@ specifiers:
   eslint: ^7.32.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-simple-import-sort: ^7.0.0
-  eslint-plugin-vue: ^7.16.0
+  eslint-plugin-vue: ^7.17.0
   modern-normalize: ^1.1.0
   postcss: ^8.3.6
   postcss-dir-pseudo-class: ^5.0.0
   postcss-logical: ^4.0.2
   prettier: ^2.3.2
   sass: ^1.38.1
-  tailwindcss: ^2.2.7
+  tailwindcss: ^2.2.8
   typescript: ^4.4.2
   vite: ^2.5.1
   vue: ^3.2.6
@@ -33,7 +33,7 @@ dependencies:
 
 devDependencies:
   '@heroicons/vue': 1.0.4_vue@3.2.6
-  '@tailwindcss/forms': 0.3.3_tailwindcss@2.2.7
+  '@tailwindcss/forms': 0.3.3_tailwindcss@2.2.8
   '@types/tailwindcss': 2.2.1
   '@typescript-eslint/eslint-plugin': 4.29.3_5b13bab190e8051f191796d8c4619073
   '@typescript-eslint/parser': 4.29.3_eslint@7.32.0+typescript@4.4.2
@@ -43,13 +43,13 @@ devDependencies:
   eslint: 7.32.0
   eslint-config-prettier: 8.3.0_eslint@7.32.0
   eslint-plugin-simple-import-sort: 7.0.0_eslint@7.32.0
-  eslint-plugin-vue: 7.16.0_eslint@7.32.0
+  eslint-plugin-vue: 7.17.0_eslint@7.32.0
   postcss: 8.3.6
   postcss-dir-pseudo-class: 5.0.0
   postcss-logical: 4.0.2
   prettier: 2.3.2
   sass: 1.38.1
-  tailwindcss: 2.2.7_3ae63246f7b6ebdbe8521b4b745e51c3
+  tailwindcss: 2.2.8_3ae63246f7b6ebdbe8521b4b745e51c3
   typescript: 4.4.2
   vite: 2.5.1
   vue-tsc: 0.3.0_typescript@4.4.2
@@ -171,13 +171,13 @@ packages:
       fastq: 1.12.0
     dev: true
 
-  /@tailwindcss/forms/0.3.3_tailwindcss@2.2.7:
+  /@tailwindcss/forms/0.3.3_tailwindcss@2.2.8:
     resolution: {integrity: sha512-U8Fi/gq4mSuaLyLtFISwuDYzPB73YzgozjxOIHsK6NXgg/IWD1FLaHbFlWmurAMyy98O+ao74ksdQefsquBV1Q==}
     peerDependencies:
       tailwindcss: '>=2.0.0'
     dependencies:
       mini-svg-data-uri: 1.3.3
-      tailwindcss: 2.2.7_3ae63246f7b6ebdbe8521b4b745e51c3
+      tailwindcss: 2.2.8_3ae63246f7b6ebdbe8521b4b745e51c3
     dev: true
 
   /@types/estree/0.0.48:
@@ -605,7 +605,7 @@ packages:
     dependencies:
       caniuse-lite: 1.0.30001252
       colorette: 1.3.0
-      electron-to-chromium: 1.3.820
+      electron-to-chromium: 1.3.822
       escalade: 3.1.1
       node-releases: 1.1.75
     dev: true
@@ -702,10 +702,10 @@ packages:
       simple-swizzle: 0.2.2
     dev: true
 
-  /color/3.2.1:
-    resolution: {integrity: sha512-aBl7dZI9ENN6fUGC7mWpMTPNHmWUSNan9tuWN6ahh5ZLNk9baLJOnSMlrQkHcrfFgz2/RigjUVAjdx36VcemKA==}
+  /color/4.0.1:
+    resolution: {integrity: sha512-rpZjOKN5O7naJxkH2Rx1sZzzBgaiWECc6BYXjeCE6kF0kcASJYbUq02u7JqIHwCb/j3NhV+QhRL2683aICeGZA==}
     dependencies:
-      color-convert: 1.9.3
+      color-convert: 2.0.1
       color-string: 1.6.0
     dev: true
 
@@ -851,16 +851,16 @@ packages:
       domelementtype: 2.2.0
     dev: true
 
-  /domutils/2.7.0:
-    resolution: {integrity: sha512-8eaHa17IwJUPAiB+SoTYBo5mCdeMgdcAoXJ59m6DT1vw+5iLS3gNoqYaRowaBKtGVrOF1Jz4yDTgYKLK2kvfJg==}
+  /domutils/2.8.0:
+    resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
     dependencies:
       dom-serializer: 1.3.2
       domelementtype: 2.2.0
       domhandler: 4.2.0
     dev: true
 
-  /electron-to-chromium/1.3.820:
-    resolution: {integrity: sha512-5cFwDmo2yzEA9hn55KZ9+cX/b6DSFvpKz8Hb2fiDmriXWB+DBoXKXmncQwNRFBBTlUdsvPHCoy594OoMLAO0Tg==}
+  /electron-to-chromium/1.3.822:
+    resolution: {integrity: sha512-k7jG5oYYHxF4jx6PcqwHX3JVME/OjzolqOZiIogi9xtsfsmTjTdie4x88OakYFPEa8euciTgCCzvVNwvmjHb1Q==}
     dev: true
 
   /emmet/2.3.4:
@@ -896,8 +896,8 @@ packages:
       is-arrayish: 0.2.1
     dev: true
 
-  /esbuild/0.12.23:
-    resolution: {integrity: sha512-qvS4aKnmKikoWGscd5lVAzgobMovlH/JhaWitRiQ8xJx0x1Fym0pqVjMFs43Nvff8WpibeWm+fWoLK88T1U0Xw==}
+  /esbuild/0.12.24:
+    resolution: {integrity: sha512-C0ibY+HsXzYB6L/pLWEiWjMpghKsIc58Q5yumARwBQsHl9DXPakW+5NI/Y9w4YXiz0PEP6XTGTT/OV4Nnsmb4A==}
     hasBin: true
     requiresBuild: true
     dev: true
@@ -934,11 +934,11 @@ packages:
       eslint: 7.32.0
     dev: true
 
-  /eslint-plugin-vue/7.16.0_eslint@7.32.0:
-    resolution: {integrity: sha512-0E2dVvVC7I2Xm1HXyx+ZwPj9CNX4NJjs4K4r+GVsHWyt5Pew3JLD4fI7A91b2jeL0TXE7LlszrwLSTJU9eqehw==}
+  /eslint-plugin-vue/7.17.0_eslint@7.32.0:
+    resolution: {integrity: sha512-Rq5R2QetDCgC+kBFQw1+aJ5B93tQ4xqZvoCUxuIzwTonngNArsdP8ChM8PowIzsJvRtWl4ltGh/bZcN3xhFWSw==}
     engines: {node: '>=8.10'}
     peerDependencies:
-      eslint: ^6.2.0 || ^7.0.0
+      eslint: ^6.2.0 || ^7.0.0 || ^8.0.0-0
     dependencies:
       eslint: 7.32.0
       eslint-utils: 2.1.0
@@ -1281,7 +1281,7 @@ packages:
     dependencies:
       domelementtype: 2.2.0
       domhandler: 4.2.0
-      domutils: 2.7.0
+      domutils: 2.8.0
       entities: 2.2.0
     dev: true
 
@@ -1782,11 +1782,11 @@ packages:
       string-hash: 1.1.3
     dev: true
 
-  /postcss-nested/5.0.5_postcss@8.3.6:
-    resolution: {integrity: sha512-GSRXYz5bccobpTzLQZXOnSOfKl6TwVr5CyAQJUPub4nuRJSOECK5AqurxVgmtxP48p0Kc/ndY/YyS1yqldX0Ew==}
-    engines: {node: '>=10.0'}
+  /postcss-nested/5.0.6_postcss@8.3.6:
+    resolution: {integrity: sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==}
+    engines: {node: '>=12.0'}
     peerDependencies:
-      postcss: ^8.1.13
+      postcss: ^8.2.14
     dependencies:
       postcss: 8.3.6
       postcss-selector-parser: 6.0.6
@@ -2176,8 +2176,8 @@ packages:
       strip-ansi: 6.0.0
     dev: true
 
-  /tailwindcss/2.2.7_3ae63246f7b6ebdbe8521b4b745e51c3:
-    resolution: {integrity: sha512-jv35rugP5j8PpzbXnsria7ZAry7Evh0KtQ4MZqNd+PhF+oIKPwJTVwe/rmfRx9cZw3W7iPZyzBmeoAoNwfJ1yg==}
+  /tailwindcss/2.2.8_3ae63246f7b6ebdbe8521b4b745e51c3:
+    resolution: {integrity: sha512-sq6pKVIjklgtuj7OKn+6KD6UqNebYKZYUSx0oKx8aS1usdUXn1TLuwFyr/85HNYu5uHNduLFsXrtQJtkNmYlqQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
@@ -2189,7 +2189,7 @@ packages:
       bytes: 3.1.0
       chalk: 4.1.2
       chokidar: 3.5.2
-      color: 3.2.1
+      color: 4.0.1
       cosmiconfig: 7.0.1
       detective: 5.2.0
       didyoumean: 1.2.2
@@ -2208,7 +2208,7 @@ packages:
       postcss: 8.3.6
       postcss-js: 3.0.3
       postcss-load-config: 3.1.0
-      postcss-nested: 5.0.5_postcss@8.3.6
+      postcss-nested: 5.0.6_postcss@8.3.6
       postcss-selector-parser: 6.0.6
       postcss-value-parser: 4.1.0
       pretty-hrtime: 1.0.3
@@ -2312,7 +2312,7 @@ packages:
     engines: {node: '>=12.2.0'}
     hasBin: true
     dependencies:
-      esbuild: 0.12.23
+      esbuild: 0.12.24
       postcss: 8.3.6
       resolve: 1.20.0
       rollup: 2.56.3
