@@ -5,21 +5,31 @@
 </template>
 
 <style scoped>
-.welcome-container,
-.welcome {
+.welcome-container {
   display: grid;
   place-items: center;
-}
 
-.welcome-container {
-  width: 100vw;
   height: 100vh;
+  padding-bottom: 10vh;
 }
 
 .welcome {
-  padding-bottom: 0.25em;
-  font-size: 20vw;
-  font-family: serif;
-  opacity: 0.2;
+  /* Don't let this go below a comfortable font size. */
+  --min-font-size: 1rem;
+
+  /* Based on the distance away from the edges on narrow screens. */
+  --preferred-font-size: 15vw;
+
+  /* Based on its proportions on super-wide screens. */
+  --max-font-size: 40vh;
+
+  font-size: clamp(
+    var(--min-font-size),
+    var(--preferred-font-size),
+    var(--max-font-size)
+  );
+
+  font-family: "Andada Pro", serif;
+  text-align: center;
 }
 </style>
