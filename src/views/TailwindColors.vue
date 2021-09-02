@@ -1,9 +1,15 @@
 <template>
   <div class="tailwind-colors">
-    <template v-for="[key, background] of colorsList" :key="key">
-      <code class="name">{{ key }}:</code><code>{{ background }}</code
-      ><span class="color" :style="{ background }"></span>
-    </template>
+    <div
+      v-for="(groups, i) of colorsList"
+      :key="`${groups[0][0]}-${i}`"
+      class="card"
+    >
+      <template v-for="[key, hex] of groups" :key="key">
+        <code class="name">{{ key }}:</code><code>{{ hex }}</code
+        ><span class="color" :style="{ backgroundColor: '' + hex }"></span>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -24,7 +30,7 @@ function isTailwindColorGroup(group: unknown): group is TailwindColorGroup {
 
 // This will generate a warning in the console, since `lightBlue` is deprecated,
 // and that is caught by calling the `get()` function on it.
-const colorsList = Object.entries(colors).flatMap(([name, group]) =>
+const colorsList = Object.entries(colors).map(([name, group]) =>
   isTailwindColorGroup(group)
     ? Object.entries(group).map(([color, hex]) => [
         `--tw-${name}-${color}`,
@@ -36,9 +42,27 @@ const colorsList = Object.entries(colors).flatMap(([name, group]) =>
 
 <style scoped>
 .tailwind-colors {
+  --grid: minmax(auto, 19ch) minmax(auto, 7ch) minmax(5em, 1fr);
+
   display: grid;
-  grid-template-columns: repeat(2, auto) 1fr;
+  grid-template-columns: repeat(auto-fit, var(--grid));
+  align-items: start;
+  gap: 1em;
+}
+
+.card {
+  grid-column-end: span 3;
+
+  display: grid;
+  grid-template-columns: var(--grid);
   column-gap: 1em;
+  white-space: nowrap;
+}
+
+@supports (grid-template-columns: subgrid) {
+  .card {
+    grid-template-columns: subgrid;
+  }
 }
 
 .name {
