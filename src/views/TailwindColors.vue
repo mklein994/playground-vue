@@ -1,8 +1,8 @@
 <template>
   <div class="tailwind-colors">
-    <template v-for="[key, value] in Object.entries(colorsObject)" :key="key">
-      <code class="name">{{ key }}:</code><code>{{ value }}</code
-      ><span class="color" :style="{ background: '' + value }"></span>
+    <template v-for="[key, background] of colorsList" :key="key">
+      <code class="name">{{ key }}:</code><code>{{ background }}</code
+      ><span class="color" :style="{ background }"></span>
     </template>
   </div>
 </template>
@@ -13,22 +13,25 @@ import { TailwindColorGroup } from "tailwindcss/tailwind-config";
 
 const colors = allColors;
 
-const colorsList: string[][] = [];
-
-function isTailwindColor(thing: unknown): thing is TailwindColorGroup {
-  return typeof thing === "object" && thing != null && "50" in thing;
+/**
+ * Check if the object passed in is a {@link TailwindColorGroup}.
+ *
+ * @param group The object to test
+ */
+function isTailwindColorGroup(group: unknown): group is TailwindColorGroup {
+  return typeof group === "object" && group != null && "50" in group;
 }
 
-Object.entries(colors).map(([key, value]) => {
-  const c = value;
-  if (isTailwindColor(c)) {
-    for (const f in c) {
-      colorsList.push([`--${key}-${f}`, c[f]]);
-    }
-  }
-});
-
-const colorsObject = Object.fromEntries(colorsList);
+// This will generate a warning in the console, since `lightBlue` is deprecated,
+// and that is caught by calling the `get()` function on it.
+const colorsList = Object.entries(colors).flatMap(([name, group]) =>
+  isTailwindColorGroup(group)
+    ? Object.entries(group).map(([color, hex]) => [
+        `--tw-${name}-${color}`,
+        `${hex}`,
+      ])
+    : [[`--tw-${name}`, `${group}`]]
+);
 </script>
 
 <style scoped>
