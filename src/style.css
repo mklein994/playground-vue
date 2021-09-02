@@ -1,3 +1,7 @@
 #app {
   position: relative;
 }
+
+::selection {
+  background-color: theme("colors.sky.200");
+}
