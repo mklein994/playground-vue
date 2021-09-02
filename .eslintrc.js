@@ -28,5 +28,14 @@ module.exports = {
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
     "vue/script-setup-uses-vars": "warn",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        args: "after-used",
+        ignoreRestSiblings: false,
+        argsIgnorePattern: "^_",
+      },
+    ],
   },
 };
