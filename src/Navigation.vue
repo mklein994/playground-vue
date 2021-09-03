@@ -1,54 +1,48 @@
 <template>
   <div v-if="menuOpen" class="background" @click="toggleMenu"></div>
-  <div class="home" :class="{ 'menu-open': menuOpen }">
-    <nav v-if="menuOpen" class="links">
-      <ul class="links-list">
-        <li
-          v-for="link of links"
-          :key="link.path"
-          class="link"
-          :class="route.path === link.path ? 'active' : ''"
+  <div class="home" :class="{ 'menu-open': menuOpen }" :style="menuPosition">
+    <template v-if="menuOpen">
+      <nav class="links">
+        <ul class="links-list">
+          <li
+            v-for="link of links"
+            :key="link.path"
+            class="link"
+            :class="{ active: route.path === link.path }"
+          >
+            <RouterLink :to="link.path">{{ link.name }}</RouterLink>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="menu-positions">
+        <div
+          v-for="[id, style] of menuPositions"
+          :key="id"
+          class="menu-position"
         >
-          <RouterLink :to="link.path">{{ link.name }}</RouterLink>
-        </li>
-      </ul>
-    </nav>
+          <input
+            :id="`menu-position-${id}`"
+            v-model="menuPosition"
+            type="radio"
+            name="menu-position"
+            :value="style"
+          />
+          <label :for="`menu-position-${id}`">{{ id }}</label>
+        </div>
+      </div>
+    </template>
+
     <button class="nav-button" @click="toggleMenu">
       <RouteInfo class="route-info" />
-      <svg
-        v-if="!menuOpen"
-        class="icon"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <title>Open Navigation Menu</title>
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"
-        />
-      </svg>
-      <svg
-        v-else
-        class="icon"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12"
-        />
-      </svg>
+      <MenuIcon v-if="!menuOpen" class="icon" />
+      <XIcon v-else class="icon" />
     </button>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { MenuIcon, XIcon } from "@heroicons/vue/solid/esm";
 import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
@@ -65,6 +59,15 @@ const menuOpen = ref(false);
 const toggleMenu = () => {
   menuOpen.value = !menuOpen.value;
 };
+
+const menuPositions = new Map<string, Record<string, number>>([
+  ["top-left", { insetBlockStart: 0, insetInlineStart: 0 }],
+  ["top-right", { insetBlockStart: 0, insetInlineEnd: 0 }],
+  ["bottom-left", { insetBlockEnd: 0, insetInlineStart: 0 }],
+  ["bottom-right", { insetBlockEnd: 0, insetInlineEnd: 0 }],
+]);
+
+const menuPosition = ref(menuPositions.get("bottom-right"));
 </script>
 
 <style scoped>
@@ -76,8 +79,6 @@ const toggleMenu = () => {
 
 .home {
   position: fixed;
-  inset-inline-end: 0;
-  inset-block-end: 0;
   background-color: #f9fafbee;
   display: grid;
   gap: 1rem;
@@ -88,6 +89,19 @@ const toggleMenu = () => {
 
 .menu-open {
   box-shadow: inset 10px 10px 20px 0 rgb(0 0 0 / 10%);
+}
+
+.menu-positions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5em;
+}
+
+.menu-position {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
 }
 
 .nav-button {
