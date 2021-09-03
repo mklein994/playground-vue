@@ -1,6 +1,10 @@
 <template>
   <div v-if="menuOpen" class="background" @click="toggleMenu"></div>
-  <div class="home" :class="{ 'menu-open': menuOpen }" :style="menuPosition">
+  <div
+    class="home"
+    :class="[{ 'menu-open': menuOpen }, menuPosition]"
+    :style="menuPositionStyle"
+  >
     <template v-if="menuOpen">
       <nav class="links">
         <ul class="links-list">
@@ -16,17 +20,13 @@
       </nav>
 
       <div class="menu-positions">
-        <div
-          v-for="[id, style] of menuPositions"
-          :key="id"
-          class="menu-position"
-        >
+        <div v-for="[id] of menuPositions" :key="id" class="menu-position">
           <input
             :id="`menu-position-${id}`"
             v-model="menuPosition"
             type="radio"
             name="menu-position"
-            :value="style"
+            :value="id"
           />
           <label :for="`menu-position-${id}`">{{ id }}</label>
         </div>
@@ -67,7 +67,9 @@ const menuPositions = new Map<string, Record<string, number>>([
   ["bottom-right", { insetBlockEnd: 0, insetInlineEnd: 0 }],
 ]);
 
-const menuPosition = ref(menuPositions.get("bottom-right"));
+const menuPosition = ref("bottom-right");
+
+const menuPositionStyle = computed(() => menuPositions.get(menuPosition.value));
 </script>
 
 <style scoped>
@@ -88,7 +90,22 @@ const menuPosition = ref(menuPositions.get("bottom-right"));
 }
 
 .menu-open {
-  box-shadow: inset 10px 10px 20px 0 rgb(0 0 0 / 10%);
+  --shadow-x: 10px;
+  --shadow-y: 10px;
+  box-shadow: inset var(--shadow-x) var(--shadow-y) 20px 0 rgb(0 0 0 / 10%);
+}
+
+.menu-open.bottom-left {
+  --shadow-x: -10px;
+}
+
+.menu-open.top-left {
+  --shadow-x: -10px;
+  --shadow-y: -10px;
+}
+
+.menu-open.top-right {
+  --shadow-y: -10px;
 }
 
 .menu-positions {
