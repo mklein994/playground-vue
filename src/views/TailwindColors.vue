@@ -1,4 +1,12 @@
 <template>
+  <p class="color-test">
+    Test: this has
+    <code class="color-test-code" style="color: var(--tw-sky-500)"
+      >color: var(--tw-sky-500);</code
+    >
+    set.
+  </p>
+
   <div class="tailwind-colors">
     <div
       v-for="(groups, i) of colorsList"
@@ -38,9 +46,22 @@ const colorsList = Object.entries(colors).map(([name, group]) =>
       ])
     : [[`--tw-${name}`, `${group}`]]
 );
+
+for (const [name, color] of colorsList.flat()) {
+  document.documentElement.style.setProperty(name, color);
+}
 </script>
 
 <style scoped>
+.color-test {
+  grid-column: 1 / -1;
+}
+
+.color-test-code::before,
+.color-test-code::after {
+  content: "`";
+}
+
 .tailwind-colors {
   --grid: minmax(auto, 19ch) minmax(auto, 7ch) minmax(5em, 1fr);
 
