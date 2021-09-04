@@ -82,7 +82,8 @@ const menuPositionStyle = computed(() => menuPositions.get(menuPosition.value));
 .home {
   position: fixed;
   background-color: #f9fafbee;
-  display: grid;
+  display: flex;
+  flex-flow: column;
   gap: 1rem;
   padding: 1rem 1.5rem;
   min-width: 30ch;
@@ -106,6 +107,11 @@ const menuPositionStyle = computed(() => menuPositions.get(menuPosition.value));
 
 .menu-open.top-right {
   --shadow-y: -10px;
+}
+
+.menu-open.top-left,
+.menu-open.top-right {
+  flex-flow: column-reverse;
 }
 
 .menu-positions {
