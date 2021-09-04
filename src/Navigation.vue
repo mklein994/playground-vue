@@ -91,22 +91,32 @@ const menuPositionStyle = computed(() => menuPositions.get(menuPosition.value));
 }
 
 .menu-open {
+  --border-radius: 0.75rem;
+  box-shadow: inset var(--shadow-x) var(--shadow-y) 20px rgb(0 0 0 / 10%);
+}
+
+.menu-open.bottom-right {
   --shadow-x: 10px;
   --shadow-y: 10px;
-  box-shadow: inset var(--shadow-x) var(--shadow-y) 20px 0 rgb(0 0 0 / 10%);
+  border-start-start-radius: var(--border-radius);
 }
 
 .menu-open.bottom-left {
   --shadow-x: -10px;
+  --shadow-y: 10px;
+  border-start-end-radius: var(--border-radius);
 }
 
 .menu-open.top-left {
   --shadow-x: -10px;
   --shadow-y: -10px;
+  border-end-end-radius: var(--border-radius);
 }
 
 .menu-open.top-right {
+  --shadow-x: 10px;
   --shadow-y: -10px;
+  border-end-start-radius: var(--border-radius);
 }
 
 .menu-open.top-left,
