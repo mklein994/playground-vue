@@ -35,8 +35,8 @@
 
     <button class="nav-button" @click="toggleMenu">
       <RouteInfo class="route-info" />
-      <MenuIcon v-if="!menuOpen" class="icon" />
-      <XIcon v-else class="icon" />
+      <XIcon v-if="menuOpen" class="icon" />
+      <MenuIcon v-else class="icon" />
     </button>
   </div>
 </template>
