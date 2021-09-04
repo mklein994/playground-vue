@@ -33,8 +33,9 @@
       </div>
     </template>
 
-    <button class="nav-button" @click="toggleMenu">
+    <button class="nav-button" :class="menuPosition" @click="toggleMenu">
       <RouteInfo class="route-info" />
+
       <XIcon v-if="menuOpen" class="icon" />
       <MenuIcon v-else class="icon" />
     </button>
@@ -143,6 +144,11 @@ const menuPositionStyle = computed(() => menuPositions.get(menuPosition.value));
   gap: 0.5rem;
   align-items: center;
   width: 100%;
+}
+
+.nav-button.top-left,
+.nav-button.bottom-left {
+  flex-direction: row-reverse;
 }
 
 .links-list {
