@@ -1,11 +1,10 @@
 <template>
   <strong>Fruit:</strong>
   <pre>{{ fruits }}</pre>
+
   <strong>Stores:</strong>
   <pre>{{ stores }}</pre>
-  <pre
-    style="font-size: 0.8em; white-space: pre-wrap"
-  ><code>{{ getStores }}</code></pre>
+
   <Highlightjs
     language="ts"
     :code="getStores.toString()"
