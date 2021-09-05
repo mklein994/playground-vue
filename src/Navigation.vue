@@ -33,17 +33,28 @@
       </div>
     </template>
 
-    <button class="nav-button" :class="menuPosition" @click="toggleMenu">
-      <RouteInfo class="route-info" />
+    <div class="nav-button-wrapper" :class="menuPosition">
+      <button v-if="menuOpen" @click="toggleExpand">
+        <Component :is="getChevronIcon" class="icon" />
+      </button>
 
-      <XIcon v-if="menuOpen" class="icon" />
-      <MenuIcon v-else class="icon" />
-    </button>
+      <RouteInfo v-if="expanded" class="route-info" @click="toggleMenu" />
+
+      <button class="nav-button" :class="menuPosition" @click="toggleMenu">
+        <XIcon v-if="menuOpen" class="icon" />
+        <MenuIcon v-else class="icon" />
+      </button>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { MenuIcon, XIcon } from "@heroicons/vue/solid/esm";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  MenuIcon,
+  XIcon,
+} from "@heroicons/vue/solid/esm";
 import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
@@ -71,6 +82,21 @@ const menuPositions = new Map<string, Record<string, number>>([
 const menuPosition = ref("bottom-right");
 
 const menuPositionStyle = computed(() => menuPositions.get(menuPosition.value));
+
+const expanded = ref(true);
+
+const getChevronIcon = computed(() => {
+  if (["top-right", "bottom-right"].includes(menuPosition.value)) {
+    return expanded.value ? ChevronRightIcon : ChevronLeftIcon;
+  }
+
+  // if left…
+  return expanded.value ? ChevronLeftIcon : ChevronRightIcon;
+});
+
+const toggleExpand = () => {
+  expanded.value = !expanded.value;
+};
 </script>
 
 <style scoped>
@@ -87,37 +113,50 @@ const menuPositionStyle = computed(() => menuPositions.get(menuPosition.value));
   flex-flow: column;
   gap: 1rem;
   padding: 1rem 1.5rem;
-  min-width: 30ch;
+  justify-content: space-between;
   z-index: 1;
+  outline: 1px solid theme("colors.gray.300");
+  --border-radius: 0.5rem;
 }
 
 .menu-open {
-  --border-radius: 0.75rem;
   box-shadow: inset var(--shadow-x) var(--shadow-y) 20px rgb(0 0 0 / 10%);
+}
+
+.bottom-right {
+  border-start-start-radius: var(--border-radius);
 }
 
 .menu-open.bottom-right {
   --shadow-x: 10px;
   --shadow-y: 10px;
-  border-start-start-radius: var(--border-radius);
+}
+
+.bottom-left {
+  border-start-end-radius: var(--border-radius);
 }
 
 .menu-open.bottom-left {
   --shadow-x: -10px;
   --shadow-y: 10px;
-  border-start-end-radius: var(--border-radius);
+}
+
+.top-left {
+  border-end-end-radius: var(--border-radius);
 }
 
 .menu-open.top-left {
   --shadow-x: -10px;
   --shadow-y: -10px;
-  border-end-end-radius: var(--border-radius);
+}
+
+.top-right {
+  border-end-start-radius: var(--border-radius);
 }
 
 .menu-open.top-right {
   --shadow-x: 10px;
   --shadow-y: -10px;
-  border-end-start-radius: var(--border-radius);
 }
 
 .menu-open.top-left,
@@ -127,7 +166,7 @@ const menuPositionStyle = computed(() => menuPositions.get(menuPosition.value));
 
 .menu-positions {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(v-bind("expanded ? 2 : 1"), 1fr);
   gap: 0.5em;
 }
 
@@ -138,17 +177,21 @@ const menuPositionStyle = computed(() => menuPositions.get(menuPosition.value));
   column-gap: 0.5em;
 }
 
-.nav-button {
+.nav-button-wrapper {
   display: flex;
   justify-content: space-between;
-  gap: 0.5rem;
   align-items: center;
-  width: 100%;
+  gap: 1em;
 }
 
-.nav-button.top-left,
-.nav-button.bottom-left {
+:where(.top-left, .bottom-left) .nav-button-wrapper {
   flex-direction: row-reverse;
+}
+
+.route-info {
+  flex: 1;
+  text-align: center;
+  margin-block: -0.25em;
 }
 
 .links-list {
