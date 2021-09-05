@@ -14,7 +14,9 @@
             class="link"
             :class="{ active: route.path === link.path }"
           >
-            <RouterLink :to="link.path">{{ link.name }}</RouterLink>
+            <RouterLink :to="link.path" @click="toggleMenu">{{
+              link.name
+            }}</RouterLink>
           </li>
         </ul>
       </nav>
