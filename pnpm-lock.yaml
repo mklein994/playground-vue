@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@heroicons/vue': ^1.0.4
+  '@highlightjs/vue-plugin': ^2.0.1
   '@tailwindcss/forms': ^0.3.3
   '@types/tailwindcss': ^2.2.1
   '@typescript-eslint/eslint-plugin': ^4.30.0
@@ -13,6 +14,7 @@ specifiers:
   eslint-config-prettier: ^8.3.0
   eslint-plugin-simple-import-sort: ^7.0.0
   eslint-plugin-vue: ^7.17.0
+  highlight.js: ^11.2.0
   modern-normalize: ^1.1.0
   postcss: ^8.3.6
   postcss-dir-pseudo-class: ^5.0.0
@@ -33,6 +35,7 @@ dependencies:
 
 devDependencies:
   '@heroicons/vue': 1.0.4_vue@3.2.7
+  '@highlightjs/vue-plugin': 2.0.1
   '@tailwindcss/forms': 0.3.3_tailwindcss@2.2.9
   '@types/tailwindcss': 2.2.1
   '@typescript-eslint/eslint-plugin': 4.30.0_8a8a2d3eaa9257455a03c16dce5f55b3
@@ -44,6 +47,7 @@ devDependencies:
   eslint-config-prettier: 8.3.0_eslint@7.32.0
   eslint-plugin-simple-import-sort: 7.0.0_eslint@7.32.0
   eslint-plugin-vue: 7.17.0_eslint@7.32.0
+  highlight.js: 11.2.0
   postcss: 8.3.6
   postcss-dir-pseudo-class: 5.0.0
   postcss-logical: 4.0.2
@@ -132,6 +136,13 @@ packages:
     peerDependencies:
       vue: '>= 3'
     dependencies:
+      vue: 3.2.7
+    dev: true
+
+  /@highlightjs/vue-plugin/2.0.1:
+    resolution: {integrity: sha512-6pmLh+VSvswavU7RB0BnWLp/9ITX6UYeVmR1gkFKQ4yx777lOCsGZOKc+1rswBDlD+bWb0xXVig85A7GEU2Vsg==}
+    dependencies:
+      highlight.js: 11.2.0
       vue: 3.2.7
     dev: true
 
@@ -427,7 +438,6 @@ packages:
     dependencies:
       '@vue/reactivity': 3.2.7
       '@vue/shared': 3.2.7
-    dev: false
 
   /@vue/runtime-dom/3.2.7:
     resolution: {integrity: sha512-yuUmc8haFHrDqoU10JV3Fjd3G5Wz/ID+a/XMs0U68vhDLFsTBejhLX4il8Ga8nv+wrdwuGFwEE8t6APS67PxyA==}
@@ -435,7 +445,6 @@ packages:
       '@vue/runtime-core': 3.2.7
       '@vue/shared': 3.2.7
       csstype: 2.6.17
-    dev: false
 
   /@vue/shared/3.2.7:
     resolution: {integrity: sha512-YwGOcNZjOY/MmadpzFBXWyHEwZSf0lVU4XF5zpD7tXC9dmqjdo38Jkk06wATu4LYHDPW4emXKMB5YLFPWPkwFA==}
@@ -775,7 +784,6 @@ packages:
 
   /csstype/2.6.17:
     resolution: {integrity: sha512-u1wmTI1jJGzCJzWndZo8mk4wnPTZd1eOIYTYvuEyOQGfmDl3TrabCCfKnOC86FZwW/9djqTl933UF/cS425i9A==}
-    dev: false
 
   /debug/4.3.2:
     resolution: {integrity: sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==}
@@ -1270,6 +1278,11 @@ packages:
 
   /hash-sum/2.0.0:
     resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==}
+    dev: true
+
+  /highlight.js/11.2.0:
+    resolution: {integrity: sha512-JOySjtOEcyG8s4MLR2MNbLUyaXqUunmSnL2kdV/KuGJOmHZuAR5xC54Ko7goAXBWNhf09Vy3B+U7vR62UZ/0iw==}
+    engines: {node: '>=12.0.0'}
     dev: true
 
   /html-tags/3.1.0:
@@ -2485,7 +2498,6 @@ packages:
       '@vue/compiler-dom': 3.2.7
       '@vue/runtime-dom': 3.2.7
       '@vue/shared': 3.2.7
-    dev: false
 
   /which/2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
