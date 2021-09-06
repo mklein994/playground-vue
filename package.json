@@ -6,7 +6,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "lint": "eslint --ext js,ts,vue .",
-    "format": "eslint --ext js,ts,vue --fix --fix-type layout . && prettier -w ."
+    "format": "eslint --ext js,ts,vue --fix --fix-type layout . && prettier --write ."
   },
   "dependencies": {
     "modern-normalize": "^1.1.0",
