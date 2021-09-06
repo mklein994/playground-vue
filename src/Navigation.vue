@@ -110,6 +110,10 @@ const toggleExpand = () => {
 
 .home {
   position: fixed;
+  /* Allow the menu tk resize based on the current
+   * viewport (minus UA chrome)
+   */
+  max-height: calc(100vh - (100vh - 100%));
   background-color: #f9fafbee;
   display: flex;
   flex-flow: column;
@@ -194,6 +198,15 @@ const toggleExpand = () => {
   flex: 1;
   text-align: center;
   margin-block: -0.25em;
+}
+
+.links {
+  /* scroll the links when there's not enough space */
+  overflow-y: auto;
+  /* TODO: figure out how to make this less janky on
+   * browsers that can hide the toolbar on scroll (i.e.
+   * Firefox Android)
+   */
 }
 
 .links-list {
