@@ -1,27 +1,63 @@
 <template>
-  <div class="grid-component">
-    <div v-for="fruit in fruits" :key="fruit" class="item">{{ fruit }}</div>
+  <div class="input-group">
+    <label for="grid-definition">Grid definition</label>
+    <textarea id="grid-definition" v-model="gridDefinition" />
+
+    <label for="grid-style">Grid style</label>
+    <textarea id="grid-style" v-model="gridStyle" />
+
+    <label for="item-style">Item style</label>
+    <textarea id="item-style" v-model="itemStyle" />
+  </div>
+
+  <div class="grid-component" :style="gridStyle">
+    <div v-for="fruit in fruits" :key="fruit" class="item" :style="itemStyle">
+      {{ fruit }}
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
 
-const fruits = ref(["apple", "banana", "cherry"]);
+const fruits = ref([
+  "apple",
+  "avocado",
+  "banana",
+  "blueberry",
+  "cherry",
+  "coconut",
+  "honeydew",
+  "kiwi",
+  "lemon",
+  "lime",
+  "mango",
+  "nectarine",
+  "orange",
+  "pear",
+  "plum",
+  "pomegranate",
+  "raspberry",
+  "strawberry",
+  "tangerine",
+  "tomato",
+  "watermelon",
+]);
+
+const gridDefinition = ref("auto-flow / repeat(3, 1fr)");
+const gridStyle = ref("gap: 0.25em");
+const itemStyle = ref("outline: 1px solid blue");
 </script>
 
-<style lang="scss">
-.grid-component {
+<style scoped>
+.input-group {
   display: grid;
-  gap: 1rem;
-  margin: 1rem;
-  padding: 1rem;
-  background: lightcoral;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5em;
 }
 
-.grid-component > {
-  .item {
-    border: 1px solid black;
-  }
+.grid-component {
+  display: grid;
+  grid: v-bind("gridDefinition");
 }
 </style>
