@@ -2,3 +2,8 @@
   font-family: "Andada Pro";
   src: url("./assets/AndadaPro-VariableFont_wght.ttf");
 }
+
+@font-face {
+  font-family: "Recursive";
+  src: url("./assets/Recursive.woff2") format("woff2-variations");
+}
