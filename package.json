@@ -8,6 +8,7 @@
     "lint": "eslint --ext js,ts,vue .",
     "format": "eslint --ext js,ts,vue --fix --fix-type layout . && prettier --write ."
   },
+  "packageManager": "pnpm@6.14.7",
   "dependencies": {
     "modern-normalize": "^1.1.0",
     "vue": "^3.2.9",
