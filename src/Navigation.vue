@@ -35,17 +35,15 @@
       </div>
     </template>
 
-    <div class="nav-button-wrapper" :class="menuPosition">
-      <button v-if="menuOpen" @click="toggleExpand">
+    <div class="nav-button-wrapper" :class="menuPosition" @click="toggleMenu">
+      <button v-if="menuOpen" @click.stop="toggleExpand">
         <Component :is="getChevronIcon" class="icon" />
       </button>
 
-      <RouteInfo v-if="expanded" class="route-info" @click="toggleMenu" />
+      <RouteInfo v-if="expanded" class="route-info" />
 
-      <button class="nav-button" :class="menuPosition" @click="toggleMenu">
-        <XIcon v-if="menuOpen" class="icon" />
-        <MenuIcon v-else class="icon" />
-      </button>
+      <XIcon v-if="menuOpen" class="icon" />
+      <MenuIcon v-else class="icon" />
     </div>
   </div>
 </template>
@@ -188,6 +186,8 @@ const toggleExpand = () => {
   justify-content: space-between;
   align-items: center;
   gap: 1em;
+
+  cursor: pointer;
 }
 
 :where(.top-left, .bottom-left) .nav-button-wrapper {
