@@ -107,6 +107,7 @@ const toggleExpand = () => {
 }
 
 .home {
+  box-sizing: border-box; /* Make max-height work without Tailwind */
   position: fixed;
   /* Allow the menu tk resize based on the current
    * viewport (minus UA chrome)
@@ -210,10 +211,9 @@ const toggleExpand = () => {
 }
 
 .links-list {
-  margin: 0;
+  margin: 0 0 0 1em;
   padding: 0;
   list-style-type: circle;
-  list-style-position: inside;
 }
 
 .link {
