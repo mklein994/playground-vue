@@ -24,7 +24,7 @@
       >
         +
       </button>
-      <button @click="axis[value.id] = 2">Reset</button>
+      <button @click="axis[value.id] = value.default">Reset</button>
     </template>
 
     <div class="crsv-group">
@@ -155,6 +155,7 @@ const axisData = [
     max: 40,
     step: 0.01,
     userStep: 2,
+    default: 2,
   },
   {
     id: "slnt",
