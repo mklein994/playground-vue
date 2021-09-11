@@ -1,10 +1,8 @@
 <template>
   <p class="color-test">
-    Test: this has
     <code class="color-test-code" style="color: var(--tw-sky-500)"
       >color: var(--tw-sky-500);</code
     >
-    set.
   </p>
 
   <div class="tailwind-colors">
