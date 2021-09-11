@@ -6,11 +6,11 @@
 
 <style scoped>
 .welcome-container {
+  box-sizing: border-box; /* For when no resets are used */
   display: grid;
   place-items: center;
-
-  height: 100vh;
-  padding-bottom: 10vh;
+  height: 100vh; /* assumes <body> has no margin */
+  padding-bottom: 3.5rem;
 }
 
 .welcome {
