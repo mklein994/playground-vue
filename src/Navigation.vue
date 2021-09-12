@@ -21,6 +21,23 @@
         </ul>
       </nav>
 
+      <div class="enable-tailwind">
+        <input
+          id="tailwind"
+          v-model="tailwindEnabled"
+          type="checkbox"
+          :disabled="tailwindEnabled"
+          class="tailwind-checkbox"
+          :value="tailwindEnabled"
+          @change="enableTailwind"
+        />
+        <label for="tailwind">{{ "Tailwind enabled" }}</label>
+
+        <div v-if="tailwindEnabled" class="reset-message">
+          (refresh to reset)
+        </div>
+      </div>
+
       <div class="menu-positions">
         <div v-for="[id] of menuPositions" :key="id" class="menu-position">
           <input
@@ -96,6 +113,13 @@ const getChevronIcon = computed(() => {
 
 const toggleExpand = () => {
   expanded.value = !expanded.value;
+};
+
+const tailwindEnabled = ref(false);
+
+const enableTailwind = async () => {
+  await import("./tailwind.css");
+  tailwindEnabled.value = true;
 };
 </script>
 
@@ -228,5 +252,32 @@ const toggleExpand = () => {
 .icon {
   height: 1.5rem;
   width: 1.5rem;
+}
+
+.enable-tailwind {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: start;
+  align-items: center;
+  column-gap: 0.5em;
+}
+
+.tailwind-checkbox:checked {
+  color: gray;
+  outline-color: gray;
+}
+
+.tailwind-checkbox:checked ~ * {
+  color: gray;
+}
+
+.reset-message {
+  grid-column-end: -1;
+
+  /* @apply tw-text-sm; */
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+
+  color: gray;
 }
 </style>
