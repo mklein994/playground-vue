@@ -1,31 +1,14 @@
 <template>
   <div class="input-group">
-    <template v-for="value of axisData" :key="value.id">
-      <label :for="value.id">{{ value.label }}</label>
-      <input
-        :id="value.id"
-        v-model="axis[value.id]"
-        type="range"
-        :name="value.id"
-        :min="value.min"
-        :max="value.max"
-        :step="value.step"
-      />
-      <span class="value">{{ axis[value.id] }}</span>
-      <button
-        :disabled="axis[value.id] === value.min"
-        @click="subAxis(value.id, value.min, value.userStep)"
-      >
-        -
-      </button>
-      <button
-        :disabled="axis[value.id] === value.max"
-        @click="addAxis(value.id, value.max, value.userStep)"
-      >
-        +
-      </button>
-      <button @click="axis[value.id] = value.default">Reset</button>
-    </template>
+    <VariableFontAxis v-model="fontSize" :opts="fontSizeOpts" />
+
+    <VariableFontAxis v-model="slnt" :opts="slntOpts" />
+
+    <VariableFontAxis v-model="wght" :opts="wghtOpts" />
+
+    <VariableFontAxis v-model="casl" :opts="caslOpts" />
+
+    <VariableFontAxis v-model="mono" :opts="monoOpts" />
 
     <div class="crsv-group">
       <label for="crsv">CRSV</label>
@@ -33,7 +16,7 @@
       <span>
         <input
           id="crsv-off"
-          v-model="axis.crsv"
+          v-model="crsv"
           type="radio"
           name="crsv"
           value="0"
@@ -44,7 +27,7 @@
       <span>
         <input
           id="crsv-auto"
-          v-model="axis.crsv"
+          v-model="crsv"
           type="radio"
           name="crsv"
           value="0.5"
@@ -54,13 +37,7 @@
       </span>
 
       <span>
-        <input
-          id="crsv-on"
-          v-model="axis.crsv"
-          type="radio"
-          name="crsv"
-          value="1"
-        />
+        <input id="crsv-on" v-model="crsv" type="radio" name="crsv" value="1" />
         <label for="crsv-on">on</label>
       </span>
     </div>
@@ -136,95 +113,65 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { ref } from "vue";
 
-const axis = reactive<Record<string, number>>({
-  fontSize: 2,
-  slnt: 0,
-  wght: 300,
-  casl: 0,
-  crsv: 0.5,
-  mono: 0.5,
-});
+import VariableFontAxis from "../components/variable-fonts/VariableFontAxis.vue";
 
-const axisData = [
-  {
-    id: "fontSize",
-    label: "Font Size",
-    min: 0.5,
-    max: 40,
-    step: 0.01,
-    userStep: 2,
-    default: 2,
-  },
-  {
-    id: "slnt",
-    label: "slnt",
-    min: -15,
-    max: 0,
-    step: 0.1,
-    userStep: 1,
-    default: 2,
-  },
-  {
-    id: "wght",
-    label: "wght",
-    min: 300,
-    max: 1_000,
-    step: 1,
-    userStep: 25,
-    default: 300,
-  },
-  {
-    id: "casl",
-    label: "CASL",
-    min: 0,
-    max: 1,
-    step: 0.01,
-    userStep: 0.5,
-    default: 0,
-  },
-  // {
-  //   id: "crsv",
-  //   label: "CRSV",
-  //   min: 0.5,
-  //   max: 40,
-  //   step: 0.01,
-  //   userStep: 2,
-  //   default: 0.5,
-  // },
-  {
-    id: "mono",
-    label: "MONO",
-    min: 0,
-    max: 1,
-    step: 0.01,
-    userStep: 0.25,
-    default: 0,
-  },
-];
-
-const subAxis = (name: string, min: number, step: number) => {
-  let value = axis[name];
-  if (value <= min) {
-    return;
-  }
-
-  value -= step;
-  value = Math.max(value, min);
-  axis[name] = value;
+const fontSizeOpts = {
+  id: "fontSize",
+  label: "Font Size",
+  min: 0.5,
+  max: 40,
+  step: 0.01,
+  userStep: 2,
+  default: 2,
 };
 
-const addAxis = (name: string, max: number, step: number) => {
-  let value = axis[name];
-  if (value > max) {
-    return;
-  }
-
-  value += step;
-  value = Math.min(value, max);
-  axis[name] = value;
+const slntOpts = {
+  id: "slnt",
+  label: "slnt",
+  min: -15,
+  max: 0,
+  step: 0.1,
+  userStep: 1,
+  default: 0,
 };
+
+const wghtOpts = {
+  id: "wght",
+  label: "wght",
+  min: 300,
+  max: 1_000,
+  step: 1,
+  userStep: 25,
+  default: 300,
+};
+
+const caslOpts = {
+  id: "casl",
+  label: "CASL",
+  min: 0,
+  max: 1,
+  step: 0.01,
+  userStep: 0.5,
+  default: 0,
+};
+const monoOpts = {
+  id: "mono",
+  label: "MONO",
+  min: 0,
+  max: 1,
+  step: 0.01,
+  userStep: 0.25,
+  default: 0,
+};
+
+const fontSize = ref(fontSizeOpts.default);
+const slnt = ref(slntOpts.default);
+const wght = ref(wghtOpts.default);
+const casl = ref(caslOpts.default);
+const crsv = ref(0.5);
+const mono = ref(monoOpts.default);
 </script>
 
 <style scoped>
@@ -263,13 +210,9 @@ const addAxis = (name: string, max: number, step: number) => {
 }
 
 .content {
-  overflow-y: scroll;
-  height: 75vh;
-
-  font-size: calc(v-bind("axis.fontSize") * 1vw);
+  font-size: calc(v-bind("fontSize") * 1vw);
   font-family: Recursive;
-  font-variation-settings: "slnt" v-bind("axis.slnt"),
-    "wght" v-bind("axis.wght"), "CASL" v-bind("axis.casl"),
-    "CRSV" v-bind("axis.crsv"), "MONO" v-bind("axis.mono");
+  font-variation-settings: "slnt" v-bind("slnt"), "wght" v-bind("wght"),
+    "CASL" v-bind("casl"), "CRSV" v-bind("crsv"), "MONO" v-bind("mono");
 }
 </style>
