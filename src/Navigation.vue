@@ -26,14 +26,14 @@
           id="tailwind"
           v-model="tailwindEnabled"
           type="checkbox"
-          :disabled="tailwindEnabled"
           class="tailwind-checkbox"
           :value="tailwindEnabled"
-          @change="enableTailwind"
+          :disabled="tailwindLocked"
+          @input="toggleTailwind"
         />
-        <label for="tailwind">{{ "Tailwind enabled" }}</label>
+        <label for="tailwind">Enable Tailwind</label>
 
-        <div v-if="tailwindEnabled" class="reset-message">
+        <div v-if="tailwindLocked" class="reset-message">
           (refresh to reset)
         </div>
       </div>
@@ -116,10 +116,32 @@ const toggleExpand = () => {
 };
 
 const tailwindEnabled = ref(false);
+const tailwindLocked = computed(
+  () => import.meta.env.DEV && tailwindEnabled.value
+);
 
-const enableTailwind = async () => {
-  await import("./tailwind.css");
-  tailwindEnabled.value = true;
+const toggleTailwind = async (event: Event) => {
+  const value = (event.target as HTMLInputElement).checked;
+
+  if (import.meta.env.DEV) {
+    await import("./tailwind.css");
+    tailwindEnabled.value = value;
+    return;
+  }
+
+  tailwindEnabled.value = value;
+
+  const link = document.head.querySelector<HTMLLinkElement>(
+    "link[title='tailwind']"
+  );
+
+  if (link == null) {
+    throw new Error(
+      "tailwind style <link title='tailwind'> not found. This is only available on production builds."
+    );
+  }
+
+  link.disabled = !tailwindEnabled.value;
 };
 </script>
 
@@ -262,12 +284,12 @@ const enableTailwind = async () => {
   column-gap: 0.5em;
 }
 
-.tailwind-checkbox:checked {
+.tailwind-checkbox:disabled {
   color: gray;
   outline-color: gray;
 }
 
-.tailwind-checkbox:checked ~ * {
+.tailwind-checkbox:disabled ~ * {
   color: gray;
 }
 

@@ -1,22 +1,28 @@
 import vue from "@vitejs/plugin-vue";
-import autoprefixer from "autoprefixer";
-import postcssDirPseudoClass from "postcss-dir-pseudo-class";
-import postcssLogical from "postcss-logical";
-import tailwindcss from "tailwindcss";
-import { defineConfig } from "vite";
+import { defineConfig, IndexHtmlTransformResult } from "vite";
+
+const htmlPlugin = () => {
+  return {
+    name: "html-transform",
+    transformIndexHtml(): IndexHtmlTransformResult {
+      return [
+        {
+          tag: "link",
+          attrs: {
+            href: `/tailwind.min.css?t=${new Date().valueOf()}`,
+            rel: "stylesheet",
+            title: "tailwind",
+            disabled: "",
+          },
+          injectTo: "head",
+        },
+      ];
+    },
+  };
+};
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  css: {
-    postcss: {
-      plugins: [
-        tailwindcss,
-        autoprefixer,
-        postcssLogical({ preserve: true }),
-        postcssDirPseudoClass,
-      ],
-    },
-  },
+export default defineConfig(({ mode }) => ({
   server: {
     fs: {
       // TODO: this setting is experimental. Once
@@ -26,5 +32,5 @@ export default defineConfig({
     },
     host: "127.0.0.1",
   },
-  plugins: [vue()],
-});
+  plugins: [vue(), mode === "production" && htmlPlugin()],
+}));
