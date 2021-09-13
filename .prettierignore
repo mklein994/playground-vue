@@ -1,3 +1,4 @@
 dist/
 # managed by pnpm
 pnpm-lock.yaml
+public/*.min.css
