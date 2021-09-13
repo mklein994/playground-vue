@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import * as allColors from "tailwindcss/colors";
+import allColors from "tailwindcss/colors";
 import { TailwindColorGroup } from "tailwindcss/tailwind-config";
 
 const colors = allColors;
