@@ -160,7 +160,7 @@ const toggleTailwind = async (event: Event) => {
   padding: 1rem 1.5rem;
   justify-content: space-between;
   z-index: 1;
-  outline: 1px solid theme("colors.gray.300");
+  border: 1px solid theme("colors.gray.300");
   --border-radius: 0.5rem;
 }
 
