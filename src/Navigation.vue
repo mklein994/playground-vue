@@ -1,6 +1,6 @@
 <template>
   <div v-if="menuOpen" class="background" @click="toggleMenu"></div>
-  <div class="home" :class="[{ 'menu-open': menuOpen }, menuPosition]">
+  <div class="home" :class="[{ 'menu-open': menuOpen }, menuPositionClasses]">
     <template v-if="menuOpen">
       <nav class="links">
         <ul class="links-list">
@@ -35,7 +35,7 @@
       </div>
 
       <div class="menu-positions">
-        <div v-for="id of menuPositions" :key="id" class="menu-position">
+        <div v-for="[id] of menuPositions" :key="id" class="menu-position">
           <input
             :id="`menu-position-${id}`"
             v-model="menuPosition"
@@ -48,7 +48,11 @@
       </div>
     </template>
 
-    <div class="nav-button-wrapper" :class="menuPosition" @click="toggleMenu">
+    <div
+      class="nav-button-wrapper"
+      :class="menuPositionClasses"
+      @click="toggleMenu"
+    >
       <button v-if="menuOpen" @click.stop="toggleExpand">
         <Component :is="getChevronIcon" class="icon" />
       </button>
@@ -85,19 +89,33 @@ const toggleMenu = () => {
   menuOpen.value = !menuOpen.value;
 };
 
-const menuPositions = new Set<string>([
-  "top-left",
-  "top-right",
-  "bottom-left",
-  "bottom-right",
+const menuPositions = new Map<string, { top: boolean; left: boolean }>([
+  ["top-left", { top: true, left: true }],
+  ["top-right", { top: true, left: false }],
+  ["bottom-left", { top: false, left: true }],
+  ["bottom-right", { top: false, left: false }],
 ]);
 
 const menuPosition = ref("bottom-right");
 
+const menuPositionClasses = computed(() => {
+  const position = menuPositions.get(menuPosition.value);
+  if (!position) {
+    throw new Error(`navigation: unknown position: ${position}`);
+  }
+
+  return {
+    top: position.top,
+    left: position.left,
+    right: !position.left,
+    bottom: !position.top,
+  };
+});
+
 const expanded = ref(true);
 
 const getChevronIcon = computed(() => {
-  if (["top-right", "bottom-right"].includes(menuPosition.value)) {
+  if (menuPositionClasses.value.right) {
     return expanded.value ? ChevronRightIcon : ChevronLeftIcon;
   }
 
@@ -168,56 +186,65 @@ const toggleTailwind = async (event: Event) => {
   box-shadow: inset var(--shadow-x) var(--shadow-y) 20px rgb(0 0 0 / 10%);
 }
 
-.top-left {
-  inset-block-start: 0;
-  inset-inline-start: 0;
+/**
+ * Reminder: In a language like English:
+ *
+ * block-start:  top
+ * block-end:    bottom
+ *
+ * inline-start: left
+ * inline-end:   right
+ */
 
+.top {
+  inset-block-start: 0;
+}
+
+.bottom {
+  inset-block-end: 0;
+}
+
+.left {
+  inset-inline-start: 0;
+}
+
+.right {
+  inset-inline-end: 0;
+}
+
+.top.left {
   border-end-end-radius: var(--border-radius);
 }
 
-.top-right {
-  inset-block-start: 0;
-  inset-inline-end: 0;
-
+.top.right {
   border-end-start-radius: var(--border-radius);
 }
 
-.bottom-left {
-  inset-block-end: 0;
-  inset-inline-start: 0;
-
+.bottom.left {
   border-start-end-radius: var(--border-radius);
 }
 
-.bottom-right {
-  inset-block-end: 0;
-  inset-inline-end: 0;
-
+.bottom.right {
   border-start-start-radius: var(--border-radius);
 }
 
-.menu-open.bottom-right {
-  --shadow-x: 10px;
+.menu-open.bottom {
   --shadow-y: 10px;
 }
 
-.menu-open.bottom-left {
-  --shadow-x: -10px;
-  --shadow-y: 10px;
-}
-
-.menu-open.top-left {
-  --shadow-x: -10px;
-  --shadow-y: -10px;
-}
-
-.menu-open.top-right {
+.menu-open.right {
   --shadow-x: 10px;
+}
+
+.menu-open.left {
+  --shadow-x: -10px;
+}
+
+.menu-open.top {
   --shadow-y: -10px;
 }
 
-.menu-open.top-left,
-.menu-open.top-right {
+.menu-open.top {
   flex-flow: column-reverse;
 }
 
@@ -243,7 +270,7 @@ const toggleTailwind = async (event: Event) => {
   cursor: pointer;
 }
 
-:where(.top-left, .bottom-left) .nav-button-wrapper {
+.left .nav-button-wrapper {
   flex-direction: row-reverse;
 }
 
