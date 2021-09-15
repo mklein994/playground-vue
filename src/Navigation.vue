@@ -182,6 +182,13 @@ const toggleTailwind = async (event: Event) => {
   --border-radius: 0.5rem;
 }
 
+@supports not (inset: 0) {
+  .home.bottom.right {
+    bottom: 0;
+    right: 0;
+  }
+}
+
 .menu-open {
   box-shadow: inset var(--shadow-x) var(--shadow-y) 20px rgb(0 0 0 / 10%);
 }
