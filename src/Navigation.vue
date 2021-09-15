@@ -1,10 +1,6 @@
 <template>
   <div v-if="menuOpen" class="background" @click="toggleMenu"></div>
-  <div
-    class="home"
-    :class="[{ 'menu-open': menuOpen }, menuPosition]"
-    :style="menuPositionStyle"
-  >
+  <div class="home" :class="[{ 'menu-open': menuOpen }, menuPosition]">
     <template v-if="menuOpen">
       <nav class="links">
         <ul class="links-list">
@@ -39,7 +35,7 @@
       </div>
 
       <div class="menu-positions">
-        <div v-for="[id] of menuPositions" :key="id" class="menu-position">
+        <div v-for="id of menuPositions" :key="id" class="menu-position">
           <input
             :id="`menu-position-${id}`"
             v-model="menuPosition"
@@ -89,16 +85,14 @@ const toggleMenu = () => {
   menuOpen.value = !menuOpen.value;
 };
 
-const menuPositions = new Map<string, Record<string, number>>([
-  ["top-left", { insetBlockStart: 0, insetInlineStart: 0 }],
-  ["top-right", { insetBlockStart: 0, insetInlineEnd: 0 }],
-  ["bottom-left", { insetBlockEnd: 0, insetInlineStart: 0 }],
-  ["bottom-right", { insetBlockEnd: 0, insetInlineEnd: 0 }],
+const menuPositions = new Set<string>([
+  "top-left",
+  "top-right",
+  "bottom-left",
+  "bottom-right",
 ]);
 
 const menuPosition = ref("bottom-right");
-
-const menuPositionStyle = computed(() => menuPositions.get(menuPosition.value));
 
 const expanded = ref(true);
 
@@ -174,7 +168,31 @@ const toggleTailwind = async (event: Event) => {
   box-shadow: inset var(--shadow-x) var(--shadow-y) 20px rgb(0 0 0 / 10%);
 }
 
+.top-left {
+  inset-block-start: 0;
+  inset-inline-start: 0;
+
+  border-end-end-radius: var(--border-radius);
+}
+
+.top-right {
+  inset-block-start: 0;
+  inset-inline-end: 0;
+
+  border-end-start-radius: var(--border-radius);
+}
+
+.bottom-left {
+  inset-block-end: 0;
+  inset-inline-start: 0;
+
+  border-start-end-radius: var(--border-radius);
+}
+
 .bottom-right {
+  inset-block-end: 0;
+  inset-inline-end: 0;
+
   border-start-start-radius: var(--border-radius);
 }
 
@@ -183,26 +201,14 @@ const toggleTailwind = async (event: Event) => {
   --shadow-y: 10px;
 }
 
-.bottom-left {
-  border-start-end-radius: var(--border-radius);
-}
-
 .menu-open.bottom-left {
   --shadow-x: -10px;
   --shadow-y: 10px;
 }
 
-.top-left {
-  border-end-end-radius: var(--border-radius);
-}
-
 .menu-open.top-left {
   --shadow-x: -10px;
   --shadow-y: -10px;
-}
-
-.top-right {
-  border-end-start-radius: var(--border-radius);
 }
 
 .menu-open.top-right {
