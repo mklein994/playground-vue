@@ -1,25 +1,23 @@
 import vue from "@vitejs/plugin-vue";
 import { defineConfig, IndexHtmlTransformResult } from "vite";
 
-const htmlPlugin = () => {
-  return {
-    name: "html-transform",
-    transformIndexHtml(): IndexHtmlTransformResult {
-      return [
-        {
-          tag: "link",
-          attrs: {
-            href: `/tailwind.min.css?t=${new Date().valueOf()}`,
-            rel: "stylesheet",
-            title: "tailwind",
-            disabled: "",
-          },
-          injectTo: "head",
+const separateTailwind = () => ({
+  name: "html-tailwind-transform",
+  transformIndexHtml(): IndexHtmlTransformResult {
+    return [
+      {
+        tag: "link",
+        attrs: {
+          href: `/tailwind.min.css?t=${new Date().valueOf()}`,
+          rel: "stylesheet",
+          title: "tailwind",
+          disabled: "",
         },
-      ];
-    },
-  };
-};
+        injectTo: "head",
+      },
+    ];
+  },
+});
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -32,5 +30,5 @@ export default defineConfig(({ mode }) => ({
     },
     host: "127.0.0.1",
   },
-  plugins: [vue(), mode === "production" && htmlPlugin()],
+  plugins: [vue(), mode === "production" && separateTailwind()],
 }));
