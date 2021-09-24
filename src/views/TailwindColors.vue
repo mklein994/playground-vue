@@ -1,20 +1,22 @@
 <template>
-  <p class="color-test">
-    <code class="color-test-code" style="color: var(--tw-sky-500)"
-      >color: var(--tw-sky-500);</code
-    >
-  </p>
+  <div ref="tailwindColors" class="tailwind-colors">
+    <p class="color-test">
+      <code class="color-test-code" style="color: var(--tw-sky-500)"
+        >color: var(--tw-sky-500);</code
+      >
+    </p>
 
-  <div class="tailwind-colors">
-    <div
-      v-for="(groups, i) of colorsList"
-      :key="`${groups[0][0]}-${i}`"
-      class="card"
-    >
-      <template v-for="[key, hex] of groups" :key="key">
-        <code class="name">{{ key }}:</code><code>{{ hex }}</code
-        ><span class="color" :style="{ backgroundColor: '' + hex }"></span>
-      </template>
+    <div class="colors">
+      <div
+        v-for="(groups, i) of colorsList"
+        :key="`${groups[0][0]}-${i}`"
+        class="card"
+      >
+        <template v-for="[key, hex] of groups" :key="key">
+          <code class="name">{{ key }}:</code><code>{{ hex }}</code
+          ><span class="color" :style="{ backgroundColor: '' + hex }"></span>
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -22,8 +24,11 @@
 <script lang="ts" setup>
 import allColors from "tailwindcss/colors";
 import { TailwindColorGroup } from "tailwindcss/tailwind-config";
+import { onMounted, ref } from "vue";
 
 const colors = allColors;
+
+const tailwindColors = ref<HTMLDivElement>();
 
 /**
  * Check if the object passed in is a {@link TailwindColorGroup}.
@@ -45,9 +50,20 @@ const colorsList = Object.entries(colors).map(([name, group]) =>
     : [[`--tw-${name}`, `${group}`]]
 );
 
-for (const [name, color] of colorsList.flat()) {
-  document.documentElement.style.setProperty(name, color);
-}
+const getTailwindColors = () => {
+  const twc = tailwindColors.value;
+  if (twc === undefined) {
+    throw new Error("tailwind colors ref not found");
+  }
+  return twc;
+};
+
+onMounted(() => {
+  const twc = getTailwindColors();
+  for (const [name, color] of colorsList.flat()) {
+    twc.style.setProperty(name, color);
+  }
+});
 </script>
 
 <style scoped>
@@ -60,7 +76,7 @@ for (const [name, color] of colorsList.flat()) {
   content: "`";
 }
 
-.tailwind-colors {
+.colors {
   --grid: minmax(auto, 19ch) minmax(auto, 7ch) minmax(5em, 1fr);
 
   display: grid;
