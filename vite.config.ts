@@ -30,5 +30,14 @@ export default defineConfig(({ mode }) => ({
     },
     host: "127.0.0.1",
   },
-  plugins: [vue(), mode === "production" && separateTailwind()],
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag.includes("-"),
+        },
+      },
+    }),
+    mode === "production" && separateTailwind(),
+  ],
 }));
