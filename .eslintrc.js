@@ -37,5 +37,6 @@ module.exports = {
         argsIgnorePattern: "^_",
       },
     ],
+    "vue/component-api-style": ["error", ["script-setup", "composition"]],
   },
 };
