@@ -6,7 +6,7 @@
     </div>
 
     <div class="checkbox">
-      <input id="checkbox" type="checkbox" class="input" indeterminate />
+      <input id="checkbox" ref="checkbox" type="checkbox" class="input" />
       <label for="checkbox">Checkbox</label>
     </div>
 
@@ -47,9 +47,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 const color = ref("rebeccapurple");
+const checkbox = ref<HTMLInputElement>();
+
+onMounted(() => {
+  if (checkbox.value !== undefined) {
+    checkbox.value.indeterminate = true;
+  }
+});
 </script>
 
 <style scoped>
