@@ -10,14 +10,14 @@
       <label for="checkbox">Checkbox</label>
     </div>
 
-    <div v-for="{ id, name, checked } of fruits" :key="id" class="radio">
+    <div v-for="{ id, name } of fruits" :key="id" class="radio">
       <input
         :id="id"
+        v-model="selectedFruit"
         type="radio"
         name="fruit"
-        :value="id"
-        :checked="checked"
         class="input"
+        :value="id"
       />
       <label :for="id">{{ name }}</label>
     </div>
@@ -25,7 +25,7 @@
     <div class="multiselect">
       <select
         id="multiselect"
-        v-model="selectedFruit"
+        v-model="selectedFruits"
         name="multiselect"
         multiple
         class="input"
@@ -47,12 +47,13 @@
 import { onMounted, ref } from "vue";
 
 const fruits = [
-  { id: "apple", name: "Apple", checked: true },
-  { id: "banana", name: "Banana", checked: false },
+  { id: "apple", name: "Apple", checked: false },
+  { id: "banana", name: "Banana", checked: true },
   { id: "cherry", name: "Cherry", checked: false },
 ];
 
-const selectedFruit = ref(fruits.filter((f) => f.checked).map((f) => f.id));
+const selectedFruits = ref(fruits.filter((f) => f.checked).map((f) => f.id));
+const selectedFruit = ref(selectedFruits.value[0]);
 
 const color = ref("rebeccapurple");
 const checkbox = ref<HTMLInputElement>();
