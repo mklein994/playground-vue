@@ -8,7 +8,7 @@ export default defineComponent(function CustomRenderFunction() {
     h("div", [
       h("p", "Hello, world! (from render function)"),
       h("button", { onClick: () => foo.value-- }, "Remove"),
-      h("output", { class: "custom-render-function-output" }, foo.value),
+      h("output", { class: "render-output" }, foo.value),
       h("button", { onClick: () => foo.value++ }, "Add"),
       h("p", "How are you today?"),
     ]);

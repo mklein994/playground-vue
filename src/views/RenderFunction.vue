@@ -4,7 +4,7 @@
 
     <CustomRenderFunction />
 
-    <pre class="code">{{ renderCode }}</pre>
+    <Highlightjs language="ts" :code="renderCode" :style="codeStyle" />
 
     <p>
       This is from the equivalent <code>&lt;script setup&gt;</code> component:
@@ -12,22 +12,39 @@
 
     <CustomRenderFunctionSetup />
 
-    <pre class="code">{{ setupCode }}</pre>
+    <Highlightjs language="ts" :code="setupCode" :style="codeStyle" />
   </div>
 </template>
 
 <script lang="ts" setup>
+import hljsVuePlugin from "@highlightjs/vue-plugin";
+import hljs from "highlight.js/lib/core";
+import typescript from "highlight.js/lib/languages/typescript";
+
 import CustomRenderFunction from "../components/CustomRenderFunction.vue";
 import CustomRenderFunctionSetup from "../components/CustomRenderFunctionSetup.vue";
+
+hljs.registerLanguage("ts", typescript);
+
+const Highlightjs = hljsVuePlugin.component;
 
 const renderCode = `${CustomRenderFunction.setup}`;
 const setupCode = `${
   CustomRenderFunctionSetup.render ?? CustomRenderFunctionSetup.setup
 }`;
+
+const codeStyle = import.meta.env.PROD
+  ? {
+      "white-space": "pre-wrap",
+      "word-break": "break-all",
+    }
+  : {};
 </script>
 
-<style scoped>
-.code {
-  white-space: pre-wrap;
+<style>
+@import "highlight.js/styles/github-dark-dimmed.css";
+
+.render-output {
+  padding-inline: 0.5em;
 }
 </style>
