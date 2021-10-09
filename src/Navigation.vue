@@ -162,6 +162,7 @@ const toggleTailwind = async (event: Event) => {
   position: fixed;
   inset: 0;
   background-color: rgb(0 0 0 / 0.25);
+  z-index: 10;
 }
 
 .home {
@@ -177,7 +178,7 @@ const toggleTailwind = async (event: Event) => {
   gap: 1rem;
   padding: 1rem 1.5rem;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 11;
   border: 1px solid theme("colors.gray.300");
   --border-radius: 0.5rem;
 }
