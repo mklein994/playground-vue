@@ -8,33 +8,51 @@
           <th class="cell">Q</th>
           <th class="cell">R</th>
           <th class="cell">S</th>
-          <th class="cell">t1</th>
-          <th class="cell">t2</th>
+          <th v-for="name of headerNames" :key="name" class="cell">
+            {{ name }}
+          </th>
           <th class="cell">result</th>
         </tr>
       </thead>
       <tbody class="body">
         <tr
-          v-for="{ key, p, q, r, s, t1, t2, result } of map"
-          :key="key"
+          v-for="{ key, p, q, r, s, results, result } of map"
+          :key="key.join('')"
           class="row"
         >
-          <td class="cell">{{ key }}</td>
+          <td class="cell">
+            <span
+              v-for="i of key"
+              :key="i"
+              :style="{ color: i ? 'green' : 'lightgray' }"
+              >{{ i }}</span
+            >
+          </td>
           <td class="cell">{{ p }}</td>
           <td class="cell">{{ q }}</td>
           <td class="cell">{{ r }}</td>
           <td class="cell">{{ s }}</td>
-          <td class="cell" :class="t1 ? 'true' : 'false'">{{ t1 }}</td>
-          <td class="cell" :class="t2 ? 'true' : 'false'">{{ t2 }}</td>
+          <td
+            v-for="(res, i) of results"
+            :key="i"
+            class="cell"
+            :class="res ? 'true' : 'false'"
+          >
+            {{ res }}
+          </td>
           <td class="cell" :class="result ? 'true' : 'false'">{{ result }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <Highlightjs language="ts" :code="test1Code" class="code" />
-
-  <Highlightjs language="ts" :code="test2Code" class="code" />
+  <Highlightjs
+    v-for="(code, i) of testCode"
+    :key="i"
+    language="ts"
+    :code="code"
+    class="code"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -46,54 +64,51 @@ hljs.registerLanguage("ts", typescript);
 
 const Highlightjs = hljsVuePlugin.component;
 
-interface Pqrs {
-  p: string | null;
-  q: string | null;
-  r: string | null;
-  s: string | null;
-}
+type Pqrs = Record<"p" | "q" | "r" | "s", string | null>;
 
 const data: Pqrs[] = [
-  { p: "foo", q: "foo", r: "foo", s: "foo" },
-  { p: "foo", q: "foo", r: "foo", s: null },
-  { p: "foo", q: "foo", r: null, s: "foo" },
-  { p: "foo", q: "foo", r: null, s: null },
-  { p: "foo", q: null, r: "foo", s: "foo" },
-  { p: "foo", q: null, r: "foo", s: null },
-  { p: "foo", q: null, r: null, s: "foo" },
-  { p: "foo", q: null, r: null, s: null },
-  { p: null, q: "foo", r: "foo", s: "foo" },
-  { p: null, q: "foo", r: "foo", s: null },
-  { p: null, q: "foo", r: null, s: "foo" },
-  { p: null, q: "foo", r: null, s: null },
-  { p: null, q: null, r: "foo", s: "foo" },
-  { p: null, q: null, r: "foo", s: null },
-  { p: null, q: null, r: null, s: "foo" },
   { p: null, q: null, r: null, s: null },
+  { p: null, q: null, r: null, s: "foo" },
+  { p: null, q: null, r: "foo", s: null },
+  { p: null, q: null, r: "foo", s: "foo" },
+  { p: null, q: "foo", r: null, s: null },
+  { p: null, q: "foo", r: null, s: "foo" },
+  { p: null, q: "foo", r: "foo", s: null },
+  { p: null, q: "foo", r: "foo", s: "foo" },
+  { p: "foo", q: null, r: null, s: null },
+  { p: "foo", q: null, r: null, s: "foo" },
+  { p: "foo", q: null, r: "foo", s: null },
+  { p: "foo", q: null, r: "foo", s: "foo" },
+  { p: "foo", q: "foo", r: null, s: null },
+  { p: "foo", q: "foo", r: null, s: "foo" },
+  { p: "foo", q: "foo", r: "foo", s: null },
+  { p: "foo", q: "foo", r: "foo", s: "foo" },
 ];
 
-function test1({ p, q, r, s }: Pqrs) {
-  return (p === q && r === s) || (p !== q && r !== s);
-}
-
-function test2({ p, q, r, s }: Pqrs) {
-  return (p === q) === (r === s);
-}
+const tests: ((pqrs: Pqrs) => boolean)[] = [
+  /**
+   * Explicitly check P = Q XOR R = S
+   */
+  ({ p, q, r, s }) => (p === q && r === s) || (p !== q && r !== s),
+  /**
+   * Same as above, but shorter
+   */
+  ({ p, q, r, s }) => (p === q) === (r === s),
+];
 
 const map = data.map((row) => {
-  const key = Object.values(row)
-    .map((cell) => (cell == null ? 0 : 1))
-    .join("");
+  const key = Object.values(row).map((cell) => (cell == null ? 0 : 1));
 
-  const t1 = test1(row);
-  const t2 = test2(row);
-  const result = t1 === t2;
+  const results = tests.map((test) => test(row));
+  const result = results.every((x) => x === results[0]);
 
-  return { key, ...row, t1, t2, result };
+  return { key, ...row, results, result };
 });
 
-const test1Code = `${test1}`.replaceAll(/\n {4}/g, "\n");
-const test2Code = `${test2}`.replaceAll(/\n {4}/g, "\n");
+const headerNames = Array.from(map[0].results, (_, i) => `t${i}`);
+
+// Convert functions to strings
+const testCode = tests.map((test) => `${test}`);
 </script>
 
 <style scoped>
