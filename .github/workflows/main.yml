@@ -20,8 +20,6 @@ jobs:
       - name: Install
         run: corepack pnpm install
       - name: Lint
-        run: corepack pnpm run lint
-      - name: Check Formatting
-        run: corepack pnpm run format && git diff --quiet
+        run: corepack pnpm run lint:ci
       - name: Build
         run: corepack pnpm run build

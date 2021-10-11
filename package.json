@@ -6,6 +6,7 @@
     "build": "vue-tsc --noEmit && tailwind --minify --input ./src/tailwind.css --output ./public/tailwind.min.css && vite build",
     "serve": "vite preview",
     "lint": "eslint --ext js,ts,vue .",
+    "lint:ci": "eslint --ext js,ts,vue --max-warnings 0 . && prettier --check .",
     "format": "eslint --ext js,ts,vue --fix --fix-type layout . && prettier --write ."
   },
   "packageManager": "pnpm@6.17.0",
