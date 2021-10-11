@@ -8,7 +8,7 @@
     "lint": "eslint --ext js,ts,vue .",
     "format": "eslint --ext js,ts,vue --fix --fix-type layout . && prettier --write ."
   },
-  "packageManager": "pnpm@6.16.1",
+  "packageManager": "pnpm@6.17.0",
   "dependencies": {
     "vue": "^3.2.20",
     "vue-router": "^4.0.11"
