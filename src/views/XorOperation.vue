@@ -66,24 +66,20 @@ const Highlightjs = hljsVuePlugin.component;
 
 type Pqrs = Record<"p" | "q" | "r" | "s", string | null>;
 
-const data: Pqrs[] = [
-  { p: null, q: null, r: null, s: null },
-  { p: null, q: null, r: null, s: "foo" },
-  { p: null, q: null, r: "foo", s: null },
-  { p: null, q: null, r: "foo", s: "foo" },
-  { p: null, q: "foo", r: null, s: null },
-  { p: null, q: "foo", r: null, s: "foo" },
-  { p: null, q: "foo", r: "foo", s: null },
-  { p: null, q: "foo", r: "foo", s: "foo" },
-  { p: "foo", q: null, r: null, s: null },
-  { p: "foo", q: null, r: null, s: "foo" },
-  { p: "foo", q: null, r: "foo", s: null },
-  { p: "foo", q: null, r: "foo", s: "foo" },
-  { p: "foo", q: "foo", r: null, s: null },
-  { p: "foo", q: "foo", r: null, s: "foo" },
-  { p: "foo", q: "foo", r: "foo", s: null },
-  { p: "foo", q: "foo", r: "foo", s: "foo" },
-];
+// Generate all combinations and map to Pqrs[]
+const choices = 4;
+const data: Pqrs[] = Array.from(
+  { length: 2 ** choices },
+  (_, index) =>
+    Object.fromEntries(
+      index
+        .toString(2) // convert to binary
+        .padStart(choices, "0")
+        .split("")
+        .map((x) => (x === "1" ? "foo" : null))
+        .map((x, i) => [String.fromCharCode("p".charCodeAt(0) + i), x]) // map to keys p..s
+    ) as Pqrs
+);
 
 const tests: ((pqrs: Pqrs) => boolean)[] = [
   /**
