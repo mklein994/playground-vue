@@ -17,8 +17,11 @@ jobs:
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - name: Install
+        run: corepack pnpm install
+      - name: Lint
+        run: corepack pnpm run lint
+      - name: Check Formatting
+        run: corepack pnpm run format && git diff --quiet
       - name: Build
-        run: |
-          corepack pnpm install
-          corepack pnpm run lint
-          corepack pnpm run build
+        run: corepack pnpm run build
