@@ -114,14 +114,12 @@ const menuPositionClasses = computed(() => {
 
 const expanded = ref(true);
 
-const getChevronIcon = computed(() => {
-  if (menuPositionClasses.value.right) {
-    return expanded.value ? ChevronRightIcon : ChevronLeftIcon;
-  }
-
-  // if left…
-  return expanded.value ? ChevronLeftIcon : ChevronRightIcon;
-});
+// Use right icon if menu is also expanded, otherwise use left icon.
+const getChevronIcon = computed(() =>
+  menuPositionClasses.value.right === expanded.value
+    ? ChevronRightIcon
+    : ChevronLeftIcon
+);
 
 const toggleExpand = () => {
   expanded.value = !expanded.value;
