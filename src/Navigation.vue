@@ -220,18 +220,26 @@ const toggleTailwind = async (event: Event) => {
 
 .top.left {
   border-end-end-radius: var(--border-radius);
+  border-block-start: none;
+  border-inline-start: none;
 }
 
 .top.right {
   border-end-start-radius: var(--border-radius);
+  border-block-start: none;
+  border-inline-end: none;
 }
 
 .bottom.left {
   border-start-end-radius: var(--border-radius);
+  border-block-end: none;
+  border-inline-start: none;
 }
 
 .bottom.right {
   border-start-start-radius: var(--border-radius);
+  border-block-end: none;
+  border-inline-end: none;
 }
 
 .menu-open.bottom {
