@@ -20,17 +20,17 @@ const SEPARATOR = "/";
 const srcFiles = Object.keys(import.meta.glob("/src/**"));
 
 const dataSet = (source: RecursiveMap, path: string[], value: string) => {
-  if (path.length === 1) {
-    source.set(path[0], value);
-    return source;
-  }
-
   const head = path.shift();
   if (head === undefined) {
     throw new Error("head is undefined, should be unreachable");
   }
 
-  let newSource = source.get(head) ?? new Map();
+  if (path.length === 0) {
+    source.set(head, value);
+    return source;
+  }
+
+  let newSource: string | RecursiveMap = source.get(head) ?? new Map();
   if (typeof newSource === "string") {
     const newValue = newSource;
     newSource = new Map([["", newValue]]);
@@ -44,15 +44,15 @@ const dataSet = (source: RecursiveMap, path: string[], value: string) => {
 const dataGet = (
   source: RecursiveMap,
   path: string[]
-): RecursiveMap | string | undefined => {
-  if (path.length === 1) {
-    const candidate = source.get(path[0]);
-    return typeof candidate === "string" ? candidate : candidate?.get("");
-  }
-
+): string | RecursiveMap | undefined => {
   const head = path.shift();
   if (head === undefined) {
     throw new Error("head is undefined, should be unreachable");
+  }
+
+  if (path.length === 0) {
+    const candidate = source.get(head);
+    return typeof candidate === "string" ? candidate : candidate?.get("");
   }
 
   const newSource = source.get(head);
@@ -66,34 +66,29 @@ const srcFilesTree = srcFiles.reduce(
   new Map() as RecursiveMap
 );
 
-const isRecord = (thing: unknown): thing is Record<string, unknown> => {
-  return typeof thing === "object";
-};
-
 const dataSetObject = (
   source: Record<string, unknown>,
   path: string[],
   value: string
 ) => {
-  if (path.length === 1) {
-    source[path[0]] = value;
-    return source;
-  }
-
   const head = path.shift();
   if (head === undefined) {
     throw new Error("head is undefined, should be unreachable");
   }
 
-  let newSource = source[head] ?? {};
+  if (path.length === 0) {
+    source[head] = value;
+    return source;
+  }
+
+  let newSource =
+    (source[head] as string | Record<string, unknown> | undefined) ?? {};
   if (typeof newSource === "string") {
     const newValue = newSource;
     newSource = { "": newValue };
   }
 
-  if (isRecord(newSource)) {
-    source[head] = dataSetObject(newSource, path, value);
-  }
+  source[head] = dataSetObject(newSource, path, value);
 
   return source;
 };
@@ -102,14 +97,16 @@ const dataGetObject = (
   source: Record<string, unknown>,
   path: string[]
 ): unknown => {
-  if (path.length === 1) {
-    const candidate = source[path[0]];
-    return isRecord(candidate) ? (candidate[""] as string) : candidate;
-  }
-
   const head = path.shift();
   if (head === undefined) {
     throw new Error("head is undefined, should be unreachable");
+  }
+
+  if (path.length === 0) {
+    const candidate = source[head];
+    return typeof candidate === "string"
+      ? candidate
+      : (candidate as Record<string, unknown> | undefined)?.[""];
   }
 
   const newSource = source[head];
