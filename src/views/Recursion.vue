@@ -1,9 +1,12 @@
 <template>
-  <input v-model="srcFileInput" type="text" />
+  <div class="recursion">
+    <input v-model="srcFileInput" type="text" />
+    <output>{{ srcFileFromTree }}</output>
+    <output>{{ srcFileFromObject }}</output>
+  </div>
   <ul>
     <li v-for="file of srcFiles" :key="file">{{ file }}</li>
   </ul>
-  <output>{{ srcFile }}</output>
   <pre>{{ srcFilesTree }}</pre>
   <pre>{{ srcFilesObject }}</pre>
 </template>
@@ -58,12 +61,10 @@ const dataGet = (
     : dataGet(newSource, path);
 };
 
-const srcFilesTree = srcFiles
-  .map((x) => x.split(SEPARATOR))
-  .reduce(
-    (all, one) => dataSet(all, one, one.join(SEPARATOR)),
-    new Map() as RecursiveMap
-  );
+const srcFilesTree = srcFiles.reduce(
+  (all, one) => dataSet(all, one.split(SEPARATOR), one),
+  new Map() as RecursiveMap
+);
 
 const isRecord = (thing: unknown): thing is Record<string, unknown> => {
   return typeof thing === "object";
@@ -97,15 +98,43 @@ const dataSetObject = (
   return source;
 };
 
-const srcFilesObject = srcFiles
-  .map((x) => x.split(SEPARATOR))
-  .reduce(
-    (all, one) => dataSetObject(all, one, one.join(SEPARATOR)),
-    {} as Record<string, unknown>
-  );
+const dataGetObject = (
+  source: Record<string, unknown>,
+  path: string[]
+): unknown => {
+  if (path.length === 1) {
+    const candidate = source[path[0]];
+    return isRecord(candidate) ? (candidate[""] as string) : candidate;
+  }
+
+  const head = path.shift();
+  if (head === undefined) {
+    throw new Error("head is undefined, should be unreachable");
+  }
+
+  const newSource = source[head];
+  return newSource === undefined || typeof newSource === "string"
+    ? newSource
+    : dataGetObject(newSource as Record<string, unknown>, path);
+};
+
+const srcFilesObject = srcFiles.reduce(
+  (all, one) => dataSetObject(all, one.split(SEPARATOR), one),
+  {} as Record<string, unknown>
+);
 
 const srcFileInput = ref<string>("");
-const srcFile = computed(() =>
+const srcFileFromTree = computed(() =>
   dataGet(srcFilesTree, srcFileInput.value.split(SEPARATOR))
 );
+const srcFileFromObject = computed(() =>
+  dataGetObject(srcFilesObject, srcFileInput.value.split(SEPARATOR))
+);
 </script>
+
+<style scoped>
+.recursion {
+  display: grid;
+  max-width: max-content;
+}
+</style>
