@@ -1,7 +1,11 @@
 <template>
   <input v-model="srcFileInput" type="text" />
+  <ul>
+    <li v-for="file of srcFiles" :key="file">{{ file }}</li>
+  </ul>
   <output>{{ srcFile }}</output>
   <pre>{{ srcFilesTree }}</pre>
+  <pre>{{ srcFilesObject }}</pre>
 </template>
 
 <script lang="ts" setup>
@@ -59,6 +63,45 @@ const srcFilesTree = srcFiles
   .reduce(
     (all, one) => dataSet(all, one, one.join(SEPARATOR)),
     new Map() as RecursiveMap
+  );
+
+const isRecord = (thing: unknown): thing is Record<string, unknown> => {
+  return typeof thing === "object";
+};
+
+const dataSetObject = (
+  source: Record<string, unknown>,
+  path: string[],
+  value: string
+) => {
+  if (path.length === 1) {
+    source[path[0]] = value;
+    return source;
+  }
+
+  const head = path.shift();
+  if (head === undefined) {
+    throw new Error("head is undefined, should be unreachable");
+  }
+
+  let newSource = source[head] ?? {};
+  if (typeof newSource === "string") {
+    const newValue = newSource;
+    newSource = { "": newValue };
+  }
+
+  if (isRecord(newSource)) {
+    source[head] = dataSetObject(newSource, path, value);
+  }
+
+  return source;
+};
+
+const srcFilesObject = srcFiles
+  .map((x) => x.split(SEPARATOR))
+  .reduce(
+    (all, one) => dataSetObject(all, one, one.join(SEPARATOR)),
+    {} as Record<string, unknown>
   );
 
 const srcFileInput = ref<string>("");
