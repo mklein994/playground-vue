@@ -27,6 +27,7 @@ export default defineConfig(({ mode }) => ({
       // stabilized, it's expected that this will be
       // `true`, at which point it can be removed.
       strict: true,
+      allow: ["../sunrise-cli"],
     },
     host: "127.0.0.1",
   },
