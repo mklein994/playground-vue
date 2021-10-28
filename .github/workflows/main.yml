@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: 'mklein994/sunrise-cli'
+          repository: "mklein994/sunrise-cli"
           path: sunrise-cli
 
       - uses: actions-rs/toolchain@v1
