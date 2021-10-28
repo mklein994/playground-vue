@@ -22,7 +22,7 @@ jobs:
 
       - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-      - run: wasm-pack build --target web
+      - run: wasm-pack build --target web sunrise-cli
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -33,13 +33,13 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.pnpm-store
-          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('playground-vue/**/pnpm-lock.yaml') }}
 
       - name: Install
-        run: corepack pnpm install
+        run: corepack pnpm install -C playground-vue
 
       - name: Lint
-        run: corepack pnpm run lint:ci
+        run: corepack pnpm run -C playground-vue lint:ci
 
       - name: Build
-        run: corepack pnpm run build
+        run: corepack pnpm run -C playground-vue build
