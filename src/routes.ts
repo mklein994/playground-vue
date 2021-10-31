@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from "vue-router";
 
-import Home from "./Home.vue";
+import HomeView from "./HomeView.vue";
 import NotFound from "./NotFound.vue";
 
 const modules = import.meta.glob("./views/*.vue");
@@ -14,7 +14,10 @@ for (const path in modules) {
     // root (location of vite.config.js).
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     path.split("/").pop()!.slice(0, -".vue".length);
-  const kebabCase = basename.replace(/\B([A-Z])/g, "-$1").toLowerCase();
+  const kebabCase = basename
+    .replace(/\B([A-Z])/g, "-$1")
+    .toLowerCase()
+    .replace(/-?experiment$/, "");
   const titleCase = kebabCase.replace(/-/g, " ");
 
   componentRoutes.push({
@@ -25,7 +28,7 @@ for (const path in modules) {
 }
 
 export const routes: RouteRecordRaw[] = [
-  { path: "/", name: "home", component: Home },
+  { path: "/", name: "home", component: HomeView },
   ...componentRoutes,
   { path: "/:pathMatch(.*)*", component: NotFound },
 ];
