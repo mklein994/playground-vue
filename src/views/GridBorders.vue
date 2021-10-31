@@ -24,12 +24,12 @@
 
     <fieldset style="grid-column: 1 / -1">
       <legend>content</legend>
-      <GridPicker kind="content" @updateStyle="handleContentStyleUpdate" />
+      <GridPicker kind="content" @update-style="handleContentStyleUpdate" />
     </fieldset>
 
     <fieldset style="grid-column: 1 / -1">
       <legend>item</legend>
-      <GridPicker kind="item" @updateStyle="handleItemStyleUpdate" />
+      <GridPicker kind="item" @update-style="handleItemStyleUpdate" />
     </fieldset>
   </div>
 
