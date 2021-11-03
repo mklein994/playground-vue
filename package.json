@@ -9,7 +9,7 @@
     "lint:ci": "eslint --ext js,ts,vue --max-warnings 0 . && prettier --check .",
     "format": "eslint --ext js,ts,vue --fix --fix-type layout . && prettier --write ."
   },
-  "packageManager": "pnpm@6.19.0",
+  "packageManager": "pnpm@6.20.1",
   "dependencies": {
     "vue": "^3.2.20",
     "vue-router": "^4.0.12"
