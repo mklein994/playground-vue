@@ -1,5 +1,9 @@
 import vue from "@vitejs/plugin-vue";
-import { defineConfig, IndexHtmlTransformResult } from "vite";
+import {
+  defineConfig,
+  IndexHtmlTransformResult,
+  searchForWorkspaceRoot,
+} from "vite";
 
 const separateTailwind = () => ({
   name: "html-tailwind-transform",
@@ -23,11 +27,7 @@ const separateTailwind = () => ({
 export default defineConfig(({ mode }) => ({
   server: {
     fs: {
-      // TODO: this setting is experimental. Once
-      // stabilized, it's expected that this will be
-      // `true`, at which point it can be removed.
-      strict: false,
-      allow: ["../sunrise-cli"],
+      allow: [searchForWorkspaceRoot(process.cwd()), "../sunrise-cli"],
     },
     host: "127.0.0.1",
   },
