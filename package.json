@@ -17,11 +17,11 @@
   "devDependencies": {
     "@heroicons/vue": "^1.0.5",
     "@highlightjs/vue-plugin": "^2.1.0",
-    "@tailwindcss/forms": "^0.3.4",
+    "@tailwindcss/forms": "^0.4.0",
     "@types/tailwindcss": "^2.2.4",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
-    "@vitejs/plugin-vue": "^1.10.2",
+    "@vitejs/plugin-vue": "^2.0.1",
     "@vue/compiler-sfc": "^3.2.26",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.5.0",
@@ -35,7 +35,7 @@
     "postcss-logical": "^5.0.1",
     "prettier": "^2.5.1",
     "sass": "^1.45.0",
-    "tailwindcss": "^2.2.19",
+    "tailwindcss": "^3.0.7",
     "typescript": "^4.5.4",
     "vite": "^2.7.4",
     "vue-tsc": "^0.29.8"
