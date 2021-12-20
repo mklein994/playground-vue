@@ -1,8 +1,20 @@
 <template>
   <div class="wasm">
     <input id="date" v-model="date" type="date" name="date" />
-    <input id="lat" v-model="coords.lat" type="number" name="lat" step="0.0000001" />
-    <input id="lon" v-model="coords.lon" type="number" name="lon" step="0.0000001" />
+    <input
+      id="lat"
+      v-model="coords.lat"
+      type="number"
+      name="lat"
+      step="0.0000001"
+    />
+    <input
+      id="lon"
+      v-model="coords.lon"
+      type="number"
+      name="lon"
+      step="0.0000001"
+    />
     <select id="azimuth" v-model="azimuth" name="azimuth">
       <option
         v-for="name of ['Official', 'Civil', 'Nautical', 'Astronomical']"
