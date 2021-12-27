@@ -22,6 +22,9 @@ module.exports = {
     defineEmits: "readonly",
     defineExpose: "readonly",
     defineDefaults: "readonly",
+    PositionOptions: "readonly",
+    GeolocationPosition: "readonly",
+    GeolocationPositionError: "readonly",
   },
   rules: {
     "simple-import-sort/imports": "warn",
