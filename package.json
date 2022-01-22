@@ -11,6 +11,8 @@
   },
   "packageManager": "pnpm@6.25.0",
   "dependencies": {
+    "@sentry/tracing": "^6.16.1",
+    "@sentry/vue": "^6.16.1",
     "vue": "^3.2.26",
     "vue-router": "^4.0.12"
   },
