@@ -3,6 +3,8 @@ import "./fonts.css";
 // import "./tailwind.css";
 import "./style.css";
 
+import { Integrations } from "@sentry/tracing";
+import * as Sentry from "@sentry/vue";
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -14,4 +16,18 @@ const router = createRouter({
   history: createWebHistory(),
 });
 
-createApp(App).use(router).mount("#app");
+const app = createApp(App);
+
+Sentry.init({
+  app,
+  dsn: "https://931d497682d84de1ad9db23083a1a6c0@o1124115.injest.sentry.io/6162360",
+  integrations: [
+    new Integrations.BrowserTracing({
+      routingInstrumentation: Sentry.vueRouterInstrumentation(router),
+      tracingOrigins: ["localhost", "playground-vue.pages.dev", /^\//],
+    }),
+  ],
+  tracesSampleRate: 1.0,
+});
+
+app.use(router).mount("#app");
