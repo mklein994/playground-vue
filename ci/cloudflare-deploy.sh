@@ -15,5 +15,7 @@ git -c protocol.version=2 clone --no-tags --no-recurse-submodules --depth=1 http
 echo 'build wasm'
 wasm-pack build --target web ../sunrise-cli
 
+export ENABLE_SENTRY=true
+
 echo 'build vue project'
 corepack pnpm run build
