@@ -61,6 +61,8 @@ export default defineConfig(({ mode }) => ({
       },
     }),
     mode === "production" && separateTailwind(),
-    mode === "production" && process.env.ENABLE_SENTRY && viteSentry(sentryConfig),
+    mode === "production" &&
+      process.env.ENABLE_SENTRY &&
+      viteSentry(sentryConfig),
   ],
 }));
