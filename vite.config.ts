@@ -4,7 +4,6 @@ import {
   IndexHtmlTransformResult,
   searchForWorkspaceRoot,
 } from "vite";
-import viteSentry, { ViteSentryPluginOptions } from "vite-plugin-sentry";
 
 const separateTailwind = () => ({
   name: "html-tailwind-transform",
@@ -23,23 +22,6 @@ const separateTailwind = () => ({
     ];
   },
 });
-
-// const sentryConfig: ViteSentryPluginOptions = {
-//   authToken: process.env.SENTRY_AUTH_TOKEN,
-//   org: process.env.SENTRY_ORG,
-//   project: process.env.SENTRY_PROJECT,
-//   sourceMaps: {
-//     include: ["./dist/assets"],
-//     ignore: ["node_modules"],
-//     urlPrefix: "~/assets",
-//   },
-//   deploy: {
-//     env: "production",
-//   },
-//   setCommits: {
-//     auto: true,
-//   },
-// };
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -61,8 +43,5 @@ export default defineConfig(({ mode }) => ({
       },
     }),
     mode === "production" && separateTailwind(),
-    // mode === "production" &&
-    //   process.env.ENABLE_SENTRY &&
-    //   viteSentry(sentryConfig),
   ],
 }));
