@@ -72,4 +72,4 @@ jobs:
           SENTRY_RELEASE=$(sentry-cli releases propose-version)
           sentry-cli releases new $SENTRY_RELEASE
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
-          sentry-cli releases deploys new $SENTRY_RELEASE --env production
+          sentry-cli releases deploys $SENTRY_RELEASE new --env production
