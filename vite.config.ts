@@ -4,6 +4,7 @@ import {
   IndexHtmlTransformResult,
   searchForWorkspaceRoot,
 } from "vite";
+import viteSentry, { ViteSentryPluginOptions } from "vite-plugin-sentry";
 
 const separateTailwind = () => ({
   name: "html-tailwind-transform",
@@ -23,6 +24,23 @@ const separateTailwind = () => ({
   },
 });
 
+const sentryConfig: ViteSentryPluginOptions = {
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  sourceMaps: {
+    include: ["./dist/assets"],
+    ignore: ["node_modules"],
+    urlPrefix: "~/assets",
+  },
+  deploy: {
+    env: "production",
+  },
+  setCommits: {
+    auto: true,
+  },
+};
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
@@ -30,6 +48,9 @@ export default defineConfig(({ mode }) => ({
       allow: [searchForWorkspaceRoot(process.cwd()), "../sunrise-cli"],
     },
     host: "127.0.0.1",
+  },
+  build: {
+    sourcemap: true,
   },
   plugins: [
     vue({
@@ -40,5 +61,6 @@ export default defineConfig(({ mode }) => ({
       },
     }),
     mode === "production" && separateTailwind(),
+    mode === "production" && viteSentry(sentryConfig),
   ],
 }));
