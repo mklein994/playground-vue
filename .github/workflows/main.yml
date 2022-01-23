@@ -61,9 +61,9 @@ jobs:
           SENTRY_PROJECT: matthew-klein
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_LOG_LEVEL: debug
-        run:
-          - corepack pnpm install --global @sentry/cli
-          - SENTRY_RELEASE=$(sentry-cli releases propose-version)
-          - sentry-cli releases new $SENTRY_RELEASE
-          - sentry-cli releases set-commits --auto $SENTRY_RELEASE
-          - sentry-cli releases deploys new $SENTRY_RELEASE --env production
+        run: |
+          corepack pnpm install --global @sentry/cli
+          SENTRY_RELEASE=$(sentry-cli releases propose-version)
+          sentry-cli releases new $SENTRY_RELEASE
+          sentry-cli releases set-commits --auto $SENTRY_RELEASE
+          sentry-cli releases deploys new $SENTRY_RELEASE --env production
