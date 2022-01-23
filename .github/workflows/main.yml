@@ -70,4 +70,4 @@ jobs:
           sentry-cli releases new $SENTRY_RELEASE
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
           sentry-cli releases deploys $SENTRY_RELEASE new --env production
-          sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps ./dist/assets
+          sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps --url-prefix '~/dist/assets' ./dist/assets
