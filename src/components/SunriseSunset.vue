@@ -27,8 +27,8 @@ const props = defineProps({
   azimuth: {
     type: String,
     required: true,
-    validator: (value: string) =>
-      ["Official", "Civil", "Nautical", "Astronomical"].includes(value),
+    // validator: (value: string) =>
+    // ["Official", "Civil", "Nautical", "Astronomical"].includes(value),
   },
 });
 
