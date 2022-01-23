@@ -56,15 +56,14 @@ jobs:
         run: corepack pnpm run -C playground-vue build
 
       - name: Sentry Release
-        # You may pin to the exact commit or the version.
-        # uses: getsentry/action-release@744e4b262278339b79fb39c8922efcae71e98e39
-        uses: getsentry/action-release@v1.1.6
         env:
           SENTRY_ORG: matthew-klein
           SENTRY_PROJECT: matthew-klein
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_LOG_LEVEL: debug
-        with:
-          environment: "production"
-          sourcemaps: ./dist/assets/
-          set_commits: auto
+        run:
+          - corepack pnpm install --global @sentry/cli
+          - SENTRY_RELEASE=$(sentry-cli releases propose-version)
+          - sentry-cli releases new $SENTRY_RELEASE
+          - sentry-cli releases set-commits --auto $SENTRY_RELEASE
+          - sentry-cli releases deploys new $SENTRY_RELEASE --env production
