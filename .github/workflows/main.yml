@@ -79,7 +79,7 @@ jobs:
           # Specify whether to set commits for the release. Either "auto" or "skip".
           set_commits: auto
           # Space-separated list of projects. Defaults to the env variable "SENTRY_PROJECT" if not provided.
-          # projects: # optional
+          projects: matthew-klein
           # Adds a prefix to source map urls after stripping them.
           # url_prefix: # optional
           # Will remove a common prefix from uploaded filenames. Useful for removing a path that is build-machine-specific.
