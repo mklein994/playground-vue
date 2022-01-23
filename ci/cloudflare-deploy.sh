@@ -16,4 +16,4 @@ echo 'build wasm'
 wasm-pack build --target web ../sunrise-cli
 
 echo 'build vue project'
-corepack pnpm run build
+corepack pnpm run build -- --sourcemap false
