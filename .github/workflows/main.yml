@@ -53,6 +53,9 @@ jobs:
         run: corepack pnpm run -C playground-vue lint:ci
 
       - name: Build
+        env:
+          # This should correspond with 'sentry-cli releases propose-version'
+          VITE_SENTRY_RELEASE: ${{ github.sha }}
         run: corepack pnpm run -C playground-vue build
 
       - name: Sentry Release

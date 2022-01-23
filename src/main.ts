@@ -28,6 +28,7 @@ Sentry.init({
     }),
   ],
   tracesSampleRate: 1.0,
+  release: import.meta.env.VITE_SENTRY_RELEASE,
 });
 
 app.use(router).mount("#app");

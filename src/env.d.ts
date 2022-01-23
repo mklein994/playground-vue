@@ -6,3 +6,14 @@ declare module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+
+interface ImportMetaEnv {
+  /**
+   * The current Sentry release, if any. Typically a git commit SHA.
+   */
+  readonly VITE_SENTRY_RELEASE: string | undefined;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
