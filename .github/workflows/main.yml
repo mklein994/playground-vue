@@ -63,6 +63,7 @@ jobs:
           SENTRY_ORG: matthew-klein
           SENTRY_PROJECT: matthew-klein
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_LOG_LEVEL: debug
         with:
           environment: "production"
           sourcemaps: ./dist/assets/
