@@ -70,7 +70,7 @@ jobs:
           # When false, omit marking the release as finalized and released.
           # finalize: # optional, default is true
           # When the flag is set and the previous release commit was not found in the repository, will create a release with the default commits count instead of failing the command.
-          # ignore_missing: # optional
+          ignore_missing: true
           # When the flag is set, command will not fail and just exit silently if no new commits for a given release have been found.
           # ignore_empty: # optional
           # Unix timestamp of the release start date. Omit for current time.
