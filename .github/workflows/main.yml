@@ -61,6 +61,7 @@ jobs:
         uses: getsentry/action-release@v1.1.6
         env:
           SENTRY_ORG: matthew-klein
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         with:
           # Set the environment for this release. E.g. "production" or "staging". Omit to skip adding deploy to release.
           environment: "production"
