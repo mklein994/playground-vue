@@ -4,8 +4,8 @@ import "./fonts.css";
 import "./style.css";
 
 import { Integrations } from "@sentry/tracing";
-import { Wasm as WasmIntegration } from "@sentry/wasm";
 import * as Sentry from "@sentry/vue";
+import { Wasm as WasmIntegration } from "@sentry/wasm";
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
