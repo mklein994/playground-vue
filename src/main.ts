@@ -4,6 +4,7 @@ import "./fonts.css";
 import "./style.css";
 
 import { Integrations } from "@sentry/tracing";
+import { Wasm as WasmIntegration } from "@sentry/wasm";
 import * as Sentry from "@sentry/vue";
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
@@ -26,6 +27,7 @@ Sentry.init({
       routingInstrumentation: Sentry.vueRouterInstrumentation(router),
       tracingOrigins: ["localhost", "playground-vue.pages.dev", /^\//],
     }),
+    new WasmIntegration(),
   ],
   tracesSampleRate: 1.0,
   release: import.meta.env.VITE_SENTRY_RELEASE,
