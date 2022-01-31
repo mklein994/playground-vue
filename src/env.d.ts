@@ -10,8 +10,19 @@ declare module "*.vue" {
 interface ImportMetaEnv {
   /**
    * The current Sentry release, if any. Typically a git commit SHA.
+   *
+   * @see https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/#release
+   * @see https://docs.sentry.io/product/releases/
    */
   readonly VITE_SENTRY_RELEASE: string | undefined;
+
+  /**
+   * The **D**ata **S**ource **N**ame.
+   *
+   * @see https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/#dsn}
+   * @see https://docs.sentry.io/product/sentry-basics/dsn-explainer/
+   */
+  readonly VITE_SENTRY_DSN: string | undefined;
 }
 
 interface ImportMeta {

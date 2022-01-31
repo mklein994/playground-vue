@@ -19,18 +19,21 @@ const router = createRouter({
 
 const app = createApp(App);
 
-Sentry.init({
-  app,
-  dsn: "https://931d497682d84de1ad9db23083a1a6c0@o1124115.ingest.sentry.io/6162360",
-  integrations: [
-    new Integrations.BrowserTracing({
-      routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-      tracingOrigins: ["localhost", "playground-vue.pages.dev", /^\//],
-    }),
-    new WasmIntegration(),
-  ],
-  tracesSampleRate: 1.0,
-  release: import.meta.env.VITE_SENTRY_RELEASE,
-});
+const dsn = import.meta.env.VITE_SENTRY_DSN;
+if (dsn !== undefined) {
+  Sentry.init({
+    app,
+    dsn,
+    integrations: [
+      new Integrations.BrowserTracing({
+        routingInstrumentation: Sentry.vueRouterInstrumentation(router),
+        tracingOrigins: ["localhost", "playground-vue.pages.dev", /^\//],
+      }),
+      new WasmIntegration(),
+    ],
+    tracesSampleRate: 1.0,
+    release: import.meta.env.VITE_SENTRY_RELEASE,
+  });
+}
 
 app.use(router).mount("#app");
