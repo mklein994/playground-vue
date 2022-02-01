@@ -66,7 +66,7 @@ jobs:
         run: |
           cd playground-vue
           corepack pnpm install --global @sentry/cli
-          SENTRY_RELEASE=$(sentry-cli releases propose-version)
+          SENTRY_RELEASE="$(sentry-cli releases propose-version)"
           sentry-cli releases new $SENTRY_RELEASE
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
           sentry-cli releases deploys $SENTRY_RELEASE new --env production
