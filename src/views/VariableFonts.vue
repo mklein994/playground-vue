@@ -13,33 +13,18 @@
     <div class="crsv-group">
       <label for="crsv">CRSV</label>
 
-      <span>
-        <input
-          id="crsv-off"
-          v-model="crsv"
-          type="radio"
-          name="crsv"
-          value="0"
-        />
-        <label for="crsv-off">off</label>
-      </span>
-
-      <span>
-        <input
-          id="crsv-auto"
-          v-model="crsv"
-          type="radio"
-          name="crsv"
-          value="0.5"
-          selected
-        />
-        <label for="crsv-auto">auto</label>
-      </span>
-
-      <span>
-        <input id="crsv-on" v-model="crsv" type="radio" name="crsv" value="1" />
-        <label for="crsv-on">on</label>
-      </span>
+      <template v-for="{ id, label, value } of crsvOpts" :key="id">
+        <span>
+          <input
+            :id="id"
+            v-model="crsv"
+            type="radio"
+            name="crsv"
+            :value="value"
+          />
+          <label :for="id">{{ label }}</label>
+        </span>
+      </template>
     </div>
   </div>
 
@@ -114,6 +99,12 @@ import { ref } from "vue";
 
 import VariableFontAxis from "../components/variable-fonts/VariableFontAxis.vue";
 
+const crsvOpts = [
+  { id: "crsv-off", label: "off", value: "0" },
+  { id: "crsv-auto", label: "auto", value: "0.5" },
+  { id: "crsv-on", label: "on", value: "1" },
+];
+
 const fontSizeOpts = {
   id: "fontSize",
   label: "Font Size",
@@ -167,7 +158,7 @@ const fontSize = ref(fontSizeOpts.default);
 const slnt = ref(slntOpts.default);
 const wght = ref(wghtOpts.default);
 const casl = ref(caslOpts.default);
-const crsv = ref(0.5);
+const crsv = ref(crsvOpts[1].value);
 const mono = ref(monoOpts.default);
 </script>
 
