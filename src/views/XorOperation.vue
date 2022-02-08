@@ -90,6 +90,13 @@ const tests: ((pqrs: Pqrs) => boolean)[] = [
    * Same as above, but shorter
    */
   ({ p, q, r, s }) => (p === q) === (r === s),
+
+  /**
+   * Found in some PHP code (translated here as an experiment)
+   */
+  ({ p, q }) => !!(p && q !== null),
+  // NOTE: these are _not_ the same
+  ({ p, q }) => !!p || q === null,
 ];
 
 const map = data.map((row) => {
