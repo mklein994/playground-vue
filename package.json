@@ -11,9 +11,9 @@
   },
   "packageManager": "pnpm@6.29.1",
   "dependencies": {
-    "@sentry/tracing": "^6.17.5",
-    "@sentry/vue": "^6.17.5",
-    "@sentry/wasm": "^6.17.5",
+    "@sentry/tracing": "^6.17.6",
+    "@sentry/vue": "^6.17.6",
+    "@sentry/wasm": "^6.17.6",
     "vue": "^3.2.30",
     "vue-router": "^4.0.12"
   },
@@ -26,7 +26,7 @@
     "@types/tailwindcss": "^3.0.7",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
-    "@vitejs/plugin-vue": "^2.1.0",
+    "@vitejs/plugin-vue": "^2.2.0",
     "@vue/compiler-sfc": "^3.2.30",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.8.0",
@@ -42,7 +42,7 @@
     "sass": "^1.49.7",
     "tailwindcss": "^3.0.19",
     "typescript": "^4.5.5",
-    "vite": "^2.7.13",
+    "vite": "^2.8.0",
     "vue-tsc": "^0.31.2"
   }
 }
