@@ -5,11 +5,16 @@
  * Most of this was copied from MDN:
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
  */
+/*eslint @typescript-eslint/no-explicit-any: ["error", { "ignoreRestArgs": true }]*/
 
 let person = "Mike";
 let age = 28;
 
-function myTag(strings: TemplateStringsArray, personExp: any, ageExp: number) {
+function myTag(
+  strings: TemplateStringsArray,
+  personExp: string,
+  ageExp: number
+) {
   let str0 = strings[0]; // "That "
   let str1 = strings[1]; // " is a "
   let str2 = strings[2]; // "."
@@ -31,6 +36,7 @@ console.log(output);
 // That mike is a youngster.
 
 function template(strings: TemplateStringsArray, ...keys: any[]) {
+  // return function (...values: (string | number | Record<string | number, string>)[]) {
   return function (...values: any[]) {
     let dict = values[values.length - 1] || {};
     let result = [strings[0]];
