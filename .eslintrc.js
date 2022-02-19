@@ -22,6 +22,7 @@ module.exports = {
     defineEmits: "readonly",
     defineExpose: "readonly",
     defineDefaults: "readonly",
+    withDefaults: "readonly",
     PositionOptions: "readonly",
     GeolocationPosition: "readonly",
     GeolocationPositionError: "readonly",
