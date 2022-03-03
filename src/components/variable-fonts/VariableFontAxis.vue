@@ -1,26 +1,4 @@
-<template>
-  <label :for="$props.opts.id">{{ $props.opts.label }}</label>
-  <input
-    :id="$props.opts.id"
-    :value="modelValue"
-    type="range"
-    :name="$props.opts.id"
-    :min="$props.opts.min"
-    :max="$props.opts.max"
-    :step="$props.opts.step"
-    @input="handleModelValueUpdate"
-  />
-
-  <span class="value">{{ modelValue }}</span>
-
-  <button :disabled="modelValue === $props.opts.min" @click="subAxis">-</button>
-
-  <button :disabled="modelValue === $props.opts.max" @click="addAxis">+</button>
-
-  <button @click="$emit('update:modelValue', props.opts.default)">Reset</button>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { PropType } from "vue";
 
 interface Opts {
@@ -85,3 +63,25 @@ const addAxis = () => {
   emit("update:modelValue", value);
 };
 </script>
+
+<template>
+  <label :for="$props.opts.id">{{ $props.opts.label }}</label>
+  <input
+    :id="$props.opts.id"
+    :value="modelValue"
+    type="range"
+    :name="$props.opts.id"
+    :min="$props.opts.min"
+    :max="$props.opts.max"
+    :step="$props.opts.step"
+    @input="handleModelValueUpdate"
+  />
+
+  <span class="value">{{ modelValue }}</span>
+
+  <button :disabled="modelValue === $props.opts.min" @click="subAxis">-</button>
+
+  <button :disabled="modelValue === $props.opts.max" @click="addAxis">+</button>
+
+  <button @click="$emit('update:modelValue', props.opts.default)">Reset</button>
+</template>

@@ -1,8 +1,3 @@
-<template>
-  <custom-element></custom-element>
-  <Highlightjs language="css" :code="styles" style="white-space: pre-wrap" />
-</template>
-
 <script lang="ts">
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 import hljs from "highlight.js/lib/core";
@@ -29,6 +24,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<template>
+  <custom-element></custom-element>
+  <Highlightjs language="css" :code="styles" style="white-space: pre-wrap" />
+</template>
 
 <style>
 @import "highlight.js/styles/github-dark-dimmed.css";

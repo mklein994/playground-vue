@@ -1,15 +1,4 @@
-<template>
-  <div class="about-grid">
-    <span>User Agent</span>
-    <span>{{ userAgent }}</span>
-    <span>Inner Width</span>
-    <span>{{ inner }}</span>
-    <span>Outer Width</span>
-    <span>{{ outer }}</span>
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed } from "vue";
 
 const userAgent = navigator.userAgent;
@@ -23,6 +12,17 @@ const outer = computed(() => ({
   height: window.outerHeight,
 }));
 </script>
+
+<template>
+  <div class="about-grid">
+    <span>User Agent</span>
+    <span>{{ userAgent }}</span>
+    <span>Inner Width</span>
+    <span>{{ inner }}</span>
+    <span>Outer Width</span>
+    <span>{{ outer }}</span>
+  </div>
+</template>
 
 <style scoped>
 .about-grid {

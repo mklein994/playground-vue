@@ -1,8 +1,4 @@
-<template>
-  <pre class="route-name">{{ routeName }}</pre>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 
@@ -10,6 +6,10 @@ const route = useRoute();
 
 const routeName = computed(() => route.name ?? "(unknown)");
 </script>
+
+<template>
+  <pre class="route-name">{{ routeName }}</pre>
+</template>
 
 <style scoped>
 .route-name {

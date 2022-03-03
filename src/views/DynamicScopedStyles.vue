@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { computed, ref } from "vue";
+
+const showRedClass = ref(false);
+
+const toggleClass = () => (showRedClass.value = !showRedClass.value);
+
+const fooClass = computed(() =>
+  showRedClass.value ? "red-class" : "blue-class"
+);
+</script>
+
 <template>
   <div>
     <button @click="toggleClass">Toggle Class</button>
@@ -9,18 +21,6 @@
     </p>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { computed, ref } from "vue";
-
-const showRedClass = ref(false);
-
-const toggleClass = () => (showRedClass.value = !showRedClass.value);
-
-const fooClass = computed(() =>
-  showRedClass.value ? "red-class" : "blue-class"
-);
-</script>
 
 <style scoped>
 .red-class {

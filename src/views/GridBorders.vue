@@ -1,3 +1,67 @@
+<script setup lang="ts">
+import { computed, ref } from "vue";
+
+import GridPicker from "../components/grid-borders/GridPicker.vue";
+
+interface Item {
+  id: number;
+  class: (string | Record<string, unknown>)[];
+  text: string;
+  special: boolean;
+}
+
+type ItemRow = { items: Item[]; specialRow: boolean };
+
+const columnCount = ref(3);
+const itemCount = ref(15);
+
+const items = computed<Item[]>(() =>
+  Array.from({ length: itemCount.value }, (_, index) => {
+    const i = index + 1;
+    const special = i % 5 === 0;
+    return {
+      id: i,
+      class: ["item", `item-${i}`, { special }],
+      text: `item ${i}`,
+      special,
+    };
+  })
+);
+
+const list = computed<Map<number, ItemRow>>(() =>
+  items.value.reduce((all, current, i) => {
+    const chunk = Math.floor(i / columnCount.value);
+    const old = all.get(chunk);
+
+    const specialRow = old?.specialRow || current.special;
+    const items = (old?.items || []).concat(current);
+
+    all.set(chunk, {
+      items,
+      specialRow,
+    });
+    return all;
+  }, new Map())
+);
+
+const contentStyleList = ref();
+const itemStyleList = ref();
+
+function handleContentStyleUpdate(
+  name: string | undefined,
+  value: string | undefined
+) {
+  contentStyleList.value = `${name}: ${value};`;
+}
+
+function handleItemStyleUpdate(
+  name: string | undefined,
+  value: string | undefined
+) {
+  itemStyleList.value = `${name}: ${value};`;
+}
+</script>
+
 <template>
   <div class="input-group">
     <div style="grid-column: 1 / -1">
@@ -138,70 +202,6 @@
     </table>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { computed, ref } from "vue";
-
-import GridPicker from "../components/grid-borders/GridPicker.vue";
-
-interface Item {
-  id: number;
-  class: (string | Record<string, unknown>)[];
-  text: string;
-  special: boolean;
-}
-
-type ItemRow = { items: Item[]; specialRow: boolean };
-
-const columnCount = ref(3);
-const itemCount = ref(15);
-
-const items = computed<Item[]>(() =>
-  Array.from({ length: itemCount.value }, (_, index) => {
-    const i = index + 1;
-    const special = i % 5 === 0;
-    return {
-      id: i,
-      class: ["item", `item-${i}`, { special }],
-      text: `item ${i}`,
-      special,
-    };
-  })
-);
-
-const list = computed<Map<number, ItemRow>>(() =>
-  items.value.reduce((all, current, i) => {
-    const chunk = Math.floor(i / columnCount.value);
-    const old = all.get(chunk);
-
-    const specialRow = old?.specialRow || current.special;
-    const items = (old?.items || []).concat(current);
-
-    all.set(chunk, {
-      items,
-      specialRow,
-    });
-    return all;
-  }, new Map())
-);
-
-const contentStyleList = ref();
-const itemStyleList = ref();
-
-function handleContentStyleUpdate(
-  name: string | undefined,
-  value: string | undefined
-) {
-  contentStyleList.value = `${name}: ${value};`;
-}
-
-function handleItemStyleUpdate(
-  name: string | undefined,
-  value: string | undefined
-) {
-  itemStyleList.value = `${name}: ${value};`;
-}
-</script>
 
 <style scoped>
 .input-group {

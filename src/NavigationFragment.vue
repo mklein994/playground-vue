@@ -1,71 +1,4 @@
-<template>
-  <div v-if="menuOpen" class="background" @click="toggleMenu"></div>
-  <div class="home" :class="[{ 'menu-open': menuOpen }, menuPositionClasses]">
-    <template v-if="menuOpen">
-      <nav class="links">
-        <ul class="links-list">
-          <li
-            v-for="link of links"
-            :key="link.path"
-            class="link"
-            :class="{ active: route.path === link.path }"
-          >
-            <RouterLink :to="link.path" @click="toggleMenu">{{
-              link.name
-            }}</RouterLink>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="enable-tailwind">
-        <input
-          id="tailwind"
-          v-model="tailwindEnabled"
-          type="checkbox"
-          class="tailwind-checkbox"
-          :value="tailwindEnabled"
-          :disabled="tailwindLocked"
-          @input="toggleTailwind"
-        />
-        <label for="tailwind">Enable Tailwind</label>
-
-        <div v-if="tailwindLocked" class="reset-message">
-          (refresh to reset)
-        </div>
-      </div>
-
-      <div class="menu-positions">
-        <div v-for="[id] of menuPositions" :key="id" class="menu-position">
-          <input
-            :id="`menu-position-${id}`"
-            v-model="menuPosition"
-            type="radio"
-            name="menu-position"
-            :value="id"
-          />
-          <label :for="`menu-position-${id}`">{{ id }}</label>
-        </div>
-      </div>
-    </template>
-
-    <div
-      class="nav-button-wrapper"
-      :class="menuPositionClasses"
-      @click="toggleMenu"
-    >
-      <button v-if="menuOpen" @click.stop="toggleExpand">
-        <Component :is="getChevronIcon" class="icon" />
-      </button>
-
-      <RouteInfo v-if="expanded" class="route-info" />
-
-      <XIcon v-if="menuOpen" class="icon" />
-      <MenuIcon v-else class="icon" />
-    </div>
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -154,6 +87,73 @@ const toggleTailwind = async (event: Event) => {
   link.disabled = !tailwindEnabled.value;
 };
 </script>
+
+<template>
+  <div v-if="menuOpen" class="background" @click="toggleMenu"></div>
+  <div class="home" :class="[{ 'menu-open': menuOpen }, menuPositionClasses]">
+    <template v-if="menuOpen">
+      <nav class="links">
+        <ul class="links-list">
+          <li
+            v-for="link of links"
+            :key="link.path"
+            class="link"
+            :class="{ active: route.path === link.path }"
+          >
+            <RouterLink :to="link.path" @click="toggleMenu">{{
+              link.name
+            }}</RouterLink>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="enable-tailwind">
+        <input
+          id="tailwind"
+          v-model="tailwindEnabled"
+          type="checkbox"
+          class="tailwind-checkbox"
+          :value="tailwindEnabled"
+          :disabled="tailwindLocked"
+          @input="toggleTailwind"
+        />
+        <label for="tailwind">Enable Tailwind</label>
+
+        <div v-if="tailwindLocked" class="reset-message">
+          (refresh to reset)
+        </div>
+      </div>
+
+      <div class="menu-positions">
+        <div v-for="[id] of menuPositions" :key="id" class="menu-position">
+          <input
+            :id="`menu-position-${id}`"
+            v-model="menuPosition"
+            type="radio"
+            name="menu-position"
+            :value="id"
+          />
+          <label :for="`menu-position-${id}`">{{ id }}</label>
+        </div>
+      </div>
+    </template>
+
+    <div
+      class="nav-button-wrapper"
+      :class="menuPositionClasses"
+      @click="toggleMenu"
+    >
+      <button v-if="menuOpen" @click.stop="toggleExpand">
+        <Component :is="getChevronIcon" class="icon" />
+      </button>
+
+      <RouteInfo v-if="expanded" class="route-info" />
+
+      <XIcon v-if="menuOpen" class="icon" />
+      <MenuIcon v-else class="icon" />
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .background {

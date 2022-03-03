@@ -1,23 +1,4 @@
-<template>
-  <div class="input-group">
-    <label for="grid-definition">Grid definition</label>
-    <textarea id="grid-definition" v-model="gridDefinition" />
-
-    <label for="grid-style">Grid style</label>
-    <textarea id="grid-style" v-model="gridStyle" />
-
-    <label for="item-style">Item style</label>
-    <textarea id="item-style" v-model="itemStyle" />
-  </div>
-
-  <div class="grid-component" :style="gridStyle">
-    <div v-for="fruit in fruits" :key="fruit" class="item" :style="itemStyle">
-      {{ fruit }}
-    </div>
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
 const fruits = ref([
@@ -48,6 +29,25 @@ const gridDefinition = ref("auto-flow / repeat(3, 1fr)");
 const gridStyle = ref("gap: 0.25em");
 const itemStyle = ref("outline: 1px solid blue");
 </script>
+
+<template>
+  <div class="input-group">
+    <label for="grid-definition">Grid definition</label>
+    <textarea id="grid-definition" v-model="gridDefinition" />
+
+    <label for="grid-style">Grid style</label>
+    <textarea id="grid-style" v-model="gridStyle" />
+
+    <label for="item-style">Item style</label>
+    <textarea id="item-style" v-model="itemStyle" />
+  </div>
+
+  <div class="grid-component" :style="gridStyle">
+    <div v-for="fruit in fruits" :key="fruit" class="item" :style="itemStyle">
+      {{ fruit }}
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .input-group {

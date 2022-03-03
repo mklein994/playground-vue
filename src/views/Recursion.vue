@@ -1,17 +1,4 @@
-<template>
-  <div class="recursion">
-    <input v-model="srcFileInput" type="text" />
-    <output>{{ srcFileFromTree }}</output>
-    <output>{{ srcFileFromObject }}</output>
-  </div>
-  <ul>
-    <li v-for="file of srcFiles" :key="file">{{ file }}</li>
-  </ul>
-  <pre>{{ srcFilesTree }}</pre>
-  <pre>{{ srcFilesObject }}</pre>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed, ref } from "vue";
 
 type RecursiveMap = Map<string, RecursiveMap | string>;
@@ -128,6 +115,19 @@ const srcFileFromObject = computed(() =>
   dataGetObject(srcFilesObject, srcFileInput.value.split(SEPARATOR))
 );
 </script>
+
+<template>
+  <div class="recursion">
+    <input v-model="srcFileInput" type="text" />
+    <output>{{ srcFileFromTree }}</output>
+    <output>{{ srcFileFromObject }}</output>
+  </div>
+  <ul>
+    <li v-for="file of srcFiles" :key="file">{{ file }}</li>
+  </ul>
+  <pre>{{ srcFilesTree }}</pre>
+  <pre>{{ srcFilesObject }}</pre>
+</template>
 
 <style scoped>
 .recursion {

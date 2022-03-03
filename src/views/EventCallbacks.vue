@@ -1,8 +1,4 @@
-<template>
-  <EventCallbacksHelper :success="success" @stuff="handleDoStuff" />
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
 import EventCallbacksHelper from "../components/EventCallbacksHelper.vue";
@@ -18,3 +14,7 @@ const handleDoStuff = async () => {
   success.value = true;
 };
 </script>
+
+<template>
+  <EventCallbacksHelper :success="success" @stuff="handleDoStuff" />
+</template>

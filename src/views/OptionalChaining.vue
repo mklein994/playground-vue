@@ -1,18 +1,4 @@
-<template>
-  <strong>Fruit:</strong>
-  <pre>{{ fruits }}</pre>
-
-  <strong>Stores:</strong>
-  <pre>{{ stores }}</pre>
-
-  <Highlightjs
-    language="ts"
-    :code="getStores.toString()"
-    style="white-space: pre-wrap"
-  />
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 import hljs from "highlight.js/lib/core";
 import typescript from "highlight.js/lib/languages/typescript";
@@ -33,6 +19,20 @@ const getStores = () =>
 
 const stores = computed(getStores);
 </script>
+
+<template>
+  <strong>Fruit:</strong>
+  <pre>{{ fruits }}</pre>
+
+  <strong>Stores:</strong>
+  <pre>{{ stores }}</pre>
+
+  <Highlightjs
+    language="ts"
+    :code="getStores.toString()"
+    style="white-space: pre-wrap"
+  />
+</template>
 
 <style>
 @import "highlight.js/styles/github-dark-dimmed.css";

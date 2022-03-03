@@ -1,10 +1,4 @@
-<template>
-  <output>
-    <pre>{{ output }}</pre>
-  </output>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed, PropType } from "vue";
 
 import init, { getSunriseSunset } from "../../../sunrise-cli/pkg/sunrise_cli";
@@ -57,3 +51,9 @@ const output = computed(() =>
   sunriseSunset(props.coords, props.date, props.azimuth)
 );
 </script>
+
+<template>
+  <output>
+    <pre>{{ output }}</pre>
+  </output>
+</template>

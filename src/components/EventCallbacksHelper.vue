@@ -1,15 +1,4 @@
-<template>
-  <button @click="doStuff">Do Stuff</button>
-  <output
-    :style="{
-      color:
-        success === true ? 'green' : success === undefined ? undefined : 'red',
-    }"
-    >{{ result }}</output
-  >
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref, watchEffect } from "vue";
 
 const props = defineProps<{
@@ -37,3 +26,14 @@ watchEffect(
 
 watchEffect(() => console.log(result.value));
 </script>
+
+<template>
+  <button @click="doStuff">Do Stuff</button>
+  <output
+    :style="{
+      color:
+        success === true ? 'green' : success === undefined ? undefined : 'red',
+    }"
+    >{{ result }}</output
+  >
+</template>

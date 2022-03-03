@@ -1,14 +1,14 @@
+<script setup lang="ts">
+import { ref } from "vue";
+
+const color = ref("blue");
+</script>
+
 <template>
   <div class="text">hello</div>
   <input v-model="color" type="text" name="color" />
   <input v-model="color" type="color" name="color" />
 </template>
-
-<script lang="ts" setup>
-import { ref } from "vue";
-
-const color = ref("blue");
-</script>
 
 <style scoped>
 .text {

@@ -1,18 +1,4 @@
-<template>
-  <input id="native-number" type="number" name="nativeNumber" value="10" />
-  <pre><output id="native-number-output"></output></pre>
-
-  <input v-model="regularVueNumber" />
-  <pre><output>{{ toOutput(regularVueNumber) }}</output></pre>
-
-  <input v-model.number="regularVueNumberWithModifier" />
-  <pre><output>{{ toOutput(regularVueNumberWithModifier) }}</output></pre>
-
-  <input v-model="numericVueNumber" type="number" />
-  <pre><output>{{ toOutput(numericVueNumber) }}</output></pre>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { onMounted, ref } from "vue";
 
 function toOutput(value: unknown) {
@@ -37,3 +23,17 @@ const regularVueNumber = ref(20);
 const regularVueNumberWithModifier = ref(30);
 const numericVueNumber = ref(40);
 </script>
+
+<template>
+  <input id="native-number" type="number" name="nativeNumber" value="10" />
+  <pre><output id="native-number-output"></output></pre>
+
+  <input v-model="regularVueNumber" />
+  <pre><output>{{ toOutput(regularVueNumber) }}</output></pre>
+
+  <input v-model.number="regularVueNumberWithModifier" />
+  <pre><output>{{ toOutput(regularVueNumberWithModifier) }}</output></pre>
+
+  <input v-model="numericVueNumber" type="number" />
+  <pre><output>{{ toOutput(numericVueNumber) }}</output></pre>
+</template>

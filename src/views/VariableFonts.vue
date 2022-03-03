@@ -1,3 +1,71 @@
+<script setup lang="ts">
+import { ref } from "vue";
+
+import VariableFontAxis from "../components/variable-fonts/VariableFontAxis.vue";
+
+const crsvOpts = [
+  { id: "crsv-off", label: "off", value: "0" },
+  { id: "crsv-auto", label: "auto", value: "0.5" },
+  { id: "crsv-on", label: "on", value: "1" },
+];
+
+const fontSizeOpts = {
+  id: "fontSize",
+  label: "Font Size",
+  min: 0.5,
+  max: 40,
+  step: 0.01,
+  userStep: 2,
+  default: 2,
+};
+
+const slntOpts = {
+  id: "slnt",
+  label: "slnt",
+  min: -15,
+  max: 0,
+  step: 0.1,
+  userStep: 1,
+  default: 0,
+};
+
+const wghtOpts = {
+  id: "wght",
+  label: "wght",
+  min: 300,
+  max: 1_000,
+  step: 1,
+  userStep: 25,
+  default: 300,
+};
+
+const caslOpts = {
+  id: "casl",
+  label: "CASL",
+  min: 0,
+  max: 1,
+  step: 0.01,
+  userStep: 0.5,
+  default: 0,
+};
+const monoOpts = {
+  id: "mono",
+  label: "MONO",
+  min: 0,
+  max: 1,
+  step: 0.01,
+  userStep: 0.25,
+  default: 0,
+};
+
+const fontSize = ref(fontSizeOpts.default);
+const slnt = ref(slntOpts.default);
+const wght = ref(wghtOpts.default);
+const casl = ref(caslOpts.default);
+const crsv = ref(crsvOpts[1].value);
+const mono = ref(monoOpts.default);
+</script>
+
 <template>
   <div class="input-group">
     <VariableFontAxis v-model="fontSize" :opts="fontSizeOpts" />
@@ -93,74 +161,6 @@
     </p>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { ref } from "vue";
-
-import VariableFontAxis from "../components/variable-fonts/VariableFontAxis.vue";
-
-const crsvOpts = [
-  { id: "crsv-off", label: "off", value: "0" },
-  { id: "crsv-auto", label: "auto", value: "0.5" },
-  { id: "crsv-on", label: "on", value: "1" },
-];
-
-const fontSizeOpts = {
-  id: "fontSize",
-  label: "Font Size",
-  min: 0.5,
-  max: 40,
-  step: 0.01,
-  userStep: 2,
-  default: 2,
-};
-
-const slntOpts = {
-  id: "slnt",
-  label: "slnt",
-  min: -15,
-  max: 0,
-  step: 0.1,
-  userStep: 1,
-  default: 0,
-};
-
-const wghtOpts = {
-  id: "wght",
-  label: "wght",
-  min: 300,
-  max: 1_000,
-  step: 1,
-  userStep: 25,
-  default: 300,
-};
-
-const caslOpts = {
-  id: "casl",
-  label: "CASL",
-  min: 0,
-  max: 1,
-  step: 0.01,
-  userStep: 0.5,
-  default: 0,
-};
-const monoOpts = {
-  id: "mono",
-  label: "MONO",
-  min: 0,
-  max: 1,
-  step: 0.01,
-  userStep: 0.25,
-  default: 0,
-};
-
-const fontSize = ref(fontSizeOpts.default);
-const slnt = ref(slntOpts.default);
-const wght = ref(wghtOpts.default);
-const casl = ref(caslOpts.default);
-const crsv = ref(crsvOpts[1].value);
-const mono = ref(monoOpts.default);
-</script>
 
 <style scoped>
 .input-group {

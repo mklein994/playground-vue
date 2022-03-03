@@ -1,23 +1,4 @@
-<template>
-  <div class="grid-picker">
-    <label>name</label>
-    <select v-model="kindName">
-      <option value=""></option>
-      <option v-for="name of kindNames" :key="name">{{ name }}</option>
-    </select>
-
-    <label>value</label>
-    <select
-      v-model="kindValue"
-      @change="$emit('updateStyle', kindName, kindValue)"
-    >
-      <option value=""></option>
-      <option v-for="value of kindValues" :key="value">{{ value }}</option>
-    </select>
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed, ref } from "vue";
 
 const props = defineProps<{
@@ -91,6 +72,25 @@ const kindValues = computed(() =>
   props.kind === "content" ? gridContentValues : gridItemValues
 );
 </script>
+
+<template>
+  <div class="grid-picker">
+    <label>name</label>
+    <select v-model="kindName">
+      <option value=""></option>
+      <option v-for="name of kindNames" :key="name">{{ name }}</option>
+    </select>
+
+    <label>value</label>
+    <select
+      v-model="kindValue"
+      @change="$emit('updateStyle', kindName, kindValue)"
+    >
+      <option value=""></option>
+      <option v-for="value of kindValues" :key="value">{{ value }}</option>
+    </select>
+  </div>
+</template>
 
 <style scoped>
 .grid-picker {

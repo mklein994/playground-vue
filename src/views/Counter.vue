@@ -1,10 +1,4 @@
-<template>
-  <ol class="fruit-list">
-    <li v-for="fruit of fruits" :key="fruit">{{ fruit }}</li>
-  </ol>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 const fruits = [
   "apple",
   "banana",
@@ -41,6 +35,12 @@ const fruits = [
   "philosophia",
 ];
 </script>
+
+<template>
+  <ol class="fruit-list">
+    <li v-for="fruit of fruits" :key="fruit">{{ fruit }}</li>
+  </ol>
+</template>
 
 <style scoped>
 @counter-style fruit-digits {

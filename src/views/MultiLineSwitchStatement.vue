@@ -1,18 +1,4 @@
-<template>
-  <div class="multi-line-switch-statement">
-    <label for="fruit" class="label">Pick a fruit:</label>
-    <select id="fruit" v-model="selectedFruitId">
-      <option value="" disabled>Pick a fruit:</option>
-      <option v-for="fruit of fruits" :key="fruit.id" :value="fruit.id">
-        {{ fruit.name }}
-      </option>
-    </select>
-
-    <span class="fruit-color" :style="{ backgroundColor }"></span>
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { computed, ref } from "vue";
 
 const fruits = [
@@ -48,6 +34,20 @@ const backgroundColor = computed(() => {
   return color;
 });
 </script>
+
+<template>
+  <div class="multi-line-switch-statement">
+    <label for="fruit" class="label">Pick a fruit:</label>
+    <select id="fruit" v-model="selectedFruitId">
+      <option value="" disabled>Pick a fruit:</option>
+      <option v-for="fruit of fruits" :key="fruit.id" :value="fruit.id">
+        {{ fruit.name }}
+      </option>
+    </select>
+
+    <span class="fruit-color" :style="{ backgroundColor }"></span>
+  </div>
+</template>
 
 <style scoped>
 .multi-line-switch-statement {

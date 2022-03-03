@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref, useCssModule } from "vue";
+
+const css = useCssModule();
+
+const foo = ref<string>(css.foo);
+</script>
+
 <template>
   <div :class="$style.foo">
     Ipsum rem optio quia sequi minus! Voluptatibus dolorem deleniti repellat
@@ -6,14 +14,6 @@
   </div>
   <pre>{{ foo }}</pre>
 </template>
-
-<script lang="ts" setup>
-import { ref, useCssModule } from "vue";
-
-const css = useCssModule();
-
-const foo = ref<string>(css.foo);
-</script>
 
 <style module>
 .foo {

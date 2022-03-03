@@ -1,16 +1,4 @@
-<template>
-  <div ref="cssVariables" class="css-variables">
-    <p class="text">
-      Habeatur disciplina, quam gravis, quam continens, quam severa sit. Non
-      enim hanc solam sequimur, quae suavitate aliqua naturam ipsam movet et cum
-      iucunditate quadam percipitur sensibus, sed maximam voluptatem illam.
-    </p>
-    <input type="text" name="color" @input="updateColor" />
-    <input type="color" name="color-input" @change="updateColor" />
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref } from "vue";
 
 const cssVariables = ref<HTMLDivElement>();
@@ -27,6 +15,18 @@ const updateColor = (event: Event) => {
   cssVariablesEl.style.setProperty("--color", newColor);
 };
 </script>
+
+<template>
+  <div ref="cssVariables" class="css-variables">
+    <p class="text">
+      Habeatur disciplina, quam gravis, quam continens, quam severa sit. Non
+      enim hanc solam sequimur, quae suavitate aliqua naturam ipsam movet et cum
+      iucunditate quadam percipitur sensibus, sed maximam voluptatem illam.
+    </p>
+    <input type="text" name="color" @input="updateColor" />
+    <input type="color" name="color-input" @change="updateColor" />
+  </div>
+</template>
 
 <style scoped>
 .css-variables {

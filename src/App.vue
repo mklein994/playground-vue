@@ -1,8 +1,8 @@
+<script setup lang="ts">
+import NavigationFragment from "./NavigationFragment.vue";
+</script>
+
 <template>
   <NavigationFragment />
   <RouterView />
 </template>
-
-<script lang="ts" setup>
-import NavigationFragment from "./NavigationFragment.vue";
-</script>

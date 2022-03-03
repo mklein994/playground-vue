@@ -1,19 +1,4 @@
-<template>
-  <div class="for-await-list">
-    <label for="max">Max:</label>
-    <input id="max" v-model="max" type="number" name="max" min="1" />
-
-    <ol>
-      <li v-for="(value, index) of list" :key="`${value}${index}`">
-        <span :class="{ 'is-number': Number.isInteger(value) }">{{
-          value
-        }}</span>
-      </li>
-    </ol>
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { ref, watchEffect } from "vue";
 
 async function* iteratorGenerator(max: number) {
@@ -47,6 +32,21 @@ watchEffect(async () => {
   list.value = await fizzBuzz(max.value);
 });
 </script>
+
+<template>
+  <div class="for-await-list">
+    <label for="max">Max:</label>
+    <input id="max" v-model="max" type="number" name="max" min="1" />
+
+    <ol>
+      <li v-for="(value, index) of list" :key="`${value}${index}`">
+        <span :class="{ 'is-number': Number.isInteger(value) }">{{
+          value
+        }}</span>
+      </li>
+    </ol>
+  </div>
+</template>
 
 <style scoped>
 .is-number {

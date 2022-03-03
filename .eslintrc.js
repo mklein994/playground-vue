@@ -36,6 +36,10 @@ module.exports = {
         argsIgnorePattern: "^_",
       },
     ],
+    "vue/component-tags-order": [
+      "error",
+      { order: ["script", "template", "style"] },
+    ],
     "vue/component-api-style": ["error", ["script-setup", "composition"]],
   },
 };

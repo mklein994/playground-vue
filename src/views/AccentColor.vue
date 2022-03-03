@@ -1,3 +1,25 @@
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
+
+const fruits = [
+  { id: "apple", name: "Apple", checked: false },
+  { id: "banana", name: "Banana", checked: true },
+  { id: "cherry", name: "Cherry", checked: false },
+];
+
+const selectedFruits = ref(fruits.filter((f) => f.checked).map((f) => f.id));
+const selectedFruit = ref(selectedFruits.value[0]);
+
+const color = ref("rebeccapurple");
+const checkbox = ref<HTMLInputElement>();
+
+onMounted(() => {
+  if (checkbox.value !== undefined) {
+    checkbox.value.indeterminate = true;
+  }
+});
+</script>
+
 <template>
   <div class="accent-color">
     <div class="text">
@@ -42,28 +64,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { onMounted, ref } from "vue";
-
-const fruits = [
-  { id: "apple", name: "Apple", checked: false },
-  { id: "banana", name: "Banana", checked: true },
-  { id: "cherry", name: "Cherry", checked: false },
-];
-
-const selectedFruits = ref(fruits.filter((f) => f.checked).map((f) => f.id));
-const selectedFruit = ref(selectedFruits.value[0]);
-
-const color = ref("rebeccapurple");
-const checkbox = ref<HTMLInputElement>();
-
-onMounted(() => {
-  if (checkbox.value !== undefined) {
-    checkbox.value.indeterminate = true;
-  }
-});
-</script>
 
 <style scoped>
 .accent-color {

@@ -1,61 +1,4 @@
-<template>
-  <div class="table-wrapper">
-    <table class="xor-operation">
-      <thead class="header">
-        <tr class="row">
-          <th class="cell">key</th>
-          <th class="cell">P</th>
-          <th class="cell">Q</th>
-          <th class="cell">R</th>
-          <th class="cell">S</th>
-          <th v-for="name of headerNames" :key="name" class="cell">
-            {{ name }}
-          </th>
-          <th class="cell">result</th>
-        </tr>
-      </thead>
-      <tbody class="body">
-        <tr
-          v-for="{ key, p, q, r, s, results, result } of map"
-          :key="key.join('')"
-          class="row"
-        >
-          <td class="cell">
-            <span
-              v-for="i of key"
-              :key="i"
-              :style="{ color: i ? 'green' : 'lightgray' }"
-              >{{ i }}</span
-            >
-          </td>
-          <td class="cell">{{ p }}</td>
-          <td class="cell">{{ q }}</td>
-          <td class="cell">{{ r }}</td>
-          <td class="cell">{{ s }}</td>
-          <td
-            v-for="(res, i) of results"
-            :key="i"
-            class="cell"
-            :class="res ? 'true' : 'false'"
-          >
-            {{ res }}
-          </td>
-          <td class="cell" :class="result ? 'true' : 'false'">{{ result }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <Highlightjs
-    v-for="(code, i) of testCode"
-    :key="i"
-    language="ts"
-    :code="code"
-    class="code"
-  />
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 import hljs from "highlight.js/lib/core";
 import typescript from "highlight.js/lib/languages/typescript";
@@ -113,6 +56,63 @@ const headerNames = Array.from(map[0].results, (_, i) => `t${i}`);
 // Convert functions to strings
 const testCode = tests.map((test) => `${test}`);
 </script>
+
+<template>
+  <div class="table-wrapper">
+    <table class="xor-operation">
+      <thead class="header">
+        <tr class="row">
+          <th class="cell">key</th>
+          <th class="cell">P</th>
+          <th class="cell">Q</th>
+          <th class="cell">R</th>
+          <th class="cell">S</th>
+          <th v-for="name of headerNames" :key="name" class="cell">
+            {{ name }}
+          </th>
+          <th class="cell">result</th>
+        </tr>
+      </thead>
+      <tbody class="body">
+        <tr
+          v-for="{ key, p, q, r, s, results, result } of map"
+          :key="key.join('')"
+          class="row"
+        >
+          <td class="cell">
+            <span
+              v-for="i of key"
+              :key="i"
+              :style="{ color: i ? 'green' : 'lightgray' }"
+              >{{ i }}</span
+            >
+          </td>
+          <td class="cell">{{ p }}</td>
+          <td class="cell">{{ q }}</td>
+          <td class="cell">{{ r }}</td>
+          <td class="cell">{{ s }}</td>
+          <td
+            v-for="(res, i) of results"
+            :key="i"
+            class="cell"
+            :class="res ? 'true' : 'false'"
+          >
+            {{ res }}
+          </td>
+          <td class="cell" :class="result ? 'true' : 'false'">{{ result }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <Highlightjs
+    v-for="(code, i) of testCode"
+    :key="i"
+    language="ts"
+    :code="code"
+    class="code"
+  />
+</template>
 
 <style scoped>
 .table-wrapper {

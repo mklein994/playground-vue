@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import ChildOne from "../components/style-inheritance/ChildOne.vue";
+import ChildTwo from "../components/style-inheritance/ChildTwo.vue";
+</script>
+
 <template>
   <p class="child zero">Parent</p>
   <div class="child-zero">
@@ -7,11 +12,6 @@
     <ChildTwo />
   </div>
 </template>
-
-<script lang="ts" setup>
-import ChildOne from "../components/style-inheritance/ChildOne.vue";
-import ChildTwo from "../components/style-inheritance/ChildTwo.vue";
-</script>
 
 <style lang="scss">
 .child-zero > {

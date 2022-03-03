@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { ref } from "vue";
+
+const fruits = [
+  { id: "apple", name: "Apple" },
+  { id: "banana", name: "Banana" },
+  { id: "cherry", name: "Cherry" },
+];
+
+const selectedFruits = ref<string[]>([]);
+</script>
+
 <template>
   <div class="multiple-checkboxes">
     <div class="checkboxes">
@@ -17,18 +29,6 @@
     <pre>{{ selectedFruits }}</pre>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { ref } from "vue";
-
-const fruits = [
-  { id: "apple", name: "Apple" },
-  { id: "banana", name: "Banana" },
-  { id: "cherry", name: "Cherry" },
-];
-
-const selectedFruits = ref<string[]>([]);
-</script>
 
 <style scoped>
 .multiple-checkboxes {

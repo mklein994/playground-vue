@@ -1,22 +1,4 @@
-<template>
-  <div class="render-function">
-    <p>This is from a render function:</p>
-
-    <CustomRenderFunction />
-
-    <Highlightjs language="ts" :code="renderCode" :style="codeStyle" />
-
-    <p>
-      This is from the equivalent <code>&lt;script setup&gt;</code> component:
-    </p>
-
-    <CustomRenderFunctionSetup />
-
-    <Highlightjs language="ts" :code="setupCode" :style="codeStyle" />
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 import hljs from "highlight.js/lib/core";
 import typescript from "highlight.js/lib/languages/typescript";
@@ -40,6 +22,24 @@ const codeStyle = import.meta.env.PROD
     }
   : {};
 </script>
+
+<template>
+  <div class="render-function">
+    <p>This is from a render function:</p>
+
+    <CustomRenderFunction />
+
+    <Highlightjs language="ts" :code="renderCode" :style="codeStyle" />
+
+    <p>
+      This is from the equivalent <code>&lt;script setup&gt;</code> component:
+    </p>
+
+    <CustomRenderFunctionSetup />
+
+    <Highlightjs language="ts" :code="setupCode" :style="codeStyle" />
+  </div>
+</template>
 
 <style>
 @import "highlight.js/styles/github-dark-dimmed.css";

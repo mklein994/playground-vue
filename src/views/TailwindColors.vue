@@ -1,27 +1,4 @@
-<template>
-  <div ref="tailwindColors" class="tailwind-colors">
-    <p class="color-test">
-      <code class="color-test-code" style="color: var(--tw-sky-500)"
-        >color: var(--tw-sky-500);</code
-      >
-    </p>
-
-    <div class="colors">
-      <div
-        v-for="(groups, i) of colorsList"
-        :key="`${groups[0][0]}-${i}`"
-        class="card"
-      >
-        <template v-for="[key, hex] of groups" :key="key">
-          <code class="name">{{ key }}:</code><code>{{ hex }}</code
-          ><span class="color" :style="{ backgroundColor: '' + hex }"></span>
-        </template>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import allColors from "tailwindcss/colors";
 import { TailwindColorGroup } from "tailwindcss/tailwind-config";
 import { onMounted, ref } from "vue";
@@ -65,6 +42,29 @@ onMounted(() => {
   }
 });
 </script>
+
+<template>
+  <div ref="tailwindColors" class="tailwind-colors">
+    <p class="color-test">
+      <code class="color-test-code" style="color: var(--tw-sky-500)"
+        >color: var(--tw-sky-500);</code
+      >
+    </p>
+
+    <div class="colors">
+      <div
+        v-for="(groups, i) of colorsList"
+        :key="`${groups[0][0]}-${i}`"
+        class="card"
+      >
+        <template v-for="[key, hex] of groups" :key="key">
+          <code class="name">{{ key }}:</code><code>{{ hex }}</code
+          ><span class="color" :style="{ backgroundColor: '' + hex }"></span>
+        </template>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .color-test {

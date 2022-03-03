@@ -1,46 +1,4 @@
-<template>
-  <div class="wasm">
-    <button @click="updateLocation">Update Location</button>
-    <input
-      id="high-accuracy"
-      v-model="highAccuracy"
-      type="checkbox"
-      name="highAccuracy"
-    />
-    <input id="date" v-model="date" type="date" name="date" />
-    <input
-      id="lat"
-      v-model="coords.lat"
-      type="number"
-      name="lat"
-      step="0.0000001"
-    />
-    <input
-      id="lon"
-      v-model="coords.lon"
-      type="number"
-      name="lon"
-      step="0.0000001"
-    />
-    <input id="azimuth" v-model="azimuth" type="text" name="azimuth" />
-    <!--
-    <select id="azimuth" v-model="azimuth" name="azimuth">
-      <option
-        v-for="name of ['Official', 'Civil', 'Nautical', 'Astronomical']"
-        :key="name"
-      >
-        {{ name }}
-      </option>
-    </select>
-    -->
-
-    <Suspense>
-      <SunriseSunset :coords="coords" :date="date" :azimuth="azimuth" />
-    </Suspense>
-  </div>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import {
   defineAsyncComponent,
   onMounted,
@@ -102,6 +60,48 @@ onMounted(async () => {
   }
 });
 </script>
+
+<template>
+  <div class="wasm">
+    <button @click="updateLocation">Update Location</button>
+    <input
+      id="high-accuracy"
+      v-model="highAccuracy"
+      type="checkbox"
+      name="highAccuracy"
+    />
+    <input id="date" v-model="date" type="date" name="date" />
+    <input
+      id="lat"
+      v-model="coords.lat"
+      type="number"
+      name="lat"
+      step="0.0000001"
+    />
+    <input
+      id="lon"
+      v-model="coords.lon"
+      type="number"
+      name="lon"
+      step="0.0000001"
+    />
+    <input id="azimuth" v-model="azimuth" type="text" name="azimuth" />
+    <!--
+    <select id="azimuth" v-model="azimuth" name="azimuth">
+      <option
+        v-for="name of ['Official', 'Civil', 'Nautical', 'Astronomical']"
+        :key="name"
+      >
+        {{ name }}
+      </option>
+    </select>
+    -->
+
+    <Suspense>
+      <SunriseSunset :coords="coords" :date="date" :azimuth="azimuth" />
+    </Suspense>
+  </div>
+</template>
 
 <style scoped>
 .wasm {

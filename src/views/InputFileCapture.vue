@@ -1,3 +1,39 @@
+<script setup lang="ts">
+import { reactive, ref } from "vue";
+
+const custom = reactive({
+  capture: false,
+  accept: false,
+});
+
+const capturePrefs: (boolean | "user" | "environment" | undefined)[] = [
+  true,
+  false,
+  "user",
+  "environment",
+  undefined,
+];
+const acceptPrefs = [
+  ".jpg",
+  ".mp3",
+  "image/*",
+  "image/jpeg,.jpg,.jpeg",
+  "audio/*,.mp3",
+  ".mp4",
+  "video/mp4",
+  undefined,
+];
+
+const capturePref = ref(capturePrefs.at(-1));
+const acceptPref = ref(acceptPrefs.at(-1));
+
+const picture = ref();
+
+function handlePictureUpload(event: Event) {
+  console.log(event);
+}
+</script>
+
 <template>
   <form class="grid" @submit.stop>
     <label for="capture">capture</label>
@@ -51,42 +87,6 @@
 
   <pre>{{ picture }}</pre>
 </template>
-
-<script lang="ts" setup>
-import { reactive, ref } from "vue";
-
-const custom = reactive({
-  capture: false,
-  accept: false,
-});
-
-const capturePrefs: (boolean | "user" | "environment" | undefined)[] = [
-  true,
-  false,
-  "user",
-  "environment",
-  undefined,
-];
-const acceptPrefs = [
-  ".jpg",
-  ".mp3",
-  "image/*",
-  "image/jpeg,.jpg,.jpeg",
-  "audio/*,.mp3",
-  ".mp4",
-  "video/mp4",
-  undefined,
-];
-
-const capturePref = ref(capturePrefs.at(-1));
-const acceptPref = ref(acceptPrefs.at(-1));
-
-const picture = ref();
-
-function handlePictureUpload(event: Event) {
-  console.log(event);
-}
-</script>
 
 <style scoped>
 .grid {

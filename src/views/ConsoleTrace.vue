@@ -1,8 +1,4 @@
-<template>
-  <button @click="clickMe">Click Me</button>
-</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 const otherFunc = () => {
   console.log("From otherFunc...");
   console.trace("Made it.");
@@ -16,3 +12,7 @@ function clickMe(event: MouseEvent) {
   console.groupEnd();
 }
 </script>
+
+<template>
+  <button @click="clickMe">Click Me</button>
+</template>

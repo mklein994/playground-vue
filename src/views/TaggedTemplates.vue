@@ -1,6 +1,4 @@
-<template>tagged templates</template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 /*
  * Most of this was copied from MDN:
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
@@ -61,3 +59,5 @@ let t3Closure = template`I'm ${"name"}. I'm almost ${"age"} years old.`;
 console.log(t3Closure("foo", { name: "MDN", age: 30 })); //"I'm MDN. I'm almost 30 years old."
 console.log(t3Closure({ name: "MDN", age: 30 })); //"I'm MDN. I'm almost 30 years old."
 </script>
+
+<template>tagged templates</template>

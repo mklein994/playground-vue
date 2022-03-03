@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import ChildFour from "./ChildFour.vue";
+</script>
+
 <template>
   <p class="child two">Child Two</p>
   <div class="child-two">
@@ -6,10 +10,6 @@
     <ChildFour />
   </div>
 </template>
-
-<script lang="ts" setup>
-import ChildFour from "./ChildFour.vue";
-</script>
 
 <!--
 <style lang="scss">
