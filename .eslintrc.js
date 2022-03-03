@@ -3,6 +3,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    "vue/setup-compiler-macros": true,
   },
   extends: [
     "eslint:recommended",
@@ -18,11 +19,6 @@ module.exports = {
   plugins: ["vue", "@typescript-eslint", "simple-import-sort"],
   ignorePatterns: ["dist/"],
   globals: {
-    defineProps: "readonly",
-    defineEmits: "readonly",
-    defineExpose: "readonly",
-    defineDefaults: "readonly",
-    withDefaults: "readonly",
     PositionOptions: "readonly",
     GeolocationPosition: "readonly",
     GeolocationPositionError: "readonly",
