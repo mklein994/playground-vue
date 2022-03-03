@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import allColors from "tailwindcss/colors";
-import { TailwindColorGroup } from "tailwindcss/tailwind-config";
+import type { TailwindColorGroup } from "tailwindcss/tailwind-config";
 import { onMounted, ref } from "vue";
 
 const colors = allColors;
