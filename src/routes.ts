@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from "vue-router";
+import type { RouteRecordRaw } from "vue-router";
 
 import HomeView from "./HomeView.vue";
 import NotFound from "./NotFound.vue";
