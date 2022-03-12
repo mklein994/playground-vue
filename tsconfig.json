@@ -4,10 +4,13 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
+    "preserveValueImports": true,
+    "importsNotUsedAsValues": "error",
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
