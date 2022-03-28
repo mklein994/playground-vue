@@ -11,9 +11,9 @@
   },
   "packageManager": "pnpm@6.30.0",
   "dependencies": {
-    "@sentry/tracing": "^6.18.2",
-    "@sentry/vue": "^6.18.2",
-    "@sentry/wasm": "^6.18.2",
+    "@sentry/tracing": "^6.19.2",
+    "@sentry/vue": "^6.19.2",
+    "@sentry/wasm": "^6.19.2",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
   },
@@ -22,14 +22,14 @@
     "@heroicons/vue": "^1.0.6",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@tailwindcss/forms": "^0.5.0",
-    "@types/node": "^17.0.21",
+    "@types/node": "^17.0.23",
     "@types/tailwindcss": "^3.0.9",
-    "@typescript-eslint/eslint-plugin": "^5.15.0",
-    "@typescript-eslint/parser": "^5.15.0",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
     "@vitejs/plugin-vue": "^2.2.4",
     "@vue/compiler-sfc": "^3.2.31",
     "autoprefixer": "^10.4.4",
-    "eslint": "^8.11.0",
+    "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-vue": "^8.5.0",
@@ -38,11 +38,11 @@
     "postcss": "^8.4.12",
     "postcss-dir-pseudo-class": "^6.0.4",
     "postcss-logical": "^5.0.4",
-    "prettier": "^2.6.0",
+    "prettier": "^2.6.1",
     "sass": "^1.49.9",
     "tailwindcss": "^3.0.23",
-    "typescript": "^4.6.2",
+    "typescript": "^4.6.3",
     "vite": "^2.8.6",
-    "vue-tsc": "^0.33.2-patch.1"
+    "vue-tsc": "^0.33.9"
   }
 }
