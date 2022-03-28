@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, PropType } from "vue";
+import { type PropType, computed } from "vue";
 
 import init, { getSunriseSunset } from "../../../sunrise-cli/pkg/sunrise_cli";
 
