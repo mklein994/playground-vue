@@ -11,7 +11,8 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["ESNext", "DOM", "DOM.Iterable"]
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
