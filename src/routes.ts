@@ -3,7 +3,10 @@ import type { RouteRecordRaw } from "vue-router";
 import HomeView from "./HomeView.vue";
 import NotFound from "./NotFound.vue";
 
-const modules = import.meta.glob("./views/*.vue");
+const globEager = import.meta.env.VITE_GLOB_EAGER;
+const modules = globEager
+  ? import.meta.globEager("./views/*.vue")
+  : import.meta.glob("./views/*.vue");
 
 const componentRoutes: RouteRecordRaw[] = [];
 
@@ -23,7 +26,7 @@ for (const path in modules) {
   componentRoutes.push({
     path: `/${kebabCase}`,
     name: titleCase,
-    component: modules[path],
+    component: globEager ? modules[path].default : modules[path],
   });
 }
 

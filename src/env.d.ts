@@ -23,6 +23,15 @@ interface ImportMetaEnv {
    * @see https://docs.sentry.io/product/sentry-basics/dsn-explainer/
    */
   readonly VITE_SENTRY_DSN: string | undefined;
+
+  /**
+   * Determines whether to use
+   * `import.meta.globEager()` instead of
+   * `import.meta.glob()` for dynamic routes.
+   *
+   * @default false
+   */
+  readonly VITE_GLOB_EAGER: boolean | undefined;
 }
 
 interface ImportMeta {
