@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import vue from "@vitejs/plugin-vue";
 import { fileURLToPath, URL } from "url";
 import {
@@ -42,9 +44,17 @@ export default defineConfig(({ mode }) => {
     build: {
       sourcemap: true,
     },
+    test: {
+      environment: "happy-dom",
+      includeSource: ["./src/use/**/*.ts"],
+    },
+    define: {
+      "import.meta.vitest": "undefined",
+    },
     resolve: {
       alias: {
         "@sunrise-cli": fileURLToPath(new URL(sunriseRoot, import.meta.url)),
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
     },
     plugins: [

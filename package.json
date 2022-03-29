@@ -7,8 +7,9 @@
     "build:tailwind": "tailwind --minify --input ./src/tailwind.css --output ./public/tailwind.min.css",
     "preview": "vite preview",
     "typecheck:app": "vue-tsc --noEmit --composite false -p tsconfig.app.json",
+    "typecheck:tests": "vue-tsc --noEmit --composite false -p tsconfig.vitest.json",
     "typecheck:config": "vue-tsc --noEmit --composite false -p tsconfig.vite-config.json",
-    "typecheck": "pnpm typecheck:app && pnpm typecheck:config",
+    "typecheck": "pnpm typecheck:tests && pnpm typecheck:config",
     "lint": "eslint --ext js,ts,vue .",
     "lint:ci": "eslint --ext js,ts,vue --max-warnings 0 . && prettier --check .",
     "format": "eslint --ext js,ts,vue --fix --fix-type layout . && prettier --write ."
@@ -32,11 +33,13 @@
     "@typescript-eslint/parser": "^5.17.0",
     "@vitejs/plugin-vue": "^2.2.4",
     "@vue/compiler-sfc": "^3.2.31",
+    "@vue/test-utils": "^2.0.0-rc.17",
     "autoprefixer": "^10.4.4",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-vue": "^8.5.0",
+    "happy-dom": "^2.51.0",
     "highlight.js": "^11.5.0",
     "modern-normalize": "^1.1.0",
     "postcss": "^8.4.12",
@@ -47,6 +50,7 @@
     "tailwindcss": "^3.0.23",
     "typescript": "^4.6.3",
     "vite": "^2.8.6",
+    "vitest": "^0.8.0",
     "vue-tsc": "^0.33.9"
   }
 }
