@@ -22,6 +22,7 @@ module.exports = {
     PositionOptions: "readonly",
     GeolocationPosition: "readonly",
     GeolocationPositionError: "readonly",
+    __PLAYGROUND_VUE_COVERAGE_EXISTS__: "readonly",
   },
   rules: {
     "simple-import-sort/imports": "warn",

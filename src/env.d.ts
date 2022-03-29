@@ -1,5 +1,11 @@
 /// <reference types="vite/client" />
 
+/**
+ * Set to `true` at build time after checking if code coverage has been
+ * generated.
+ */
+declare const __PLAYGROUND_VUE_COVERAGE_EXISTS__: boolean;
+
 declare module "*.vue" {
   import { DefineComponent } from "vue";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types

@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 
 import vue from "@vitejs/plugin-vue";
+import fs from "fs";
 import { fileURLToPath, URL } from "url";
 import {
   type IndexHtmlTransformResult,
@@ -54,6 +55,9 @@ export default defineConfig(({ mode }) => {
     },
     define: {
       "import.meta.vitest": "undefined",
+      __PLAYGROUND_VUE_COVERAGE_EXISTS__: fs.existsSync(
+        fileURLToPath(new URL("./public/coverage/index.html", import.meta.url))
+      ),
     },
     resolve: {
       alias: {

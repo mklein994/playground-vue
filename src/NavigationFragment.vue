@@ -16,6 +16,8 @@ const links = computed(() =>
   router.getRoutes().filter((x) => x.name !== undefined)
 );
 
+const coverageExists = __PLAYGROUND_VUE_COVERAGE_EXISTS__;
+
 const menuOpen = ref(false);
 
 const toggleMenu = () => {
@@ -105,7 +107,10 @@ const toggleTailwind = async (event: Event) => {
             }}</RouterLink>
           </li>
           <hr />
-          <li class="link"><a href="/coverage/index.html">Coverage</a></li>
+          <li class="link">
+            <a v-if="coverageExists" href="/coverage/index.html">Coverage</a
+            ><span v-else>Coverage (Not Found)</span>
+          </li>
         </ul>
       </nav>
 
