@@ -1,7 +1,9 @@
 import vue from "@vitejs/plugin-vue";
+import { fileURLToPath, URL } from "url";
 import {
+  type IndexHtmlTransformResult,
   defineConfig,
-  IndexHtmlTransformResult,
+  loadEnv,
   searchForWorkspaceRoot,
 } from "vite";
 
@@ -24,24 +26,36 @@ const separateTailwind = () => ({
 });
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  server: {
-    fs: {
-      allow: [searchForWorkspaceRoot(process.cwd()), "../sunrise-cli"],
-    },
-    host: "127.0.0.1",
-  },
-  build: {
-    sourcemap: true,
-  },
-  plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          isCustomElement: (tag) => tag.includes("-"),
-        },
+export default defineConfig(({ mode }) => {
+  const cwd = process.cwd();
+  const env = loadEnv(mode, cwd, "BUILDTIME_");
+
+  const sunriseRoot = env["BUILDTIME_SUNRISE_CLI_ROOT"] ?? "../sunrise-cli";
+
+  return {
+    server: {
+      fs: {
+        allow: [searchForWorkspaceRoot(cwd), sunriseRoot],
       },
-    }),
-    mode === "production" && separateTailwind(),
-  ],
-}));
+      host: env["BUILDTIME_HOST"],
+    },
+    build: {
+      sourcemap: true,
+    },
+    resolve: {
+      alias: {
+        "@sunrise-cli": fileURLToPath(new URL(sunriseRoot, import.meta.url)),
+      },
+    },
+    plugins: [
+      vue({
+        template: {
+          compilerOptions: {
+            isCustomElement: (tag) => tag.includes("-"),
+          },
+        },
+      }),
+      mode === "production" && separateTailwind(),
+    ],
+  };
+});

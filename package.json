@@ -3,9 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && tailwind --minify --input ./src/tailwind.css --output ./public/tailwind.min.css && vite build",
+    "build": "pnpm run typecheck && pnpm run build:tailwind && vite build",
+    "build:tailwind": "tailwind --minify --input ./src/tailwind.css --output ./public/tailwind.min.css",
     "preview": "vite preview",
-    "typecheck": "vue-tsc --noEmit",
+    "typecheck:app": "vue-tsc --noEmit --composite false -p tsconfig.app.json",
+    "typecheck:config": "vue-tsc --noEmit --composite false -p tsconfig.vite-config.json",
+    "typecheck": "pnpm typecheck:app && pnpm typecheck:config",
     "lint": "eslint --ext js,ts,vue .",
     "lint:ci": "eslint --ext js,ts,vue --max-warnings 0 . && prettier --check .",
     "format": "eslint --ext js,ts,vue --fix --fix-type layout . && prettier --write ."

@@ -1,7 +1,6 @@
 <script setup lang="ts">
+import init, { getSunriseSunset } from "@sunrise-cli/pkg/sunrise_cli";
 import { type PropType, computed } from "vue";
-
-import init, { getSunriseSunset } from "../../../sunrise-cli/pkg/sunrise_cli";
 
 interface Coord {
   lat: number;
