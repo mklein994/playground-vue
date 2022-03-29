@@ -54,6 +54,9 @@ jobs:
       - name: Lint
         run: pnpm run -C playground-vue lint:ci
 
+      - name: Test with Coverage
+        run: pnpm run -C playground-vue coverage
+
       - name: Build
         env:
           # This should correspond with 'sentry-cli releases propose-version'
