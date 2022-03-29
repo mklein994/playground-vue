@@ -47,16 +47,18 @@ jobs:
           key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('playground-vue/**/pnpm-lock.yaml') }}
 
       - name: Install
-        run: corepack pnpm install -C playground-vue
+        run: |
+          corepack enable pnpm
+          pnpm install -C playground-vue
 
       - name: Lint
-        run: corepack pnpm run -C playground-vue lint:ci
+        run: pnpm run -C playground-vue lint:ci
 
       - name: Build
         env:
           # This should correspond with 'sentry-cli releases propose-version'
           VITE_SENTRY_RELEASE: ${{ github.sha }}
-        run: corepack pnpm run -C playground-vue build
+        run: pnpm run -C playground-vue build
 
       - name: Sentry Release
         env:
@@ -65,7 +67,7 @@ jobs:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: |
           cd playground-vue
-          corepack pnpm install --global @sentry/cli
+          pnpm install --global @sentry/cli
           SENTRY_RELEASE="$(sentry-cli releases propose-version)"
           sentry-cli releases new $SENTRY_RELEASE
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
