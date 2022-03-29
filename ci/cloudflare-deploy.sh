@@ -17,4 +17,5 @@ wasm-pack build --target web ../sunrise-cli
 
 echo 'build vue project'
 export VITE_SENTRY_RELEASE="${CF_PAGES_COMMIT_SHA}"
-corepack pnpm run build -- --sourcemap false
+corepack enable pnpm
+pnpm run build -- --sourcemap false
