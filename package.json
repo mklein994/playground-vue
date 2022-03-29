@@ -13,7 +13,8 @@
     "lint": "eslint --ext js,ts,vue .",
     "lint:ci": "eslint --ext js,ts,vue --max-warnings 0 . && prettier --check .",
     "format": "eslint --ext js,ts,vue --fix --fix-type layout . && prettier --write .",
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "packageManager": "pnpm@6.30.0",
   "dependencies": {
