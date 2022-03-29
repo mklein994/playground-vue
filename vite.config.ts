@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
     },
     test: {
       environment: "happy-dom",
-      includeSource: ["./src/use/**/*.ts"],
+      includeSource: ["./src/**/*.ts"],
     },
     define: {
       "import.meta.vitest": "undefined",
