@@ -17,7 +17,7 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["vue", "@typescript-eslint", "simple-import-sort"],
-  ignorePatterns: ["dist/"],
+  ignorePatterns: ["dist/", "coverage/"],
   globals: {
     PositionOptions: "readonly",
     GeolocationPosition: "readonly",

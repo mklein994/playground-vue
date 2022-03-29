@@ -47,6 +47,10 @@ export default defineConfig(({ mode }) => {
     test: {
       environment: "happy-dom",
       includeSource: ["./src/**/*.ts"],
+      coverage: {
+        reporter: ["html-spa", "text"],
+        reportsDirectory: "public/coverage",
+      },
     },
     define: {
       "import.meta.vitest": "undefined",

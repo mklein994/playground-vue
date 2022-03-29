@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.app.json",
-  "exclude": [],
+  "exclude": ["**/coverage/**"],
   "compilerOptions": {
     "composite": true,
     "types": ["node", "vitest/importMeta"]

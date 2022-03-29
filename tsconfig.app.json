@@ -16,5 +16,5 @@
     "src/**/*.vue",
     "tests/**/*"
   ],
-  "exclude": ["tests/**/*"]
+  "exclude": ["tests/**/*", "**/coverage/**"]
 }

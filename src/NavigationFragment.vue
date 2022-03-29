@@ -104,6 +104,8 @@ const toggleTailwind = async (event: Event) => {
               link.name
             }}</RouterLink>
           </li>
+          <hr />
+          <li class="link"><a href="/coverage/index.html">Coverage</a></li>
         </ul>
       </nav>
 
