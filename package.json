@@ -16,7 +16,7 @@
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
-  "packageManager": "pnpm@6.30.0",
+  "packageManager": "pnpm@6.32.3",
   "dependencies": {
     "@sentry/tracing": "^6.19.3",
     "@sentry/vue": "^6.19.3",
