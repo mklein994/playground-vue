@@ -15,11 +15,27 @@ git -c protocol.version=2 clone --no-tags --no-recurse-submodules --depth=1 http
 echo 'build wasm'
 wasm-pack build --target web ../sunrise-cli
 
-echo 'build vue project'
+echo 'setup sentry environment'
 export VITE_SENTRY_RELEASE="${CF_PAGES_COMMIT_SHA}"
+
+echo 'setup pnpm'
 corepack enable pnpm
+
+echo 'run tests and generate code coverage'
 pnpm run coverage
+
+# CloudFlare Pages messes up file file names; it doesn't understand URLs with
+# multiple dots in them: <https://example.com/foo.bar.html> redirects to
+# <https://example.com/foo.bar>.
+echo 'fixing file names in public/coverage/'
+./fix-filenames.sh ../public/coverage/
+
+echo 'build vue project'
 pnpm run build -- --sourcemap false
+
+# Create a 404.html page:
+# https://developers.cloudflare.com/pages/platform/serving-pages/#not-found-behavior
+echo 'create 404.html page for coverage'
 cat <<HTML >dist/coverage/404.html
 <!DOCTYPE html>
 <html lang="en">
