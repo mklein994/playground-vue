@@ -304,6 +304,7 @@ const toggleTailwind = async (event: Event) => {
 .links {
   /* scroll the links when there's not enough space */
   overflow-y: auto;
+  overscroll-behavior: contain;
   /* TODO: figure out how to make this less janky on
    * browsers that can hide the toolbar on scroll (i.e.
    * Firefox Android)
