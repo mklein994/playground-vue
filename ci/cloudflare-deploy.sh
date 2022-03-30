@@ -20,3 +20,16 @@ export VITE_SENTRY_RELEASE="${CF_PAGES_COMMIT_SHA}"
 corepack enable pnpm
 pnpm run coverage
 pnpm run build -- --sourcemap false
+cat <<HTML >dist/coverage/404.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Not Found - Playground Vue</title>
+  </head>
+  <body>
+    <h1>404 Not Found</h1>
+  </body>
+</html>
+HTML
