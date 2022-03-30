@@ -49,7 +49,7 @@ export default defineConfig(({ mode }) => {
       environment: "happy-dom",
       includeSource: ["./src/**/*.ts"],
       coverage: {
-        reporter: ["html", "text"],
+        reporter: ["html-spa", "text"],
         reportsDirectory: "public/coverage",
       },
     },

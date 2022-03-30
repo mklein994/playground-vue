@@ -28,7 +28,7 @@ pnpm run coverage
 # multiple dots in them: <https://example.com/foo.bar.html> redirects to
 # <https://example.com/foo.bar>.
 echo 'fixing file names in public/coverage/'
-./ci/fix-filenames.sh ./public/coverage/
+./ci/fix-filenames.sh spa ./public/coverage/
 
 echo 'build vue project'
 pnpm run build -- --sourcemap false
