@@ -18,6 +18,7 @@
   },
   "references": [
     { "path": "./tsconfig.vite-config.json" },
+    { "path": "./tsconfig.workers.json" },
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.vitest.json" }
   ]
