@@ -1,19 +1,18 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
 
+import HomeView from "@/HomeView.vue";
 import NotFound from "@/NotFound.vue";
 import FooExperiment from "@/views/FooExperiment.vue";
 
-describe("FooExperiment", () => {
+describe.each([
+  ["FooExperiment", FooExperiment, "Foo"],
+  ["NotFound", NotFound, "404 Not Found"],
+  ["HomeView", HomeView, "Welcome"],
+])("%s", (_name, component, text) => {
   it("renders correctly", () => {
-    const wrapper = mount(FooExperiment);
-    expect(wrapper.text()).toContain("Foo");
-  });
-});
-
-describe("NotFound", () => {
-  it("renders correctly", () => {
-    const wrapper = mount(NotFound);
-    expect(wrapper.html()).toContain(`<h1>404 Not Found</h1>`);
+    expect(component).toBeTruthy();
+    const wrapper = mount(component);
+    expect(wrapper.text()).toContain(text);
   });
 });
