@@ -55,6 +55,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     define: {
+      __VUE_OPTIONS_API__: false,
       "import.meta.vitest": "undefined",
       __PLAYGROUND_VUE_COVERAGE_EXISTS__: fs.existsSync(
         fileURLToPath(new URL("./public/coverage/index.html", import.meta.url))
