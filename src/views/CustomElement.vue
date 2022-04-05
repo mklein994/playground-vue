@@ -1,8 +1,8 @@
-<script lang="ts">
+<script setup lang="ts">
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 import hljs from "highlight.js/lib/core";
 import css from "highlight.js/lib/languages/css";
-import { defineComponent, defineCustomElement } from "vue";
+import { defineCustomElement } from "vue";
 
 import CustomElement from "../components/CustomElement.ce.vue";
 
@@ -13,16 +13,6 @@ const Highlightjs = hljsVuePlugin.component;
 const styles = CustomElement.styles[0];
 
 customElements.define("custom-element", defineCustomElement(CustomElement));
-
-export default defineComponent({
-  name: "CustomElement",
-  components: { Highlightjs },
-  setup: () => {
-    return {
-      styles,
-    };
-  },
-});
 </script>
 
 <template>
