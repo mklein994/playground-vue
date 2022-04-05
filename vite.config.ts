@@ -3,16 +3,12 @@
 import vue from "@vitejs/plugin-vue";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
-import {
-  type IndexHtmlTransformResult,
-  defineConfig,
-  loadEnv,
-  searchForWorkspaceRoot,
-} from "vite";
+import type { Plugin } from "vite";
+import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
 
-const separateTailwind = () => ({
+const separateTailwind = (): Plugin => ({
   name: "html-tailwind-transform",
-  transformIndexHtml(): IndexHtmlTransformResult {
+  transformIndexHtml() {
     return [
       {
         tag: "link",
