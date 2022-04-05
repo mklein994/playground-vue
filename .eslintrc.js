@@ -41,6 +41,6 @@ module.exports = {
       "error",
       { order: ["script", "template", "style"] },
     ],
-    "vue/component-api-style": ["error", ["script-setup", "composition"]],
+    "vue/component-api-style": ["error", ["script-setup"]],
   },
 };
