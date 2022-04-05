@@ -56,5 +56,17 @@ if (import.meta.vitest) {
         kebabCase: "foo",
       });
     });
+
+    it("checks that routes are in the correct order", () => {
+      expect(routes[0]).toStrictEqual({
+        path: "/",
+        name: "home",
+        component: HomeView,
+      });
+      expect(routes.at(-1)).toStrictEqual({
+        path: "/:pathMatch(.*)*",
+        component: NotFound,
+      });
+    });
   });
 }
