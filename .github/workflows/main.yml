@@ -54,6 +54,10 @@ jobs:
       - name: Lint
         run: pnpm run -C playground-vue lint:ci
 
+      - name: Node Tests
+        run: pnpm run -C playground-vue test:node
+        continue-on-error: true
+
       - name: Test with Coverage
         run: pnpm run -C playground-vue coverage
 
