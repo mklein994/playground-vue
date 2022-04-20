@@ -11,14 +11,15 @@
     "typecheck:app": "vue-tsc --noEmit --composite false -p tsconfig.app.json",
     "typecheck:tests": "vue-tsc --noEmit --composite false -p tsconfig.vitest.json",
     "typecheck": "pnpm typecheck:config && pnpm typecheck:workers && pnpm typecheck:tests",
-    "lint": "eslint --ext js,ts,vue .",
-    "lint:ci": "eslint --ext js,ts,vue --max-warnings 0 . && prettier --check .",
-    "format": "eslint --ext js,ts,vue --fix --fix-type layout . && prettier --write .",
+    "lint": "eslint --ext js,cjs,ts,vue .",
+    "lint:ci": "eslint --ext js,cjs,ts,vue --max-warnings 0 . && prettier --check .",
+    "format": "eslint --ext js,cjs,ts,vue --fix --fix-type layout . && prettier --write .",
     "test": "vitest",
     "test:run": "vitest run",
     "coverage": "vitest run --coverage"
   },
   "packageManager": "pnpm@6.32.9",
+  "type": "module",
   "dependencies": {
     "@sentry/tracing": "^6.19.6",
     "@sentry/vue": "^6.19.6",
