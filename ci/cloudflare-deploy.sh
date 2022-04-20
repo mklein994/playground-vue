@@ -24,7 +24,7 @@ corepack enable pnpm
 echo 'run tests and generate code coverage'
 pnpm run coverage
 
-# CloudFlare Pages messes up file file names; it doesn't understand URLs with
+# CloudFlare Pages messes up file names; it doesn't understand URLs with
 # multiple dots in them: <https://example.com/foo.bar.html> redirects to
 # <https://example.com/foo.bar>.
 echo 'fixing file names in public/coverage/'
