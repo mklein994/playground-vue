@@ -16,6 +16,7 @@
     "lint:ci": "eslint --ext js,cjs,ts,vue --max-warnings 0 . && prettier --check .",
     "format": "eslint --ext js,cjs,ts,vue --fix --fix-type layout . && prettier --write .",
     "test": "vitest",
+    "test:node": "node ./tests/nodeTest.js",
     "test:run": "vitest run",
     "coverage": "vitest run --coverage"
   },
