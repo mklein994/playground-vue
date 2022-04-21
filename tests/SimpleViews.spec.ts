@@ -20,5 +20,6 @@ describe.each([
     expect(component).toBeTruthy();
     const wrapper = mount(component);
     expect(wrapper.text()).toContain(text);
+    expect(wrapper.html()).toMatchSnapshot();
   });
 });
