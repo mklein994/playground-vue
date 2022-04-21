@@ -5,14 +5,14 @@ import { defineComponent, h, Suspense } from "vue";
 import ForAwaitList from "@/components/ForAwaitList.vue";
 
 describe.concurrent("ForAwait", async () => {
-  const TestComponentBuilder = (max?: number) =>
+  const testComponentBuilder = (max?: number) =>
     defineComponent(function TestComponent() {
       return () =>
         h(Suspense, () => h(ForAwaitList, max == null ? undefined : { max }));
     });
 
   describe.concurrent("all in order", async () => {
-    const wrapper = mount(TestComponentBuilder());
+    const wrapper = mount(testComponentBuilder());
 
     await flushPromises();
 
@@ -40,7 +40,7 @@ describe.concurrent("ForAwait", async () => {
 
   describe.concurrent("max", () => {
     it("handles a different initial value", async () => {
-      const wrapper = mount(TestComponentBuilder(10));
+      const wrapper = mount(testComponentBuilder(10));
 
       await flushPromises();
 
@@ -48,7 +48,7 @@ describe.concurrent("ForAwait", async () => {
     });
 
     it("updates when changed", async () => {
-      const wrapper = mount(TestComponentBuilder(10));
+      const wrapper = mount(testComponentBuilder(10));
 
       await flushPromises();
 
