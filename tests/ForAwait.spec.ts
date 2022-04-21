@@ -30,6 +30,6 @@ describe("ForAwait", async () => {
     [15, "FizzBuzz"],
     [16, "16"],
   ])("fizzbuzz: %i -> %s", (index, expected) => {
-    expect(wrapper.find(`li:nth-child(${index})`).text()).toBe(expected);
+    expect(wrapper.get(`li:nth-child(${index})`).text()).toBe(expected);
   });
 });
