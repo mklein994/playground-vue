@@ -48,6 +48,7 @@ export default defineConfig(({ mode }) => {
     test: {
       environment: "happy-dom",
       includeSource: ["./src/**/*.ts"],
+      isolate: false, // major speed improvement at risk of cross-contamination
       coverage: {
         reporter: ["html-spa", "text"],
         reportsDirectory: "public/coverage",
