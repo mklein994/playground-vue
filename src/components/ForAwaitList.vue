@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { ref, watchEffect } from "vue";
 
+const props = withDefaults(
+  defineProps<{
+    max?: number;
+  }>(),
+  {
+    max: 25,
+  }
+);
+
 async function* iteratorGenerator(max: number) {
   let i = 1;
   while (i <= max) {
@@ -24,7 +33,7 @@ async function fizzBuzz(max: number) {
   return list;
 }
 
-const max = ref(25);
+const max = ref(props.max);
 
 const list = ref<(string | number)[]>([]);
 
