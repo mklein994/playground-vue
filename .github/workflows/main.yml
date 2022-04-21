@@ -35,6 +35,9 @@ jobs:
 
       - run: wasm-pack build --target web sunrise-cli
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
