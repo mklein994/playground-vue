@@ -38,6 +38,14 @@ describe.concurrent("ForAwait", async () => {
     });
   });
 
+  it("matches snapshot", async () => {
+    const wrapper = mount(testComponentBuilder());
+
+    await flushPromises();
+
+    expect(wrapper.html()).toMatchSnapshot();
+  });
+
   describe.concurrent("max", () => {
     it("handles a different initial value", async () => {
       const wrapper = mount(testComponentBuilder(10));
