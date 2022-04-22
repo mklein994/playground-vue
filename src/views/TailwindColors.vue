@@ -10,7 +10,7 @@ const tailwindColors = ref<HTMLDivElement>();
 /**
  * Check if the object passed in is a {@link TailwindColorGroup}.
  *
- * @param group The object to test
+ * @param group - The object to test
  */
 function isTailwindColorGroup(group: unknown): group is TailwindColorGroup {
   return typeof group === "object" && group != null && "50" in group;

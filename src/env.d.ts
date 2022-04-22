@@ -25,7 +25,7 @@ interface ImportMetaEnv {
   /**
    * The **D**ata **S**ource **N**ame.
    *
-   * @see https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/#dsn}
+   * @see https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/#dsn
    * @see https://docs.sentry.io/product/sentry-basics/dsn-explainer/
    */
   readonly VITE_SENTRY_DSN: string | undefined;

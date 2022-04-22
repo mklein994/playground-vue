@@ -34,28 +34,28 @@ declare module "node:test" {
   class TestContext {
     /**
      * This function is used to write TAP diagnostics to the output. Any diagnostic information is included at the end of the test's results. This function does not return a value.
-     * @param message Message to be displayed as a TAP diagnostic.
+     * @param message - Message to be displayed as a TAP diagnostic.
      */
     diagnostic(message: string): void;
     /**
      * If shouldRunOnlyTests is truthy, the test context will only run tests that have the only option set. Otherwise, all tests are run. If Node.js was not started with the --test-only command-line option, this function is a no-op.
-     * @param shouldRunOnlyTests Whether or not to run only tests.
+     * @param shouldRunOnlyTests - Whether or not to run only tests.
      */
     runOnly(shouldRunOnlyTests: boolean): void;
     /**
      * This function causes the test's output to indicate the test as skipped. If message is provided, it is included in the TAP output. Calling skip() does not terminate execution of the test function. This function does not return a value.
-     * @param message Optional skip message to be displayed in TAP output.
+     * @param message - Optional skip message to be displayed in TAP output.
      */
     skip(message?: string): void;
     /**
      * This function adds a TODO directive to the test's output. If message is provided, it is included in the TAP output. Calling todo() does not terminate execution of the test function. This function does not return a value.
-     * @param message Optional TODO message to be displayed in TAP output.
+     * @param message - Optional TODO message to be displayed in TAP output.
      */
     todo(message?: string): void;
     /**
      * This function is used to create subtests under the current test. This function behaves in the same fashion as the top level test() function.
-     * @param name This function is used to create subtests under the current test. This function behaves in the same fashion as the top level test() function.
-     * @param fn The function under test. This first argument to this function is a TestContext object. If the test uses callbacks, the callback function is passed as the second argument. Default: A no-op function.
+     * @param name - This function is used to create subtests under the current test. This function behaves in the same fashion as the top level test() function.
+     * @param fn - The function under test. This first argument to this function is a TestContext object. If the test uses callbacks, the callback function is passed as the second argument. Default: A no-op function.
      */
     test(name: string, fn: Fn = defaultFn): Promise<undefined>;
     test(
@@ -107,8 +107,8 @@ declare module "node:test" {
    * });
    * ```
    *
-   * @param name The name of the test, which is displayed when reporting test results. Default: The name property of fn, or '<anonymous>' if fn does not have a name.
-   * @param fn
+   * @param name - The name of the test, which is displayed when reporting test results. Default: The name property of fn, or '<anonymous>' if fn does not have a name.
+   * @param fn - The function under test. This first argument to this function is a TestContext object. If the test uses callbacks, the callback function is passed as the second argument. Default: A no-op function.
    */
   declare function test(name: string, fn: Fn = defaultFn): Promise<undefined>;
   declare function test(
