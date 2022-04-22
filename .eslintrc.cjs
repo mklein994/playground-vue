@@ -48,6 +48,7 @@ module.exports = {
       { order: ["script", "template", "style"] },
     ],
     "vue/component-api-style": ["error", ["script-setup"]],
+    "vue/define-macros-order": "warn",
     "tsdoc/syntax": "warn",
   },
 };
