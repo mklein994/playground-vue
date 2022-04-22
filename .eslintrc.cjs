@@ -17,7 +17,12 @@ module.exports = {
     parser: "@typescript-eslint/parser",
     sourceType: "module",
   },
-  plugins: ["vue", "@typescript-eslint", "simple-import-sort"],
+  plugins: [
+    "vue",
+    "@typescript-eslint",
+    "eslint-plugin-tsdoc",
+    "simple-import-sort",
+  ],
   ignorePatterns: ["dist/", "coverage/"],
   globals: {
     PositionOptions: "readonly",
@@ -43,5 +48,6 @@ module.exports = {
       { order: ["script", "template", "style"] },
     ],
     "vue/component-api-style": ["error", ["script-setup"]],
+    "tsdoc/syntax": "warn",
   },
 };
