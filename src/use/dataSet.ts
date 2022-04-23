@@ -1,4 +1,5 @@
 export type RecursiveMap = Map<string, RecursiveMap | string>;
+type DataGetReturn = string | RecursiveMap | undefined;
 
 const dataSet = (
   source: RecursiveMap = new Map(),
@@ -7,7 +8,7 @@ const dataSet = (
 ) => {
   const head = path.shift();
   if (head === undefined) {
-    throw new Error("head is undefined, should be unreachable");
+    throw new Error("(dataSet) head is undefined, should be unreachable");
   }
 
   if (path.length === 0) {
@@ -17,8 +18,7 @@ const dataSet = (
 
   let newSource: string | RecursiveMap = source.get(head) ?? new Map();
   if (typeof newSource === "string") {
-    const newValue = newSource;
-    newSource = new Map([["", newValue]]);
+    newSource = new Map([[newSource, new Map()]]);
   }
 
   source.set(head, dataSet(newSource, path, value));
@@ -26,24 +26,20 @@ const dataSet = (
   return source;
 };
 
-const dataGet = (
-  source: RecursiveMap,
-  path: string[]
-): string | RecursiveMap | undefined => {
+const dataGet = (source: RecursiveMap, path: string[]): DataGetReturn => {
   const head = path.shift();
   if (head === undefined) {
-    throw new Error("head is undefined, should be unreachable");
-  }
-
-  if (path.length === 0) {
-    const candidate = source.get(head);
-    return typeof candidate === "string" ? candidate : candidate?.get("");
+    return head;
   }
 
   const newSource = source.get(head);
-  return newSource === undefined || typeof newSource === "string"
-    ? newSource
-    : dataGet(newSource, path);
+  if (newSource === undefined) {
+    return newSource;
+  } else if (typeof newSource === "string") {
+    return path.length > 0 ? undefined : newSource;
+  } else {
+    return dataGet(newSource, path);
+  }
 };
 
 const dataSetObject = (
@@ -53,7 +49,7 @@ const dataSetObject = (
 ) => {
   const head = path.shift();
   if (head === undefined) {
-    throw new Error("head is undefined, should be unreachable");
+    throw new Error("(dataSetObject) head is undefined, should be unreachable");
   }
 
   if (path.length === 0) {
@@ -64,8 +60,7 @@ const dataSetObject = (
   let newSource =
     (source[head] as string | Record<string, unknown> | undefined) ?? {};
   if (typeof newSource === "string") {
-    const newValue = newSource;
-    newSource = { "": newValue };
+    newSource = { [newSource]: {} };
   }
 
   source[head] = dataSetObject(newSource, path, value);
@@ -79,20 +74,17 @@ const dataGetObject = (
 ): unknown => {
   const head = path.shift();
   if (head === undefined) {
-    throw new Error("head is undefined, should be unreachable");
-  }
-
-  if (path.length === 0) {
-    const candidate = source[head];
-    return typeof candidate === "string"
-      ? candidate
-      : (candidate as Record<string, unknown> | undefined)?.[""];
+    return head;
   }
 
   const newSource = source[head];
-  return newSource === undefined || typeof newSource === "string"
-    ? newSource
-    : dataGetObject(newSource as Record<string, unknown>, path);
+  if (newSource === undefined) {
+    return newSource;
+  } else if (typeof newSource === "string") {
+    return path.length > 0 ? undefined : newSource;
+  } else {
+    return dataGetObject(newSource as Record<string, unknown>, path);
+  }
 };
 
 export const useDataSet = () => {
@@ -133,15 +125,7 @@ if (import.meta.vitest) {
         "foo.bar.baz",
         "boz",
         new Map([["foo", "bar"]]),
-        new Map([
-          [
-            "foo",
-            new Map([
-              ["", "bar" as string | RecursiveMap],
-              ["bar", new Map([["baz", "boz"]])],
-            ]),
-          ],
-        ]),
+        new Map([["foo", new Map([["bar", new Map([["baz", "boz"]])]])]]),
       ],
     ])(
       "%s",
@@ -164,7 +148,73 @@ if (import.meta.vitest) {
     });
   });
 
-  describe.concurrent.todo("dataGet");
-  describe.concurrent.todo("dataGetObject");
-  describe.concurrent.todo("dataSetObject");
+  describe.concurrent("dataGet", () => {
+    const { dataGet } = useDataSet();
+
+    it("gets a simple value", () => {
+      expect(dataGet(new Map([["foo", "bar"]]), "foo".split("."))).toBe("bar");
+    });
+
+    it("gets a nested value", () => {
+      expect(
+        dataGet(
+          new Map([["foo", new Map([["bar", "baz"]]) as RecursiveMap]]),
+          "foo.bar".split(".")
+        )
+      ).toBe("baz");
+    });
+
+    it("returns undefined if path doesn't exist", () => {
+      expect(dataGet(new Map([["foo", "bar"]]), "foo.bar.baz".split("."))).toBe(
+        undefined
+      );
+    });
+  });
+
+  describe.concurrent("dataSetObject", () => {
+    const { dataSetObject } = useDataSet();
+
+    it.each([
+      ["top-level", "foo", "bar", {}, { foo: "bar" }],
+      ["replace top-level value", "foo", "baz", { foo: "bar" }, { foo: "baz" }],
+      [
+        "add top-level key",
+        "qux",
+        "quux",
+        { foo: "bar" },
+        { foo: "bar", qux: "quux" },
+      ],
+      [
+        "add nested value",
+        "foo.bar.baz",
+        "boz",
+        { foo: "bar" },
+        {
+          foo: {
+            bar: {
+              baz: "boz",
+            },
+          },
+        },
+      ],
+    ])("%s", (_name: string, path: string, value: string, source, expected) => {
+      const actual = dataSetObject(source, path.split("."), value);
+      expect(actual).toStrictEqual(expected);
+    });
+  });
+
+  describe.concurrent("dataGetObject", () => {
+    const { dataGetObject } = useDataSet();
+
+    it.each([
+      [
+        "undefined value at path returns undefined",
+        "foo.bar.baz",
+        { foo: "bar" },
+        undefined,
+      ],
+    ])("%s", (_name: string, path: string, source, expected) => {
+      expect(dataGetObject(source, path.split("."))).toBe(expected);
+    });
+  });
 }
