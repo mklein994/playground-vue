@@ -71,107 +71,103 @@ exports[`RecursionExperiment 1`] = `
 </ul>
 <pre data-v-54f64b35=\\"\\">{
   \\"Map(1)\\": {
-    \\" =>\\": {
-      \\"Map(1)\\": {
-        \\"src =>\\": {
-          \\"Map(16)\\": {
-            \\"App.vue =>\\": \\"/src/App.vue\\",
-            \\"HomeView.vue =>\\": \\"/src/HomeView.vue\\",
-            \\"NavigationFragment.vue =>\\": \\"/src/NavigationFragment.vue\\",
-            \\"NotFound.vue =>\\": \\"/src/NotFound.vue\\",
-            \\"RouteInfo.vue =>\\": \\"/src/RouteInfo.vue\\",
-            \\"env.d.ts =>\\": \\"/src/env.d.ts\\",
-            \\"fonts.css =>\\": \\"/src/fonts.css\\",
-            \\"main.ts =>\\": \\"/src/main.ts\\",
-            \\"routes.ts =>\\": \\"/src/routes.ts\\",
-            \\"style.css =>\\": \\"/src/style.css\\",
-            \\"tailwind.css =>\\": \\"/src/tailwind.css\\",
-            \\"assets =>\\": {
-              \\"Map(2)\\": {
-                \\"AndadaPro-VariableFont_wght.woff2 =>\\": \\"/src/assets/AndadaPro-VariableFont_wght.woff2\\",
-                \\"Recursive.woff2 =>\\": \\"/src/assets/Recursive.woff2\\"
+    \\"/src =>\\": {
+      \\"Map(16)\\": {
+        \\"/App.vue =>\\": \\"/src/App.vue\\",
+        \\"/HomeView.vue =>\\": \\"/src/HomeView.vue\\",
+        \\"/NavigationFragment.vue =>\\": \\"/src/NavigationFragment.vue\\",
+        \\"/NotFound.vue =>\\": \\"/src/NotFound.vue\\",
+        \\"/RouteInfo.vue =>\\": \\"/src/RouteInfo.vue\\",
+        \\"/env.d.ts =>\\": \\"/src/env.d.ts\\",
+        \\"/fonts.css =>\\": \\"/src/fonts.css\\",
+        \\"/main.ts =>\\": \\"/src/main.ts\\",
+        \\"/routes.ts =>\\": \\"/src/routes.ts\\",
+        \\"/style.css =>\\": \\"/src/style.css\\",
+        \\"/tailwind.css =>\\": \\"/src/tailwind.css\\",
+        \\"/assets =>\\": {
+          \\"Map(2)\\": {
+            \\"/AndadaPro-VariableFont_wght.woff2 =>\\": \\"/src/assets/AndadaPro-VariableFont_wght.woff2\\",
+            \\"/Recursive.woff2 =>\\": \\"/src/assets/Recursive.woff2\\"
+          }
+        },
+        \\"/components =>\\": {
+          \\"Map(9)\\": {
+            \\"/CustomElement.ce.vue =>\\": \\"/src/components/CustomElement.ce.vue\\",
+            \\"/CustomRenderFunction.vue =>\\": \\"/src/components/CustomRenderFunction.vue\\",
+            \\"/CustomRenderFunctionSetup.vue =>\\": \\"/src/components/CustomRenderFunctionSetup.vue\\",
+            \\"/EventCallbacksHelper.vue =>\\": \\"/src/components/EventCallbacksHelper.vue\\",
+            \\"/ForAwaitList.vue =>\\": \\"/src/components/ForAwaitList.vue\\",
+            \\"/SunriseSunset.vue =>\\": \\"/src/components/SunriseSunset.vue\\",
+            \\"/grid-borders =>\\": {
+              \\"Map(1)\\": {
+                \\"/GridPicker.vue =>\\": \\"/src/components/grid-borders/GridPicker.vue\\"
               }
             },
-            \\"components =>\\": {
-              \\"Map(9)\\": {
-                \\"CustomElement.ce.vue =>\\": \\"/src/components/CustomElement.ce.vue\\",
-                \\"CustomRenderFunction.vue =>\\": \\"/src/components/CustomRenderFunction.vue\\",
-                \\"CustomRenderFunctionSetup.vue =>\\": \\"/src/components/CustomRenderFunctionSetup.vue\\",
-                \\"EventCallbacksHelper.vue =>\\": \\"/src/components/EventCallbacksHelper.vue\\",
-                \\"ForAwaitList.vue =>\\": \\"/src/components/ForAwaitList.vue\\",
-                \\"SunriseSunset.vue =>\\": \\"/src/components/SunriseSunset.vue\\",
-                \\"grid-borders =>\\": {
-                  \\"Map(1)\\": {
-                    \\"GridPicker.vue =>\\": \\"/src/components/grid-borders/GridPicker.vue\\"
-                  }
-                },
-                \\"style-inheritance =>\\": {
-                  \\"Map(4)\\": {
-                    \\"ChildFour.vue =>\\": \\"/src/components/style-inheritance/ChildFour.vue\\",
-                    \\"ChildOne.vue =>\\": \\"/src/components/style-inheritance/ChildOne.vue\\",
-                    \\"ChildThree.vue =>\\": \\"/src/components/style-inheritance/ChildThree.vue\\",
-                    \\"ChildTwo.vue =>\\": \\"/src/components/style-inheritance/ChildTwo.vue\\"
-                  }
-                },
-                \\"variable-fonts =>\\": {
-                  \\"Map(1)\\": {
-                    \\"VariableFontAxis.vue =>\\": \\"/src/components/variable-fonts/VariableFontAxis.vue\\"
-                  }
-                }
+            \\"/style-inheritance =>\\": {
+              \\"Map(4)\\": {
+                \\"/ChildFour.vue =>\\": \\"/src/components/style-inheritance/ChildFour.vue\\",
+                \\"/ChildOne.vue =>\\": \\"/src/components/style-inheritance/ChildOne.vue\\",
+                \\"/ChildThree.vue =>\\": \\"/src/components/style-inheritance/ChildThree.vue\\",
+                \\"/ChildTwo.vue =>\\": \\"/src/components/style-inheritance/ChildTwo.vue\\"
               }
             },
-            \\"use =>\\": {
-              \\"Map(2)\\": {
-                \\"dataSet.ts =>\\": \\"/src/use/dataSet.ts\\",
-                \\"smokeTest.ts =>\\": \\"/src/use/smokeTest.ts\\"
-              }
-            },
-            \\"views =>\\": {
-              \\"Map(36)\\": {
-                \\"AboutBrowser.vue =>\\": \\"/src/views/AboutBrowser.vue\\",
-                \\"AccentColor.vue =>\\": \\"/src/views/AccentColor.vue\\",
-                \\"ConsoleTrace.vue =>\\": \\"/src/views/ConsoleTrace.vue\\",
-                \\"CounterExperiment.vue =>\\": \\"/src/views/CounterExperiment.vue\\",
-                \\"CssModules.vue =>\\": \\"/src/views/CssModules.vue\\",
-                \\"CssVBind.vue =>\\": \\"/src/views/CssVBind.vue\\",
-                \\"CssVariables.vue =>\\": \\"/src/views/CssVariables.vue\\",
-                \\"CustomElement.vue =>\\": \\"/src/views/CustomElement.vue\\",
-                \\"DialogElement.vue =>\\": \\"/src/views/DialogElement.vue\\",
-                \\"DynamicScopedStyles.vue =>\\": \\"/src/views/DynamicScopedStyles.vue\\",
-                \\"EventCallbacks.vue =>\\": \\"/src/views/EventCallbacks.vue\\",
-                \\"FooExperiment.vue =>\\": \\"/src/views/FooExperiment.vue\\",
-                \\"ForAwait.vue =>\\": \\"/src/views/ForAwait.vue\\",
-                \\"GridBorders.vue =>\\": \\"/src/views/GridBorders.vue\\",
-                \\"GridExperiment.vue =>\\": \\"/src/views/GridExperiment.vue\\",
-                \\"HeroiconsExperiment.vue =>\\": \\"/src/views/HeroiconsExperiment.vue\\",
-                \\"InputFileCapture.vue =>\\": \\"/src/views/InputFileCapture.vue\\",
-                \\"MultiLineSwitchStatement.vue =>\\": \\"/src/views/MultiLineSwitchStatement.vue\\",
-                \\"MultipleCheckboxes.vue =>\\": \\"/src/views/MultipleCheckboxes.vue\\",
-                \\"NthChild.vue =>\\": \\"/src/views/NthChild.vue\\",
-                \\"NumberFieldBinding.vue =>\\": \\"/src/views/NumberFieldBinding.vue\\",
-                \\"OptionalChaining.vue =>\\": \\"/src/views/OptionalChaining.vue\\",
-                \\"RecursionExperiment.vue =>\\": \\"/src/views/RecursionExperiment.vue\\",
-                \\"RenderFunction.vue =>\\": \\"/src/views/RenderFunction.vue\\",
-                \\"SassExperiment.vue =>\\": \\"/src/views/SassExperiment.vue\\",
-                \\"SelectStyling.vue =>\\": \\"/src/views/SelectStyling.vue\\",
-                \\"ServiceWorkerExperiment.vue =>\\": \\"/src/views/ServiceWorkerExperiment.vue\\",
-                \\"StyleInheritance.vue =>\\": \\"/src/views/StyleInheritance.vue\\",
-                \\"TaggedTemplates.vue =>\\": \\"/src/views/TaggedTemplates.vue\\",
-                \\"TailwindColors.vue =>\\": \\"/src/views/TailwindColors.vue\\",
-                \\"ThrowError.vue =>\\": \\"/src/views/ThrowError.vue\\",
-                \\"TimeElement.vue =>\\": \\"/src/views/TimeElement.vue\\",
-                \\"VariableFonts.vue =>\\": \\"/src/views/VariableFonts.vue\\",
-                \\"WasmExperiment.vue =>\\": \\"/src/views/WasmExperiment.vue\\",
-                \\"WorkerExperiment.vue =>\\": \\"/src/views/WorkerExperiment.vue\\",
-                \\"XorOperation.vue =>\\": \\"/src/views/XorOperation.vue\\"
-              }
-            },
-            \\"workers =>\\": {
-              \\"Map(2)\\": {
-                \\"my-first-service-worker.ts =>\\": \\"/src/workers/my-first-service-worker.ts\\",
-                \\"my-first-worker.ts =>\\": \\"/src/workers/my-first-worker.ts\\"
+            \\"/variable-fonts =>\\": {
+              \\"Map(1)\\": {
+                \\"/VariableFontAxis.vue =>\\": \\"/src/components/variable-fonts/VariableFontAxis.vue\\"
               }
             }
+          }
+        },
+        \\"/use =>\\": {
+          \\"Map(2)\\": {
+            \\"/dataSet.ts =>\\": \\"/src/use/dataSet.ts\\",
+            \\"/smokeTest.ts =>\\": \\"/src/use/smokeTest.ts\\"
+          }
+        },
+        \\"/views =>\\": {
+          \\"Map(36)\\": {
+            \\"/AboutBrowser.vue =>\\": \\"/src/views/AboutBrowser.vue\\",
+            \\"/AccentColor.vue =>\\": \\"/src/views/AccentColor.vue\\",
+            \\"/ConsoleTrace.vue =>\\": \\"/src/views/ConsoleTrace.vue\\",
+            \\"/CounterExperiment.vue =>\\": \\"/src/views/CounterExperiment.vue\\",
+            \\"/CssModules.vue =>\\": \\"/src/views/CssModules.vue\\",
+            \\"/CssVBind.vue =>\\": \\"/src/views/CssVBind.vue\\",
+            \\"/CssVariables.vue =>\\": \\"/src/views/CssVariables.vue\\",
+            \\"/CustomElement.vue =>\\": \\"/src/views/CustomElement.vue\\",
+            \\"/DialogElement.vue =>\\": \\"/src/views/DialogElement.vue\\",
+            \\"/DynamicScopedStyles.vue =>\\": \\"/src/views/DynamicScopedStyles.vue\\",
+            \\"/EventCallbacks.vue =>\\": \\"/src/views/EventCallbacks.vue\\",
+            \\"/FooExperiment.vue =>\\": \\"/src/views/FooExperiment.vue\\",
+            \\"/ForAwait.vue =>\\": \\"/src/views/ForAwait.vue\\",
+            \\"/GridBorders.vue =>\\": \\"/src/views/GridBorders.vue\\",
+            \\"/GridExperiment.vue =>\\": \\"/src/views/GridExperiment.vue\\",
+            \\"/HeroiconsExperiment.vue =>\\": \\"/src/views/HeroiconsExperiment.vue\\",
+            \\"/InputFileCapture.vue =>\\": \\"/src/views/InputFileCapture.vue\\",
+            \\"/MultiLineSwitchStatement.vue =>\\": \\"/src/views/MultiLineSwitchStatement.vue\\",
+            \\"/MultipleCheckboxes.vue =>\\": \\"/src/views/MultipleCheckboxes.vue\\",
+            \\"/NthChild.vue =>\\": \\"/src/views/NthChild.vue\\",
+            \\"/NumberFieldBinding.vue =>\\": \\"/src/views/NumberFieldBinding.vue\\",
+            \\"/OptionalChaining.vue =>\\": \\"/src/views/OptionalChaining.vue\\",
+            \\"/RecursionExperiment.vue =>\\": \\"/src/views/RecursionExperiment.vue\\",
+            \\"/RenderFunction.vue =>\\": \\"/src/views/RenderFunction.vue\\",
+            \\"/SassExperiment.vue =>\\": \\"/src/views/SassExperiment.vue\\",
+            \\"/SelectStyling.vue =>\\": \\"/src/views/SelectStyling.vue\\",
+            \\"/ServiceWorkerExperiment.vue =>\\": \\"/src/views/ServiceWorkerExperiment.vue\\",
+            \\"/StyleInheritance.vue =>\\": \\"/src/views/StyleInheritance.vue\\",
+            \\"/TaggedTemplates.vue =>\\": \\"/src/views/TaggedTemplates.vue\\",
+            \\"/TailwindColors.vue =>\\": \\"/src/views/TailwindColors.vue\\",
+            \\"/ThrowError.vue =>\\": \\"/src/views/ThrowError.vue\\",
+            \\"/TimeElement.vue =>\\": \\"/src/views/TimeElement.vue\\",
+            \\"/VariableFonts.vue =>\\": \\"/src/views/VariableFonts.vue\\",
+            \\"/WasmExperiment.vue =>\\": \\"/src/views/WasmExperiment.vue\\",
+            \\"/WorkerExperiment.vue =>\\": \\"/src/views/WorkerExperiment.vue\\",
+            \\"/XorOperation.vue =>\\": \\"/src/views/XorOperation.vue\\"
+          }
+        },
+        \\"/workers =>\\": {
+          \\"Map(2)\\": {
+            \\"/my-first-service-worker.ts =>\\": \\"/src/workers/my-first-service-worker.ts\\",
+            \\"/my-first-worker.ts =>\\": \\"/src/workers/my-first-worker.ts\\"
           }
         }
       }
@@ -179,89 +175,87 @@ exports[`RecursionExperiment 1`] = `
   }
 }</pre>
 <pre data-v-54f64b35=\\"\\">{
-  \\"\\": {
-    \\"src\\": {
-      \\"App.vue\\": \\"/src/App.vue\\",
-      \\"HomeView.vue\\": \\"/src/HomeView.vue\\",
-      \\"NavigationFragment.vue\\": \\"/src/NavigationFragment.vue\\",
-      \\"NotFound.vue\\": \\"/src/NotFound.vue\\",
-      \\"RouteInfo.vue\\": \\"/src/RouteInfo.vue\\",
-      \\"env.d.ts\\": \\"/src/env.d.ts\\",
-      \\"fonts.css\\": \\"/src/fonts.css\\",
-      \\"main.ts\\": \\"/src/main.ts\\",
-      \\"routes.ts\\": \\"/src/routes.ts\\",
-      \\"style.css\\": \\"/src/style.css\\",
-      \\"tailwind.css\\": \\"/src/tailwind.css\\",
-      \\"assets\\": {
-        \\"AndadaPro-VariableFont_wght.woff2\\": \\"/src/assets/AndadaPro-VariableFont_wght.woff2\\",
-        \\"Recursive.woff2\\": \\"/src/assets/Recursive.woff2\\"
+  \\"/src\\": {
+    \\"/App.vue\\": \\"/src/App.vue\\",
+    \\"/HomeView.vue\\": \\"/src/HomeView.vue\\",
+    \\"/NavigationFragment.vue\\": \\"/src/NavigationFragment.vue\\",
+    \\"/NotFound.vue\\": \\"/src/NotFound.vue\\",
+    \\"/RouteInfo.vue\\": \\"/src/RouteInfo.vue\\",
+    \\"/env.d.ts\\": \\"/src/env.d.ts\\",
+    \\"/fonts.css\\": \\"/src/fonts.css\\",
+    \\"/main.ts\\": \\"/src/main.ts\\",
+    \\"/routes.ts\\": \\"/src/routes.ts\\",
+    \\"/style.css\\": \\"/src/style.css\\",
+    \\"/tailwind.css\\": \\"/src/tailwind.css\\",
+    \\"/assets\\": {
+      \\"/AndadaPro-VariableFont_wght.woff2\\": \\"/src/assets/AndadaPro-VariableFont_wght.woff2\\",
+      \\"/Recursive.woff2\\": \\"/src/assets/Recursive.woff2\\"
+    },
+    \\"/components\\": {
+      \\"/CustomElement.ce.vue\\": \\"/src/components/CustomElement.ce.vue\\",
+      \\"/CustomRenderFunction.vue\\": \\"/src/components/CustomRenderFunction.vue\\",
+      \\"/CustomRenderFunctionSetup.vue\\": \\"/src/components/CustomRenderFunctionSetup.vue\\",
+      \\"/EventCallbacksHelper.vue\\": \\"/src/components/EventCallbacksHelper.vue\\",
+      \\"/ForAwaitList.vue\\": \\"/src/components/ForAwaitList.vue\\",
+      \\"/SunriseSunset.vue\\": \\"/src/components/SunriseSunset.vue\\",
+      \\"/grid-borders\\": {
+        \\"/GridPicker.vue\\": \\"/src/components/grid-borders/GridPicker.vue\\"
       },
-      \\"components\\": {
-        \\"CustomElement.ce.vue\\": \\"/src/components/CustomElement.ce.vue\\",
-        \\"CustomRenderFunction.vue\\": \\"/src/components/CustomRenderFunction.vue\\",
-        \\"CustomRenderFunctionSetup.vue\\": \\"/src/components/CustomRenderFunctionSetup.vue\\",
-        \\"EventCallbacksHelper.vue\\": \\"/src/components/EventCallbacksHelper.vue\\",
-        \\"ForAwaitList.vue\\": \\"/src/components/ForAwaitList.vue\\",
-        \\"SunriseSunset.vue\\": \\"/src/components/SunriseSunset.vue\\",
-        \\"grid-borders\\": {
-          \\"GridPicker.vue\\": \\"/src/components/grid-borders/GridPicker.vue\\"
-        },
-        \\"style-inheritance\\": {
-          \\"ChildFour.vue\\": \\"/src/components/style-inheritance/ChildFour.vue\\",
-          \\"ChildOne.vue\\": \\"/src/components/style-inheritance/ChildOne.vue\\",
-          \\"ChildThree.vue\\": \\"/src/components/style-inheritance/ChildThree.vue\\",
-          \\"ChildTwo.vue\\": \\"/src/components/style-inheritance/ChildTwo.vue\\"
-        },
-        \\"variable-fonts\\": {
-          \\"VariableFontAxis.vue\\": \\"/src/components/variable-fonts/VariableFontAxis.vue\\"
-        }
+      \\"/style-inheritance\\": {
+        \\"/ChildFour.vue\\": \\"/src/components/style-inheritance/ChildFour.vue\\",
+        \\"/ChildOne.vue\\": \\"/src/components/style-inheritance/ChildOne.vue\\",
+        \\"/ChildThree.vue\\": \\"/src/components/style-inheritance/ChildThree.vue\\",
+        \\"/ChildTwo.vue\\": \\"/src/components/style-inheritance/ChildTwo.vue\\"
       },
-      \\"use\\": {
-        \\"dataSet.ts\\": \\"/src/use/dataSet.ts\\",
-        \\"smokeTest.ts\\": \\"/src/use/smokeTest.ts\\"
-      },
-      \\"views\\": {
-        \\"AboutBrowser.vue\\": \\"/src/views/AboutBrowser.vue\\",
-        \\"AccentColor.vue\\": \\"/src/views/AccentColor.vue\\",
-        \\"ConsoleTrace.vue\\": \\"/src/views/ConsoleTrace.vue\\",
-        \\"CounterExperiment.vue\\": \\"/src/views/CounterExperiment.vue\\",
-        \\"CssModules.vue\\": \\"/src/views/CssModules.vue\\",
-        \\"CssVBind.vue\\": \\"/src/views/CssVBind.vue\\",
-        \\"CssVariables.vue\\": \\"/src/views/CssVariables.vue\\",
-        \\"CustomElement.vue\\": \\"/src/views/CustomElement.vue\\",
-        \\"DialogElement.vue\\": \\"/src/views/DialogElement.vue\\",
-        \\"DynamicScopedStyles.vue\\": \\"/src/views/DynamicScopedStyles.vue\\",
-        \\"EventCallbacks.vue\\": \\"/src/views/EventCallbacks.vue\\",
-        \\"FooExperiment.vue\\": \\"/src/views/FooExperiment.vue\\",
-        \\"ForAwait.vue\\": \\"/src/views/ForAwait.vue\\",
-        \\"GridBorders.vue\\": \\"/src/views/GridBorders.vue\\",
-        \\"GridExperiment.vue\\": \\"/src/views/GridExperiment.vue\\",
-        \\"HeroiconsExperiment.vue\\": \\"/src/views/HeroiconsExperiment.vue\\",
-        \\"InputFileCapture.vue\\": \\"/src/views/InputFileCapture.vue\\",
-        \\"MultiLineSwitchStatement.vue\\": \\"/src/views/MultiLineSwitchStatement.vue\\",
-        \\"MultipleCheckboxes.vue\\": \\"/src/views/MultipleCheckboxes.vue\\",
-        \\"NthChild.vue\\": \\"/src/views/NthChild.vue\\",
-        \\"NumberFieldBinding.vue\\": \\"/src/views/NumberFieldBinding.vue\\",
-        \\"OptionalChaining.vue\\": \\"/src/views/OptionalChaining.vue\\",
-        \\"RecursionExperiment.vue\\": \\"/src/views/RecursionExperiment.vue\\",
-        \\"RenderFunction.vue\\": \\"/src/views/RenderFunction.vue\\",
-        \\"SassExperiment.vue\\": \\"/src/views/SassExperiment.vue\\",
-        \\"SelectStyling.vue\\": \\"/src/views/SelectStyling.vue\\",
-        \\"ServiceWorkerExperiment.vue\\": \\"/src/views/ServiceWorkerExperiment.vue\\",
-        \\"StyleInheritance.vue\\": \\"/src/views/StyleInheritance.vue\\",
-        \\"TaggedTemplates.vue\\": \\"/src/views/TaggedTemplates.vue\\",
-        \\"TailwindColors.vue\\": \\"/src/views/TailwindColors.vue\\",
-        \\"ThrowError.vue\\": \\"/src/views/ThrowError.vue\\",
-        \\"TimeElement.vue\\": \\"/src/views/TimeElement.vue\\",
-        \\"VariableFonts.vue\\": \\"/src/views/VariableFonts.vue\\",
-        \\"WasmExperiment.vue\\": \\"/src/views/WasmExperiment.vue\\",
-        \\"WorkerExperiment.vue\\": \\"/src/views/WorkerExperiment.vue\\",
-        \\"XorOperation.vue\\": \\"/src/views/XorOperation.vue\\"
-      },
-      \\"workers\\": {
-        \\"my-first-service-worker.ts\\": \\"/src/workers/my-first-service-worker.ts\\",
-        \\"my-first-worker.ts\\": \\"/src/workers/my-first-worker.ts\\"
+      \\"/variable-fonts\\": {
+        \\"/VariableFontAxis.vue\\": \\"/src/components/variable-fonts/VariableFontAxis.vue\\"
       }
+    },
+    \\"/use\\": {
+      \\"/dataSet.ts\\": \\"/src/use/dataSet.ts\\",
+      \\"/smokeTest.ts\\": \\"/src/use/smokeTest.ts\\"
+    },
+    \\"/views\\": {
+      \\"/AboutBrowser.vue\\": \\"/src/views/AboutBrowser.vue\\",
+      \\"/AccentColor.vue\\": \\"/src/views/AccentColor.vue\\",
+      \\"/ConsoleTrace.vue\\": \\"/src/views/ConsoleTrace.vue\\",
+      \\"/CounterExperiment.vue\\": \\"/src/views/CounterExperiment.vue\\",
+      \\"/CssModules.vue\\": \\"/src/views/CssModules.vue\\",
+      \\"/CssVBind.vue\\": \\"/src/views/CssVBind.vue\\",
+      \\"/CssVariables.vue\\": \\"/src/views/CssVariables.vue\\",
+      \\"/CustomElement.vue\\": \\"/src/views/CustomElement.vue\\",
+      \\"/DialogElement.vue\\": \\"/src/views/DialogElement.vue\\",
+      \\"/DynamicScopedStyles.vue\\": \\"/src/views/DynamicScopedStyles.vue\\",
+      \\"/EventCallbacks.vue\\": \\"/src/views/EventCallbacks.vue\\",
+      \\"/FooExperiment.vue\\": \\"/src/views/FooExperiment.vue\\",
+      \\"/ForAwait.vue\\": \\"/src/views/ForAwait.vue\\",
+      \\"/GridBorders.vue\\": \\"/src/views/GridBorders.vue\\",
+      \\"/GridExperiment.vue\\": \\"/src/views/GridExperiment.vue\\",
+      \\"/HeroiconsExperiment.vue\\": \\"/src/views/HeroiconsExperiment.vue\\",
+      \\"/InputFileCapture.vue\\": \\"/src/views/InputFileCapture.vue\\",
+      \\"/MultiLineSwitchStatement.vue\\": \\"/src/views/MultiLineSwitchStatement.vue\\",
+      \\"/MultipleCheckboxes.vue\\": \\"/src/views/MultipleCheckboxes.vue\\",
+      \\"/NthChild.vue\\": \\"/src/views/NthChild.vue\\",
+      \\"/NumberFieldBinding.vue\\": \\"/src/views/NumberFieldBinding.vue\\",
+      \\"/OptionalChaining.vue\\": \\"/src/views/OptionalChaining.vue\\",
+      \\"/RecursionExperiment.vue\\": \\"/src/views/RecursionExperiment.vue\\",
+      \\"/RenderFunction.vue\\": \\"/src/views/RenderFunction.vue\\",
+      \\"/SassExperiment.vue\\": \\"/src/views/SassExperiment.vue\\",
+      \\"/SelectStyling.vue\\": \\"/src/views/SelectStyling.vue\\",
+      \\"/ServiceWorkerExperiment.vue\\": \\"/src/views/ServiceWorkerExperiment.vue\\",
+      \\"/StyleInheritance.vue\\": \\"/src/views/StyleInheritance.vue\\",
+      \\"/TaggedTemplates.vue\\": \\"/src/views/TaggedTemplates.vue\\",
+      \\"/TailwindColors.vue\\": \\"/src/views/TailwindColors.vue\\",
+      \\"/ThrowError.vue\\": \\"/src/views/ThrowError.vue\\",
+      \\"/TimeElement.vue\\": \\"/src/views/TimeElement.vue\\",
+      \\"/VariableFonts.vue\\": \\"/src/views/VariableFonts.vue\\",
+      \\"/WasmExperiment.vue\\": \\"/src/views/WasmExperiment.vue\\",
+      \\"/WorkerExperiment.vue\\": \\"/src/views/WorkerExperiment.vue\\",
+      \\"/XorOperation.vue\\": \\"/src/views/XorOperation.vue\\"
+    },
+    \\"/workers\\": {
+      \\"/my-first-service-worker.ts\\": \\"/src/workers/my-first-service-worker.ts\\",
+      \\"/my-first-worker.ts\\": \\"/src/workers/my-first-worker.ts\\"
     }
   }
 }</pre>"

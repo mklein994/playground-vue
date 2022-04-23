@@ -5,11 +5,9 @@ import { type RecursiveMap, useDataSet } from "@/use/dataSet";
 
 const { dataSet, dataGet, dataSetObject, dataGetObject } = useDataSet();
 
-// const SEPARATOR = /\/[^/]+/g;
-const SEPARATOR = "/";
+const SEPARATOR = /\/[^/]+/g;
 
-// const split = (word: string) => word.match(SEPARATOR) ?? [];
-const split = (word: string) => word.split(SEPARATOR);
+const split = (word: string) => word.match(SEPARATOR) ?? [];
 
 const srcFiles = Object.keys(import.meta.glob("/src/**"));
 
