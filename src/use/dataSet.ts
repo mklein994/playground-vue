@@ -103,17 +103,17 @@ if (import.meta.vitest) {
   describe.concurrent("dataSet", () => {
     const { dataSet } = useDataSet();
     it.each([
-      ["top-level", "foo", "bar", new Map(), new Map([["foo", "bar"]])],
+      ["top-level", ["foo"], "bar", new Map(), new Map([["foo", "bar"]])],
       [
         "replace top-level value",
-        "foo",
+        ["foo"],
         "baz",
         new Map([["foo", "bar"]]),
         new Map([["foo", "baz"]]),
       ],
       [
         "add top-level key",
-        "qux",
+        ["qux"],
         "quux",
         new Map([["foo", "bar"]]),
         new Map([
@@ -123,7 +123,7 @@ if (import.meta.vitest) {
       ],
       [
         "add nested value",
-        "foo.bar.baz",
+        ["foo", "bar", "baz"],
         "boz",
         new Map([["foo", "bar"]]),
         new Map([["foo", new Map([["bar", new Map([["baz", "boz"]])]])]]),
@@ -132,12 +132,12 @@ if (import.meta.vitest) {
       "%s",
       (
         _name: string,
-        path: string,
+        path: string[],
         value: string,
         source: RecursiveMap,
         expected: RecursiveMap
       ) => {
-        const actual = dataSet(source, path.split("."), value);
+        const actual = dataSet(source, path, value);
         expect(actual).toStrictEqual(expected);
       }
     );
@@ -153,20 +153,20 @@ if (import.meta.vitest) {
     const { dataGet } = useDataSet();
 
     it("gets a simple value", () => {
-      expect(dataGet(new Map([["foo", "bar"]]), "foo".split("."))).toBe("bar");
+      expect(dataGet(new Map([["foo", "bar"]]), ["foo"])).toBe("bar");
     });
 
     it("gets a nested value", () => {
       expect(
-        dataGet(
-          new Map([["foo", new Map([["bar", "baz"]]) as RecursiveMap]]),
-          "foo.bar".split(".")
-        )
+        dataGet(new Map([["foo", new Map([["bar", "baz"]]) as RecursiveMap]]), [
+          "foo",
+          "bar",
+        ])
       ).toBe("baz");
     });
 
     it("returns undefined if path doesn't exist", () => {
-      expect(dataGet(new Map([["foo", "bar"]]), "foo.bar.baz".split("."))).toBe(
+      expect(dataGet(new Map([["foo", "bar"]]), ["foo", "bar", "baz"])).toBe(
         undefined
       );
     });
@@ -176,18 +176,24 @@ if (import.meta.vitest) {
     const { dataSetObject } = useDataSet();
 
     it.each([
-      ["top-level", "foo", "bar", {}, { foo: "bar" }],
-      ["replace top-level value", "foo", "baz", { foo: "bar" }, { foo: "baz" }],
+      ["top-level", ["foo"], "bar", {}, { foo: "bar" }],
+      [
+        "replace top-level value",
+        ["foo"],
+        "baz",
+        { foo: "bar" },
+        { foo: "baz" },
+      ],
       [
         "add top-level key",
-        "qux",
+        ["qux"],
         "quux",
         { foo: "bar" },
         { foo: "bar", qux: "quux" },
       ],
       [
         "add nested value",
-        "foo.bar.baz",
+        ["foo", "bar", "baz"],
         "boz",
         { foo: "bar" },
         {
@@ -198,10 +204,13 @@ if (import.meta.vitest) {
           },
         },
       ],
-    ])("%s", (_name: string, path: string, value: string, source, expected) => {
-      const actual = dataSetObject(source, path.split("."), value);
-      expect(actual).toStrictEqual(expected);
-    });
+    ])(
+      "%s",
+      (_name: string, path: string[], value: string, source, expected) => {
+        const actual = dataSetObject(source, path, value);
+        expect(actual).toStrictEqual(expected);
+      }
+    );
   });
 
   describe.concurrent("dataGetObject", () => {
@@ -210,12 +219,12 @@ if (import.meta.vitest) {
     it.each([
       [
         "undefined value at path returns undefined",
-        "foo.bar.baz",
+        ["foo", "bar", "baz"],
         { foo: "bar" },
         undefined,
       ],
-    ])("%s", (_name: string, path: string, source, expected) => {
-      expect(dataGetObject(source, path.split("."))).toBe(expected);
+    ])("%s", (_name: string, path: string[], source, expected) => {
+      expect(dataGetObject(source, path)).toBe(expected);
     });
   });
 }
