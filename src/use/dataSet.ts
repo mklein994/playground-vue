@@ -29,7 +29,7 @@ const dataSet = (
 const dataGet = (source: RecursiveMap, path: string[]): DataGetReturn => {
   const head = path.shift();
   if (head === undefined) {
-    return head;
+    return source;
   }
 
   const newSource = source.get(head);
@@ -74,7 +74,7 @@ const dataGetObject = (
 ): unknown => {
   const head = path.shift();
   if (head === undefined) {
-    return head;
+    return source;
   }
 
   const newSource = source[head];
@@ -156,6 +156,15 @@ if (import.meta.vitest) {
       expect(dataGet(new Map([["foo", "bar"]]), ["foo"])).toBe("bar");
     });
 
+    it("gets a complex value", () => {
+      expect(
+        dataGet(
+          new Map([["foo", new Map([["bar", new Map([["baz", "boz"]])]])]]),
+          ["foo"]
+        )
+      ).toStrictEqual(new Map([["bar", new Map([["baz", "boz"]])]]));
+    });
+
     it("gets a nested value", () => {
       expect(
         dataGet(new Map([["foo", new Map([["bar", "baz"]]) as RecursiveMap]]), [
@@ -165,7 +174,11 @@ if (import.meta.vitest) {
       ).toBe("baz");
     });
 
-    it("returns undefined if path doesn't exist", () => {
+    it("returns undefined if top-level path doesn't exist", () => {
+      expect(dataGet(new Map([["foo", "bar"]]), ["baz"])).toBe(undefined);
+    });
+
+    it("returns undefined if sub-path doesn't exist", () => {
       expect(dataGet(new Map([["foo", "bar"]]), ["foo", "bar", "baz"])).toBe(
         undefined
       );
@@ -211,20 +224,48 @@ if (import.meta.vitest) {
         expect(actual).toStrictEqual(expected);
       }
     );
+
+    it("throws when path is empty", () => {
+      expect(() => dataSetObject({}, [], "")).toThrow(
+        /head is undefined\b.*\bunreachable/
+      );
+    });
   });
 
   describe.concurrent("dataGetObject", () => {
     const { dataGetObject } = useDataSet();
 
-    it.each([
-      [
-        "undefined value at path returns undefined",
-        ["foo", "bar", "baz"],
-        { foo: "bar" },
-        undefined,
-      ],
-    ])("%s", (_name: string, path: string[], source, expected) => {
-      expect(dataGetObject(source, path)).toBe(expected);
+    it("returns undefined if top-level path doesn't exist", () => {
+      expect(dataGetObject({ foo: "bar" }, ["baz"])).toBe(undefined);
+    });
+
+    it("returns undefined value at sub-path doesn't exist", () => {
+      expect(dataGetObject({ foo: "bar" }, ["foo", "bar", "baz"])).toBe(
+        undefined
+      );
+    });
+
+    it("simple case", () => {
+      expect(dataGetObject({ foo: "bar" }, ["foo"])).toBe("bar");
+    });
+
+    it("gets complex value", () => {
+      expect(
+        dataGetObject(
+          {
+            foo: {
+              bar: {
+                baz: "boz",
+              },
+            },
+          },
+          ["foo"]
+        )
+      ).toStrictEqual({
+        bar: {
+          baz: "boz",
+        },
+      });
     });
   });
 }
