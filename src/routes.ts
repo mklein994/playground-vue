@@ -3,6 +3,7 @@ import type { RouteRecordRaw } from "vue-router";
 import HomeView from "./HomeView.vue";
 import NotFound from "./NotFound.vue";
 
+/* c8 ignore next */
 const modules = import.meta.glob("./views/*.vue");
 
 const componentRoutes: RouteRecordRaw[] = [];
@@ -39,6 +40,7 @@ export const routes: RouteRecordRaw[] = [
   { path: "/:pathMatch(.*)*", component: NotFound },
 ];
 
+/* c8 ignore start */
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
 

@@ -9,6 +9,7 @@ const SEPARATOR = /\/[^/]+/g;
 
 const split = (word: string) => word.match(SEPARATOR) ?? [];
 
+/* c8 ignore next */
 const srcFiles = Object.keys(import.meta.glob("/src/**"));
 
 const srcFileInput = ref<string>("");

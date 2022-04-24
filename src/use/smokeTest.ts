@@ -1,3 +1,4 @@
+/* c8 ignore start */
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
 
