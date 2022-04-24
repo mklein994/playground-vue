@@ -1,8 +1,18 @@
+<script setup lang="ts">
+import { computed, ref } from "vue";
+
+const layer = ref<HTMLParagraphElement>();
+const color = computed(() =>
+  layer.value ? getComputedStyle(layer.value).color : ""
+);
+</script>
+
 <template>
   <div class="css-layers">
     <p class="first">First</p>
     <p class="second">Second</p>
-    <p class="layer-color">Hello</p>
+    <p ref="layer" class="layer-color">Hello</p>
+    <pre>{{ color }}</pre>
     <p>
       To learn more about <code>@layer</code> and CSS Cascade Layers, see this
       blog post:
