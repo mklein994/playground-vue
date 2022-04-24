@@ -65,7 +65,7 @@ jobs:
         env:
           # This should correspond with 'sentry-cli releases propose-version'
           VITE_SENTRY_RELEASE: ${{ github.sha }}
-        run: pnpm run -C playground-vue build
+        run: pnpm run -C playground-vue build:all
 
       - name: Sentry Release
         env:

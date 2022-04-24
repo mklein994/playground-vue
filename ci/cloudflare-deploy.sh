@@ -31,7 +31,7 @@ echo 'fixing file names in public/coverage/'
 ./ci/fix-filenames.sh spa ./public/coverage/
 
 echo 'build vue project'
-pnpm run build -- --sourcemap false
+pnpm run build:all -- --sourcemap false
 
 # Create a 404.html page:
 # https://developers.cloudflare.com/pages/platform/serving-pages/#not-found-behavior

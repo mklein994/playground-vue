@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "pnpm run typecheck && pnpm run build:tailwind && vite build",
+    "build": "vite build",
+    "build:all": "pnpm run typecheck && pnpm run build:tailwind && vite build",
     "build:tailwind": "tailwind --minify --input ./src/tailwind.css --output ./public/tailwind.min.css",
     "preview": "vite preview",
     "typecheck:config": "vue-tsc --noEmit --composite false -p tsconfig.vite-config.json",
