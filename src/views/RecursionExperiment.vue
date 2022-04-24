@@ -12,7 +12,7 @@ const split = (word: string) => word.match(SEPARATOR) ?? [];
 /* c8 ignore next */
 const srcFiles = Object.keys(import.meta.glob("/src/**"));
 
-const srcFileInput = ref<string>("");
+const srcFileInput = ref<string>("/src/App.vue");
 const srcFilesTree = srcFiles.reduce(
   (all, one) => dataSet(all, split(one), one),
   new Map() as RecursiveMap
