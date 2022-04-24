@@ -6,3 +6,4 @@ dist-ssr
 .idea
 public/*.min.css
 coverage/
+.pnpm-debug.log
