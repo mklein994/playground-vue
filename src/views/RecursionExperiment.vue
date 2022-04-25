@@ -5,10 +5,10 @@ import { type RecursiveMap, useDataSet } from "@/use/dataSet";
 
 const props = withDefaults(
   defineProps<{
-    srcFiles?: string[];
+    source?: string[];
   }>(),
   {
-    srcFiles: () => Object.keys(import.meta.glob("/src/**")),
+    source: () => Object.keys(import.meta.glob("/src/**")),
   }
 );
 
@@ -18,21 +18,20 @@ const SEPARATOR = /\/[^/]+/g;
 
 const split = (word: string) => word.match(SEPARATOR) ?? [];
 
-const srcFileInput = ref<string>("/src/App.vue");
-const srcFilesTree = props.srcFiles.reduce(
+const sourceInput = ref<string>("/src/App.vue");
+const sourceTree = props.source.reduce(
   (all, one) => dataSet(all, split(one), one),
   new Map() as RecursiveMap
 );
 
-const srcFileFromTree = computed(
-  () => dataGet(srcFilesTree, split(srcFileInput.value)) ?? "(undefined)"
+const sourceFromTree = computed(
+  () => dataGet(sourceTree, split(sourceInput.value)) ?? "(undefined)"
 );
-const srcFileFromObject = computed(
-  () =>
-    dataGetObject(srcFilesObject, split(srcFileInput.value)) ?? "(undefined)"
+const sourceFromObject = computed(
+  () => dataGetObject(sourceObject, split(sourceInput.value)) ?? "(undefined)"
 );
 
-const srcFilesObject = props.srcFiles.reduce(
+const sourceObject = props.source.reduce(
   (all, one) => dataSetObject(all, split(one), one),
   {} as Record<string, unknown>
 );
@@ -40,15 +39,15 @@ const srcFilesObject = props.srcFiles.reduce(
 
 <template>
   <div class="recursion">
-    <input v-model="srcFileInput" type="text" />
-    <output>{{ srcFileFromTree }}</output>
-    <output>{{ srcFileFromObject }}</output>
+    <input v-model="sourceInput" type="text" />
+    <output>{{ sourceFromTree }}</output>
+    <output>{{ sourceFromObject }}</output>
   </div>
   <ul>
-    <li v-for="file of srcFiles" :key="file">{{ file }}</li>
+    <li v-for="file of source" :key="file">{{ file }}</li>
   </ul>
-  <pre>{{ srcFilesTree }}</pre>
-  <pre>{{ srcFilesObject }}</pre>
+  <pre>{{ sourceTree }}</pre>
+  <pre>{{ sourceObject }}</pre>
 </template>
 
 <style scoped>
