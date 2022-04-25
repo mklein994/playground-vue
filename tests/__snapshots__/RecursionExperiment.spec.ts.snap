@@ -28,6 +28,7 @@ exports[`RecursionExperiment 1`] = `
   <li data-v-54f64b35=\\"\\">/src/views/AccentColor.vue</li>
   <li data-v-54f64b35=\\"\\">/src/views/ConsoleTrace.vue</li>
   <li data-v-54f64b35=\\"\\">/src/views/CounterExperiment.vue</li>
+  <li data-v-54f64b35=\\"\\">/src/views/CssLayers.vue</li>
   <li data-v-54f64b35=\\"\\">/src/views/CssModules.vue</li>
   <li data-v-54f64b35=\\"\\">/src/views/CssVBind.vue</li>
   <li data-v-54f64b35=\\"\\">/src/views/CssVariables.vue</li>
@@ -125,11 +126,12 @@ exports[`RecursionExperiment 1`] = `
           }
         },
         \\"/views =>\\": {
-          \\"Map(36)\\": {
+          \\"Map(37)\\": {
             \\"/AboutBrowser.vue =>\\": \\"/src/views/AboutBrowser.vue\\",
             \\"/AccentColor.vue =>\\": \\"/src/views/AccentColor.vue\\",
             \\"/ConsoleTrace.vue =>\\": \\"/src/views/ConsoleTrace.vue\\",
             \\"/CounterExperiment.vue =>\\": \\"/src/views/CounterExperiment.vue\\",
+            \\"/CssLayers.vue =>\\": \\"/src/views/CssLayers.vue\\",
             \\"/CssModules.vue =>\\": \\"/src/views/CssModules.vue\\",
             \\"/CssVBind.vue =>\\": \\"/src/views/CssVBind.vue\\",
             \\"/CssVariables.vue =>\\": \\"/src/views/CssVariables.vue\\",
@@ -220,6 +222,7 @@ exports[`RecursionExperiment 1`] = `
       \\"/AccentColor.vue\\": \\"/src/views/AccentColor.vue\\",
       \\"/ConsoleTrace.vue\\": \\"/src/views/ConsoleTrace.vue\\",
       \\"/CounterExperiment.vue\\": \\"/src/views/CounterExperiment.vue\\",
+      \\"/CssLayers.vue\\": \\"/src/views/CssLayers.vue\\",
       \\"/CssModules.vue\\": \\"/src/views/CssModules.vue\\",
       \\"/CssVBind.vue\\": \\"/src/views/CssVBind.vue\\",
       \\"/CssVariables.vue\\": \\"/src/views/CssVariables.vue\\",
