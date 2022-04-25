@@ -21,7 +21,7 @@
     "test:run": "vitest run",
     "coverage": "vitest run --coverage"
   },
-  "packageManager": "pnpm@6.32.9",
+  "packageManager": "pnpm@6.32.10",
   "type": "module",
   "dependencies": {
     "@sentry/tracing": "^6.19.6",
