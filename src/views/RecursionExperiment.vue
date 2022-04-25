@@ -6,33 +6,34 @@ import { type RecursiveMap, useDataSet } from "@/use/dataSet";
 const props = withDefaults(
   defineProps<{
     source?: string[];
+    split?: (word: string) => string[];
+    search?: string;
   }>(),
   {
     source: () => Object.keys(import.meta.glob("/src/**")),
+    split: (word: string) => word.match(/\/[^/]+/g) ?? [],
+    search: "/src/App.vue",
   }
 );
 
 const { dataSet, dataGet, dataSetObject, dataGetObject } = useDataSet();
 
-const SEPARATOR = /\/[^/]+/g;
-
-const split = (word: string) => word.match(SEPARATOR) ?? [];
-
-const sourceInput = ref<string>("/src/App.vue");
+const sourceInput = ref(props.search);
 const sourceTree = props.source.reduce(
-  (all, one) => dataSet(all, split(one), one),
+  (all, one) => dataSet(all, props.split(one), one),
   new Map() as RecursiveMap
 );
 
 const sourceFromTree = computed(
-  () => dataGet(sourceTree, split(sourceInput.value)) ?? "(undefined)"
+  () => dataGet(sourceTree, props.split(sourceInput.value)) ?? "(undefined)"
 );
 const sourceFromObject = computed(
-  () => dataGetObject(sourceObject, split(sourceInput.value)) ?? "(undefined)"
+  () =>
+    dataGetObject(sourceObject, props.split(sourceInput.value)) ?? "(undefined)"
 );
 
 const sourceObject = props.source.reduce(
-  (all, one) => dataSetObject(all, split(one), one),
+  (all, one) => dataSetObject(all, props.split(one), one),
   {} as Record<string, unknown>
 );
 </script>
