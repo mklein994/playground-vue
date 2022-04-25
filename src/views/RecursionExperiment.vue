@@ -3,17 +3,23 @@ import { computed, ref } from "vue";
 
 import { type RecursiveMap, useDataSet } from "@/use/dataSet";
 
+const props = withDefaults(
+  defineProps<{
+    srcFiles?: string[];
+  }>(),
+  {
+    srcFiles: () => Object.keys(import.meta.glob("/src/**")),
+  }
+);
+
 const { dataSet, dataGet, dataSetObject, dataGetObject } = useDataSet();
 
 const SEPARATOR = /\/[^/]+/g;
 
 const split = (word: string) => word.match(SEPARATOR) ?? [];
 
-/* c8 ignore next */
-const srcFiles = Object.keys(import.meta.glob("/src/**"));
-
 const srcFileInput = ref<string>("/src/App.vue");
-const srcFilesTree = srcFiles.reduce(
+const srcFilesTree = props.srcFiles.reduce(
   (all, one) => dataSet(all, split(one), one),
   new Map() as RecursiveMap
 );
@@ -26,7 +32,7 @@ const srcFileFromObject = computed(
     dataGetObject(srcFilesObject, split(srcFileInput.value)) ?? "(undefined)"
 );
 
-const srcFilesObject = srcFiles.reduce(
+const srcFilesObject = props.srcFiles.reduce(
   (all, one) => dataSetObject(all, split(one), one),
   {} as Record<string, unknown>
 );
