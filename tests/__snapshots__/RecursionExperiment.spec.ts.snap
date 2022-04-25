@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`RecursionExperiment 1`] = `
+exports[`RecursionExperiment > renders correctly 1`] = `
 "<div class=\\"recursion\\" data-v-54f64b35=\\"\\"><input type=\\"text\\" data-v-54f64b35=\\"\\" /><output data-v-54f64b35=\\"\\">store.produce.apple</output><output data-v-54f64b35=\\"\\">store.produce.apple</output></div>
 <ul data-v-54f64b35=\\"\\">
   <li data-v-54f64b35=\\"\\">store.produce.apple</li>
