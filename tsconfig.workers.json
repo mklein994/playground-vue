@@ -3,6 +3,7 @@
   "include": ["src/workers/**/*.ts"],
   "compilerOptions": {
     "composite": true,
+    "isolatedModules": false,
     "lib": ["ESNext", "WebWorker"]
   }
 }
