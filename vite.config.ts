@@ -12,14 +12,14 @@ export default defineConfig(({ mode }) => {
   const cwd = process.cwd();
   const env = loadEnv(mode, cwd, "BUILDTIME_");
 
-  const sunriseRoot = env["BUILDTIME_SUNRISE_CLI_ROOT"] ?? "../sunrise-cli";
+  const sunriseRoot = env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli";
 
   return {
     server: {
       fs: {
         allow: [searchForWorkspaceRoot(cwd), sunriseRoot],
       },
-      host: env["BUILDTIME_HOST"],
+      host: env.BUILDTIME_HOST,
     },
     build: {
       sourcemap: true,
