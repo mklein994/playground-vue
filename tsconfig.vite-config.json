@@ -4,5 +4,5 @@
     "composite": true,
     "types": ["node", "vitest"]
   },
-  "include": ["vite.config.*"]
+  "include": ["vite.config.*", "config/vite-plugin-*"]
 }

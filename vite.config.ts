@@ -3,26 +3,9 @@
 import vue from "@vitejs/plugin-vue";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
-import type { Plugin } from "vite";
 import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
 
-const separateTailwind = (): Plugin => ({
-  name: "html-tailwind-transform",
-  transformIndexHtml() {
-    return [
-      {
-        tag: "link",
-        attrs: {
-          href: `/tailwind.min.css?t=${new Date().valueOf()}`,
-          rel: "stylesheet",
-          title: "tailwind",
-          disabled: "",
-        },
-        injectTo: "head",
-      },
-    ];
-  },
-});
+import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
