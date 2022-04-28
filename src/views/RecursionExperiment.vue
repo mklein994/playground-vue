@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { type RecursiveMap, useDataSet } from "@/use/dataSet";
+import {
+  type RecursiveMap,
+  dataGet,
+  dataGetObject,
+  dataSet,
+  dataSetObject,
+} from "@/helpers/dataSet";
 
 const props = withDefaults(
   defineProps<{
@@ -15,8 +21,6 @@ const props = withDefaults(
     search: "/src/App.vue",
   }
 );
-
-const { dataSet, dataGet, dataSetObject, dataGetObject } = useDataSet();
 
 const sourceInput = ref(props.search);
 const sourceTree = props.source.reduce(

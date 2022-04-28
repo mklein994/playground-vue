@@ -1,7 +1,7 @@
 export type RecursiveMap = Map<string, RecursiveMap | string>;
 type DataGetReturn = string | RecursiveMap | undefined;
 
-const dataSet = (
+export const dataSet = (
   source: RecursiveMap = new Map(),
   path: string[],
   value: string
@@ -26,7 +26,10 @@ const dataSet = (
   return source;
 };
 
-const dataGet = (source: RecursiveMap, path: string[]): DataGetReturn => {
+export const dataGet = (
+  source: RecursiveMap,
+  path: string[]
+): DataGetReturn => {
   const head = path.shift();
   if (head === undefined) {
     return source;
@@ -42,7 +45,7 @@ const dataGet = (source: RecursiveMap, path: string[]): DataGetReturn => {
   }
 };
 
-const dataSetObject = (
+export const dataSetObject = (
   source: Record<string, unknown>,
   path: string[],
   value: string
@@ -68,7 +71,7 @@ const dataSetObject = (
   return source;
 };
 
-const dataGetObject = (
+export const dataGetObject = (
   source: Record<string, unknown>,
   path: string[]
 ): unknown => {
@@ -87,21 +90,11 @@ const dataGetObject = (
   }
 };
 
-export const useDataSet = () => {
-  return {
-    dataSet,
-    dataGet,
-    dataSetObject,
-    dataGetObject,
-  };
-};
-
 /* c8 ignore start */
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
 
   describe.concurrent("dataSet", () => {
-    const { dataSet } = useDataSet();
     it.each([
       ["top-level", ["foo"], "bar", new Map(), new Map([["foo", "bar"]])],
       [
@@ -150,8 +143,6 @@ if (import.meta.vitest) {
   });
 
   describe.concurrent("dataGet", () => {
-    const { dataGet } = useDataSet();
-
     it("gets a simple value", () => {
       expect(dataGet(new Map([["foo", "bar"]]), ["foo"])).toBe("bar");
     });
@@ -186,8 +177,6 @@ if (import.meta.vitest) {
   });
 
   describe.concurrent("dataSetObject", () => {
-    const { dataSetObject } = useDataSet();
-
     it.each([
       ["top-level", ["foo"], "bar", {}, { foo: "bar" }],
       [
@@ -233,8 +222,6 @@ if (import.meta.vitest) {
   });
 
   describe.concurrent("dataGetObject", () => {
-    const { dataGetObject } = useDataSet();
-
     it("returns undefined if top-level path doesn't exist", () => {
       expect(dataGetObject({ foo: "bar" }, ["baz"])).toBe(undefined);
     });
