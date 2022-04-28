@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable no-undef */
+/* eslint-env node */
+/* eslint-disable @typescript-eslint/no-var-requires -- This isn't a typescript file, so this error is irrelevant */
 
 module.exports = {
   plugins: [

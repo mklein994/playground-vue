@@ -1,7 +1,6 @@
-// eslint-disable-next-line no-undef
+/* eslint-env node */
 module.exports = {
   prefix: "tw-",
   content: ["./index.html", "./src/**/*.{vue,ts,html}"],
-  // eslint-disable-next-line no-undef
   plugins: [require("@tailwindcss/forms")],
 };
