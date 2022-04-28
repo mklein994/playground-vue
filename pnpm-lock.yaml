@@ -1,7 +1,6 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@cloudflare/workers-types': ^3.7.1
   '@heroicons/vue': ^1.0.6
   '@highlightjs/vue-plugin': ^2.1.0
   '@sentry/tracing': ^6.19.7
@@ -46,7 +45,6 @@ dependencies:
   vue-router: 4.0.14_vue@3.2.33
 
 devDependencies:
-  '@cloudflare/workers-types': 3.7.1
   '@heroicons/vue': 1.0.6_vue@3.2.33
   '@highlightjs/vue-plugin': 2.1.0_highlight.js@11.5.1+vue@3.2.33
   '@tailwindcss/forms': 0.5.0_tailwindcss@3.0.24
@@ -87,10 +85,6 @@ packages:
 
   /@bcoe/v8-coverage/0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
-    dev: true
-
-  /@cloudflare/workers-types/3.7.1:
-    resolution: {integrity: sha512-GJU304vzbKI9SvEsdBp/ObYClWe+7Fc0vyKPNia1VWi9Cj2WVsRaH2tXaQPMgAhjsFrQLhI3lBAkMhFPhBVliQ==}
     dev: true
 
   /@eslint/eslintrc/1.2.2:
