@@ -2,7 +2,7 @@
 "use strict";
 
 module.exports = {
-  extends: "../.eslintrc.cjs",
+  extends: "../.eslintrc.js",
   env: {
     node: true,
     es2022: true,
