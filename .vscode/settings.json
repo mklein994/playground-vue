@@ -3,5 +3,6 @@
   "cSpell.words": ["VITE"],
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "css.customData": ["./.vscode/extra.css-data.json"]
 }

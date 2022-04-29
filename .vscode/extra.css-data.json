@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vscode-css-languageservice/main/docs/customData.schema.json",
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@layer",
+      "description": "The @layer CSS at-rule declares a cascade layer. Rules within a cascade layer cascade together, giving more control over the cascade to web developers.\n\nSyntax: @layer [ <layer-name># | <layer-name>?  {\n  <stylesheet>\n} ]",
+      "browsers": ["C99", "E99", "FF97", "S15.4"],
+      "references": [
+        {
+          "name": "MDN Reference",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@layer"
+        }
+      ],
+      "status": "standard"
+    }
+  ]
+}
