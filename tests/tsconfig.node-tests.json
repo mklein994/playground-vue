@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["./*.d.ts", "**/*.js"],
+  "include": ["./*.d.ts", "**/*.js", "**/*.cjs", "**/*.mjs"],
   "exclude": ["./**/*.spec.ts"],
   "compilerOptions": {
     "composite": true,
