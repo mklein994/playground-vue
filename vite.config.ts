@@ -31,6 +31,7 @@ export default defineConfig(({ mode }) => {
     test: {
       environment: "happy-dom",
       includeSource: ["./src/**/*.ts"],
+      exclude: ["**/*.node-test.*"],
       isolate: false, // major speed improvement at risk of cross-contamination
       snapshotFormat: {
         printBasicPrototype: true,
