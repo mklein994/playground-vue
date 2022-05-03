@@ -47,41 +47,46 @@ jobs:
           key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('playground-vue/**/pnpm-lock.yaml') }}
 
       - name: Install
+        working-directory: playground-vue
         run: |
           corepack enable pnpm
-          pnpm install -C playground-vue
+          pnpm install
 
       - name: Lint
-        run: pnpm run -C playground-vue lint:ci
+        working-directory: playground-vue
+        run: pnpm run lint:ci
 
       - name: Node Tests
-        run: pnpm run -C playground-vue test:node
+        working-directory: playground-vue
+        run: pnpm run test:node
         continue-on-error: true
 
       - name: Test with Coverage
-        run: pnpm run -C playground-vue coverage --isolate
+        working-directory: playground-vue
+        run: pnpm run coverage --isolate
 
       - name: Build
+        working-directory: playground-vue
         env:
           # This should correspond with 'sentry-cli releases propose-version'
           VITE_SENTRY_RELEASE: ${{ github.sha }}
-        run: pnpm run -C playground-vue build:all
+        run: pnpm run build:all
 
       - name: Setup Sentry
+        working-directory: playground-vue
         run: |
-          cd playground-vue
           pnpm setup
           PNPM_HOME="${HOME}/.local/share/pnpm"
           echo "PNPM_HOME=${PNPM_HOME}" >> "${GITHUB_ENV}"
           echo "${PNPM_HOME}" >> "${GITHUB_PATH}"
 
       - name: Sentry Release
+        working-directory: playground-vue
         env:
           SENTRY_ORG: matthew-klein
           SENTRY_PROJECT: matthew-klein
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: |
-          cd playground-vue
           pnpm install --global @sentry/cli
           SENTRY_RELEASE="$(sentry-cli releases propose-version)"
           sentry-cli releases new $SENTRY_RELEASE
