@@ -22,7 +22,7 @@ echo 'setup pnpm'
 corepack enable pnpm
 
 echo 'run tests and generate code coverage'
-pnpm run coverage -- --isolate
+pnpm run coverage --isolate
 
 # CloudFlare Pages messes up file names; it doesn't understand URLs with
 # multiple dots in them: <https://example.com/foo.bar.html> redirects to
@@ -31,7 +31,7 @@ echo 'fixing file names in public/coverage/'
 ./ci/fix-filenames.sh spa ./public/coverage/
 
 echo 'build vue project'
-pnpm run build:all -- --sourcemap false
+pnpm run build:all --sourcemap false
 
 # Create a 404.html page:
 # https://developers.cloudflare.com/pages/platform/serving-pages/#not-found-behavior
