@@ -67,6 +67,14 @@ jobs:
           VITE_SENTRY_RELEASE: ${{ github.sha }}
         run: pnpm run -C playground-vue build:all
 
+      - name: Setup Sentry
+        run: |
+          cd playground-vue
+          pnpm setup
+          PNPM_HOME="${HOME}/.local/share/pnpm"
+          echo "PNPM_HOME=${PNPM_HOME}" >> "${GITHUB_ENV}"
+          echo "${PNPM_HOME}" >> "${GITHUB_PATH}"
+
       - name: Sentry Release
         env:
           SENTRY_ORG: matthew-klein
