@@ -9,7 +9,7 @@ jobs:
         sentry: [false]
         include:
           - node-version: 18.1
-            # sentry: true
+            sentry: true
 
     steps:
       - uses: actions/checkout@v3
