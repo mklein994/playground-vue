@@ -7,7 +7,7 @@ import type { Router } from "vue-router";
 export const sentry = {
   install: (app: App, { router }: { router: Router }) => {
     const dsn = import.meta.env.VITE_SENTRY_DSN;
-    if (dsn === undefined) {
+    if (!!import.meta.env.VITE_SENTRY_ENABLED || dsn === undefined) {
       return;
     }
 

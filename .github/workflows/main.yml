@@ -5,7 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.1]
+        node-version: [17]
+        sentry: [false]
+        include:
+          - node-version: 18.1
+            sentry: true
 
     steps:
       - uses: actions/checkout@v3
@@ -59,6 +63,7 @@ jobs:
 
       - name: Node Tests
         working-directory: playground-vue
+        if: matrix.node-version >= 18.1
         run: pnpm run test:node
         continue-on-error: true
 
@@ -71,10 +76,12 @@ jobs:
         env:
           # This should correspond with 'sentry-cli releases propose-version'
           VITE_SENTRY_RELEASE: ${{ github.sha }}
+          VITE_SENTRY_ENABLED: ${{ matrix.sentry }}
         run: pnpm run build:all
 
       - name: Setup Sentry
         working-directory: playground-vue
+        if: matrix.sentry
         run: |
           pnpm setup
           PNPM_HOME="${HOME}/.local/share/pnpm"
@@ -83,6 +90,7 @@ jobs:
 
       - name: Sentry Release
         working-directory: playground-vue
+        if: matrix.sentry
         env:
           SENTRY_ORG: matthew-klein
           SENTRY_PROJECT: matthew-klein
