@@ -15,8 +15,8 @@ git -c protocol.version=2 clone --no-tags --no-recurse-submodules --depth=1 http
 echo 'build wasm'
 wasm-pack build --target web ../sunrise-cli
 
-echo 'setup sentry environment'
-export VITE_SENTRY_RELEASE="${CF_PAGES_COMMIT_SHA}"
+# echo 'setup sentry environment'
+# export VITE_SENTRY_RELEASE="${CF_PAGES_COMMIT_SHA}"
 
 echo 'setup pnpm'
 corepack enable pnpm
