@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo 'setup node'
+pnpm env use --global latest
+
 echo 'setup rust with wasm32-unknown-unknown'
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --target wasm32-unknown-unknown -y
 
