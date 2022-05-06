@@ -15,6 +15,12 @@ declare module "*.vue" {
 
 interface ImportMetaEnv {
   /**
+   * Whether Sentry should be enabled or not. A truthy
+   * value evaluates to true. Defaults to false.
+   */
+  readonly VITE_SENTRY_ENABLED: string | undefined;
+
+  /**
    * The current Sentry release, if any. Typically a git commit SHA.
    *
    * @see https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/#release
