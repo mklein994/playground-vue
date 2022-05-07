@@ -23,6 +23,12 @@ export VITE_SENTRY_RELEASE="${CF_PAGES_COMMIT_SHA}"
 echo 'setup pnpm'
 corepack enable pnpm
 
+# Cloudflare will install packages with npm by default,
+# with no way to stop it, just because `package.json` is
+# at the project root.
+echo 'pnpm install'
+pnpm install
+
 echo 'run tests and generate code coverage'
 pnpm coverage --isolate
 
