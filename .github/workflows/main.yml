@@ -115,6 +115,8 @@ jobs:
           mv !(deploy) deploy
           shopt -u dotglob
           git init
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
           git checkout -b deploy/cloudflare
           git add -A
           git commit -m "Deploy to Cloudflare Pages"
