@@ -1,9 +1,11 @@
-echo "$PATH"
-which bash
-which env
+#!/bin/bash
 
-mkdir dist
-ls -al
-echo "made it"
+set -e
+
+type corepack
+corepack enable pnpm
+
+pnpm --version
+pnpm install
 
 exit 1
