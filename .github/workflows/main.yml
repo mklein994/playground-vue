@@ -7,9 +7,11 @@ jobs:
       matrix:
         node-version: [17]
         sentry: [false]
+        deploy: [false]
         include:
           - node-version: 18.1
             sentry: true
+            deploy: true
 
     steps:
       - uses: actions/checkout@v3
@@ -102,3 +104,18 @@ jobs:
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
           sentry-cli releases deploys $SENTRY_RELEASE new --env production
           sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps --url-prefix '~/dist/assets' --validate ./dist/assets
+
+      - name: Deploy to Cloudflare Pages
+        working-directory: playground-vue/dist
+        if: matrix.deploy
+        run: |
+          ../ci/fix-filenames.sh spa ./coverage
+          mkdir deploy
+          shopt -s extglob dotglob
+          mv !(deploy) deploy
+          shopt -u dotglob
+          git init
+          git checkout -b deploy/cloudflare
+          git add -A
+          git commit -m "Deploy to Cloudflare Pages"
+          git push -f git@github.com:mklein994/playground-vue.git deploy/cloudflare
