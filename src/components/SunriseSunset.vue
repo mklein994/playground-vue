@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import init, { getSunriseSunset } from "@sunrise-cli/pkg/sunrise_cli";
+import init, { getSunriseSunset } from "@sunrise-cli/pkg/sunrise_cli";
 import { type PropType, computed } from "vue";
 
 interface Coord {
@@ -25,23 +25,12 @@ const props = defineProps({
   },
 });
 
-// await init();
+await init();
 
 const fullDateFormat = new Intl.DateTimeFormat("en-CA", {
   dateStyle: "medium",
   timeStyle: "medium",
 });
-
-const getSunriseSunset = (
-  _lat: number,
-  _lon: number,
-  _year: number,
-  _month: number,
-  _day: number,
-  _azimuth: string
-): number[] => {
-  return [new Date().valueOf(), new Date().valueOf()];
-};
 
 const sunriseSunset = (coords: Coord, date: string, azimuth: string) => {
   const [year, month, day] = date.split("-").map((x) => Number.parseInt(x, 10));
