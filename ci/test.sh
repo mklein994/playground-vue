@@ -1,4 +1,6 @@
-#!/bin/env bash
+echo "$PATH"
+which bash
+which env
 
 mkdir dist
 ls -al
