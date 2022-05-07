@@ -12,13 +12,13 @@ export default defineConfig(({ mode }) => {
   const cwd = process.cwd();
   const env = loadEnv(mode, cwd, "BUILDTIME_");
 
-  const sunriseRoot = env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli";
+  // const sunriseRoot = env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli";
 
   return {
     server: {
-      fs: {
-        allow: [searchForWorkspaceRoot(cwd), sunriseRoot],
-      },
+      // fs: {
+      //   allow: [searchForWorkspaceRoot(cwd), sunriseRoot],
+      // },
       host: env.BUILDTIME_HOST,
     },
     build: {
@@ -50,7 +50,7 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        "@sunrise-cli": fileURLToPath(new URL(sunriseRoot, import.meta.url)),
+        // "@sunrise-cli": fileURLToPath(new URL(sunriseRoot, import.meta.url)),
         "@": fileURLToPath(new URL("./src", import.meta.url)),
       },
     },
