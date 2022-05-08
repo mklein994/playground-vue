@@ -108,6 +108,8 @@ jobs:
       - name: Deploy to Cloudflare Pages
         working-directory: playground-vue/dist
         if: matrix.deploy
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           ../ci/fix-filenames.sh spa ./coverage
           mkdir deploy
@@ -115,9 +117,9 @@ jobs:
           mv !(deploy) deploy
           shopt -u dotglob
           git init
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name 'github-actions'
+          git config user.email 'github-actions@github.com'
           git checkout -b deploy/cloudflare
           git add -A
           git commit -m "Deploy to Cloudflare Pages"
-          git push -f git@github.com:mklein994/playground-vue.git deploy/cloudflare
+          git push -f https://mklein994:${GITHUB_TOKEN}@github.com:mklein994/playground-vue.git deploy/cloudflare
