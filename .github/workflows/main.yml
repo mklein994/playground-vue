@@ -106,16 +106,16 @@ jobs:
           sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps --url-prefix '~/dist/assets' --validate ./dist/assets
 
       - name: Deploy to Cloudflare Pages
-        working-directory: playground-vue/dist
+        working-directory: playground-vue
         if: matrix.deploy
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          ../ci/fix-filenames.sh spa ./coverage
-          mkdir deploy
-          shopt -s extglob dotglob
-          mv !(deploy) deploy
-          shopt -u dotglob
+          ./ci/fix-filenames.sh spa ./dist/coverage
+          mv dist dist.old
+          mkdir dist
+          mv dist.old dist/deploy
+          cd dist
           git init
           git config user.name 'github-actions'
           git config user.email 'github-actions@github.com'
