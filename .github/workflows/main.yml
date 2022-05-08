@@ -122,4 +122,4 @@ jobs:
           git checkout -b deploy/cloudflare
           git add -A
           git commit -m "Deploy to Cloudflare Pages"
-          git push -f https://mklein994:${GITHUB_TOKEN}@github.com:mklein994/playground-vue.git deploy/cloudflare
+          git push -f https://mklein994:${GITHUB_TOKEN}@github.com/mklein994/playground-vue.git deploy/cloudflare
