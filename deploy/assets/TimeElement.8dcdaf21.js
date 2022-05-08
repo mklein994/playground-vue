@@ -1,0 +1,2 @@
+import{_ as a,o as c,a as _,p as n,e as d,b as t,k as s}from"./index.f720cdf8.js";const i={},o=e=>(n("data-v-5a1070d6"),e=e(),d(),e),r={class:"time-element"},m=o(()=>t("time",{datetime:"PT5M"},"5 minutes",-1)),p=o(()=>t("p",null,[s(" An experiment to see how assistive technologies interact with the "),t("code",{class:"code"},"<time>"),s(" element. ")],-1)),l=[m,p];function h(e,u){return c(),_("div",r,l)}var f=a(i,[["render",h],["__scopeId","data-v-5a1070d6"]]);export{f as default};
+//# sourceMappingURL=TimeElement.8dcdaf21.js.map

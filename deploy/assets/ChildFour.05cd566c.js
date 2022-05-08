@@ -1,0 +1,2 @@
+import{_ as o,o as s,a as d,F as _,p as r,e as t,b as a}from"./index.f720cdf8.js";const l={},c=e=>(r("data-v-aaccd6f4"),e=e(),t(),e),p=c(()=>a("p",{class:"child four"},"Child Four",-1)),u=c(()=>a("div",{class:"child-four"},[a("p",null,"Child Four"),a("p",{class:"child four"},"Child Four")],-1));function i(e,n){return s(),d(_,null,[p,u],64)}var f=o(l,[["render",i],["__scopeId","data-v-aaccd6f4"]]);export{f as default};
+//# sourceMappingURL=ChildFour.05cd566c.js.map

@@ -1,0 +1,1 @@
+.nth-child-component[data-v-9288544a]{display:grid;justify-content:start;gap:1rem;padding:1rem}.item-list[data-v-9288544a]{display:flex;flex-wrap:wrap;gap:1rem;border:1px solid lightblue}.item-list.nth-child>.item[data-v-9288544a]:nth-child(n + 2){color:tomato}.item-list.sibling>.item+.item[data-v-9288544a]{color:#00f}

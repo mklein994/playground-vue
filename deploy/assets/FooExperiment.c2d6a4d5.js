@@ -1,0 +1,2 @@
+import{_ as i,o,a as t,F as a,b as e}from"./index.f720cdf8.js";const s={},n=e("h1",null,"Foo",-1),r=e("p",null," Adipisicing nisi et explicabo voluptatum quisquam Quia expedita quae explicabo eveniet dolorum? Eligendi repellendus perferendis provident voluptatum similique Distinctio ipsam dignissimos vero sint aperiam rerum Veniam expedita quos fuga velit. ",-1);function l(u,c){return o(),t(a,null,[n,r],64)}var m=i(s,[["render",l]]);export{m as default};
+//# sourceMappingURL=FooExperiment.c2d6a4d5.js.map

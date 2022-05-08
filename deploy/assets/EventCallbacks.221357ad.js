@@ -1,0 +1,2 @@
+import t from"./EventCallbacksHelper.acdb0759.js";import{d as c,r as n,o as a,y as r}from"./index.f720cdf8.js";const m=c({setup(u){const e=n(),o=async()=>{console.log("waiting..."),await new Promise(s=>setTimeout(s,1e3)),console.log("made it"),e.value=!0};return(s,l)=>(a(),r(t,{success:e.value,onStuff:o},null,8,["success"]))}});export{m as default};
+//# sourceMappingURL=EventCallbacks.221357ad.js.map

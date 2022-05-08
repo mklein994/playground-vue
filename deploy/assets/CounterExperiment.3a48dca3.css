@@ -1,0 +1,1 @@
+@counter-style fruit-digits{system:fixed;symbols:\1f947  \1f948  \1f949;suffix:" "}.fruit-list[data-v-b952f32a]{margin-left:1rem;padding-left:1rem;list-style:fruit-digits;counter-reset:fruit-digits}

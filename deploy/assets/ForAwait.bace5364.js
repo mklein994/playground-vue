@@ -1,0 +1,2 @@
+import{d as t,B as o,o as s,y as a,C as n,S as r,D as _,q as c,u as i}from"./index.f720cdf8.js";const l=t({setup(p){const e=o(()=>_(()=>import("./ForAwaitList.8454fa3c.js"),["assets/ForAwaitList.8454fa3c.js","assets/ForAwaitList.d65ca1e4.css","assets/index.f720cdf8.js","assets/index.44eecc84.css"]));return(u,d)=>(s(),a(r,null,{default:n(()=>[c(i(e))]),_:1}))}});export{l as default};
+//# sourceMappingURL=ForAwait.bace5364.js.map

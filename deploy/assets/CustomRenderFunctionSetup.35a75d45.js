@@ -1,0 +1,2 @@
+import{d as s,r as l,o as r,a as u,b as e,t as a}from"./index.f720cdf8.js";const p=e("p",null,"Hello, world! (from script setup)",-1),d={class:"render-output"},m=s({setup(i){const o=l(5);return(c,t)=>(r(),u("div",null,[p,e("button",{onClick:t[0]||(t[0]=n=>o.value--)},"Remove"),e("output",d,a(o.value),1),e("button",{onClick:t[1]||(t[1]=n=>o.value++)},"Add")]))}});export{m as default};
+//# sourceMappingURL=CustomRenderFunctionSetup.35a75d45.js.map

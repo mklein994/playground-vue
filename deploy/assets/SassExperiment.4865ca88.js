@@ -1,0 +1,2 @@
+import{_ as t,o,a as c,k as s,p as _,e as a,b as d}from"./index.f720cdf8.js";const r={},i=e=>(_("data-v-014e39cb"),e=e(),a(),e),n={class:"sass"},p=s(" This is highlighted in "),h=i(()=>d("code",{class:"code"},'theme("colors.red.500")',-1)),l=s(". "),m=[p,h,l];function u(e,v){return o(),c("div",n,m)}var f=t(r,[["render",u],["__scopeId","data-v-014e39cb"]]);export{f as default};
+//# sourceMappingURL=SassExperiment.4865ca88.js.map

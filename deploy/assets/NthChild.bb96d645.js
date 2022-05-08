@@ -1,0 +1,2 @@
+import{_,o as e,a as t,F as n,h as r,b as l,t as c,n as o}from"./index.f720cdf8.js";const i={},d={class:"nth-child-component"};function h(m,p){return e(),t("div",d,[(e(),t(n,null,r(["nth-child","sibling"],s=>l("div",{key:s,class:o(["item-list",s])},[(e(),t(n,null,r(10,a=>l("p",{key:a,class:"item"},"Item "+c(a),1)),64))],2)),64))])}var v=_(i,[["render",h],["__scopeId","data-v-9288544a"]]);export{v as default};
+//# sourceMappingURL=NthChild.bb96d645.js.map

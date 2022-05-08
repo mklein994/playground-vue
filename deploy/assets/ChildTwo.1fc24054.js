@@ -1,0 +1,2 @@
+import t from"./ChildFour.05cd566c.js";import{_ as a,d as _,o as c,a as d,b as o,q as l,F as p,p as i,e as r}from"./index.f720cdf8.js";const s=e=>(i("data-v-f5f25a8e"),e=e(),r(),e),n=s(()=>o("p",{class:"child two"},"Child Two",-1)),h={class:"child-two"},u=s(()=>o("p",null,"Child Two",-1)),f=s(()=>o("p",{class:"child two"},"Child Two",-1)),w=_({setup(e){return(m,v)=>(c(),d(p,null,[n,o("div",h,[u,f,l(t)])],64))}});var x=a(w,[["__scopeId","data-v-f5f25a8e"]]);export{x as default};
+//# sourceMappingURL=ChildTwo.1fc24054.js.map

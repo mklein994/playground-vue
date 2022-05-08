@@ -1,0 +1,2 @@
+import o from"./ChildOne.aeecefba.js";import s from"./ChildTwo.1fc24054.js";import{d as a,o as r,a as n,b as e,q as t,F as _}from"./index.f720cdf8.js";import"./ChildThree.089618f5.js";import"./ChildFour.05cd566c.js";const c=e("p",{class:"child zero"},"Parent",-1),i={class:"child-zero"},l=e("p",null,"Parent",-1),d=e("p",{class:"child zero"},"Parent",-1),z=a({setup(p){return(m,h)=>(r(),n(_,null,[c,e("div",i,[l,d,t(o),t(s)])],64))}});export{z as default};
+//# sourceMappingURL=StyleInheritance.bfa11c20.js.map

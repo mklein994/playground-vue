@@ -1,0 +1,1 @@
+{"version":3,"file":"my-first-service-worker.e7c6b9c1.js","sources":["../../src/workers/my-first-service-worker.ts"],"sourcesContent":["\"use strict\";\n\nself.addEventListener(\"install\", (event) => {\n  console.log(event);\n});\n"],"names":[],"mappings":"AAEA,KAAK,iBAAiB,UAAW,AAAC,GAAU,CAC1C,QAAQ,IAAI,CAAK,CACnB,CAAC"}
