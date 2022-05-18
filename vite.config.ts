@@ -47,6 +47,15 @@ export default defineConfig(({ mode }) => {
       __PLAYGROUND_VUE_COVERAGE_EXISTS__: fs.existsSync(
         fileURLToPath(new URL("./public/coverage/index.html", import.meta.url))
       ),
+      // HACK: Don't let tailwindcss/colors use process.env (since it's
+      // node-only).
+      //
+      // See https://github.com/tailwindlabs/tailwindcss/blob/fc25299aa64c78e2e1863aff80a27d17c1bc1584/src/util/log.js#L6
+      //
+      // A value that is not undefined here silences the deprecation logs,
+      // since the get() method is overridden for those colors.
+      "process.env.JEST_WORKER_ID":
+        mode === "development" ? "'some-defined-value'" : undefined,
     },
     resolve: {
       alias: {
