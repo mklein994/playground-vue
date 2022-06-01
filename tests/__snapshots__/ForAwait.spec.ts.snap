@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`ForAwait > matches snapshot 1`] = `
-"<div class=\\"for-await-list\\" data-v-05665efb=\\"\\"><label for=\\"max\\" data-v-05665efb=\\"\\">Max:</label><input id=\\"max\\" type=\\"number\\" name=\\"max\\" min=\\"1\\" data-v-05665efb=\\"\\" />
+"<div class=\\"for-await-list\\" data-v-05665efb=\\"\\"><label for=\\"max\\" data-v-05665efb=\\"\\">Max:</label><input id=\\"max\\" type=\\"number\\" name=\\"max\\" min=\\"1\\" data-v-05665efb=\\"\\">
   <ol data-v-05665efb=\\"\\">
     <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">1</span></li>
     <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">2</span></li>
