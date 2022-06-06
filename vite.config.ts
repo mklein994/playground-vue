@@ -7,12 +7,17 @@ import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
 
 import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
 
+const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const cwd = process.cwd();
   const env = loadEnv(mode, cwd, "BUILDTIME_");
 
-  const sunriseRoot = env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli";
+  const wasmSupported = (env.BUILDTIME_WASM_SUPPORTED ?? "true") === "true";
+  const sunriseRoot = wasmSupported
+    ? env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli"
+    : "./src/fake/sunrise-cli";
 
   return {
     server: {
@@ -45,7 +50,7 @@ export default defineConfig(({ mode }) => {
       __VUE_OPTIONS_API__: false,
       "import.meta.vitest": "undefined",
       __PLAYGROUND_VUE_COVERAGE_EXISTS__: fs.existsSync(
-        fileURLToPath(new URL("./public/coverage/index.html", import.meta.url))
+        resolve("./public/coverage/index.html")
       ),
       // HACK: Don't let tailwindcss/colors use process.env (since it's
       // node-only).
@@ -59,8 +64,8 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
-        "@sunrise-cli": fileURLToPath(new URL(sunriseRoot, import.meta.url)),
-        "@": fileURLToPath(new URL("./src", import.meta.url)),
+        "@sunrise-cli": resolve(sunriseRoot),
+        "@": resolve("./src"),
       },
     },
     plugins: [
