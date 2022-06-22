@@ -21,7 +21,7 @@
     "test:run": "vitest run",
     "coverage": "vitest run --coverage"
   },
-  "packageManager": "pnpm@7.1.7",
+  "packageManager": "pnpm@7.3.0",
   "dependencies": {
     "@sentry/tracing": "^7.2.0",
     "@sentry/vue": "^7.2.0",
