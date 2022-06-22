@@ -7,7 +7,7 @@ specifiers:
   '@sentry/vue': ^7.2.0
   '@sentry/wasm': ^7.2.0
   '@tailwindcss/forms': ^0.5.2
-  '@types/node': ^17.0.45
+  '@types/node': ^18.0.0
   '@types/tailwindcss': ^3.0.10
   '@typescript-eslint/eslint-plugin': ^5.29.0
   '@typescript-eslint/parser': ^5.29.0
@@ -47,7 +47,7 @@ devDependencies:
   '@heroicons/vue': 1.0.6_vue@3.2.37
   '@highlightjs/vue-plugin': 2.1.0_3xuxbw5m7uw5efgcdomr34ywsa
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.4
-  '@types/node': 17.0.45
+  '@types/node': 18.0.0
   '@types/tailwindcss': 3.0.10
   '@typescript-eslint/eslint-plugin': 5.29.0_qqmbkyiaixvppdwswpytuf2hgm
   '@typescript-eslint/parser': 5.29.0_b5e7v2qnwxfo6hmiq56u52mz3e
@@ -301,13 +301,13 @@ packages:
   /@types/concat-stream/1.6.1:
     resolution: {integrity: sha512-eHE4cQPoj6ngxBZMvVf6Hw7Mh4jMW4U9lpGmS5GBPB9RYxlFg+CHaVN7ErNY4W9XfLIEn20b4VDYaIrbq0q4uA==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 18.0.0
     dev: true
 
   /@types/form-data/0.0.33:
     resolution: {integrity: sha512-8BSvG1kGm83cyJITQMZSulnl6QV8jqAGreJsc5tPu1Jq0vTSOiY/k24Wx82JRpWwZSqrala6sd5rWi6aNXvqcw==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 18.0.0
     dev: true
 
   /@types/istanbul-lib-coverage/2.0.4:
@@ -322,8 +322,8 @@ packages:
     resolution: {integrity: sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==}
     dev: true
 
-  /@types/node/17.0.45:
-    resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
+  /@types/node/18.0.0:
+    resolution: {integrity: sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==}
     dev: true
 
   /@types/node/8.10.66:
