@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import colors from "tailwindcss/colors";
-import type { TailwindColorGroup } from "tailwindcss/tailwind-config";
+import type { DefaultColors } from "tailwindcss/types/generated/colors";
 import { onMounted, ref } from "vue";
 
 const tailwindColors = ref<HTMLDivElement>();
@@ -10,14 +10,14 @@ const tailwindColors = ref<HTMLDivElement>();
  *
  * @param group - The object to test
  */
-function isTailwindColorGroup(group: unknown): group is TailwindColorGroup {
+function isTailwindDefaultColors(group: unknown): group is DefaultColors {
   return typeof group === "object" && group != null && "50" in group;
 }
 
 // This will generate a warning in the console, since `lightBlue` is deprecated,
 // and that is caught by calling the `get()` function on it.
 const colorsList = Object.entries(colors).map(([name, group]) =>
-  isTailwindColorGroup(group)
+  isTailwindDefaultColors(group)
     ? Object.entries(group).map(([color, hex]) => [
         `--tw-${name}-${color}`,
         `${hex}`,
