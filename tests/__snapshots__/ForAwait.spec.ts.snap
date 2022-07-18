@@ -1,33 +1,33 @@
 // Vitest Snapshot v1
 
 exports[`ForAwait > matches snapshot 1`] = `
-"<div class=\\"for-await-list\\" data-v-05665efb=\\"\\"><label for=\\"max\\" data-v-05665efb=\\"\\">Max:</label><input id=\\"max\\" type=\\"number\\" name=\\"max\\" min=\\"1\\" data-v-05665efb=\\"\\">
-  <ol data-v-05665efb=\\"\\">
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">1</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">2</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Fizz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">4</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Buzz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Fizz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">7</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">8</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Fizz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Buzz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">11</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Fizz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">13</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">14</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">FizzBuzz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">16</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">17</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Fizz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">19</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Buzz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Fizz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">22</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"is-number\\" data-v-05665efb=\\"\\">23</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Fizz</span></li>
-    <li data-v-05665efb=\\"\\"><span class=\\"\\" data-v-05665efb=\\"\\">Buzz</span></li>
+"<div class=\\"for-await-list\\" data-v-e3efc339=\\"\\"><label for=\\"max\\" data-v-e3efc339=\\"\\">Max:</label><input id=\\"max\\" type=\\"number\\" name=\\"max\\" min=\\"1\\" data-v-e3efc339=\\"\\">
+  <ol data-v-e3efc339=\\"\\">
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">1</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">2</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Fizz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">4</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Buzz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Fizz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">7</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">8</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Fizz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Buzz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">11</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Fizz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">13</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">14</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">FizzBuzz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">16</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">17</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Fizz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">19</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Buzz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Fizz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">22</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"is-number\\" data-v-e3efc339=\\"\\">23</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Fizz</span></li>
+    <li data-v-e3efc339=\\"\\"><span class=\\"\\" data-v-e3efc339=\\"\\">Buzz</span></li>
   </ol>
 </div>"
 `;

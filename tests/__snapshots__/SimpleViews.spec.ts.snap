@@ -21,8 +21,8 @@ exports[`FooExperiment > renders correctly 1`] = `
 `;
 
 exports[`HomeView > renders correctly 1`] = `
-"<div class=\\"welcome-container\\" data-v-6ff0771d=\\"\\">
-  <h1 class=\\"welcome\\" data-v-6ff0771d=\\"\\">Welcome</h1>
+"<div class=\\"welcome-container\\" data-v-c1f0f723=\\"\\">
+  <h1 class=\\"welcome\\" data-v-c1f0f723=\\"\\">Welcome</h1>
 </div>"
 `;
 

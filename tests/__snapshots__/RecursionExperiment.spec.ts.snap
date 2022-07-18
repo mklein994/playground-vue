@@ -1,17 +1,17 @@
 // Vitest Snapshot v1
 
 exports[`RecursionExperiment > renders correctly 1`] = `
-"<div class=\\"recursion\\" data-v-54f64b35=\\"\\"><input type=\\"text\\" data-v-54f64b35=\\"\\"><output data-v-54f64b35=\\"\\">store.produce.apple</output><output data-v-54f64b35=\\"\\">store.produce.apple</output></div>
-<ul data-v-54f64b35=\\"\\">
-  <li data-v-54f64b35=\\"\\">store.produce.apple</li>
-  <li data-v-54f64b35=\\"\\">store.produce.banana</li>
-  <li data-v-54f64b35=\\"\\">store.produce.cherry</li>
-  <li data-v-54f64b35=\\"\\">person.male.dad</li>
-  <li data-v-54f64b35=\\"\\">person.male.son</li>
-  <li data-v-54f64b35=\\"\\">person.female.mom</li>
-  <li data-v-54f64b35=\\"\\">person.female.daughter</li>
+"<div class=\\"recursion\\" data-v-5216a93f=\\"\\"><input type=\\"text\\" data-v-5216a93f=\\"\\"><output data-v-5216a93f=\\"\\">store.produce.apple</output><output data-v-5216a93f=\\"\\">store.produce.apple</output></div>
+<ul data-v-5216a93f=\\"\\">
+  <li data-v-5216a93f=\\"\\">store.produce.apple</li>
+  <li data-v-5216a93f=\\"\\">store.produce.banana</li>
+  <li data-v-5216a93f=\\"\\">store.produce.cherry</li>
+  <li data-v-5216a93f=\\"\\">person.male.dad</li>
+  <li data-v-5216a93f=\\"\\">person.male.son</li>
+  <li data-v-5216a93f=\\"\\">person.female.mom</li>
+  <li data-v-5216a93f=\\"\\">person.female.daughter</li>
 </ul>
-<pre data-v-54f64b35=\\"\\">{
+<pre data-v-5216a93f=\\"\\">{
   \\"Map(2)\\": {
     \\"store =>\\": {
       \\"Map(1)\\": {
@@ -42,7 +42,7 @@ exports[`RecursionExperiment > renders correctly 1`] = `
     }
   }
 }</pre>
-<pre data-v-54f64b35=\\"\\">{
+<pre data-v-5216a93f=\\"\\">{
   \\"store\\": {
     \\"produce\\": {
       \\"apple\\": \\"store.produce.apple\\",
