@@ -12,7 +12,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.30.6
   '@typescript-eslint/parser': ^5.30.6
   '@vitejs/plugin-vue': ^2.3.3
-  '@vue/test-utils': 2.0.0
+  '@vue/test-utils': ^2.0.2
   autoprefixer: ^10.4.7
   c8: ^7.11.3
   eslint: ^8.20.0
@@ -52,7 +52,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.30.6_b7n364ggt6o4xlkgyoaww3ph3q
   '@typescript-eslint/parser': 5.30.6_he2ccbldppg44uulnyq4rwocfa
   '@vitejs/plugin-vue': 2.3.3_vite@2.9.14+vue@3.2.37
-  '@vue/test-utils': 2.0.0_vue@3.2.37
+  '@vue/test-utils': 2.0.2_vue@3.2.37
   autoprefixer: 10.4.7_postcss@8.4.14
   c8: 7.11.3
   eslint: 8.20.0
@@ -587,8 +587,8 @@ packages:
   /@vue/shared/3.2.37:
     resolution: {integrity: sha512-4rSJemR2NQIo9Klm1vabqWjD8rs/ZaJSzMxkMNeJS6lHiUjjUeYFbooN19NgFjztubEKh3WlZUeOLVdbbUWHsw==}
 
-  /@vue/test-utils/2.0.0_vue@3.2.37:
-    resolution: {integrity: sha512-zL5kygNq7hONrO1CzaUGprEAklAX+pH8J1MPMCU3Rd2xtSYkZ+PmKU3oEDRg8VAGdL5lNJHzDgrud5amFPtirw==}
+  /@vue/test-utils/2.0.2_vue@3.2.37:
+    resolution: {integrity: sha512-E2P4oXSaWDqTZNbmKZFVLrNN/siVN78YkEqs7pHryWerrlZR9bBFLWdJwRoguX45Ru6HxIflzKl4vQvwRMwm5g==}
     peerDependencies:
       vue: ^3.0.1
     dependencies:
