@@ -3,6 +3,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
     strategy:
       matrix:
         node-version: [17]
@@ -103,3 +106,13 @@ jobs:
           sentry-cli releases set-commits --auto $SENTRY_RELEASE
           sentry-cli releases deploys $SENTRY_RELEASE new --env production
           sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps --url-prefix '~/dist/assets' --validate ./dist/assets
+
+      - name: Deploy to Cloudflare
+        uses: cloudflare/pages-action@1
+        if: ${{ github.ref_type == 'cloudflare' && matrix.sentry }}
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: playground-vue
+          directory: playground-vue/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
