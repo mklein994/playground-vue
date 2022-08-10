@@ -7,7 +7,7 @@ echo 'add rust to PATH'
 source "${HOME}/.cargo/env"
 
 echo 'setup wasm-pack'
-curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | bash
 
 echo 'clone sunrise-cli repo'
 git -c protocol.version=2 clone --no-tags --no-recurse-submodules --depth=1 https://github.com/mklein994/sunrise-cli ../sunrise-cli
