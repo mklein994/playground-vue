@@ -109,7 +109,7 @@ jobs:
 
       - name: Deploy to Cloudflare
         uses: cloudflare/pages-action@1
-        if: ${{ github.ref_name == 'cloudflare' && matrix.sentry }}
+        if: matrix.sentry
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
