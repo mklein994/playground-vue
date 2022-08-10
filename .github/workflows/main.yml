@@ -81,7 +81,10 @@ jobs:
           VITE_SENTRY_RELEASE: ${{ github.sha }}
           VITE_SENTRY_ENABLED: ${{ matrix.sentry }}
           VITE_COMMIT_HASH: ${{ github.sha }}
-        run: pnpm run build:all
+        run: |
+          VITE_VERSION_STRING="${GITHUB_REF_NAME} (${GITHUB_SHA:0:8} $(date -Is))"
+          echo "VITE_VERSION_STRING=${VITE_VERSION_STRING}" >> "${GITHUB_ENV}"
+          pnpm run build:all
 
       - name: Setup Sentry
         working-directory: playground-vue

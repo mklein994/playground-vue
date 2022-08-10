@@ -18,7 +18,7 @@ const links = computed(() =>
 
 const coverageExists = __PLAYGROUND_VUE_COVERAGE_EXISTS__;
 const commitHash = import.meta.env.VITE_COMMIT_HASH;
-const commitHashShort = commitHash?.slice(0, 8);
+const versionString = import.meta.env.VITE_VERSION_STRING;
 
 const menuOpen = ref(false);
 
@@ -134,7 +134,7 @@ const toggleTailwind = async (event: Event) => {
       </div>
 
       <code class="commit-hash" :title="commitHash">
-        Version: {{ commitHashShort ?? "(unknown commit)" }}</code
+        Version: {{ versionString ?? "(unknown commit)" }}</code
       >
 
       <div class="menu-positions">

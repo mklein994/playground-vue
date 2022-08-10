@@ -40,6 +40,11 @@ interface ImportMetaEnv {
    * The commit hash of this build, if available.
    */
   readonly VITE_COMMIT_HASH: string | undefined;
+
+  /**
+   * For identifying where the build came from, if possible.
+   */
+  readonly VITE_VERSION_STRING: string | undefined;
 }
 
 interface ImportMeta {
