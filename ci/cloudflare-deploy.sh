@@ -49,3 +49,5 @@ cat <<HTML >dist/coverage/404.html
   </body>
 </html>
 HTML
+
+echo 'Done writing 404 page'
