@@ -17,6 +17,8 @@ const links = computed(() =>
 );
 
 const coverageExists = __PLAYGROUND_VUE_COVERAGE_EXISTS__;
+const commitHash = import.meta.env.VITE_COMMIT_HASH;
+const commitHashShort = commitHash?.slice(0, 8);
 
 const menuOpen = ref(false);
 
@@ -130,6 +132,10 @@ const toggleTailwind = async (event: Event) => {
           (refresh to reset)
         </div>
       </div>
+
+      <code class="commit-hash" :title="commitHash">
+        Version: {{ commitHashShort ?? "(unknown commit)" }}</code
+      >
 
       <div class="menu-positions">
         <div v-for="[id] of menuPositions" :key="id" class="menu-position">
@@ -356,5 +362,9 @@ const toggleTailwind = async (event: Event) => {
   line-height: 1.25rem;
 
   color: gray;
+}
+
+.commit-hash {
+  font-size: 1rem;
 }
 </style>

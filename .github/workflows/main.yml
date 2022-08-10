@@ -80,6 +80,7 @@ jobs:
           # This should correspond with 'sentry-cli releases propose-version'
           VITE_SENTRY_RELEASE: ${{ github.sha }}
           VITE_SENTRY_ENABLED: ${{ matrix.sentry }}
+          VITE_COMMIT_HASH: ${{ github.sha }}
         run: pnpm run build:all
 
       - name: Setup Sentry

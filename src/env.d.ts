@@ -35,6 +35,11 @@ interface ImportMetaEnv {
    * @see https://docs.sentry.io/product/sentry-basics/dsn-explainer/
    */
   readonly VITE_SENTRY_DSN: string | undefined;
+
+  /**
+   * The commit hash of this build, if available.
+   */
+  readonly VITE_COMMIT_HASH: string | undefined;
 }
 
 interface ImportMeta {
