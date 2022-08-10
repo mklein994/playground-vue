@@ -74,6 +74,14 @@ jobs:
         working-directory: playground-vue
         run: pnpm run coverage --isolate
 
+      - name: Get Version String
+        working-directory: playground-vue
+        env:
+          VITE_COMMIT_HASH: ${{ github.sha }}
+        run: |
+          VITE_VERSION_STRING="${GITHUB_REF_NAME} (${GITHUB_SHA:0:8} $(date -Is))"
+          echo "VITE_VERSION_STRING=${VITE_VERSION_STRING}" >> "${GITHUB_ENV}"
+
       - name: Build
         working-directory: playground-vue
         env:
@@ -81,10 +89,7 @@ jobs:
           VITE_SENTRY_RELEASE: ${{ github.sha }}
           VITE_SENTRY_ENABLED: ${{ matrix.sentry }}
           VITE_COMMIT_HASH: ${{ github.sha }}
-        run: |
-          VITE_VERSION_STRING="${GITHUB_REF_NAME} (${GITHUB_SHA:0:8} $(date -Is))"
-          echo "VITE_VERSION_STRING=${VITE_VERSION_STRING}" >> "${GITHUB_ENV}"
-          pnpm run build:all
+        run: pnpm run build:all
 
       - name: Setup Sentry
         working-directory: playground-vue
