@@ -6,13 +6,6 @@ jobs:
     permissions:
       contents: read
       deployments: write
-    strategy:
-      matrix:
-        node-version: [17]
-        sentry: [false]
-        include:
-          - node-version: 18.1
-            sentry: true
 
     steps:
       - uses: actions/checkout@v3
@@ -43,16 +36,16 @@ jobs:
 
       - run: wasm-pack build --target web sunrise-cli
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: latest
 
       - name: Cache pnpm store
         uses: actions/cache@v3
         with:
           path: ~/.local/share/pnpm/store
-          key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('playground-vue/**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('playground-vue/**/pnpm-lock.yaml') }}
 
       - name: Install
         working-directory: playground-vue
@@ -66,7 +59,6 @@ jobs:
 
       - name: Node Tests
         working-directory: playground-vue
-        if: matrix.node-version >= 18.1
         run: pnpm run test:node
         continue-on-error: true
 
@@ -87,13 +79,12 @@ jobs:
         env:
           # This should correspond with 'sentry-cli releases propose-version'
           VITE_SENTRY_RELEASE: ${{ github.sha }}
-          VITE_SENTRY_ENABLED: ${{ matrix.sentry }}
+          VITE_SENTRY_ENABLED: true
           VITE_COMMIT_HASH: ${{ github.sha }}
         run: pnpm run build:all
 
       - name: Setup Sentry
         working-directory: playground-vue
-        if: matrix.sentry
         run: |
           SHELL="${SHELL}" pnpm setup
           . "${HOME}/.bashrc"
@@ -103,7 +94,6 @@ jobs:
 
       - name: Sentry Release
         working-directory: playground-vue
-        if: matrix.sentry
         env:
           SENTRY_ORG: matthew-klein
           SENTRY_PROJECT: matthew-klein
@@ -117,8 +107,7 @@ jobs:
           sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps --url-prefix '~/dist/assets' --validate ./dist/assets
 
       - name: Deploy to Cloudflare
-        uses: cloudflare/pages-action@1
-        if: matrix.sentry
+        uses: cloudflare/pages-action@1 # https://github.com/marketplace/actions/cloudflare-pages-github-action
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
