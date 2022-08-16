@@ -28,6 +28,7 @@ export const sentry: Plugin = {
         ],
         tracesSampleRate: 1.0,
         release: import.meta.env.VITE_SENTRY_RELEASE,
+        logErrors: true,
       });
     } catch {
       // Let ad-blockers do their thing without crashing the app
