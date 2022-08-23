@@ -46,7 +46,7 @@ const removeServiceWorker = async () => {
     workerUrl.value
   );
   if (registration) {
-    registration.unregister();
+    await registration.unregister();
     worker.value = null;
   }
 };
