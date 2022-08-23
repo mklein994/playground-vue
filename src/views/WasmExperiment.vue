@@ -25,12 +25,20 @@ watchEffect(() => {
   if (coords.lat !== 0 && coords.lon !== 0) {
     localStorage.setItem(
       "coords",
-      JSON.stringify({ lat: coords.lat, lon: coords.lon })
+      JSON.stringify({
+        highAccuracy: highAccuracy.value,
+        lat: coords.lat,
+        lon: coords.lon,
+      })
     );
   }
 });
 
-const getOldCoords = (): { lat: number; lon: number } | null => {
+const getOldCoords = (): {
+  highAccuracy: boolean;
+  lat: number;
+  lon: number;
+} | null => {
   const c = localStorage.getItem("coords");
   return c ? JSON.parse(c) : null;
 };
@@ -55,6 +63,7 @@ onMounted(async () => {
   if (oldCoords) {
     coords.lat = oldCoords.lat;
     coords.lon = oldCoords.lon;
+    highAccuracy.value = oldCoords.highAccuracy;
   } else {
     await updateLocation();
   }
