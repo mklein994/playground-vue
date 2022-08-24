@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@heroicons/vue': ^1.0.6
+  '@heroicons/vue': ^2.0.1
   '@highlightjs/vue-plugin': ^2.1.0
   '@sentry/tracing': ^7.11.1
   '@sentry/vue': ^7.11.1
@@ -44,7 +44,7 @@ dependencies:
   vue-router: 4.1.4_vue@3.2.37
 
 devDependencies:
-  '@heroicons/vue': 1.0.6_vue@3.2.37
+  '@heroicons/vue': 2.0.1_vue@3.2.37
   '@highlightjs/vue-plugin': 2.1.0_67te4p3ga56i3himeolvr6h3ke
   '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
   '@types/node': 18.7.11
@@ -129,8 +129,8 @@ packages:
       - supports-color
     dev: true
 
-  /@heroicons/vue/1.0.6_vue@3.2.37:
-    resolution: {integrity: sha512-ng2YcCQrdoQWEFpw+ipFl2rZo8mZ56v0T5+MyfQQvNqfKChwgP6DMloZLW+rl17GEcHkE3H82UTAMKBKZr4+WA==}
+  /@heroicons/vue/2.0.1_vue@3.2.37:
+    resolution: {integrity: sha512-BsL+W8fAgxml5X22otlZuEpnbJQFKJBokzjEKccGeir1U+acLzTQ4Pqg8J3lTPu0lfTsqJHdMxJUVXzqdDW9Uw==}
     peerDependencies:
       vue: '>= 3'
     dependencies:

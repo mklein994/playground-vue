@@ -2,9 +2,9 @@
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
-  MenuIcon,
-  XIcon,
-} from "@heroicons/vue/solid/esm";
+  Bars3Icon as MenuIcon,
+  XMarkIcon,
+} from "@heroicons/vue/24/solid/esm";
 import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
@@ -162,7 +162,7 @@ const toggleTailwind = async (event: Event) => {
 
       <RouteInfo v-if="expanded" class="route-info" />
 
-      <XIcon v-if="menuOpen" class="icon" />
+      <XMarkIcon v-if="menuOpen" class="icon" />
       <MenuIcon v-else class="icon" />
     </div>
   </div>
