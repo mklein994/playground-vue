@@ -28,10 +28,6 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       sourcemap: true,
-      rollupOptions: {
-        // TODO: remove this once @types/node gets updated to support node 18
-        external: ["node:test"],
-      },
     },
     test: {
       environment: "happy-dom",
