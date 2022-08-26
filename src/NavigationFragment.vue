@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {
+  Bars3Icon as MenuIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  Bars3Icon as MenuIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/solid/esm";
 import { computed, ref } from "vue";

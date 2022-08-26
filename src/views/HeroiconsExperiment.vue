@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import * as Compact from "@heroicons/vue/20/solid/esm";
 import * as Outline from "@heroicons/vue/24/outline/esm";
 import * as Solid from "@heroicons/vue/24/outline/esm";
-import * as Compact from "@heroicons/vue/20/solid/esm";
 import { ref } from "vue";
 
 const solidIcons = Solid;
