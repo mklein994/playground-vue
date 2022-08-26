@@ -1,5 +1,5 @@
 async function init() {
-  // TODO
+  // no-op
 }
 
 const getSunriseSunset = (..._args: unknown[]): [number, number] => {
