@@ -74,6 +74,10 @@ jobs:
           VITE_VERSION_STRING="${GITHUB_REF_NAME} (${GITHUB_SHA:0:8} $(date -Is))"
           echo "VITE_VERSION_STRING=${VITE_VERSION_STRING}" >> "${GITHUB_ENV}"
 
+      - name: Typecheck
+        working-directory: playground-vue
+        run: pnpm run typecheck
+
       - name: Build
         working-directory: playground-vue
         env:
