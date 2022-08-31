@@ -20,6 +20,7 @@ export const sentry: Plugin = {
       sentryInit({
         app,
         dsn,
+        environment: import.meta.env.VITE_SENTRY_ENVIRONMENT,
         integrations: [
           new SentryRRWeb(),
           new Integrations.BrowserTracing({

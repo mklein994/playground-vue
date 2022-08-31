@@ -29,6 +29,14 @@ interface ImportMetaEnv {
   readonly VITE_SENTRY_RELEASE: string | undefined;
 
   /**
+   * The Sentry environment associated with this build.
+   *
+   * @see https://docs.sentry.io/platforms/javascript/configuration/environments/
+   * @see https://docs.sentry.io/product/sentry-basics/environments/
+   */
+  readonly VITE_SENTRY_ENVIRONMENT: "development" | "production" | undefined;
+
+  /**
    * The **D**ata **S**ource **N**ame.
    *
    * @see https://docs.sentry.io/platforms/javascript/guides/vue/configuration/options/#dsn
