@@ -1,5 +1,7 @@
 import type { RouteRecordRaw } from "vue-router";
 
+import { extractNameAndPath } from "@/helpers/componentName";
+
 import HomeView from "./HomeView.vue";
 import NotFound from "./NotFound.vue";
 
@@ -8,24 +10,8 @@ const modules = import.meta.glob("./views/*.vue");
 
 const componentRoutes: RouteRecordRaw[] = [];
 
-const extractNameAndPath = (path: string) => {
-  const basename =
-    // import.meta.glob and import.meta.globEager will always show paths that
-    // contain a slash, since they are "absolute", i.e. relative to the project
-    // root (location of vite.config.js).
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    path.split("/").pop()!.slice(0, -".vue".length);
-  const kebabCase = basename
-    .replace(/\B([A-Z])/g, "-$1")
-    .toLowerCase()
-    .replace(/-?experiment$/, "");
-  const wordCase = kebabCase.replace(/-/g, " ");
-
-  return { wordCase, kebabCase };
-};
-
 for (const path in modules) {
-  const { wordCase, kebabCase } = extractNameAndPath(path);
+  const { wordCase, kebabCase } = extractNameAndPath(path, { stripSuffix: /-?experiment$/ });
 
   componentRoutes.push({
     path: `/${kebabCase}`,
