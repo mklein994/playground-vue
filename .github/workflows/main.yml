@@ -86,6 +86,7 @@ jobs:
           VITE_SENTRY_ENABLED: true
           VITE_COMMIT_HASH: ${{ github.sha }}
           VITE_SENTRY_DSN: https://931d497682d84de1ad9db23083a1a6c0@o1124115.ingest.sentry.io/6162360
+          VITE_SENTRY_ENVIRONMENT: ${{ github.ref_name == 'main' && 'release' || 'development' }}
         run: pnpm run build:all
 
       - name: Setup Sentry
