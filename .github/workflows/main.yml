@@ -71,7 +71,7 @@ jobs:
         env:
           VITE_COMMIT_HASH: ${{ github.sha }}
         run: |
-          VITE_VERSION_STRING="${GITHUB_REF_NAME} (${GITHUB_SHA:0:8} $(date -Is))"
+          VITE_VERSION_STRING="${GITHUB_REF_NAME} (${GITHUB_SHA:0:7} $(date -Is))"
           echo "VITE_VERSION_STRING=${VITE_VERSION_STRING}" >> "${GITHUB_ENV}"
 
       - name: Typecheck
