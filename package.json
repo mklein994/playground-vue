@@ -26,16 +26,16 @@
     "@sentry/tracing": "^7.11.1",
     "@sentry/vue": "^7.11.1",
     "@sentry/wasm": "^7.11.1",
-    "vue": "^3.2.37",
+    "vue": "^3.2.38",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
-    "@heroicons/vue": "^2.0.8",
+    "@heroicons/vue": "^2.0.10",
     "@highlightjs/vue-plugin": "^2.1.0",
     "@tailwindcss/forms": "^0.5.2",
-    "@types/node": "^18.7.13",
-    "@typescript-eslint/eslint-plugin": "^5.35.1",
-    "@typescript-eslint/parser": "^5.35.1",
+    "@types/node": "^18.7.14",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vitest/coverage-c8": "^0.22.1",
     "@vue/test-utils": "^2.0.2",
@@ -53,11 +53,11 @@
     "postcss-dir-pseudo-class": "^6.0.5",
     "postcss-logical": "^5.0.4",
     "prettier": "^2.7.1",
-    "sass": "^1.54.5",
+    "sass": "^1.54.7",
     "tailwindcss": "^3.1.8",
-    "typescript": "~4.7.4",
+    "typescript": "~4.8.2",
     "vite": "^3.0.9",
     "vitest": "^0.22.1",
-    "vue-tsc": "^0.40.4"
+    "vue-tsc": "^0.40.5"
   }
 }
