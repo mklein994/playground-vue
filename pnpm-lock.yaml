@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@heroicons/vue': ^2.0.10
   '@highlightjs/vue-plugin': ^2.1.0
+  '@sentry/rrweb': ^0.3.3
   '@sentry/tracing': ^7.11.1
   '@sentry/vue': ^7.11.1
   '@sentry/wasm': ^7.11.1
@@ -27,6 +28,7 @@ specifiers:
   postcss-dir-pseudo-class: ^6.0.5
   postcss-logical: ^5.0.4
   prettier: ^2.7.1
+  rrweb: 2.0.0-alpha.1
   sass: ^1.54.7
   tailwindcss: ^3.1.8
   typescript: ~4.8.2
@@ -37,9 +39,11 @@ specifiers:
   vue-tsc: ^0.40.5
 
 dependencies:
+  '@sentry/rrweb': 0.3.3_rrweb@2.0.0-alpha.1
   '@sentry/tracing': 7.11.1
   '@sentry/vue': 7.11.1_vue@3.2.38
   '@sentry/wasm': 7.11.1
+  rrweb: 2.0.0-alpha.1
   vue: 3.2.38
   vue-router: 4.1.5_vue@3.2.38
 
@@ -255,6 +259,15 @@ packages:
       tslib: 1.14.1
     dev: false
 
+  /@sentry/rrweb/0.3.3_rrweb@2.0.0-alpha.1:
+    resolution: {integrity: sha512-GaPHoCpzUMW+SCyK/ZMxzZJb4snWE2VSj8vYddHcPnboIG2xH+V4XEGxpKbEXc5s0WGDuhPTQv1j1Q44/gt/kA==}
+    peerDependencies:
+      '@sentry/browser': '>=4.0.0'
+      rrweb: '>=0.7.0'
+    dependencies:
+      rrweb: 2.0.0-alpha.1
+    dev: false
+
   /@sentry/tracing/7.11.1:
     resolution: {integrity: sha512-ilgnHfpdYUWKG/5yAXIfIbPVsCfrC4ONFBR/wN25/hdAyVfXMa3AJx7NCCXxZBOPDWH3hMW8rl4La5yuDbXofg==}
     engines: {node: '>=8'}
@@ -326,6 +339,10 @@ packages:
     dependencies:
       '@types/node': 18.7.14
     dev: true
+
+  /@types/css-font-loading-module/0.0.7:
+    resolution: {integrity: sha512-nl09VhutdjINdWyXxHWN/w9zlNCfr60JUqJbd24YXUuCwgeL0TpFSdElCwb6cxfB6ybE19Gjj4g0jsgkXxKv1Q==}
+    dev: false
 
   /@types/form-data/0.0.33:
     resolution: {integrity: sha1-yayFsqX9GENbjIXZ7LUObWyJP/g=}
@@ -646,6 +663,10 @@ packages:
       vue: 3.2.38
     dev: true
 
+  /@xstate/fsm/1.6.5:
+    resolution: {integrity: sha512-b5o1I6aLNeYlU/3CPlj/Z91ybk1gUsKT+5NAJI+2W4UjvS5KLG28K9v5UvNoFVjHV8PajVZ00RH3vnjyQO7ZAw==}
+    dev: false
+
   /acorn-jsx/5.3.2_acorn@8.8.0:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -752,6 +773,11 @@ packages:
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
+
+  /base64-arraybuffer/1.0.2:
+    resolution: {integrity: sha512-I3yl4r9QB5ZRY3XuJVEPfc2XhZO6YweFPI+UovAzn+8/hb3oJ6lnysaFcjVpkCPfVWFUDvoZ8kmVDP7WyRtYtQ==}
+    engines: {node: '>= 0.6.0'}
+    dev: false
 
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
@@ -1434,6 +1460,10 @@ packages:
       reusify: 1.0.4
     dev: true
 
+  /fflate/0.4.8:
+    resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
+    dev: false
+
   /file-entry-cache/6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -1862,6 +1892,10 @@ packages:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
     dev: true
 
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
+
   /modern-normalize/1.1.0:
     resolution: {integrity: sha512-2lMlY1Yc1+CUy0gw4H95uNN7vjbpoED7NNRSBHE25nWfLBdmMzFCsPshlzbxHz+gYMcBEUN8V4pU16prcdPSgA==}
     engines: {node: '>=6'}
@@ -2210,6 +2244,28 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /rrdom/0.1.4:
+    resolution: {integrity: sha512-/MnZrvUGtJyXBR87uTVZilQ8BwLbTk5TsS4ocY43NQkkXazn4cqTBP+tNeVim8YxTf33boiRA98U3V6Th6VSWQ==}
+    dependencies:
+      rrweb-snapshot: 2.0.0-alpha.1
+    dev: false
+
+  /rrweb-snapshot/2.0.0-alpha.1:
+    resolution: {integrity: sha512-u0TixZt+8lx9r8RgqTZkVii2qU1nhNkmgftVHIH2jVanl7TdFiuon8faBdpoWakyZ8mU+RyiaIfV8N/f4knsXA==}
+    dev: false
+
+  /rrweb/2.0.0-alpha.1:
+    resolution: {integrity: sha512-BMXGdWKUB5LNEcofkBQPGvL/+b0Hm4g9hx55ph4ylRMTZRCpYzT6LG8uivTklOOnPSkcn6h/2R8CsJeo3RYkog==}
+    dependencies:
+      '@types/css-font-loading-module': 0.0.7
+      '@xstate/fsm': 1.6.5
+      base64-arraybuffer: 1.0.2
+      fflate: 0.4.8
+      mitt: 3.0.0
+      rrdom: 0.1.4
+      rrweb-snapshot: 2.0.0-alpha.1
+    dev: false
 
   /run-parallel/1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
