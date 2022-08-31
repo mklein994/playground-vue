@@ -11,15 +11,17 @@ export const sentry: Plugin = {
     try {
       const {
         Integrations,
+        SentryRRWeb,
+        WasmIntegration,
         sentryInit,
         vueRouterInstrumentation,
-        WasmIntegration,
       } = await import("@/use/analytics");
 
       sentryInit({
         app,
         dsn,
         integrations: [
+          new SentryRRWeb(),
           new Integrations.BrowserTracing({
             routingInstrumentation: vueRouterInstrumentation(router),
             tracingOrigins: ["localhost", "playground-vue.pages.dev", /^\//],
