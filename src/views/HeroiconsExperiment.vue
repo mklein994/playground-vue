@@ -33,7 +33,10 @@ const filteredIcons = computed(() =>
   </div>
 
   <div class="icon-grid">
-    <template v-for="{ name, solid, outline, compact } of filteredIcons" :key="name">
+    <template
+      v-for="{ name, solid, outline, compact } of filteredIcons"
+      :key="name"
+    >
       <div class="name">{{ name.wordCase }}</div>
       <Component :is="solid" class="icon solid" :class="name.kebabCase" />
       <Component :is="outline" class="icon outline" :class="name.kebabCase" />

@@ -11,7 +11,9 @@ const modules = import.meta.glob("./views/*.vue");
 const componentRoutes: RouteRecordRaw[] = [];
 
 for (const path in modules) {
-  const { wordCase, kebabCase } = extractNameAndPath(path, { stripSuffix: /-?experiment$/ });
+  const { wordCase, kebabCase } = extractNameAndPath(path, {
+    stripSuffix: /-?experiment$/,
+  });
 
   componentRoutes.push({
     path: `/${kebabCase}`,
