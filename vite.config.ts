@@ -26,9 +26,11 @@ export default defineConfig(({ mode }) => {
       },
       host: env.BUILDTIME_HOST,
     },
+
     build: {
       sourcemap: true,
     },
+
     test: {
       environment: "happy-dom",
       includeSource: ["./src/**/*.ts"],
@@ -42,6 +44,7 @@ export default defineConfig(({ mode }) => {
         reportsDirectory: "public/coverage",
       },
     },
+
     define: {
       __VUE_OPTIONS_API__: false,
       "import.meta.vitest": "undefined",
@@ -49,12 +52,14 @@ export default defineConfig(({ mode }) => {
         resolve("./public/coverage/index.html")
       ),
     },
+
     resolve: {
       alias: {
         "@sunrise-cli": resolve(sunriseRoot),
         "@": resolve("./src"),
       },
     },
+
     plugins: [
       vue({
         template: {
