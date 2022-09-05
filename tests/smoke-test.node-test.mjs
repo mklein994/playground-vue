@@ -1,5 +1,6 @@
-import { strict as assert } from "assert";
 import test from "node:test";
+
+import { strict as assert } from "assert";
 
 test("node v18 tests", async (t) => {
   await t.test("subtest 1", () => {
