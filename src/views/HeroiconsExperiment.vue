@@ -4,18 +4,23 @@ import * as Outline from "@heroicons/vue/24/outline";
 import * as Solid from "@heroicons/vue/24/solid";
 import { computed, ref } from "vue";
 
-import { extractNameAndPath } from "@/helpers/componentName";
-
 const solidIcons = Solid;
 const outlineIcons = Object.values(Outline);
 const compactIcons = Object.values(Compact);
 
-const icons = Object.entries(solidIcons).map(([name, solid], i) => ({
-  name: extractNameAndPath(name, { splitNumbers: true }),
-  solid,
-  outline: outlineIcons[i],
-  compact: compactIcons[i],
-}));
+const icons = Object.entries(solidIcons).map(([name, solid], i) => {
+  const wordCase = name
+    .slice(0, -"Icon".length)
+    .replaceAll(/\B([A-Z]|[0-9]+)/g, " $1");
+  const kebabCase = wordCase.replaceAll(" ", "-").toLowerCase();
+
+  return {
+    name: { wordCase, kebabCase },
+    solid,
+    outline: outlineIcons[i],
+    compact: compactIcons[i],
+  };
+});
 
 const iconQuery = ref("");
 

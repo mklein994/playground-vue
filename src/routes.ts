@@ -1,7 +1,5 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import { extractNameAndPath } from "@/helpers/componentName";
-
 import HomeView from "./HomeView.vue";
 import NotFound from "./NotFound.vue";
 
@@ -11,9 +9,10 @@ const modules = import.meta.glob("./views/*.vue");
 const componentRoutes: RouteRecordRaw[] = [];
 
 for (const path in modules) {
-  const { wordCase, kebabCase } = extractNameAndPath(path, {
-    stripSuffix: /-?experiment$/,
-  });
+  const wordCase = (path.split("/").pop() ?? "")
+    .replace(/(?:Experiment)?\.vue$/, "")
+    .replaceAll(/\B([A-Z]|[0-9]+)/g, " $1");
+  const kebabCase = wordCase.replaceAll(" ", "-").toLowerCase();
 
   componentRoutes.push({
     path: `/${kebabCase}`,
@@ -30,33 +29,17 @@ export const routes: RouteRecordRaw[] = [
 
 /* c8 ignore start */
 if (import.meta.vitest) {
-  const { describe, expect, it } = import.meta.vitest;
+  const { expect, it } = import.meta.vitest;
 
-  describe.concurrent("extractNameAndPath", () => {
-    it("converts case correctly", () => {
-      expect(extractNameAndPath("./views/HelloWorld.vue")).toStrictEqual({
-        wordCase: "hello world",
-        kebabCase: "hello-world",
-      });
+  it("checks that routes are in the correct order", () => {
+    expect(routes[0]).toStrictEqual({
+      path: "/",
+      name: "home",
+      component: HomeView,
     });
-
-    it("strips off any 'Experiment' suffix", () => {
-      expect(extractNameAndPath("./views/FooExperiment.vue")).toStrictEqual({
-        wordCase: "foo",
-        kebabCase: "foo",
-      });
-    });
-
-    it("checks that routes are in the correct order", () => {
-      expect(routes[0]).toStrictEqual({
-        path: "/",
-        name: "home",
-        component: HomeView,
-      });
-      expect(routes.at(-1)).toStrictEqual({
-        path: "/:pathMatch(.*)*",
-        component: NotFound,
-      });
+    expect(routes.at(-1)).toStrictEqual({
+      path: "/:pathMatch(.*)*",
+      component: NotFound,
     });
   });
 }
