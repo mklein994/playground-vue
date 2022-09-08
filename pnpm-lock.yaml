@@ -8,11 +8,11 @@ specifiers:
   '@sentry/vue': ^7.12.1
   '@sentry/wasm': ^7.12.1
   '@tailwindcss/forms': ^0.5.3
-  '@types/node': ^18.7.16
-  '@typescript-eslint/eslint-plugin': ^5.36.2
-  '@typescript-eslint/parser': ^5.36.2
-  '@vitejs/plugin-vue': ^3.1.0
-  '@vitest/coverage-c8': ^0.23.1
+  '@types/node': ^18.7.14
+  '@typescript-eslint/eslint-plugin': ^5.36.1
+  '@typescript-eslint/parser': ^5.36.1
+  '@vitejs/plugin-vue': ^3.0.3
+  '@vitest/coverage-c8': ^0.23.0
   '@vue/test-utils': ^2.0.2
   autoprefixer: ^10.4.8
   c8: ^7.12.0
@@ -29,17 +29,17 @@ specifiers:
   postcss-logical: ^5.0.4
   prettier: ^2.7.1
   rrweb: 2.0.0-alpha.1
-  sass: ^1.54.9
+  sass: ^1.54.8
   tailwindcss: ^3.1.8
-  typescript: ~4.8.3
-  vite: ^3.1.0
-  vitest: ^0.23.1
-  vue: ^3.2.39
+  typescript: ~4.8.2
+  vite: ^3.0.9
+  vitest: ^0.23.0
+  vue: ^3.2.38
   vue-router: ^4.1.5
-  vue-tsc: ^0.40.13
+  vue-tsc: ^0.40.7
 
 dependencies:
-  '@sentry/rrweb': 0.3.3_rrweb@2.0.0-alpha.1
+  '@sentry/rrweb': 0.3.3_klskcpcvdoa35zgbsbk45xyt2m
   '@sentry/tracing': 7.12.1
   '@sentry/vue': 7.12.1_vue@3.2.39
   '@sentry/wasm': 7.12.1
@@ -259,12 +259,13 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@sentry/rrweb/0.3.3_rrweb@2.0.0-alpha.1:
+  /@sentry/rrweb/0.3.3_klskcpcvdoa35zgbsbk45xyt2m:
     resolution: {integrity: sha512-GaPHoCpzUMW+SCyK/ZMxzZJb4snWE2VSj8vYddHcPnboIG2xH+V4XEGxpKbEXc5s0WGDuhPTQv1j1Q44/gt/kA==}
     peerDependencies:
       '@sentry/browser': '>=4.0.0'
       rrweb: '>=0.7.0'
     dependencies:
+      '@sentry/browser': 7.12.1
       rrweb: 2.0.0-alpha.1
     dev: false
 
