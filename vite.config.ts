@@ -26,6 +26,9 @@ export default defineConfig(({ mode }) => {
 
   const reproducibleBuild = mode.startsWith("repro");
 
+  const realMode =
+    reproducibleBuild && mode.endsWith(":prod") ? "production" : mode;
+
   const rollupOutputs: NonNullable<BuildOptions["rollupOptions"]>["output"] =
     reproducibleBuild
       ? {
@@ -46,13 +49,12 @@ export default defineConfig(({ mode }) => {
         };
 
   const tailwindPlugin = () => {
-    if (mode === "production") {
-      return separateTailwind();
-    } else if (reproducibleBuild) {
-      return separateTailwind(new Date(2000, 0, 1));
-    } else {
-      return false;
+    if (realMode === "production") {
+      return reproducibleBuild
+        ? separateTailwind(new Date(2000, 0, 1))
+        : separateTailwind();
     }
+    return false;
   };
 
   return {
@@ -62,6 +64,8 @@ export default defineConfig(({ mode }) => {
       },
       host: env.BUILDTIME_HOST,
     },
+
+    mode: realMode,
 
     build: {
       sourcemap: true,
