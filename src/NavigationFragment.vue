@@ -8,6 +8,7 @@ import {
 import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
+import { injectStrict, tailwindEnabledKey } from "./injectionKeys";
 import RouteInfo from "./RouteInfo.vue";
 
 const route = useRoute();
@@ -62,7 +63,7 @@ const toggleExpand = () => {
   expanded.value = !expanded.value;
 };
 
-const tailwindEnabled = ref(false);
+const tailwindEnabled = injectStrict(tailwindEnabledKey);
 const tailwindLocked = computed(
   () => import.meta.env.DEV && tailwindEnabled.value
 );
