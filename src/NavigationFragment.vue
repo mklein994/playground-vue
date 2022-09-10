@@ -18,8 +18,6 @@ const links = computed(() =>
 );
 
 const coverageExists = __PLAYGROUND_VUE_COVERAGE_EXISTS__;
-const commitHash = import.meta.env.VITE_COMMIT_HASH;
-const versionString = import.meta.env.VITE_VERSION_STRING;
 
 const menuOpen = ref(false);
 
@@ -62,6 +60,14 @@ const getChevronIcon = computed(() =>
 const toggleExpand = () => {
   expanded.value = !expanded.value;
 };
+
+const commitHash = import.meta.env.VITE_COMMIT_HASH;
+const versionString = import.meta.env.VITE_VERSION_STRING;
+const versionDisplay = computed(
+  () =>
+    (expanded.value ? versionString : commitHash?.slice(0, 7)) ??
+    "(unknown commit)"
+);
 
 const tailwindEnabled = injectStrict(tailwindEnabledKey);
 const tailwindLocked = computed(
@@ -135,7 +141,7 @@ const toggleTailwind = async (event: Event) => {
       </div>
 
       <code class="commit-hash" :title="commitHash">
-        Version: {{ versionString ?? "(unknown commit)" }}</code
+        Version: {{ versionDisplay }}</code
       >
 
       <div class="menu-positions">
