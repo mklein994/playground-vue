@@ -3,7 +3,12 @@
 import vue from "@vitejs/plugin-vue";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
-import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
+import {
+  type BuildOptions,
+  defineConfig,
+  loadEnv,
+  searchForWorkspaceRoot,
+} from "vite";
 
 import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
 
@@ -19,6 +24,37 @@ export default defineConfig(({ mode }) => {
     ? env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli"
     : "./src/fake/sunrise-cli";
 
+  const reproducibleBuild = mode.startsWith("repro");
+
+  const rollupOutputs: NonNullable<BuildOptions["rollupOptions"]>["output"] =
+    reproducibleBuild
+      ? {
+          // https://rollupjs.org/guide/en/#outputassetfilenames
+          assetFileNames: "assets/[name][extname]",
+
+          // https://rollupjs.org/guide/en/#outputentryfilenames
+          entryFileNames: "assets/[name].js",
+
+          // https://rollupjs.org/guide/en/#outputchunkfilenames
+          chunkFileNames: "assets/[name].js",
+        }
+      : {
+          // Defaults when not set:
+          // assetFileNames: "assets/[name].[hash][extname]",
+          // entryFileNames: "assets/[name].[hash].js",
+          // chunkFileNames: "assets/[name].[hash].js",
+        };
+
+  const tailwindPlugin = () => {
+    if (mode === "production") {
+      return separateTailwind();
+    } else if (reproducibleBuild) {
+      return separateTailwind(new Date(2000, 0, 1));
+    } else {
+      return false;
+    }
+  };
+
   return {
     server: {
       fs: {
@@ -29,6 +65,9 @@ export default defineConfig(({ mode }) => {
 
     build: {
       sourcemap: true,
+      rollupOptions: {
+        output: rollupOutputs,
+      },
     },
 
     test: {
@@ -68,7 +107,7 @@ export default defineConfig(({ mode }) => {
           },
         },
       }),
-      mode === "production" && separateTailwind(),
+      tailwindPlugin(),
     ],
   };
 });
