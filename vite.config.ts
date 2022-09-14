@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 
+import legacy from "@vitejs/plugin-legacy";
 import vue from "@vitejs/plugin-vue";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
@@ -112,6 +113,7 @@ export default defineConfig(({ mode }) => {
         },
       }),
       tailwindPlugin(),
+      legacy(),
     ],
   };
 });
