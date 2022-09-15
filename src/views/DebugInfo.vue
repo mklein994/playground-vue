@@ -8,6 +8,7 @@ const debugInfo = {
   DEV: import.meta.env.DEV,
   SSR: import.meta.env.SSR,
   PROD: import.meta.env.PROD,
+  LEGACY: import.meta.env.LEGACY,
   BASE_URL: import.meta.env.BASE_URL,
   URL: import.meta.url,
   HOT: import.meta.hot ?? "(undefined)",
