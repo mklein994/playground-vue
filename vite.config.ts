@@ -24,14 +24,12 @@ export default defineConfig(({ mode }) => {
   const sunriseRoot = wasmSupported
     ? env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli"
     : "./src/fake/sunrise-cli";
-
-  const reproducibleBuild = mode.startsWith("repro");
-
-  const realMode =
-    reproducibleBuild && mode.endsWith(":prod") ? "production" : mode;
+  const isLegacy = (env.BUILDTIME_LEGACY_ENABLED ?? "false") === "true";
+  const isReproducible =
+    (env.BUILDTIME_REPRODUCIBLE_ENABLED ?? "false") === "true";
 
   const rollupOutputs: NonNullable<BuildOptions["rollupOptions"]>["output"] =
-    reproducibleBuild
+    isReproducible
       ? {
           // https://rollupjs.org/guide/en/#outputassetfilenames
           assetFileNames: "assets/[name][extname]",
@@ -49,14 +47,12 @@ export default defineConfig(({ mode }) => {
           // chunkFileNames: "assets/[name].[hash].js",
         };
 
-  const tailwindPlugin = () => {
-    if (realMode === "production") {
-      return reproducibleBuild
+  const tailwindPlugin = () =>
+    mode === "production"
+      ? isReproducible
         ? separateTailwind(new Date(2000, 0, 1))
-        : separateTailwind();
-    }
-    return false;
-  };
+        : separateTailwind()
+      : false;
 
   return {
     server: {
@@ -65,8 +61,6 @@ export default defineConfig(({ mode }) => {
       },
       host: env.BUILDTIME_HOST,
     },
-
-    mode: realMode,
 
     build: {
       sourcemap: true,
@@ -113,7 +107,7 @@ export default defineConfig(({ mode }) => {
         },
       }),
       tailwindPlugin(),
-      legacy(),
+      isLegacy && legacy(),
     ],
   };
 });
