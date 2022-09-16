@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import type { PropType } from "vue";
-
+<script lang="ts">
 interface Opts {
   id: string;
   label: string;
@@ -11,6 +9,10 @@ interface Opts {
   userStep: number;
   default: number;
 }
+</script>
+
+<script setup lang="ts">
+import type { PropType } from "vue";
 
 const props = defineProps({
   modelValue: {
