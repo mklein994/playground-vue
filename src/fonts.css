@@ -1,12 +1,9 @@
 @font-face {
   font-family: "Andada Pro";
-  src: url("./assets/AndadaPro-VariableFont_wght.woff2")
-      format("woff2 supports variations"),
-    url("./assets/AndadaPro-VariableFont_wght.woff2") format("woff2-variations");
+  src: url("./assets/AndadaPro-VariableFont_wght.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Recursive";
-  src: url("./assets/Recursive.woff2") format("woff2 supports variations"),
-    url("./assets/Recursive.woff2") format("woff2-variations");
+  src: url("./assets/Recursive.woff2") format("woff2");
 }
