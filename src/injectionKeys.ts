@@ -5,6 +5,4 @@ export const tailwindEnabledKey = Symbol("tailwindEnabled") as InjectionKey<
   Ref<boolean>
 >;
 
-export function injectStrict<T>(key: InjectionKey<T>): T {
-  return inject(key) as T;
-}
+export const injectStrict = <T>(key: InjectionKey<T>): T => inject(key) as T;
