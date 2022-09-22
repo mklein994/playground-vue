@@ -17,7 +17,7 @@ async function* iteratorGenerator(max: number) {
   }
 }
 
-async function fizzBuzz(max: number) {
+const fizzBuzz = async (max: number) => {
   const list = [];
   for await (let i of iteratorGenerator(max)) {
     list.push(
@@ -31,7 +31,7 @@ async function fizzBuzz(max: number) {
     );
   }
   return list;
-}
+};
 
 const max = ref(props.max);
 
