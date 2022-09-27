@@ -1,6 +1,5 @@
 /// <reference types="vitest" />
 
-import legacy from "@vitejs/plugin-legacy";
 import vue from "@vitejs/plugin-vue";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
@@ -24,7 +23,6 @@ export default defineConfig(({ mode }) => {
   const sunriseRoot = wasmSupported
     ? env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli"
     : "./src/fake/sunrise-cli";
-  const isLegacy = (env.BUILDTIME_LEGACY_ENABLED ?? "false") === "true";
   const isReproducible =
     (env.BUILDTIME_REPRODUCIBLE_ENABLED ?? "false") === "true";
 
@@ -107,7 +105,6 @@ export default defineConfig(({ mode }) => {
         },
       }),
       tailwindPlugin(),
-      isLegacy && legacy(),
     ],
   };
 });
