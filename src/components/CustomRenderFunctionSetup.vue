@@ -2,11 +2,13 @@
 import { ref } from "vue";
 
 const foo = ref(5);
+const sourceText =
+  import.meta.env.MODE === "test" ? "" : " (from script setup)";
 </script>
 
 <template>
   <div>
-    <p>Hello, world! (from script setup)</p>
+    <p>Hello, world!{{ sourceText }}</p>
     <button @click="foo--">Remove</button>
     <output class="render-output">{{ foo }}</output>
     <button @click="foo++">Add</button>

@@ -3,14 +3,15 @@ import { defineComponent, h, ref } from "vue";
 
 export default defineComponent(function CustomRenderFunction() {
   const foo = ref(5);
+  const sourceText =
+    import.meta.env.MODE === "test" ? "" : " (from render function)";
 
   return () =>
     h("div", [
-      h("p", "Hello, world! (from render function)"),
+      h("p", `Hello, world!${sourceText}`),
       h("button", { onClick: () => foo.value-- }, "Remove"),
       h("output", { class: "render-output" }, foo.value),
       h("button", { onClick: () => foo.value++ }, "Add"),
-      h("p", "How are you today?"),
     ]);
 });
 </script>
