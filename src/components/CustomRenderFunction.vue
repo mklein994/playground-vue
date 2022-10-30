@@ -9,9 +9,9 @@ export default defineComponent(function CustomRenderFunction() {
   return () =>
     h("div", [
       h("p", `Hello, world!${sourceText}`),
-      h("button", { onClick: () => foo.value-- }, "Remove"),
+      h("button", { class: "decrement", onClick: () => foo.value-- }, "Remove"),
       h("output", { class: "render-output" }, foo.value),
-      h("button", { onClick: () => foo.value++ }, "Add"),
+      h("button", { class: "increment", onClick: () => foo.value++ }, "Add"),
     ]);
 });
 </script>

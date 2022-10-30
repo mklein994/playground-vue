@@ -9,8 +9,8 @@ const sourceText =
 <template>
   <div>
     <p>Hello, world!{{ sourceText }}</p>
-    <button @click="foo--">Remove</button>
+    <button class="decrement" @click="foo--">Remove</button>
     <output class="render-output">{{ foo }}</output>
-    <button @click="foo++">Add</button>
+    <button class="increment" @click="foo++">Add</button>
   </div>
 </template>
