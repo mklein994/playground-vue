@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@heroicons/vue': ^2.0.13
-  '@highlightjs/vue-plugin': ^2.1.0
+  '@highlightjs/vue-plugin': ^2.1.2
   '@sentry/rrweb': ^0.3.3
   '@sentry/tracing': ^7.19.0
   '@sentry/vue': ^7.19.0
@@ -49,7 +49,7 @@ dependencies:
 
 devDependencies:
   '@heroicons/vue': 2.0.13_vue@3.2.44
-  '@highlightjs/vue-plugin': 2.1.0_4ibv3qqeef4hwddspc4aaalw7e
+  '@highlightjs/vue-plugin': 2.1.2_4ibv3qqeef4hwddspc4aaalw7e
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.3
   '@types/node': 18.11.9
   '@typescript-eslint/eslint-plugin': 5.42.1_2udltptbznfmezdozpdoa2aemq
@@ -150,8 +150,8 @@ packages:
       vue: 3.2.44
     dev: true
 
-  /@highlightjs/vue-plugin/2.1.0_4ibv3qqeef4hwddspc4aaalw7e:
-    resolution: {integrity: sha512-E+bmk4ncca+hBEYRV2a+1aIzIV0VSY/e5ArjpuSN9IO7wBJrzUE2u4ESCwrbQD7sAy+jWQjkV5qCCWgc+pu7CQ==}
+  /@highlightjs/vue-plugin/2.1.2_4ibv3qqeef4hwddspc4aaalw7e:
+    resolution: {integrity: sha512-P7s9DLBGpBsbltk3ZKuYUu9lwDCEfpttjJ5ErI6Wco6GQWIsjcSCJzCoMHgXhRUNkFDtZo7ZgeF8M10POPbDLw==}
     peerDependencies:
       highlight.js: ^11.0.1
       vue: ^3
