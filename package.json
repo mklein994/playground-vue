@@ -27,7 +27,7 @@
     "@sentry/tracing": "^7.20.0",
     "@sentry/vue": "^7.20.0",
     "@sentry/wasm": "^7.20.0",
-    "rrweb": "2.0.0-alpha.3",
+    "rrweb": "2.0.0-alpha.4",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
