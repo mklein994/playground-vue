@@ -20,11 +20,14 @@ describe("RenderFunction", () => {
     it("modifies the count", async () => {
       const wrapper = mount(CustomRenderFunction);
       await flushPromises();
-      const button = wrapper.get(".increment");
+      const up = wrapper.get(".increment");
+      const down = wrapper.get(".decrement");
       const output = wrapper.get(".render-output");
       expect(output.text()).toBe("5");
-      await button.trigger("click");
-      await button.trigger("click");
+      await up.trigger("click");
+      await up.trigger("click");
+      await up.trigger("click");
+      await down.trigger("click");
       expect(output.text()).toBe("7");
     });
   });
@@ -33,11 +36,14 @@ describe("RenderFunction", () => {
     it("modifies the count", async () => {
       const wrapper = mount(CustomRenderFunctionSetup);
       await flushPromises();
-      const button = wrapper.get(".increment");
+      const up = wrapper.get(".increment");
+      const down = wrapper.get(".decrement");
       const output = wrapper.get(".render-output");
       expect(output.text()).toBe("5");
-      await button.trigger("click");
-      await button.trigger("click");
+      await up.trigger("click");
+      await up.trigger("click");
+      await up.trigger("click");
+      await down.trigger("click");
       expect(output.text()).toBe("7");
     });
   });
