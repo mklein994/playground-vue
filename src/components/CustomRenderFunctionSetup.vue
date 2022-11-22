@@ -3,7 +3,9 @@ import { ref } from "vue";
 
 const foo = ref(5);
 const sourceText =
-  import.meta.env.MODE === "test" ? "" : " (from script setup)";
+  import.meta.env.MODE === "test"
+    ? ""
+    : /* c8 ignore next */ " (from script setup)";
 </script>
 
 <template>

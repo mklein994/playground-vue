@@ -4,7 +4,9 @@ import { defineComponent, h, ref } from "vue";
 export default defineComponent(function CustomRenderFunction() {
   const foo = ref(5);
   const sourceText =
-    import.meta.env.MODE === "test" ? "" : " (from render function)";
+    import.meta.env.MODE === "test"
+      ? ""
+      : /* c8 ignore next */ " (from render function)";
 
   return () =>
     h("div", [
