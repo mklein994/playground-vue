@@ -9,6 +9,7 @@ import {
   loadEnv,
   searchForWorkspaceRoot,
 } from "vite";
+import { configDefaults } from "vitest/config";
 
 import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
 
@@ -70,7 +71,7 @@ export default defineConfig(({ mode }) => {
     test: {
       environment: "happy-dom",
       includeSource: ["./src/**/*.ts"],
-      exclude: ["**/*.node-test.*"],
+      exclude: [...configDefaults.exclude, "**/*.node-test.*"],
       isolate: false, // major speed improvement at risk of cross-contamination
       snapshotFormat: {
         printBasicPrototype: true,
