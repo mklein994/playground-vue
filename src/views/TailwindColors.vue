@@ -1,28 +1,59 @@
 <script setup lang="ts">
 import colors from "tailwindcss/colors";
-import type { DefaultColors } from "tailwindcss/types/generated/colors";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
+
+import { injectStrict, tailwindEnabledKey } from "@/injectionKeys";
 
 const tailwindColors = ref<HTMLDivElement>();
-
-/**
- * Check if the object passed in is a {@link TailwindColorGroup}.
- *
- * @param group - The object to test
- */
-function isTailwindDefaultColors(group: unknown): group is DefaultColors {
-  return typeof group === "object" && group != null && "50" in group;
-}
+const testColorElement = ref<HTMLElement>();
 
 // This will generate a warning in the console, since `lightBlue` is deprecated,
 // and that is caught by calling the `get()` function on it.
-const colorsList = Object.entries(colors).map(([name, group]) =>
-  isTailwindDefaultColors(group)
-    ? Object.entries(group).map(([color, hex]) => [
+const colorsList = Object.entries(colors).reduce((all, [name, group]) => {
+  // console.log(name, group);
+  if (typeof group === "object") {
+    all.set(
+      name,
+      Object.entries(group).map(([color, hex]) => [
         `--tw-${name}-${color}`,
         `${hex}`,
       ])
-    : [[`--tw-${name}`, `${group}`]]
+    );
+  } else {
+    const other = all.get("other") ?? [];
+    other.push([`--tw-${name}`, `${group}`]);
+    all.set("other", other);
+  }
+  return all;
+}, new Map([["other", []]]) as Map<string, string[][]>);
+
+const normalColors = computed(
+  () => new Map([...colorsList].filter(([k, _]) => k !== "other"))
+);
+
+const longestText = computed(() =>
+  [...normalColors.value.values()].flat().reduce(
+    (all, one) => {
+      all.key = Math.max(all.key, one[0].length);
+      all.color = Math.max(all.color, one[1].length);
+      return all;
+    },
+    { key: 0, color: 0 }
+  )
+);
+
+const tailwindEnabled = injectStrict(tailwindEnabledKey);
+const baseFontSize = ref(0);
+const testColorFontSize = ref(0);
+const codeFontSize = computed(() =>
+  tailwindEnabled.value ? 1 : testColorFontSize.value / baseFontSize.value
+);
+
+const longestKeyLength = computed(() =>
+  Math.ceil((longestText.value.key + 1) * codeFontSize.value)
+);
+const longestColorLength = computed(() =>
+  Math.ceil(longestText.value.color * codeFontSize.value)
 );
 
 const getTailwindColors = () => {
@@ -34,8 +65,21 @@ const getTailwindColors = () => {
 };
 
 onMounted(() => {
+  if (!testColorElement.value) {
+    return;
+  }
+
+  const root = document.querySelector(":root");
+  if (!root) return;
+  baseFontSize.value = Number.parseFloat(
+    getComputedStyle(root).fontSize.replace(/px$/, "")
+  );
+  testColorFontSize.value = Number.parseFloat(
+    getComputedStyle(testColorElement.value).fontSize.replace(/px$/, "")
+  );
+
   const twc = getTailwindColors();
-  for (const [name, color] of colorsList.flat()) {
+  for (const [name, color] of [...colorsList.values()].flat()) {
     twc.style.setProperty(name, color);
   }
 });
@@ -44,20 +88,28 @@ onMounted(() => {
 <template>
   <div ref="tailwindColors" class="tailwind-colors">
     <p class="color-test">
-      <code class="color-test-code" style="color: var(--tw-sky-500)"
+      <code
+        ref="testColorElement"
+        class="color-test-code"
+        style="color: var(--tw-sky-500)"
         >color: var(--tw-sky-500);</code
       >
     </p>
 
     <div class="colors">
       <div
-        v-for="(groups, i) of colorsList"
-        :key="`${groups[0][0]}-${i}`"
+        v-for="[name, groups] of colorsList"
+        :key="name"
         class="card"
+        :class="{ other: name === 'other' }"
       >
+        <code class="color-heading">{{ name }}</code>
         <template v-for="[key, hex] of groups" :key="key">
           <code class="name">{{ key }}:</code><code>{{ hex }}</code
-          ><span class="color" :style="{ backgroundColor: '' + hex }"></span>
+          ><span
+            class="color"
+            :style="{ backgroundColor: `var(${key})` }"
+          ></span>
         </template>
       </div>
     </div>
@@ -75,21 +127,36 @@ onMounted(() => {
 }
 
 .colors {
-  --grid: minmax(auto, 19ch) minmax(auto, 7ch) minmax(5em, 1fr);
+  --grid: minmax(calc(v-bind("longestKeyLength") * 1ch), min-content)
+    minmax(calc(v-bind("longestColorLength") * 1ch), min-content)
+    minmax(5em, min-content);
 
   display: grid;
   grid-template-columns: repeat(auto-fit, var(--grid));
   align-items: start;
-  gap: 1em;
+  justify-content: space-around;
+  gap: clamp(0.5em, 1vh, 1em);
 }
 
 .card {
   grid-column-end: span 3;
 
   display: grid;
-  grid-template-columns: var(--grid);
   column-gap: 1em;
   white-space: nowrap;
+}
+
+.card.other {
+  grid-template-columns:
+    auto minmax(calc(v-bind("longestColorLength") * 1ch), min-content)
+    1fr;
+}
+
+.color-heading {
+  grid-column-end: -1;
+  text-align: center;
+  padding-block-end: clamp(0.125em, 0.5vh, 0.5em);
+  text-decoration: underline;
 }
 
 @supports (grid-template-columns: subgrid) {
@@ -98,11 +165,13 @@ onMounted(() => {
   }
 }
 
-.name {
-  text-align: end;
+@supports not (grid-template-columns: subgrid) {
+  .card {
+    grid-template-columns: var(--grid);
+  }
 }
 
-.color {
-  min-width: 5em;
+.name {
+  text-align: end;
 }
 </style>
