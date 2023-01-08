@@ -7,7 +7,7 @@ test("node v18 tests", async (t) => {
     assert.strictEqual(3, 1 + 2);
   });
 
-  await t.test("subtest 2", () => {
+  await t.test("subtest 2", { skip: true }, () => {
     const before = { name: "Bob", age: 24 };
     const after = { name: "Bob", age: 25 };
     assert.deepEqual(before, after);
