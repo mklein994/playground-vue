@@ -7,7 +7,7 @@ interface Coord {
 
 <script setup lang="ts">
 import init, { getSunriseSunset } from "@sunrise-cli/pkg/sunrise_cli";
-import { type PropType, computed } from "vue";
+import { computed, type PropType } from "vue";
 
 const props = defineProps({
   coords: {
