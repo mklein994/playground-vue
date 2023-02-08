@@ -4,7 +4,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   XMarkIcon,
-} from "@heroicons/vue/24/solid/esm";
+} from "@heroicons/vue/24/solid";
 import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
