@@ -1,10 +1,12 @@
 import { flushPromises, mount } from "@vue/test-utils";
-import { describe, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import RecursionExperiment from "@/views/RecursionExperiment.vue";
 
-describe.concurrent("RecursionExperiment", () => {
-  it("renders correctly", async ({ expect }) => {
+describe("RecursionExperiment", () => {
+  // This test can't be run concurrently, since it sometimes causes the
+  // snapshot to be discarded, marking it as "obsolete". I'm not sure why.
+  it("renders correctly", async () => {
     const wrapper = mount(RecursionExperiment, {
       props: {
         source: [
@@ -25,7 +27,7 @@ describe.concurrent("RecursionExperiment", () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it("handles an empty source", async ({ expect }) => {
+  it("handles an empty source", async () => {
     const wrapper = mount(RecursionExperiment, {
       props: {
         source: ["foo.bar"],
