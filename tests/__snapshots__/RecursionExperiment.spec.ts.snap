@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`RecursionExperiment > renders correctly 1`] = `
-"<div class=\\"recursion\\" data-v-5216a93f=\\"\\"><input type=\\"text\\" data-v-5216a93f=\\"\\"><output data-v-5216a93f=\\"\\">store.produce.apple</output><output data-v-5216a93f=\\"\\">store.produce.apple</output></div>
+"<div data-v-5216a93f=\\"\\" class=\\"recursion\\"><input data-v-5216a93f=\\"\\" type=\\"text\\"><output data-v-5216a93f=\\"\\">store.produce.apple</output><output data-v-5216a93f=\\"\\">store.produce.apple</output></div>
 <ul data-v-5216a93f=\\"\\">
   <li data-v-5216a93f=\\"\\">store.produce.apple</li>
   <li data-v-5216a93f=\\"\\">store.produce.banana</li>
