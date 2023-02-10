@@ -24,9 +24,9 @@
   "packageManager": "pnpm@7.27.0",
   "dependencies": {
     "@sentry/rrweb": "^0.3.3",
-    "@sentry/tracing": "^7.36.0",
-    "@sentry/vue": "^7.36.0",
-    "@sentry/wasm": "^7.36.0",
+    "@sentry/tracing": "^7.37.1",
+    "@sentry/vue": "^7.37.1",
+    "@sentry/wasm": "^7.37.1",
     "rrweb": "2.0.0-alpha.4",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
@@ -53,7 +53,7 @@
     "modern-normalize": "^1.1.0",
     "postcss": "^8.4.21",
     "postcss-dir-pseudo-class": "^7.0.2",
-    "postcss-logical": "^5.0.4",
+    "postcss-logical": "^6.0.1",
     "prettier": "^2.8.4",
     "sass": "^1.58.0",
     "tailwindcss": "^3.2.6",
