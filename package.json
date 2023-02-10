@@ -21,7 +21,7 @@
     "test:run": "vitest run",
     "coverage": "vitest run --coverage"
   },
-  "packageManager": "pnpm@7.18.0",
+  "packageManager": "pnpm@7.27.0",
   "dependencies": {
     "@sentry/rrweb": "^0.3.3",
     "@sentry/tracing": "^7.36.0",
