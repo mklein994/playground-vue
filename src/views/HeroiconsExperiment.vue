@@ -29,11 +29,32 @@ const filteredIcons = computed(() =>
     new RegExp(iconQuery.value, "i").test(icon.name.wordCase)
   )
 );
+
+// If we used v-model instead of @input, it breaks on
+// mobile when the keyboard is completing a word. This is
+// because v-model will not change the value if
+// "isComposing" is true.
+//
+// Usually, this is not a problem, because on a form, you
+// only want the text when the user has finished typing.
+// However, in this case we want the filter to change on
+// every keypress, even if they are still composing a
+// word.
+const handleQuery = (event: Event) => {
+  const target = event.currentTarget as HTMLInputElement;
+  iconQuery.value = target.value;
+};
 </script>
 
 <template>
   <div class="icon-query">
-    <input id="icon-query" v-model="iconQuery" type="search" name="iconQuery" />
+    <input
+      id="icon-query"
+      type="search"
+      name="iconQuery"
+      :value="iconQuery"
+      @input="handleQuery"
+    />
     <label for="icon-query">Search</label>
   </div>
 
