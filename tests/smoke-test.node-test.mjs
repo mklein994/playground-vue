@@ -2,7 +2,7 @@ import test from "node:test";
 
 import { strict as assert } from "assert";
 
-test("node v18 tests", async (t) => {
+test("node tests", async (t) => {
   await t.test("subtest 1", () => {
     assert.strictEqual(3, 1 + 2);
   });
