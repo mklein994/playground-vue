@@ -8,19 +8,23 @@ const solidIcons = Solid;
 const outlineIcons = Object.values(Outline);
 const compactIcons = Object.values(Compact);
 
-const icons = Object.entries(solidIcons).map(([name, solid], i) => {
-  const wordCase = name
-    .slice(0, -"Icon".length)
-    .replaceAll(/\B([A-Z]|[0-9]+)/g, " $1");
-  const kebabCase = wordCase.replaceAll(" ", "-").toLowerCase();
+const icons = Object.entries(solidIcons)
+  // For some reason, the default export is included in this list (in
+  // production builds), as if it were an icon. We don't want that.
+  .filter((x) => x[0] !== "default")
+  .map(([name, solid], i) => {
+    const wordCase = name
+      .slice(0, -"Icon".length)
+      .replaceAll(/\B([A-Z]|[0-9]+)/g, " $1");
+    const kebabCase = wordCase.replaceAll(" ", "-").toLowerCase();
 
-  return {
-    name: { wordCase, kebabCase },
-    solid,
-    outline: outlineIcons[i],
-    compact: compactIcons[i],
-  };
-});
+    return {
+      name: { wordCase, kebabCase },
+      solid,
+      outline: outlineIcons[i],
+      compact: compactIcons[i],
+    };
+  });
 
 const iconQuery = ref("");
 
