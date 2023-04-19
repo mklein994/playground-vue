@@ -12,7 +12,9 @@ const Highlightjs = hljsVuePlugin.component;
 
 const styles = CustomElement.styles[0];
 
-customElements.define("custom-element", defineCustomElement(CustomElement));
+if (customElements.get("custom-element") === undefined) {
+  customElements.define("custom-element", defineCustomElement(CustomElement));
+}
 </script>
 
 <template>
