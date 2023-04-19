@@ -109,7 +109,7 @@ const testCode = tests.map((test) => `${test}`);
     v-for="(code, i) of testCode"
     :key="i"
     language="ts"
-    :code="code"
+    :code="`// t${i}\n${code}`"
     class="code"
   />
 </template>
