@@ -51,7 +51,7 @@
     "happy-dom": "^9.8.3",
     "highlight.js": "^11.7.0",
     "modern-normalize": "^1.1.0",
-    "postcss": "^8.4.22",
+    "postcss": "^8.4.23",
     "postcss-dir-pseudo-class": "^7.0.2",
     "postcss-logical": "^6.1.0",
     "prettier": "^2.8.7",
