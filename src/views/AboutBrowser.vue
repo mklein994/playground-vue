@@ -1,16 +1,31 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { onMounted, onUnmounted, reactive } from "vue";
 
 const userAgent = navigator.userAgent;
-const inner = computed(() => ({
+const inner = reactive({
   width: window.innerWidth,
   height: window.innerHeight,
-}));
+});
 
-const outer = computed(() => ({
+const outer = reactive({
   width: window.outerWidth,
   height: window.outerHeight,
-}));
+});
+
+const handleResize = () => {
+  inner.width = window.innerWidth;
+  inner.height = window.innerHeight;
+  outer.width = window.outerWidth;
+  outer.height = window.outerHeight;
+};
+
+onMounted(() => {
+  window.addEventListener("resize", handleResize);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", handleResize);
+});
 </script>
 
 <template>
