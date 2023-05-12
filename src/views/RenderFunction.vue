@@ -10,7 +10,8 @@ hljs.registerLanguage("ts", typescript);
 
 const Highlightjs = hljsVuePlugin.component;
 
-const renderCode = `${CustomRenderFunction.setup}`;
+const renderCode =
+  "setup" in CustomRenderFunction ? `${CustomRenderFunction.setup}` : "";
 const setupCode = import.meta.env.PROD
   ? `${CustomRenderFunctionSetup.setup}`
   : `// setup()

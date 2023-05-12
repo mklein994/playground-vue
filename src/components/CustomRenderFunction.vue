@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, h, ref } from "vue";
 
-export default defineComponent(function CustomRenderFunction() {
+export default defineComponent(() => {
   const foo = ref(5);
   const sourceText =
     import.meta.env.MODE === "test"
