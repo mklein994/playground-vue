@@ -29,7 +29,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits<{
-  (event: "update:modelValue", value: number): void;
+  "update:modelValue": [value: number];
 }>();
 
 const handleModelValueUpdate = (event: Event) => {

@@ -5,15 +5,11 @@ const props = defineProps<{
   success?: boolean;
 }>();
 
-const emit = defineEmits<{
-  (e: "stuff"): number;
+defineEmits<{
+  stuff: [];
 }>();
 
 const result = ref("result before");
-
-const doStuff = () => {
-  emit("stuff");
-};
 
 watchEffect(
   function () {
@@ -28,7 +24,7 @@ watchEffect(() => console.log(result.value));
 </script>
 
 <template>
-  <button @click="doStuff">Do Stuff</button>
+  <button @click="$emit('stuff')">Do Stuff</button>
   <output
     :style="{
       color:

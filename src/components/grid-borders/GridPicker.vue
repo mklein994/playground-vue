@@ -6,11 +6,7 @@ const props = defineProps<{
 }>();
 
 defineEmits<{
-  (
-    event: "updateStyle",
-    name: string | undefined,
-    value: string | undefined
-  ): void;
+  updateStyle: [name: string | undefined, value: string | undefined];
 }>();
 
 const kindName = ref<string>();
