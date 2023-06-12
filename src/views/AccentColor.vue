@@ -62,6 +62,65 @@ onMounted(() => {
         </option>
       </select>
     </div>
+
+    <div class="regular-fields">
+      <label for="range">range</label>
+      <input id="range" type="range" />
+
+      <label for="progress">progress</label>
+      <progress id="progress" max="100" value="70">70%</progress>
+
+      <label for="text">text</label>
+      <input id="text" type="text" />
+
+      <label for="tel">tel</label>
+      <input id="tel" type="tel" />
+
+      <label for="email">email</label>
+      <input id="email" type="email" />
+
+      <label for="url">url</label>
+      <input id="url" type="url" />
+
+      <label for="number">number</label>
+      <input id="number" type="number" />
+
+      <label for="date">date</label>
+      <input id="date" type="date" />
+
+      <label for="time">time</label>
+      <input id="time" type="time" />
+
+      <label for="datetime-local">datetime-local</label>
+      <input id="datetime-local" type="datetime-local" />
+
+      <label for="week">week</label>
+      <input id="week" type="week" />
+
+      <label for="month">month</label>
+      <input id="month" type="month" />
+
+      <label for="color">color</label>
+      <input id="color" type="color" />
+
+      <label for="password">password</label>
+      <input id="password" type="password" autocomplete="off" />
+
+      <label for="submit">submit</label>
+      <input id="submit" type="submit" @click.prevent />
+
+      <label for="search">search</label>
+      <input id="search" type="search" />
+
+      <label for="button">button</label>
+      <input id="button" type="button" value="button" />
+
+      <label for="reset">reset</label>
+      <input id="reset" type="reset" @click.prevent />
+
+      <label for="file">file</label>
+      <input id="file" type="file" />
+    </div>
   </div>
 </template>
 
@@ -88,8 +147,16 @@ onMounted(() => {
   flex: 1 100%;
 }
 
+.regular-fields {
+  display: grid;
+  grid: auto-flow / repeat(2, auto);
+  justify-items: start;
+  gap: 0.5em;
+}
+
 @supports (accent-color: rebeccapurple) {
-  .input {
+  .input,
+  .regular-fields > :not(label) {
     accent-color: v-bind("color");
   }
 }
