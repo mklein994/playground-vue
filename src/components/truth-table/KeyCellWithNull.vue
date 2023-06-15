@@ -13,7 +13,7 @@ const props = defineProps<{
       :key="keyIndex"
       class="key-item"
       :class="keyItem.class"
-      >{{ keyItem.display }}</span
+      >{{ keyItem.display === " " ? "&nbsp;" : keyItem.display }}</span
     ></code
   >
 </template>

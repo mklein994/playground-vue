@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import KeyCell from "@/components/truth-table/KeyCell.vue";
-import { type KeyItem } from "@/types/TruthTable";
+import KeyCellWithNull from "@/components/truth-table/KeyCellWithNull.vue";
+import { type KeyItemWithNulls } from "@/types/TruthTable";
 
-export type Test = (args: boolean[]) => boolean | null;
+export type TestWithNulls = (args: (boolean | null)[]) => boolean | null;
 
 const props = defineProps<{
   headers: string[];
-  tests: Test | Test[];
+  tests: TestWithNulls | TestWithNulls[];
 }>();
 
 const headers = computed(() =>
@@ -24,13 +24,15 @@ const tests = computed(() =>
 const keys = computed(() => {
   const length = headers.value.length;
   const keys = [];
-  for (let i = 0; i < 2 ** length; i++) {
-    const id = i.toString(2).padStart(length, "0");
-    const keyItem: KeyItem[] = id.split("").map((x) => {
+  for (let i = 0; i < 3 ** length; i++) {
+    const id = i.toString(3).padStart(length, "0");
+    const keyItem: KeyItemWithNulls[] = id.split("").map((x) => {
       switch (x) {
         case "0":
-          return { display: "0", class: "false", value: false };
+          return { display: " ", class: "null", value: null };
         case "1":
+          return { display: "0", class: "false", value: false };
+        case "2":
           return { display: "1", class: "true", value: true };
         default:
           throw new Error("Invalid key index");
@@ -82,7 +84,7 @@ const rows = computed(() => {
     <tbody class="body">
       <tr v-for="row of rows" :key="row.key.id" class="row">
         <td class="cell">
-          <KeyCell :key-value="row.key.keyItem" />
+          <KeyCellWithNull :key-value="row.key.keyItem" />
         </td>
         <td
           v-for="keyItem of row.key.keyItem"
@@ -110,10 +112,8 @@ const rows = computed(() => {
   border: 1px solid black;
   border-collapse: collapse;
 
-  /* --true-text-color: green; */
-  /* --true-background-color: ; */
-  /* --false-text-color: gray; */
-  /* --false-background-color: ; */
+  --true-color: green;
+  --false-color: gray;
 }
 
 .cell {
