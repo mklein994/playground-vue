@@ -64,7 +64,17 @@ export default defineConfig(({ mode }) => {
     build: {
       sourcemap: true,
       rollupOptions: {
-        output: rollupOutputs,
+        output: {
+          ...rollupOutputs,
+
+          // The Heroicons output can get quite large, so split these up into
+          // smaller pieces.
+          manualChunks: {
+            "heroicons/20-solid": ["@heroicons/vue/20/solid"],
+            "heroicons/24-outline": ["@heroicons/vue/24/outline"],
+            "heroicons/24-solid": ["@heroicons/vue/24/solid"],
+          },
+        },
       },
     },
 
