@@ -35,6 +35,8 @@ const testExpressions = computed({
 
 const tests = ref<Test[] | TestWithNulls[]>([]);
 
+const testsHaveNulls = (_t: unknown): _t is TestWithNulls[] => allowNulls.value;
+
 const refreshTable = () => {
   tests.value = testExpressions.value;
 };
@@ -85,7 +87,7 @@ onMounted(() => refreshTable());
   </form>
 
   <TruthTableWithNulls
-    v-if="allowNulls"
+    v-if="testsHaveNulls(tests)"
     :headers="headers"
     :tests="tests"
     class="truth-table"
@@ -101,6 +103,7 @@ onMounted(() => refreshTable());
   --true-background-color: #b7e1cd;
   --false-background-color: #f4c7c3;
 }
+
 .truth-table-inputs {
   display: grid;
   grid: auto-flow / 1fr 1fr;
