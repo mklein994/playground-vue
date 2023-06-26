@@ -1,0 +1,4 @@
+https://:sentry_project.ingest.sentry.io/*
+  Content-Security-Policy: worker-src 'self' blob:
+  # If you need support for Safari <= 15.4, add this too:
+  #   child-src 'self' blob:
