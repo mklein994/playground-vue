@@ -23,8 +23,6 @@
   },
   "packageManager": "pnpm@8.6.2",
   "dependencies": {
-    "@sentry/rrweb": "^0.3.3",
-    "@sentry/tracing": "^7.56.0",
     "@sentry/vue": "^7.56.0",
     "@sentry/wasm": "^7.56.0",
     "rrweb": "2.0.0-alpha.4",
