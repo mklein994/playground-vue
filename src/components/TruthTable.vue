@@ -118,7 +118,7 @@ const rows = computed(() => {
 
 .cell {
   border: 1px solid black;
-  padding: 0.25em 0.5em;
+  padding: 0 0.5em;
 }
 
 .body .cell {
@@ -139,7 +139,7 @@ const rows = computed(() => {
 }
 
 .cell.true::before {
-  content: "•";
+  content: "• ";
 }
 
 .cell.true::after {
@@ -151,7 +151,7 @@ const rows = computed(() => {
 }
 
 .cell.false::before {
-  content: "\a0";
+  content: "\a0\a0";
 }
 
 .cell.invalid {
