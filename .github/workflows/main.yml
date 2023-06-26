@@ -81,6 +81,9 @@ jobs:
       - name: Build
         working-directory: playground-vue
         env:
+          SENTRY_ORG: matthew-klein
+          SENTRY_PROJECT: matthew-klein
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           # This should correspond with 'sentry-cli releases propose-version'
           VITE_SENTRY_RELEASE: ${{ github.sha }}
           VITE_SENTRY_ENABLED: true
@@ -98,19 +101,19 @@ jobs:
           echo "PNPM_HOME=${PNPM_HOME}" >> "${GITHUB_ENV}"
           echo "${PNPM_HOME}" >> "${GITHUB_PATH}"
 
-      - name: Sentry Release
-        working-directory: playground-vue
-        env:
-          SENTRY_ORG: matthew-klein
-          SENTRY_PROJECT: matthew-klein
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-        run: |
-          pnpm install --global @sentry/cli
-          SENTRY_RELEASE="$(sentry-cli releases propose-version)"
-          sentry-cli releases new $SENTRY_RELEASE
-          sentry-cli releases set-commits --auto $SENTRY_RELEASE
-          sentry-cli releases deploys $SENTRY_RELEASE new --env production
-          sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps --url-prefix '~/dist/assets' --validate ./dist/assets
+      # - name: Sentry Release
+      #   working-directory: playground-vue
+      #   env:
+      #     SENTRY_ORG: matthew-klein
+      #     SENTRY_PROJECT: matthew-klein
+      #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      #   run: |
+      #     pnpm install --global @sentry/cli
+      #     SENTRY_RELEASE="$(sentry-cli releases propose-version)"
+      #     sentry-cli releases new $SENTRY_RELEASE
+      #     sentry-cli releases set-commits --auto $SENTRY_RELEASE
+      #     sentry-cli releases deploys $SENTRY_RELEASE new --env production
+      #     sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps --url-prefix '~/dist/assets' --validate ./dist/assets
 
       - name: Deploy to Cloudflare
         uses: cloudflare/pages-action@1 # https://github.com/marketplace/actions/cloudflare-pages-github-action

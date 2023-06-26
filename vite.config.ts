@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import vue from "@vitejs/plugin-vue";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
@@ -115,7 +116,24 @@ export default defineConfig(({ mode }) => {
           },
         },
       }),
+
       tailwindPlugin(),
+
+      process.env.VITE_SENTRY_ENABLED
+        ? sentryVitePlugin({
+            org: process.env.SENTRY_ORG,
+            project: process.env.SENTRY_PROJECT,
+            authToken: process.env.SENTRY_AUTH_TOKEN,
+            release: {
+              deploy: {
+                env: process.env.VITE_SENTRY_ENVIRONMENT ?? "development",
+              },
+            },
+            sourcemaps: {
+              assets: "./dist/assets",
+            },
+          })
+        : false,
     ],
   };
 });
