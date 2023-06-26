@@ -33,19 +33,19 @@ const fizzBuzz = async (max: number) => {
   return list;
 };
 
-const max = ref(props.max);
+const localMax = ref(props.max);
 
 const list = ref<(string | number)[]>([]);
 
 watchEffect(async () => {
-  list.value = await fizzBuzz(max.value);
+  list.value = await fizzBuzz(localMax.value);
 });
 </script>
 
 <template>
   <div class="for-await-list">
     <label for="max">Max:</label>
-    <input id="max" v-model="max" type="number" name="max" min="1" />
+    <input id="max" v-model="localMax" type="number" name="max" min="1" />
 
     <ol>
       <li v-for="(value, index) of list" :key="`${value}${index}`">
