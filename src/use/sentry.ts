@@ -10,8 +10,8 @@ export const sentry: Plugin = {
 
     try {
       const {
-        Integrations,
-        SentryRRWeb,
+        SentryBrowserTracing,
+        SentryReplay,
         WasmIntegration,
         sentryInit,
         vueRouterInstrumentation,
@@ -22,8 +22,8 @@ export const sentry: Plugin = {
         dsn,
         environment: import.meta.env.VITE_SENTRY_ENVIRONMENT,
         integrations: [
-          new SentryRRWeb(),
-          new Integrations.BrowserTracing({
+          new SentryReplay(),
+          new SentryBrowserTracing({
             routingInstrumentation: vueRouterInstrumentation(router),
             tracingOrigins: ["localhost", "playground-vue.pages.dev", /^\//],
           }),
