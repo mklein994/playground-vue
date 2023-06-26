@@ -129,9 +129,6 @@ export default defineConfig(({ mode }) => {
                 env: process.env.VITE_SENTRY_ENVIRONMENT ?? "development",
               },
             },
-            sourcemaps: {
-              assets: "./dist/assets",
-            },
           })
         : false,
     ],
