@@ -92,14 +92,14 @@ jobs:
           VITE_SENTRY_ENVIRONMENT: ${{ github.ref_name == 'main' && 'release' || 'development' }}
         run: pnpm run build:all
 
-      - name: Setup Sentry
-        working-directory: playground-vue
-        run: |
-          SHELL="${SHELL}" pnpm setup
-          . "${HOME}/.bashrc"
-          PNPM_HOME="${HOME}/.local/share/pnpm"
-          echo "PNPM_HOME=${PNPM_HOME}" >> "${GITHUB_ENV}"
-          echo "${PNPM_HOME}" >> "${GITHUB_PATH}"
+      # - name: Setup Sentry
+      #   working-directory: playground-vue
+      #   run: |
+      #     SHELL="${SHELL}" pnpm setup
+      #     . "${HOME}/.bashrc"
+      #     PNPM_HOME="${HOME}/.local/share/pnpm"
+      #     echo "PNPM_HOME=${PNPM_HOME}" >> "${GITHUB_ENV}"
+      #     echo "${PNPM_HOME}" >> "${GITHUB_PATH}"
 
       # - name: Sentry Release
       #   working-directory: playground-vue
