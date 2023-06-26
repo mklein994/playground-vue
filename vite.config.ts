@@ -128,6 +128,9 @@ export default defineConfig(({ mode }) => {
               deploy: {
                 env: process.env.VITE_SENTRY_ENVIRONMENT ?? "development",
               },
+              setCommits: {
+                auto: true,
+              },
             },
           })
         : false,
