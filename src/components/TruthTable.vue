@@ -13,12 +13,12 @@ const props = defineProps<{
 
 const headers = computed(() =>
   props.headers.map((x: string | { name: string }) =>
-    typeof x === "string" ? x : x.name
-  )
+    typeof x === "string" ? x : x.name,
+  ),
 );
 
 const tests = computed(() =>
-  Array.isArray(props.tests) ? props.tests : [props.tests]
+  Array.isArray(props.tests) ? props.tests : [props.tests],
 );
 
 const keys = computed(() => {

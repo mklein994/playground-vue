@@ -42,7 +42,7 @@ describe("RecursionExperiment", () => {
         .findAll("output")
         .map((x) => x.text())
         .every((x) => x === "(undefined)"),
-      "not every output contains '(undefined)'"
+      "not every output contains '(undefined)'",
     ).toBe(true);
   });
 });

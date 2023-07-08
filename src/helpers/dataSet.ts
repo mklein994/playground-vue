@@ -4,7 +4,7 @@ type DataGetReturn = string | RecursiveMap | undefined;
 export const dataSet = (
   source: RecursiveMap = new Map(),
   path: string[],
-  value: string
+  value: string,
 ) => {
   const head = path.shift();
   if (head === undefined) {
@@ -28,7 +28,7 @@ export const dataSet = (
 
 export const dataGet = (
   source: RecursiveMap,
-  path: string[]
+  path: string[],
 ): DataGetReturn => {
   const head = path.shift();
   if (head === undefined) {
@@ -48,7 +48,7 @@ export const dataGet = (
 export const dataSetObject = (
   source: Record<string, unknown>,
   path: string[],
-  value: string
+  value: string,
 ) => {
   const head = path.shift();
   if (head === undefined) {
@@ -73,7 +73,7 @@ export const dataSetObject = (
 
 export const dataGetObject = (
   source: Record<string, unknown>,
-  path: string[]
+  path: string[],
 ): unknown => {
   const head = path.shift();
   if (head === undefined) {
@@ -128,16 +128,16 @@ if (import.meta.vitest) {
         path: string[],
         value: string,
         source: RecursiveMap,
-        expected: RecursiveMap
+        expected: RecursiveMap,
       ) => {
         const actual = dataSet(source, path, value);
         expect(actual).toStrictEqual(expected);
-      }
+      },
     );
 
     it("throws when path is empty", () => {
       expect(() => dataSet(new Map(), [], "")).toThrow(
-        /head is undefined\b.*\bunreachable/
+        /head is undefined\b.*\bunreachable/,
       );
     });
   });
@@ -151,8 +151,8 @@ if (import.meta.vitest) {
       expect(
         dataGet(
           new Map([["foo", new Map([["bar", new Map([["baz", "boz"]])]])]]),
-          ["foo"]
-        )
+          ["foo"],
+        ),
       ).toStrictEqual(new Map([["bar", new Map([["baz", "boz"]])]]));
     });
 
@@ -161,7 +161,7 @@ if (import.meta.vitest) {
         dataGet(new Map([["foo", new Map([["bar", "baz"]]) as RecursiveMap]]), [
           "foo",
           "bar",
-        ])
+        ]),
       ).toBe("baz");
     });
 
@@ -171,7 +171,7 @@ if (import.meta.vitest) {
 
     it("returns undefined if sub-path doesn't exist", () => {
       expect(dataGet(new Map([["foo", "bar"]]), ["foo", "bar", "baz"])).toBe(
-        undefined
+        undefined,
       );
     });
   });
@@ -211,12 +211,12 @@ if (import.meta.vitest) {
       (_name: string, path: string[], value: string, source, expected) => {
         const actual = dataSetObject(source, path, value);
         expect(actual).toStrictEqual(expected);
-      }
+      },
     );
 
     it("throws when path is empty", () => {
       expect(() => dataSetObject({}, [], "")).toThrow(
-        /head is undefined\b.*\bunreachable/
+        /head is undefined\b.*\bunreachable/,
       );
     });
   });
@@ -228,7 +228,7 @@ if (import.meta.vitest) {
 
     it("returns undefined value at sub-path doesn't exist", () => {
       expect(dataGetObject({ foo: "bar" }, ["foo", "bar", "baz"])).toBe(
-        undefined
+        undefined,
       );
     });
 
@@ -246,8 +246,8 @@ if (import.meta.vitest) {
               },
             },
           },
-          ["foo"]
-        )
+          ["foo"],
+        ),
       ).toStrictEqual({
         bar: {
           baz: "boz",

@@ -200,8 +200,12 @@ const mono = ref(monoOpts.default);
 .content {
   font-size: calc(v-bind("fontSize") * 1vw);
   font-family: Recursive;
-  font-variation-settings: "slnt" v-bind("slnt"), "wght" v-bind("wght"),
-    "CASL" v-bind("casl"), "CRSV" v-bind("crsv"), "MONO" v-bind("mono");
+  font-variation-settings:
+    "slnt" v-bind("slnt"),
+    "wght" v-bind("wght"),
+    "CASL" v-bind("casl"),
+    "CRSV" v-bind("crsv"),
+    "MONO" v-bind("mono");
 
   overflow-wrap: break-word;
   word-break: break-word;

@@ -10,7 +10,7 @@ const options = ref<PlotOptions>({
   marks: [
     Plot.rectY(
       { length: 1_000 },
-      Plot.binX({ y: "count" }, { x: d3.randomNormal() })
+      Plot.binX({ y: "count" }, { x: d3.randomNormal() }),
     ),
   ],
 });

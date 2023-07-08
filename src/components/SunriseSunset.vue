@@ -41,15 +41,15 @@ const sunriseSunset = (coords: Coord, date: string, azimuth: string) => {
     getSunriseSunset(coords.lat, coords.lon, year, month, day, azimuth),
     (timestamp) =>
       fullDateFormat.format(
-        new Date(Number.parseInt(timestamp.toString(10), 10) * 1000)
-      )
+        new Date(Number.parseInt(timestamp.toString(10), 10) * 1000),
+      ),
   );
 
   return { sunrise, sunset };
 };
 
 const output = computed(() =>
-  sunriseSunset(props.coords, props.date, props.azimuth)
+  sunriseSunset(props.coords, props.date, props.azimuth),
 );
 </script>
 

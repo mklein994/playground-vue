@@ -8,7 +8,7 @@ import {
 } from "vue";
 
 const SunriseSunset = defineAsyncComponent(
-  () => import("../components/SunriseSunset.vue")
+  () => import("../components/SunriseSunset.vue"),
 );
 
 const dateFormat = new Intl.DateTimeFormat("en-CA", { dateStyle: "short" });
@@ -29,7 +29,7 @@ watchEffect(() => {
         highAccuracy: highAccuracy.value,
         lat: coords.lat,
         lon: coords.lon,
-      })
+      }),
     );
   }
 });
@@ -44,15 +44,15 @@ const getOldCoords = (): {
 };
 
 const getLocationAsync = (
-  options?: PositionOptions
+  options?: PositionOptions,
 ): Promise<GeolocationPosition> =>
   new Promise((success, failure) =>
-    navigator.geolocation.getCurrentPosition(success, failure, options)
+    navigator.geolocation.getCurrentPosition(success, failure, options),
   );
 
 const updateLocation = async () => {
   const pos = await getLocationAsync(
-    highAccuracy.value ? { enableHighAccuracy: true } : undefined
+    highAccuracy.value ? { enableHighAccuracy: true } : undefined,
   );
   coords.lat = pos.coords.latitude;
   coords.lon = pos.coords.longitude;

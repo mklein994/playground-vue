@@ -25,7 +25,7 @@ const items = computed<Item[]>(() =>
       text: `item ${i}`,
       special,
     };
-  })
+  }),
 );
 
 const list = computed<Map<number, ItemRow>>(() =>
@@ -41,7 +41,7 @@ const list = computed<Map<number, ItemRow>>(() =>
       specialRow,
     });
     return all;
-  }, new Map())
+  }, new Map()),
 );
 
 const contentStyleList = ref();
@@ -49,14 +49,14 @@ const itemStyleList = ref();
 
 function handleContentStyleUpdate(
   name: string | undefined,
-  value: string | undefined
+  value: string | undefined,
 ) {
   contentStyleList.value = `${name}: ${value};`;
 }
 
 function handleItemStyleUpdate(
   name: string | undefined,
-  value: string | undefined
+  value: string | undefined,
 ) {
   itemStyleList.value = `${name}: ${value};`;
 }

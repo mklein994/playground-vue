@@ -6,7 +6,7 @@ const showRedClass = ref(false);
 const toggleClass = () => (showRedClass.value = !showRedClass.value);
 
 const fooClass = computed(() =>
-  showRedClass.value ? "red-class" : "blue-class"
+  showRedClass.value ? "red-class" : "blue-class",
 );
 </script>
 

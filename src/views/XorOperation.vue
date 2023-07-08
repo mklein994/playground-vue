@@ -20,8 +20,8 @@ const data: Pqrs[] = Array.from(
         .padStart(choices, "0")
         .split("")
         .map((x) => (x === "1" ? "foo" : null))
-        .map((x, i) => [String.fromCharCode("p".charCodeAt(0) + i), x]) // map to keys p..s
-    ) as Pqrs
+        .map((x, i) => [String.fromCharCode("p".charCodeAt(0) + i), x]), // map to keys p..s
+    ) as Pqrs,
 );
 
 const tests: ((pqrs: Pqrs) => boolean)[] = [

@@ -7,7 +7,7 @@ const props = withDefaults(
   }>(),
   {
     max: 25,
-  }
+  },
 );
 
 async function* iteratorGenerator(max: number) {
@@ -27,7 +27,7 @@ const fizzBuzz = async (max: number) => {
         ? "Fizz"
         : i % 5 === 0
         ? "Buzz"
-        : i
+        : i,
     );
   }
   return list;

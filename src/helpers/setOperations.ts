@@ -120,7 +120,7 @@ if (import.meta.vitest) {
 
     it("computes the union of A and B (A \u222a B)", () => {
       expect(a.union(b)).toStrictEqual(
-        new CustomSet(["apple", "banana", "cherry"])
+        new CustomSet(["apple", "banana", "cherry"]),
       );
     });
 
@@ -130,7 +130,7 @@ if (import.meta.vitest) {
 
     it("computes the symmetric difference of A and B ((A \\ B) \u222a (B \\ A))", () => {
       expect(a.symmetricDifference(b)).toStrictEqual(
-        new CustomSet(["apple", "cherry"])
+        new CustomSet(["apple", "cherry"]),
       );
     });
   });

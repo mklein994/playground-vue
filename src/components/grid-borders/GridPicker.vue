@@ -24,7 +24,7 @@ const gridItemNames = [
 ];
 
 const kindNames = computed(() =>
-  props.kind === "content" ? gridContentNames : gridItemNames
+  props.kind === "content" ? gridContentNames : gridItemNames,
 );
 
 // CSS Grid *-items:
@@ -65,7 +65,7 @@ const gridContentValues = [
 ];
 
 const kindValues = computed(() =>
-  props.kind === "content" ? gridContentValues : gridItemValues
+  props.kind === "content" ? gridContentValues : gridItemValues,
 );
 </script>
 

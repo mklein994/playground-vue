@@ -14,7 +14,7 @@ import RouteInfo from "./RouteInfo.vue";
 const route = useRoute();
 const router = useRouter();
 const links = computed(() =>
-  router.getRoutes().filter((x) => x.name !== undefined)
+  router.getRoutes().filter((x) => x.name !== undefined),
 );
 
 const coverageExists = __PLAYGROUND_VUE_COVERAGE_EXISTS__;
@@ -54,7 +54,7 @@ const expanded = ref(true);
 const getChevronIcon = computed(() =>
   menuPositionClasses.value.right === expanded.value
     ? ChevronRightIcon
-    : ChevronLeftIcon
+    : ChevronLeftIcon,
 );
 
 const toggleExpand = () => {
@@ -66,12 +66,12 @@ const versionString = import.meta.env.VITE_VERSION_STRING;
 const versionDisplay = computed(
   () =>
     (expanded.value ? versionString : commitHash?.slice(0, 7)) ??
-    "(unknown commit)"
+    "(unknown commit)",
 );
 
 const tailwindEnabled = injectStrict(tailwindEnabledKey);
 const tailwindLocked = computed(
-  () => import.meta.env.DEV && tailwindEnabled.value
+  () => import.meta.env.DEV && tailwindEnabled.value,
 );
 
 const toggleTailwind = async (event: Event) => {
@@ -86,12 +86,12 @@ const toggleTailwind = async (event: Event) => {
   tailwindEnabled.value = value;
 
   const link = document.head.querySelector<HTMLLinkElement>(
-    "link[title='tailwind']"
+    "link[title='tailwind']",
   );
 
   if (link == null) {
     throw new Error(
-      "tailwind style <link title='tailwind'> not found. This is only available on production builds."
+      "tailwind style <link title='tailwind'> not found. This is only available on production builds.",
     );
   }
 

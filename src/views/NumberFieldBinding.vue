@@ -7,13 +7,13 @@ function toOutput(value: unknown) {
 
 onMounted(() => {
   const nativeNumber = document.querySelector(
-    "#native-number"
+    "#native-number",
   ) as HTMLInputElement;
 
   nativeNumber.addEventListener("input", (event: Event) => {
     const value = (event.target as HTMLInputElement).value;
     const output = document.querySelector(
-      "#native-number-output"
+      "#native-number-output",
     ) as HTMLOutputElement;
     output.textContent = toOutput(value);
   });

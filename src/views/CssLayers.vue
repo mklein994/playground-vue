@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 
 const layer = ref<HTMLParagraphElement>();
 const color = computed(() =>
-  layer.value ? getComputedStyle(layer.value).color : ""
+  layer.value ? getComputedStyle(layer.value).color : "",
 );
 </script>
 

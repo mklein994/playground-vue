@@ -9,26 +9,29 @@ const testColorElement = ref<HTMLElement>();
 
 // This will generate a warning in the console, since `lightBlue` is deprecated,
 // and that is caught by calling the `get()` function on it.
-const colorsList = Object.entries(colors).reduce((all, [name, group]) => {
-  // console.log(name, group);
-  if (typeof group === "object") {
-    all.set(
-      name,
-      Object.entries(group).map(([color, hex]) => [
-        `--tw-${name}-${color}`,
-        `${hex}`,
-      ])
-    );
-  } else {
-    const other = all.get("other") ?? [];
-    other.push([`--tw-${name}`, `${group}`]);
-    all.set("other", other);
-  }
-  return all;
-}, new Map([["other", []]]) as Map<string, string[][]>);
+const colorsList = Object.entries(colors).reduce(
+  (all, [name, group]) => {
+    // console.log(name, group);
+    if (typeof group === "object") {
+      all.set(
+        name,
+        Object.entries(group).map(([color, hex]) => [
+          `--tw-${name}-${color}`,
+          `${hex}`,
+        ]),
+      );
+    } else {
+      const other = all.get("other") ?? [];
+      other.push([`--tw-${name}`, `${group}`]);
+      all.set("other", other);
+    }
+    return all;
+  },
+  new Map([["other", []]]) as Map<string, string[][]>,
+);
 
 const normalColors = computed(
-  () => new Map([...colorsList].filter(([k, _]) => k !== "other"))
+  () => new Map([...colorsList].filter(([k, _]) => k !== "other")),
 );
 
 const longestText = computed(() =>
@@ -38,22 +41,22 @@ const longestText = computed(() =>
       all.color = Math.max(all.color, one[1].length);
       return all;
     },
-    { key: 0, color: 0 }
-  )
+    { key: 0, color: 0 },
+  ),
 );
 
 const tailwindEnabled = injectStrict(tailwindEnabledKey);
 const baseFontSize = ref(0);
 const testColorFontSize = ref(0);
 const codeFontSize = computed(() =>
-  tailwindEnabled.value ? 1 : testColorFontSize.value / baseFontSize.value
+  tailwindEnabled.value ? 1 : testColorFontSize.value / baseFontSize.value,
 );
 
 const longestKeyLength = computed(() =>
-  Math.ceil((longestText.value.key + 1) * codeFontSize.value)
+  Math.ceil((longestText.value.key + 1) * codeFontSize.value),
 );
 const longestColorLength = computed(() =>
-  Math.ceil(longestText.value.color * codeFontSize.value)
+  Math.ceil(longestText.value.color * codeFontSize.value),
 );
 
 const getTailwindColors = () => {
@@ -72,10 +75,10 @@ onMounted(() => {
   const root = document.querySelector(":root");
   if (!root) return;
   baseFontSize.value = Number.parseFloat(
-    getComputedStyle(root).fontSize.replace(/px$/, "")
+    getComputedStyle(root).fontSize.replace(/px$/, ""),
   );
   testColorFontSize.value = Number.parseFloat(
-    getComputedStyle(testColorElement.value).fontSize.replace(/px$/, "")
+    getComputedStyle(testColorElement.value).fontSize.replace(/px$/, ""),
   );
 
   const twc = getTailwindColors();

@@ -97,7 +97,7 @@ export default defineConfig(async ({ mode }) => {
       __VUE_OPTIONS_API__: false,
       "import.meta.vitest": "undefined",
       __PLAYGROUND_VUE_COVERAGE_EXISTS__: fs.existsSync(
-        resolve("./public/coverage/index.html")
+        resolve("./public/coverage/index.html"),
       ),
     },
 

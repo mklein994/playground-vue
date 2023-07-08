@@ -17,7 +17,7 @@ watchEffect(
       return props.success ? console.log("success!") : console.warn("fail!");
     }
   },
-  { flush: "sync" }
+  { flush: "sync" },
 );
 
 watchEffect(() => console.log(result.value));

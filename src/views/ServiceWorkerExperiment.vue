@@ -4,13 +4,13 @@ import { onBeforeMount, onUnmounted, ref } from "vue";
 const worker = ref<ServiceWorker | null | undefined>();
 const workerStatus = ref("");
 const workerUrl = ref(
-  new URL("../workers/my-first-service-worker.ts", import.meta.url)
+  new URL("../workers/my-first-service-worker.ts", import.meta.url),
 );
 
 const registerServiceWorker = async () => {
   try {
     const registration = await navigator.serviceWorker.register(
-      workerUrl.value
+      workerUrl.value,
     );
 
     if (registration.installing) {
@@ -35,7 +35,7 @@ const registerServiceWorker = async () => {
     if (err instanceof Error) {
       throw new Error(
         "Something happened while registering the service worker:",
-        { cause: err }
+        { cause: err },
       );
     }
   }
@@ -43,7 +43,7 @@ const registerServiceWorker = async () => {
 
 const removeServiceWorker = async () => {
   const registration = await navigator.serviceWorker.getRegistration(
-    workerUrl.value
+    workerUrl.value,
   );
   if (registration) {
     await registration.unregister();
@@ -61,7 +61,7 @@ const unregisterServiceWorker = async () => {
 
 onBeforeMount(async () => {
   const registration = await navigator.serviceWorker.getRegistration(
-    workerUrl.value
+    workerUrl.value,
   );
   worker.value =
     registration?.installing ?? registration?.waiting ?? registration?.active;

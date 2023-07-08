@@ -11,7 +11,7 @@ let age = 28;
 function myTag(
   strings: TemplateStringsArray,
   personExp: string,
-  ageExp: number
+  ageExp: number,
 ) {
   let str0 = strings[0]; // "That "
   let str1 = strings[1]; // " is a "

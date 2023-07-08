@@ -30,8 +30,8 @@ const iconQuery = ref("");
 
 const filteredIcons = computed(() =>
   icons.filter((icon) =>
-    new RegExp(iconQuery.value, "i").test(icon.name.wordCase)
-  )
+    new RegExp(iconQuery.value, "i").test(icon.name.wordCase),
+  ),
 );
 
 // If we used v-model instead of @input, it breaks on
