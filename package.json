@@ -22,6 +22,7 @@
     "coverage": "vitest run --coverage"
   },
   "packageManager": "pnpm@8.6.6",
+  "type": "module",
   "dependencies": {
     "@sentry/vue": "^7.57.0",
     "@sentry/wasm": "^7.57.0",
