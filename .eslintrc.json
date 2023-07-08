@@ -48,5 +48,13 @@
     "vue/component-api-style": ["error", ["script-setup"]],
     "vue/define-macros-order": "warn",
     "tsdoc/syntax": "warn"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.{,c,m}js"],
+      "rules": {
+        "tsdoc/syntax": "off"
+      }
+    }
+  ]
 }
