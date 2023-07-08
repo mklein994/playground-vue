@@ -3,12 +3,15 @@ import * as Plot from "@observablehq/plot";
 import { h, type PropType, withDirectives } from "vue";
 
 function PlotGraph(props: { options: PlotOptions }) {
+  const replace = (el: HTMLDivElement) => {
+    const plot = Plot.plot(props.options);
+    return el.firstChild ? el.firstChild.replaceWith(plot) : el.append(plot);
+  };
   return withDirectives(h("div"), [
     [
       {
-        mounted(el: HTMLDivElement) {
-          el.append(Plot.plot(props.options));
-        },
+        mounted: replace,
+        updated: replace,
       },
     ],
   ]);
