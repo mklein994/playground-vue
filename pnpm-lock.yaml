@@ -24,7 +24,7 @@ dependencies:
 optionalDependencies:
   '@sentry/vite-plugin':
     specifier: ^2.3.0
-    version: 2.3.0
+    version: 2.4.0
 
 devDependencies:
   '@heroicons/vue':
@@ -34,8 +34,8 @@ devDependencies:
     specifier: ^2.1.2
     version: 2.1.2(highlight.js@11.8.0)(vue@3.3.4)
   '@observablehq/plot':
-    specifier: ^0.6.8
-    version: 0.6.8
+    specifier: ^0.6.9
+    version: 0.6.9
   '@tailwindcss/forms':
     specifier: ^0.5.3
     version: 0.5.3(tailwindcss@3.3.2)
@@ -508,8 +508,8 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@observablehq/plot@0.6.8:
-    resolution: {integrity: sha512-P8+ThM1fF5TyXov5fgDBy877N38WiJpFDwuqjXKK0ln80HC4x8hSuRCLaB+JjpKjQm7ERHbgvVldws7YwWC9Qw==}
+  /@observablehq/plot@0.6.9:
+    resolution: {integrity: sha512-vwV6bzQsGjv2XrPEpc3Voixcz2e5EVvCSzzcs/uW9KXO5ZM8GdMVXtNTaRwYXUOk98nbiYFCFwzMaIyRjrt9IA==}
     engines: {node: '>=12'}
     dependencies:
       d3: 7.8.5
@@ -556,13 +556,14 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@sentry/bundler-plugin-core@2.3.0:
-    resolution: {integrity: sha512-PiX3yJ8UFKBIPRfhytweYjVdGfcruYJYdwSlbwFNe28fSMTKYPAF9/IqAOav9G8izlICnJm7ROyXlFlfMw0gRA==}
-    engines: {node: '>= 10'}
+  /@sentry/bundler-plugin-core@2.4.0:
+    resolution: {integrity: sha512-bcDNLSce34kncvrYHgl5+edzIF8Dru5f6+gpkK2Sm/RBg/4yitCrVkzftTVwIsxZqJf0pz/CqCeMAIadEtx8JQ==}
+    engines: {node: '>= 14'}
     dependencies:
-      '@sentry/cli': 2.19.1
+      '@sentry/cli': 2.19.4
       '@sentry/node': 7.53.1
       '@sentry/utils': 7.53.1
+      dotenv: 16.3.1
       find-up: 5.0.0
       glob: 9.3.2
       magic-string: 0.27.0
@@ -573,14 +574,14 @@ packages:
     dev: false
     optional: true
 
-  /@sentry/cli@2.19.1:
-    resolution: {integrity: sha512-7RVwOUwVoOplsG1Jqo8YCke2BEQpGU+AvXAhl1HP6S4qB4mFat6Asr9EhvapPZvufpC85RvLt22h3q0yakRgaA==}
+  /@sentry/cli@2.19.4:
+    resolution: {integrity: sha512-wsSr2O/GVgr/i+DYtie+DNhODyI+HL7F5/0t1HwWMjHJWm4+5XTEauznYgbh2mewkzfUk9+t0CPecA82lEgspg==}
     engines: {node: '>= 10'}
     hasBin: true
     requiresBuild: true
     dependencies:
       https-proxy-agent: 5.0.1
-      node-fetch: 2.6.11
+      node-fetch: 2.6.12
       progress: 2.0.3
       proxy-from-env: 1.1.0
       which: 2.0.2
@@ -663,12 +664,12 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@sentry/vite-plugin@2.3.0:
-    resolution: {integrity: sha512-TUKj29cLT0RLUKg74GyP4YoAalvkYrVo9/7zW+L+gbgR/7sh+9iNBjn8IZbEuMwot+A7tG+2NBGLDVXvGrwIKA==}
-    engines: {node: '>= 10'}
+  /@sentry/vite-plugin@2.4.0:
+    resolution: {integrity: sha512-j2MXX09zhZpw9/vNzYd4hDv74+YWMWdXMLSvces6+8HaQdNe9yoOq0ItLIM5PY8sP2sCAm1afTKZYxRqJk6wIw==}
+    engines: {node: '>= 14'}
     requiresBuild: true
     dependencies:
-      '@sentry/bundler-plugin-core': 2.3.0
+      '@sentry/bundler-plugin-core': 2.4.0
       unplugin: 1.0.1
     transitivePeerDependencies:
       - encoding
@@ -1876,6 +1877,12 @@ packages:
       esutils: 2.0.3
     dev: true
 
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+    engines: {node: '>=12'}
+    dev: false
+    optional: true
+
   /editorconfig@0.15.3:
     resolution: {integrity: sha512-M9wIMFx96vq0R4F+gRpY3o2exzb8hEj/n9S8unZtHSvYjibBp/iMufSzvmOcV/laG0ZtuTVGtiJggPOSW2r93g==}
     hasBin: true
@@ -2231,7 +2238,7 @@ packages:
       fs.realpath: 1.0.0
       minimatch: 7.4.6
       minipass: 4.2.8
-      path-scurry: 1.9.2
+      path-scurry: 1.10.1
     dev: false
     optional: true
 
@@ -2522,6 +2529,12 @@ packages:
       get-func-name: 2.0.0
     dev: true
 
+  /lru-cache@10.0.0:
+    resolution: {integrity: sha512-svTf/fzsKHffP42sujkO/Rjs37BCIsQVRCeNYIm9WN8rgT7ffoUnRtZCqU+6BqcSBdv8gwJeTz8knJpgACeQMw==}
+    engines: {node: 14 || >=16.14}
+    dev: false
+    optional: true
+
   /lru-cache@4.1.5:
     resolution: {integrity: sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==}
     dependencies:
@@ -2535,12 +2548,6 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
-
-  /lru-cache@9.1.2:
-    resolution: {integrity: sha512-ERJq3FOzJTxBbFjZ7iDs+NiK4VI9Wz+RdrrAB8dio1oV+YvdPzUEE4QNiT2VD51DkIbCYRUUzCRkssXCHqSnKQ==}
-    engines: {node: 14 || >=16.14}
-    dev: false
-    optional: true
 
   /lru_map@0.3.3:
     resolution: {integrity: sha512-Pn9cox5CsMYngeDbmChANltQl+5pi6XmTrraMSzhPmMBbmgcxmqWry0U3PGapCU1yB4/LqCcom7qhHZiF/jGfQ==}
@@ -2627,8 +2634,8 @@ packages:
     dev: false
     optional: true
 
-  /minipass@6.0.2:
-    resolution: {integrity: sha512-MzWSV5nYVT7mVyWCwn2o7JH13w2TBRmmSqSRCKzTw+lmft9X4z+3wjvs06Tzijo5z4W/kahUCDpRXTF+ZrmF/w==}
+  /minipass@7.0.1:
+    resolution: {integrity: sha512-NQ8MCKimInjVlaIqx51RKJJB7mINVkLTJbsZKmto4UAAOC/CWXES8PGaOgoBZyqoUsUA/U3DToGK7GJkkHbjJw==}
     engines: {node: '>=16 || 14 >=14.17'}
     dev: false
     optional: true
@@ -2679,8 +2686,8 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /node-fetch@2.6.11:
-    resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==}
+  /node-fetch@2.6.12:
+    resolution: {integrity: sha512-C/fGU2E8ToujUivIO0H+tpQ6HWo4eEmchoPIoXtxCrVghxdKq+QOHqEZW7tuP3KlV3bC8FRMO5nMCC7Zm1VP6g==}
     engines: {node: 4.x || >=6.0.0}
     peerDependencies:
       encoding: ^0.1.0
@@ -2791,12 +2798,12 @@ packages:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
     dev: true
 
-  /path-scurry@1.9.2:
-    resolution: {integrity: sha512-qSDLy2aGFPm8i4rsbHd4MNyTcrzHFsLQykrtbuGRknZZCBBVXSv2tSCDN2Cg6Rt/GFRw8GoW9y9Ecw5rIPG1sg==}
+  /path-scurry@1.10.1:
+    resolution: {integrity: sha512-MkhCqzzBEpPvxxQ71Md0b1Kk51W01lrYvlMzSUaIzNsODdd7mqhiimSZlr+VegAz5Z6Vzt9Xg2ttE//XBhH3EQ==}
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
-      lru-cache: 9.1.2
-      minipass: 6.0.2
+      lru-cache: 10.0.0
+      minipass: 7.0.1
     dev: false
     optional: true
 
