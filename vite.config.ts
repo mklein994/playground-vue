@@ -1,6 +1,5 @@
 /// <reference types="vitest" />
 
-import { sentryVitePlugin } from "@sentry/vite-plugin";
 import vue from "@vitejs/plugin-vue";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
@@ -12,12 +11,13 @@ import {
 } from "vite";
 import { configDefaults } from "vitest/config";
 
+import trySentryVitePlugin from "./config/vite-plugin-sentry";
 import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
 
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(async ({ mode }) => {
   const cwd = process.cwd();
   const env = loadEnv(mode, cwd, "BUILDTIME_");
 
@@ -119,21 +119,7 @@ export default defineConfig(({ mode }) => {
 
       tailwindPlugin(),
 
-      process.env.VITE_SENTRY_ENABLED
-        ? sentryVitePlugin({
-            org: process.env.SENTRY_ORG,
-            project: process.env.SENTRY_PROJECT,
-            authToken: process.env.SENTRY_AUTH_TOKEN,
-            release: {
-              deploy: {
-                env: process.env.VITE_SENTRY_ENVIRONMENT ?? "development",
-              },
-              setCommits: {
-                auto: true,
-              },
-            },
-          })
-        : false,
+      trySentryVitePlugin(),
     ],
   };
 });
