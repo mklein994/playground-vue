@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type KeyItemWithNulls } from "@/types/TruthTable";
+import type { KeyItemWithNulls } from "@/types/TruthTable.d.ts";
 
 const props = defineProps<{
   keyValue: KeyItemWithNulls[];
