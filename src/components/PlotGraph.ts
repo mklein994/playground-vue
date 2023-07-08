@@ -1,8 +1,14 @@
 import type { PlotOptions } from "@observablehq/plot";
 import * as Plot from "@observablehq/plot";
-import { h, type PropType, withDirectives } from "vue";
+import type { AllowedComponentProps, FunctionalComponent, PropType } from "vue";
+import { h, withDirectives } from "vue";
 
-function PlotGraph(props: { options: PlotOptions }) {
+// HACK: <PlotGraph class="foo" /> throws an error, so add
+// "AllowedComponentProps" to the list to work around
+// that.
+const PlotGraph: FunctionalComponent<
+  AllowedComponentProps & { options: PlotOptions }
+> = (props) => {
   const replace = (el: HTMLDivElement) => {
     const plot = Plot.plot(props.options);
     return el.firstChild ? el.firstChild.replaceWith(plot) : el.append(plot);
@@ -15,7 +21,7 @@ function PlotGraph(props: { options: PlotOptions }) {
       },
     ],
   ]);
-}
+};
 
 PlotGraph.props = {
   options: {
