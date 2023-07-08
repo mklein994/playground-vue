@@ -20,6 +20,9 @@ dependencies:
   vue-router:
     specifier: ^4.2.2
     version: 4.2.2(vue@3.3.4)
+  wavesurfer.js:
+    specifier: 7.0.0-beta.15
+    version: 7.0.0-beta.15
 
 optionalDependencies:
   '@sentry/vite-plugin':
@@ -3553,6 +3556,10 @@ packages:
       '@vue/runtime-dom': 3.3.4
       '@vue/server-renderer': 3.3.4(vue@3.3.4)
       '@vue/shared': 3.3.4
+
+  /wavesurfer.js@7.0.0-beta.15:
+    resolution: {integrity: sha512-VKoz4NaThCQLgPdyfZzOGBbWfQpUJ7Q344nMJY1RfKqc7QCk21f/UxE7/NGbDd6fXPEcIclYvbnj3R/Xia2lvg==}
+    dev: false
 
   /webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}

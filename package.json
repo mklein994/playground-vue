@@ -27,7 +27,8 @@
     "@sentry/wasm": "^7.56.0",
     "rrweb": "2.0.0-alpha.4",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.2"
+    "vue-router": "^4.2.2",
+    "wavesurfer.js": "7.0.0-beta.15"
   },
   "devDependencies": {
     "@heroicons/vue": "^2.0.18",
