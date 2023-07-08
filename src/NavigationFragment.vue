@@ -37,7 +37,7 @@ const menuPosition = ref("bottom-right");
 const menuPositionClasses = computed(() => {
   const position = menuPositions.get(menuPosition.value);
   if (!position) {
-    throw new Error(`navigation: unknown position: ${position}`);
+    throw new Error(`navigation: unknown position: ${menuPosition.value}`);
   }
 
   return {
