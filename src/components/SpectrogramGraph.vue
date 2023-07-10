@@ -99,7 +99,6 @@ watch(
     <div ref="waveBox" class="wave"></div>
     <div ref="spectrogramBox" class="spectrogram"></div>
     <span v-if="loading">Loading&hellip;</span>
-    <pre>{{ JSON.stringify(wave?.options) }}</pre>
   </div>
 </template>
 
