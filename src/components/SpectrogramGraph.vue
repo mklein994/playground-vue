@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { nextTick, onMounted, ref, watch } from "vue";
 import { WaveSurfer, type WaveSurferOptions } from "wavesurfer.js";
-import { SpectrogramPlugin } from "wavesurfer.js/dist/plugins/spectrogram";
+import {
+  SpectrogramPlugin,
+  type SpectrogramPluginOptions,
+} from "wavesurfer.js/dist/plugins/spectrogram";
 
 import { useColorMap } from "@/use/colorMap";
 
 const props = defineProps<{
   src: string;
+  vocalRange?: boolean;
 }>();
 
 const { colors } = useColorMap();
@@ -29,6 +33,21 @@ const getOptions = (): WaveSurferOptions => {
   // const freq = 2 ** 14;
   // const freq = 2 ** 15;
 
+  const spectrogramOptions: SpectrogramPluginOptions = {
+    container: spectrogramBox.value,
+    windowFunc: "hann",
+    fftSamples: freq,
+    colorMap: colors,
+    labels: true,
+    // noverlap: (2 ** 13) * 0.875,
+    // noverlap: freq * 0.875,
+  };
+
+  if (props.vocalRange) {
+    spectrogramOptions.frequencyMin = 40;
+    spectrogramOptions.frequencyMax = 1.5 * 1000;
+  }
+
   return {
     container: waveBox.value,
     url: props.src,
@@ -40,31 +59,27 @@ const getOptions = (): WaveSurferOptions => {
     // minPxPerSec: 100,
     interact: false,
 
-    plugins: [
-      SpectrogramPlugin.create({
-        container: spectrogramBox.value,
-        windowFunc: "hann",
-        fftSamples: freq,
-        colorMap: colors,
-        labels: true,
-        frequencyMin: 40,
-        frequencyMax: 1.5 * 1000,
-        // noverlap: (2 ** 13) * 0.875,
-        // noverlap: freq * 0.875,
-      }),
-    ],
+    plugins: [SpectrogramPlugin.create(spectrogramOptions)],
   };
 };
 
-onMounted(async () => {
-  await nextTick();
+const setupWaveSurfer = () => {
   if (!waveBox.value) {
     throw new Error("missing wave surfer refs");
   }
 
+  if (wave.value) {
+    wave.value.destroy();
+  }
+
   wave.value = WaveSurfer.create(getOptions());
   wave.value.getMediaElement().controls = true;
-  audioBox.value?.append(wave.value.getMediaElement());
+  audioBox.value?.replaceChildren(wave.value.getMediaElement());
+};
+
+onMounted(async () => {
+  await nextTick();
+  setupWaveSurfer();
 });
 
 watch(
@@ -90,6 +105,11 @@ watch(
       loading.value = false;
     }
   },
+);
+
+watch(
+  () => props.vocalRange,
+  () => setupWaveSurfer(),
 );
 </script>
 

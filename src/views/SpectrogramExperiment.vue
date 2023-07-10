@@ -8,15 +8,25 @@ import { toColor, useColorMap } from "@/use/colorMap";
 const { colors } = useColorMap();
 
 const audioSource = ref<string>();
+const vocalRange = ref(false);
 </script>
 
 <template>
   <div class="spectrogram-experiment">
     <AudioPicker v-model="audioSource" />
 
+    <div class="options">
+      <label for="vocal-range">Limit to vocal range</label>
+      <input id="vocal-range" v-model="vocalRange" type="checkbox" />
+    </div>
+
     <div class="spectrogram-wrapper">
       <template v-if="audioSource">
-        <SpectrogramGraph :src="audioSource" class="spectrogram" />
+        <SpectrogramGraph
+          :src="audioSource"
+          :vocal-range="vocalRange"
+          class="spectrogram"
+        />
       </template>
     </div>
   </div>
