@@ -4,7 +4,7 @@ import { WaveSurfer, type WaveSurferOptions } from "wavesurfer.js";
 import {
   SpectrogramPlugin,
   type SpectrogramPluginOptions,
-} from "wavesurfer.js/dist/plugins/spectrogram";
+} from "wavesurfer.js/dist/plugins/spectrogram.js";
 
 import { useColorMap } from "@/use/colorMap";
 
