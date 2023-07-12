@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { nextTick, onMounted, ref, watch } from "vue";
-import { WaveSurfer, type WaveSurferOptions } from "wavesurfer.js";
-import {
-  SpectrogramPlugin,
-  type SpectrogramPluginOptions,
-} from "wavesurfer.js/dist/plugins/spectrogram.js";
+import type { WaveSurferOptions } from "wavesurfer.js";
+import WaveSurfer from "wavesurfer.js";
+import type { SpectrogramPluginOptions } from "wavesurfer.js/dist/plugins/spectrogram.js";
+import SpectrogramPlugin from "wavesurfer.js/dist/plugins/spectrogram.js";
 
 import { useColorMap } from "@/use/colorMap";
 
