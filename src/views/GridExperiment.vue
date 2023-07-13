@@ -52,8 +52,8 @@ const itemStyle = ref("outline: 1px solid blue");
 <style scoped>
 .input-group {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 0.5em;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .grid-component {

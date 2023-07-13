@@ -91,9 +91,9 @@ function handlePictureUpload(event: Event) {
 <style scoped>
 .grid {
   display: grid;
-  grid: auto-flow / repeat(4, auto);
   justify-content: start;
-  gap: 1em;
   margin: 1em;
+  gap: 1em;
+  grid: auto-flow / repeat(4, auto);
 }
 </style>

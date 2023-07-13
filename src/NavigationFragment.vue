@@ -178,33 +178,33 @@ const toggleTailwind = async (event: Event) => {
 <style scoped>
 .background {
   position: fixed;
-  inset: 0;
-  background-color: rgb(0 0 0 / 0.25);
   z-index: 10;
+  background-color: rgb(0 0 0 / 0.25);
+  inset: 0;
 }
 
 .home {
-  box-sizing: border-box; /* Make max-height work without Tailwind */
   position: fixed;
+  z-index: 11;
+  display: flex;
   /* Allow the menu tk resize based on the current
    * viewport (minus UA chrome)
    */
   max-height: calc(100vh - (100vh - 100%));
-  background-color: #f9fafbee;
-  display: flex;
+  box-sizing: border-box; /* Make max-height work without Tailwind */
   flex-flow: column;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
   justify-content: space-between;
-  z-index: 11;
+  padding: 1rem 1.5rem;
   border: 1px solid theme("colors.gray.300");
+  background-color: #f9fafbee;
+  gap: 1rem;
   --border-radius: 0.5rem;
 }
 
 @supports not (inset: 0) {
   .home.bottom.right {
-    bottom: 0;
     right: 0;
+    bottom: 0;
   }
 }
 
@@ -239,27 +239,27 @@ const toggleTailwind = async (event: Event) => {
 }
 
 .top.left {
-  border-end-end-radius: var(--border-radius);
   border-block-start: none;
+  border-end-end-radius: var(--border-radius);
   border-inline-start: none;
 }
 
 .top.right {
-  border-end-start-radius: var(--border-radius);
   border-block-start: none;
+  border-end-start-radius: var(--border-radius);
   border-inline-end: none;
 }
 
 .bottom.left {
-  border-start-end-radius: var(--border-radius);
   border-block-end: none;
   border-inline-start: none;
+  border-start-end-radius: var(--border-radius);
 }
 
 .bottom.right {
-  border-start-start-radius: var(--border-radius);
   border-block-end: none;
   border-inline-end: none;
+  border-start-start-radius: var(--border-radius);
 }
 
 .menu-open.bottom {
@@ -281,24 +281,24 @@ const toggleTailwind = async (event: Event) => {
 
 .menu-positions {
   display: grid;
-  grid-template-columns: repeat(v-bind("expanded ? 2 : 1"), 1fr);
   gap: 0.5em;
+  grid-template-columns: repeat(v-bind("expanded ? 2 : 1"), 1fr);
 }
 
 .menu-position {
-  flex: 1;
   display: flex;
+  flex: 1;
   align-items: center;
   column-gap: 0.5em;
 }
 
 .nav-button-wrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 1em;
+  justify-content: space-between;
 
   cursor: pointer;
+  gap: 1em;
 }
 
 .left .nav-button-wrapper {
@@ -307,8 +307,8 @@ const toggleTailwind = async (event: Event) => {
 
 .route-info {
   flex: 1;
-  text-align: center;
   margin-block: -0.25em;
+  text-align: center;
 }
 
 .links {
@@ -322,8 +322,8 @@ const toggleTailwind = async (event: Event) => {
 }
 
 .links-list {
-  margin: 0 0 0 1em;
   padding: 0;
+  margin: 0 0 0 1em;
   list-style-type: circle;
 }
 
@@ -332,21 +332,21 @@ const toggleTailwind = async (event: Event) => {
 }
 
 .active {
-  list-style-type: disc;
   color: green;
+  list-style-type: disc;
 }
 
 .icon {
-  height: 1.5rem;
   width: 1.5rem;
+  height: 1.5rem;
 }
 
 .enable-tailwind {
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  justify-content: start;
   align-items: center;
+  justify-content: start;
   column-gap: 0.5em;
+  grid-template-columns: repeat(2, auto);
 }
 
 .tailwind-checkbox:disabled {
@@ -359,13 +359,12 @@ const toggleTailwind = async (event: Event) => {
 }
 
 .reset-message {
-  grid-column-end: -1;
+  color: gray;
 
   /* @apply tw-text-sm; */
   font-size: 0.875rem;
+  grid-column-end: -1;
   line-height: 1.25rem;
-
-  color: gray;
 }
 
 .commit-hash {

@@ -106,10 +106,10 @@ onMounted(() => refreshTable());
 
 .truth-table-inputs {
   display: grid;
-  grid: auto-flow / 1fr 1fr;
-  gap: 1rem;
   max-width: max-content;
   padding: 1rem;
+  gap: 1rem;
+  grid: auto-flow / 1fr 1fr;
 }
 
 .code-input-wrapper {

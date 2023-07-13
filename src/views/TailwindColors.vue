@@ -135,17 +135,16 @@ onMounted(() => {
     minmax(5em, min-content);
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, var(--grid));
   align-items: start;
   justify-content: space-around;
   gap: clamp(0.5em, 1vh, 1em);
+  grid-template-columns: repeat(auto-fit, var(--grid));
 }
 
 .card {
-  grid-column-end: span 3;
-
   display: grid;
   column-gap: 1em;
+  grid-column-end: span 3;
   white-space: nowrap;
 }
 
@@ -157,8 +156,8 @@ onMounted(() => {
 
 .color-heading {
   grid-column-end: -1;
-  text-align: center;
   padding-block-end: clamp(0.125em, 0.5vh, 0.5em);
+  text-align: center;
   text-decoration: underline;
 }
 

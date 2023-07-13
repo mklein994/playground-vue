@@ -48,21 +48,21 @@ const ratingName = computed(() => ratingList[rating.value]);
 }
 
 .rating {
-  border: 1px solid black;
   width: 15rem;
+  border: 1px solid black;
 }
 
 .rating-list {
   display: flex;
+  width: 15em;
   flex-direction: column;
   justify-content: space-between;
-  writing-mode: vertical-lr;
   padding-top: 0.5em;
-  width: 15em;
+  writing-mode: vertical-lr;
 }
 
 .rating-list-option {
-  transform-origin: top center;
   rotate: -60deg;
+  transform-origin: top center;
 }
 </style>

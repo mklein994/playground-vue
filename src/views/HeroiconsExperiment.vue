@@ -78,17 +78,17 @@ const handleQuery = (event: Event) => {
 <style scoped>
 .icon-query {
   display: flex;
-  gap: 0.5em;
   justify-content: center;
+  gap: 0.5em;
 }
 
 .icon-grid {
-  padding: 1rem;
   display: grid;
-  grid-template-columns: repeat(4, auto);
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 1rem;
   gap: 0.125em;
+  grid-template-columns: repeat(4, auto);
 }
 
 .name {

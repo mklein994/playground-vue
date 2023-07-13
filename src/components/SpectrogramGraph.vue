@@ -124,15 +124,15 @@ watch(
 <style scoped>
 .audio-box {
   z-index: 10; /* arbitrary */
-  width: 100%;
   display: grid;
+  width: 100%;
 }
 
 :global(.audio-box > *) {
   display: grid;
-  margin: 0;
-  padding: 0;
   height: min-content;
+  padding: 0;
+  margin: 0;
 }
 
 .spectrogram {

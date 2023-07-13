@@ -116,8 +116,8 @@ const testCode = tests.map((test) => `${test}`);
 
 <style scoped>
 .table-wrapper {
-  margin: 1em;
   overflow: auto;
+  margin: 1em;
 }
 
 .xor-operation {
@@ -126,25 +126,25 @@ const testCode = tests.map((test) => `${test}`);
 }
 
 .cell {
+  border: 1px solid lightgray;
   font-family: monospace;
   font-size: 1rem;
   padding-inline: 0.5em;
-  border: 1px solid lightgray;
 }
 
 .header .cell {
   position: sticky;
-  inset-block-start: 0;
-  border-block-end: 2px solid black;
   background: white;
+  border-block-end: 2px solid black;
+  inset-block-start: 0;
 }
 
 .cell:first-child {
   position: sticky;
-  inset-inline-start: 0;
+  z-index: 1;
   background: white;
   border-inline-end: 2px solid black;
-  z-index: 1;
+  inset-inline-start: 0;
 }
 
 .header .cell:first-child {

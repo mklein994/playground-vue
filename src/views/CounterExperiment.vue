@@ -44,15 +44,15 @@ const fruits = [
 
 <style scoped>
 @counter-style fruit-digits {
-  system: fixed;
-  symbols: 🥇 🥈 🥉;
   suffix: " ";
+  symbols: 🥇 🥈 🥉;
+  system: fixed;
 }
 
 .fruit-list {
-  margin-left: 1rem;
   padding-left: 1rem;
-  list-style: fruit-digits;
+  margin-left: 1rem;
   counter-reset: fruit-digits;
+  list-style: fruit-digits;
 }
 </style>

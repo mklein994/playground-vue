@@ -13,10 +13,10 @@ const routeName = computed(() => route.name ?? "(unknown)");
 
 <style scoped>
 .route-name {
-  margin: 0;
-  border: 1px solid black;
-  padding: 0.125rem 0.25rem;
   display: inline-block;
+  padding: 0.125rem 0.25rem;
+  border: 1px solid black;
+  margin: 0;
   text-transform: capitalize;
 }
 </style>

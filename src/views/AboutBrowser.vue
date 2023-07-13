@@ -42,11 +42,11 @@ onUnmounted(() => {
 <style scoped>
 .about-grid {
   display: grid;
-  grid: auto-flow / auto auto;
-  justify-content: center;
   width: 100%;
-  gap: 0.5em 2em;
+  justify-content: center;
 
   font-family: monospace;
+  gap: 0.5em 2em;
+  grid: auto-flow / auto auto;
 }
 </style>

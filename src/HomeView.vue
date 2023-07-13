@@ -6,11 +6,11 @@
 
 <style scoped>
 .welcome-container {
-  box-sizing: border-box; /* For when no resets are used */
   display: grid;
-  place-items: center;
   height: 100vh; /* assumes <body> has no margin */
+  box-sizing: border-box; /* For when no resets are used */
   padding-bottom: 3.5rem;
+  place-items: center;
 }
 
 .welcome {
@@ -23,13 +23,13 @@
   /* Based on its proportions on super-wide screens. */
   --max-font-size: 40vh;
 
+  font-family: "Andada Pro", serif;
+
   font-size: clamp(
     var(--min-font-size),
     var(--preferred-font-size),
     var(--max-font-size)
   );
-
-  font-family: "Andada Pro", serif;
   text-align: center;
 }
 </style>

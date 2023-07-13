@@ -22,11 +22,11 @@
 }
 
 .none {
-  appearance: none;
-  background: none;
-  margin: 0;
   padding: 0;
   border: 0;
+  margin: 0;
+  appearance: none;
+  background: none;
   outline: 0;
 }
 </style>

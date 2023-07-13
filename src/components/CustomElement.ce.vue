@@ -6,10 +6,10 @@
 
 <style>
 .custom-element {
-  margin: 1em;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  margin: 1em;
   gap: 1em;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .item {

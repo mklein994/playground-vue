@@ -37,7 +37,7 @@ const selectedFruits = ref<string[]>([]);
 
 .checkboxes {
   display: grid;
-  grid: auto / auto 1fr;
   gap: 0.25em 0.125em;
+  grid: auto / auto 1fr;
 }
 </style>

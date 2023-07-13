@@ -126,12 +126,12 @@ onMounted(() => {
 
 <style scoped>
 .accent-color {
-  margin: 1em;
   display: flex;
   flex-wrap: wrap;
-  gap: 1em;
+  margin: 1em;
 
   font-family: system-ui;
+  gap: 1em;
 }
 
 .text,
@@ -149,9 +149,9 @@ onMounted(() => {
 
 .regular-fields {
   display: grid;
+  gap: 0.5em;
   grid: auto-flow / repeat(2, auto);
   justify-items: start;
-  gap: 0.5em;
 }
 
 @supports (accent-color: rebeccapurple) {

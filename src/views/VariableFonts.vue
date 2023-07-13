@@ -164,52 +164,52 @@ const mono = ref(monoOpts.default);
 
 <style scoped>
 .input-group {
-  margin: 1rem;
   display: grid;
-  grid: auto-flow / repeat(3, minmax(auto, 1fr)) repeat(3, auto);
+  margin: 1rem;
   gap: 1rem 0.5rem;
+  grid: auto-flow / repeat(3, minmax(auto, 1fr)) repeat(3, auto);
 }
 
 .input-group button {
-  border: 1px solid lightgray;
   padding: 0.25em 1em;
+  border: 1px solid lightgray;
   border-radius: 0.5em;
 }
 
 .input-group button:disabled {
-  opacity: 0.5;
   background: rgb(0 0 0 / 0.125);
   cursor: auto;
+  opacity: 0.5;
 }
 
 .crsv-group {
-  grid-column: 1 / -1;
-  max-width: max-content;
   display: grid;
-  grid-template-columns: 1fr repeat(3, minmax(0, 1fr));
+  max-width: max-content;
   align-items: center;
   column-gap: 1rem;
+  grid-column: 1 / -1;
+  grid-template-columns: 1fr repeat(3, minmax(0, 1fr));
 }
 
 .crsv-group > * {
   display: flex;
-  column-gap: 0.25rem;
   align-items: center;
+  column-gap: 0.25rem;
 }
 
 .content {
-  font-size: calc(v-bind("fontSize") * 1vw);
   font-family: Recursive, fantasy;
+  font-size: calc(v-bind("fontSize") * 1vw);
   font-variation-settings:
     "slnt" v-bind("slnt"),
     "wght" v-bind("wght"),
     "CASL" v-bind("casl"),
     "CRSV" v-bind("crsv"),
     "MONO" v-bind("mono");
+  hyphens: auto;
 
   overflow-wrap: break-word;
   word-break: break-word;
-  hyphens: auto;
 }
 
 .content :first-child {

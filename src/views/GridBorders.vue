@@ -206,8 +206,8 @@ function handleItemStyleUpdate(
 <style scoped>
 .input-group {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, auto));
   padding: 1em;
+  grid-template-columns: repeat(3, minmax(0, auto));
 }
 
 .wrapper {
@@ -237,9 +237,9 @@ function handleItemStyleUpdate(
 
 .grid {
   display: grid;
+  background-color: var(--border-color);
   grid-template-columns: repeat(var(--column-count), auto);
   row-gap: var(--border-width);
-  background-color: var(--border-color);
 }
 
 .grid .grid-row {
@@ -253,8 +253,8 @@ function handleItemStyleUpdate(
 }
 
 .subgrid .row {
-  grid-column: 1 / -1;
   display: grid;
+  grid-column: 1 / -1;
   grid-template-columns: subgrid;
 }
 
