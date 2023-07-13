@@ -63,7 +63,7 @@ export default defineConfig(async ({ mode }) => {
     },
 
     build: {
-      sourcemap: true,
+      sourcemap: !isReproducible, // sourcemaps change on every build
       rollupOptions: {
         output: {
           ...rollupOutputs,
