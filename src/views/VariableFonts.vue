@@ -199,7 +199,7 @@ const mono = ref(monoOpts.default);
 
 .content {
   font-size: calc(v-bind("fontSize") * 1vw);
-  font-family: Recursive;
+  font-family: Recursive, fantasy;
   font-variation-settings:
     "slnt" v-bind("slnt"),
     "wght" v-bind("wght"),

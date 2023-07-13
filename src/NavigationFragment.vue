@@ -276,9 +276,6 @@ const toggleTailwind = async (event: Event) => {
 
 .menu-open.top {
   --shadow-y: -10px;
-}
-
-.menu-open.top {
   flex-flow: column-reverse;
 }
 
