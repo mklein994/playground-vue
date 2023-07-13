@@ -4,5 +4,6 @@
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "css.customData": ["./.vscode/extra.css-data.json"]
+  "css.customData": ["./.vscode/extra.css-data.json"],
+  "stylelint.validate": ["css", "less", "postcss", "vue"]
 }
