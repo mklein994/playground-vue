@@ -1,0 +1,20 @@
+{
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-tailwindcss",
+    "stylelint-config-recommended-vue"
+  ],
+  "overrides": [
+    {
+      "files": ["*.vue", "*.css"],
+      "rules": {
+        "function-no-unknown": [
+          true,
+          {
+            "ignoreFunctions": ["v-bind", "theme"]
+          }
+        ]
+      }
+    }
+  ]
+}
