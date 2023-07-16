@@ -1,4 +1,6 @@
-export default async () => {
+import type { Plugin } from "vite";
+
+export default async (): Promise<Plugin | false> => {
   if (!process.env.VITE_SENTRY_ENABLED) {
     return false;
   }
