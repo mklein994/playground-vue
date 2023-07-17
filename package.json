@@ -16,7 +16,7 @@
     "lint": "eslint --ext js,cjs,mjs,ts,vue .",
     "lint:style": "stylelint 'src/**/*.{vue,css}'",
     "lint:ci": "eslint --ext js,cjs,mjs,ts,vue --max-warnings 0 . && pnpm lint:style && prettier --check .",
-    "format": "eslint --ext js,cjs,mjs,ts,vue --fix --fix-type layout . && prettier --write .",
+    "format": "eslint --ext js,cjs,mjs,ts,vue --fix --fix-type layout . && pnpm lint:style --fix && prettier --write .",
     "test": "vitest",
     "test:node": "node --test --test-reporter=spec",
     "test:run": "vitest run",
