@@ -9,6 +9,7 @@ import {
   type RecursiveMap,
 } from "@/helpers/dataSet";
 
+// Props make this easier to test
 const props = withDefaults(
   defineProps<{
     source?: string[];
