@@ -3,17 +3,12 @@
 import vue from "@vitejs/plugin-vue";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
-import {
-  type BuildOptions,
-  defineConfig,
-  loadEnv,
-  searchForWorkspaceRoot,
-} from "vite";
+import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
 import { configDefaults } from "vitest/config";
 
+import vitePluginEruda from "./config/vite-plugin-eruda";
 import trySentryVitePlugin from "./config/vite-plugin-sentry";
 import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
-import vitePluginEruda from "./config/vite-plugin-eruda";
 
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
@@ -28,25 +23,6 @@ export default defineConfig(async ({ mode }) => {
     : "./src/fake/sunrise-cli";
   const isReproducible =
     (env.BUILDTIME_REPRODUCIBLE_ENABLED ?? "false") === "true";
-
-  const rollupOutputs: NonNullable<BuildOptions["rollupOptions"]>["output"] =
-    isReproducible
-      ? {
-          // https://rollupjs.org/guide/en/#outputassetfilenames
-          assetFileNames: "assets/[name][extname]",
-
-          // https://rollupjs.org/guide/en/#outputentryfilenames
-          entryFileNames: "assets/[name].js",
-
-          // https://rollupjs.org/guide/en/#outputchunkfilenames
-          chunkFileNames: "assets/[name].js",
-        }
-      : {
-          // Defaults when not set:
-          // assetFileNames: "assets/[name].[hash][extname]",
-          // entryFileNames: "assets/[name].[hash].js",
-          // chunkFileNames: "assets/[name].[hash].js",
-        };
 
   const tailwindPlugin = () =>
     mode === "production"
@@ -67,14 +43,34 @@ export default defineConfig(async ({ mode }) => {
       sourcemap: !isReproducible, // sourcemaps change on every build
       rollupOptions: {
         output: {
-          ...rollupOutputs,
-
           // The Heroicons output can get quite large, so split these up into
           // smaller pieces.
           manualChunks: {
             "heroicons/20-solid": ["@heroicons/vue/20/solid"],
             "heroicons/24-outline": ["@heroicons/vue/24/outline"],
             "heroicons/24-solid": ["@heroicons/vue/24/solid"],
+          },
+
+          // https://rollupjs.org/guide/en/#outputentryfilenames
+          entryFileNames: isReproducible
+            ? "assets/[name].js"
+            : "assets/[name]-[hash].js",
+
+          // https://rollupjs.org/guide/en/#outputchunkfilenames
+          chunkFileNames: isReproducible
+            ? "assets/[name].js"
+            : "assets/[name]-[hash].js",
+
+          // https://rollupjs.org/guide/en/#outputassetfilenames
+          assetFileNames({ name }) {
+            const hash = isReproducible ? "" : "-[hash]";
+            const asset = `[name]${hash}[extname]`;
+
+            if (/\.(?:woff2?|[ot]tf)$/.test(name ?? "")) {
+              return `assets/fonts/${asset}`;
+            }
+
+            return `assets/${asset}`;
           },
         },
       },
