@@ -13,6 +13,7 @@ import { configDefaults } from "vitest/config";
 
 import trySentryVitePlugin from "./config/vite-plugin-sentry";
 import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
+import vitePluginEruda from "./config/vite-plugin-eruda";
 
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
@@ -118,6 +119,8 @@ export default defineConfig(async ({ mode }) => {
       }),
 
       tailwindPlugin(),
+
+      env.BUILDTIME_ERUDA_ENABLED ? vitePluginEruda() : false,
 
       trySentryVitePlugin(),
     ],
