@@ -51,6 +51,7 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-tsdoc": "^0.2.17",
     "eslint-plugin-vue": "^9.15.1",
+    "fast-glob": "^3.3.1",
     "happy-dom": "^10.5.2",
     "highlight.js": "^11.8.0",
     "modern-normalize": "^2.0.0",
