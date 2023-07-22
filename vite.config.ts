@@ -14,7 +14,7 @@ const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }) => {
-  const cwd = process.cwd();
+  const cwd = resolve(".");
   const env = loadEnv(mode, cwd, "BUILDTIME_");
 
   const wasmSupported = (env.BUILDTIME_WASM_SUPPORTED ?? "true") === "true";
