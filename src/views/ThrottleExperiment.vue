@@ -14,7 +14,7 @@ const handleClick = throttle((amount: number) => bump(amount), 500);
 
 <template>
   <div class="throttle-experiment">
-    <button @click="handleClick(3)">Click me</button>
+    <button @click="handleClick(1)">Click me</button>
     <pre>{{ throttled }}</pre>
   </div>
 </template>

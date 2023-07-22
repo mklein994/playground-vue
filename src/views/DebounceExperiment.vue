@@ -14,7 +14,7 @@ const handleClick = debounce((amount: number) => bump(amount), 500);
 
 <template>
   <div class="debounce-experiment">
-    <button @click="handleClick(3)">Click me</button>
+    <button @click="handleClick(1)">Click me</button>
     <pre>{{ debounced }}</pre>
   </div>
 </template>
