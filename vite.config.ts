@@ -102,6 +102,10 @@ export default defineConfig(async ({ mode }) => {
         .map((x) => x.slice(1)),
     },
 
+    worker: {
+      format: "es",
+    },
+
     resolve: {
       alias: {
         "@sunrise-cli": resolve(sunriseRoot),

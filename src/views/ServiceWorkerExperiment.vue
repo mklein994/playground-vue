@@ -4,13 +4,14 @@ import { onBeforeMount, onUnmounted, ref } from "vue";
 const worker = ref<ServiceWorker | null | undefined>();
 const workerStatus = ref("");
 const workerUrl = ref(
-  new URL("../workers/my-first-service-worker.ts", import.meta.url),
+  new URL("../workers/my-first-service-worker", import.meta.url),
 );
 
 const registerServiceWorker = async () => {
   try {
     const registration = await navigator.serviceWorker.register(
       workerUrl.value,
+      { type: "module" },
     );
 
     if (registration.installing) {

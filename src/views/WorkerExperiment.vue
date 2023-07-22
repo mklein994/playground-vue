@@ -3,7 +3,10 @@ import { ref } from "vue";
 
 const worker = new Worker(
   new URL("../workers/my-first-worker", import.meta.url),
-  { name: "MyFirstWorker" },
+  {
+    name: "MyFirstWorker",
+    type: "module",
+  },
 );
 
 const number1 = ref(0);
