@@ -28,7 +28,8 @@
     "PositionOptions": "readonly",
     "GeolocationPosition": "readonly",
     "GeolocationPositionError": "readonly",
-    "__PLAYGROUND_VUE_COVERAGE_EXISTS__": "readonly"
+    "__PLAYGROUND_VUE_COVERAGE_EXISTS__": "readonly",
+    "__PLAYGROUND_VUE_FILES_LIST__": "readonly"
   },
   "rules": {
     "simple-import-sort/imports": "warn",

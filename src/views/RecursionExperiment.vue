@@ -16,7 +16,7 @@ const props = withDefaults(
     search?: string;
   }>(),
   {
-    source: () => Object.keys(import.meta.glob("/src/**")),
+    source: () => __PLAYGROUND_VUE_FILES_LIST__,
     split: (word: string) => word.match(/\/[^/]+/g) ?? [],
     search: "/src/App.vue",
   },

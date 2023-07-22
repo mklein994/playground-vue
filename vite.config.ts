@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 
 import vue from "@vitejs/plugin-vue";
+import fastGlob from "fast-glob";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
 import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
@@ -96,6 +97,9 @@ export default defineConfig(async ({ mode }) => {
       __PLAYGROUND_VUE_COVERAGE_EXISTS__: fs.existsSync(
         resolve("./public/coverage/index.html"),
       ),
+      __PLAYGROUND_VUE_FILES_LIST__: fastGlob
+        .sync("./src/**", { cwd })
+        .map((x) => x.slice(1)),
     },
 
     resolve: {
