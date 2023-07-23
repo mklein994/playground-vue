@@ -8,7 +8,7 @@ export const dataSet = (
 ) => {
   const head = path.shift();
   if (head === undefined) {
-    throw new Error("(dataSet) head is undefined, should be unreachable");
+    return source;
   }
 
   if (path.length === 0) {
@@ -52,7 +52,7 @@ export const dataSetObject = (
 ) => {
   const head = path.shift();
   if (head === undefined) {
-    throw new Error("(dataSetObject) head is undefined, should be unreachable");
+    return source;
   }
 
   if (path.length === 0) {
@@ -135,10 +135,9 @@ if (import.meta.vitest) {
       },
     );
 
-    it("throws when path is empty", () => {
-      expect(() => dataSet(new Map(), [], "")).toThrow(
-        /head is undefined\b.*\bunreachable/,
-      );
+    it("return source when path is empty", () => {
+      const source = new Map();
+      expect(dataSet(source, [], "")).toStrictEqual(source);
     });
   });
 
@@ -215,9 +214,8 @@ if (import.meta.vitest) {
     );
 
     it("throws when path is empty", () => {
-      expect(() => dataSetObject({}, [], "")).toThrow(
-        /head is undefined\b.*\bunreachable/,
-      );
+      const source = {};
+      expect(dataSetObject(source, [], "")).toStrictEqual(source);
     });
   });
 

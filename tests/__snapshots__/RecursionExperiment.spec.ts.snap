@@ -1,17 +1,49 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`RecursionExperiment > renders correctly 1`] = `
-"<div data-v-5216a93f=\\"\\" class=\\"recursion\\"><input data-v-5216a93f=\\"\\" type=\\"text\\"><output data-v-5216a93f=\\"\\">store.produce.apple</output><output data-v-5216a93f=\\"\\">store.produce.apple</output></div>
-<ul data-v-5216a93f=\\"\\">
-  <li data-v-5216a93f=\\"\\">store.produce.apple</li>
-  <li data-v-5216a93f=\\"\\">store.produce.banana</li>
-  <li data-v-5216a93f=\\"\\">store.produce.cherry</li>
-  <li data-v-5216a93f=\\"\\">person.male.dad</li>
-  <li data-v-5216a93f=\\"\\">person.male.son</li>
-  <li data-v-5216a93f=\\"\\">person.female.mom</li>
-  <li data-v-5216a93f=\\"\\">person.female.daughter</li>
+exports[`RecursionComponent > renders correctly (map) 1`] = `
+"<div data-v-5572d211=\\"\\" class=\\"recursion\\"><input data-v-5572d211=\\"\\" type=\\"text\\"><output data-v-5572d211=\\"\\">store.produce.apple</output></div>
+<ul data-v-5572d211=\\"\\">
+  <li data-v-5572d211=\\"\\">store.produce.apple</li>
+  <li data-v-5572d211=\\"\\">store.produce.banana</li>
+  <li data-v-5572d211=\\"\\">store.produce.cherry</li>
+  <li data-v-5572d211=\\"\\">person.male.dad</li>
+  <li data-v-5572d211=\\"\\">person.male.son</li>
+  <li data-v-5572d211=\\"\\">person.female.mom</li>
+  <li data-v-5572d211=\\"\\">person.female.daughter</li>
 </ul>
-<pre data-v-5216a93f=\\"\\">{
+<pre data-v-5572d211=\\"\\">{
+  \\"store\\": {
+    \\"produce\\": {
+      \\"apple\\": \\"store.produce.apple\\",
+      \\"banana\\": \\"store.produce.banana\\",
+      \\"cherry\\": \\"store.produce.cherry\\"
+    }
+  },
+  \\"person\\": {
+    \\"male\\": {
+      \\"dad\\": \\"person.male.dad\\",
+      \\"son\\": \\"person.male.son\\"
+    },
+    \\"female\\": {
+      \\"mom\\": \\"person.female.mom\\",
+      \\"daughter\\": \\"person.female.daughter\\"
+    }
+  }
+}</pre>"
+`;
+
+exports[`RecursionComponent > renders correctly (object) 1`] = `
+"<div data-v-5572d211=\\"\\" class=\\"recursion\\"><input data-v-5572d211=\\"\\" type=\\"text\\"><output data-v-5572d211=\\"\\">store.produce.apple</output></div>
+<ul data-v-5572d211=\\"\\">
+  <li data-v-5572d211=\\"\\">store.produce.apple</li>
+  <li data-v-5572d211=\\"\\">store.produce.banana</li>
+  <li data-v-5572d211=\\"\\">store.produce.cherry</li>
+  <li data-v-5572d211=\\"\\">person.male.dad</li>
+  <li data-v-5572d211=\\"\\">person.male.son</li>
+  <li data-v-5572d211=\\"\\">person.female.mom</li>
+  <li data-v-5572d211=\\"\\">person.female.daughter</li>
+</ul>
+<pre data-v-5572d211=\\"\\">{
   \\"Map(2)\\": {
     \\"store =>\\": {
       \\"Map(1)\\": {
@@ -39,25 +71,6 @@ exports[`RecursionExperiment > renders correctly 1`] = `
           }
         }
       }
-    }
-  }
-}</pre>
-<pre data-v-5216a93f=\\"\\">{
-  \\"store\\": {
-    \\"produce\\": {
-      \\"apple\\": \\"store.produce.apple\\",
-      \\"banana\\": \\"store.produce.banana\\",
-      \\"cherry\\": \\"store.produce.cherry\\"
-    }
-  },
-  \\"person\\": {
-    \\"male\\": {
-      \\"dad\\": \\"person.male.dad\\",
-      \\"son\\": \\"person.male.son\\"
-    },
-    \\"female\\": {
-      \\"mom\\": \\"person.female.mom\\",
-      \\"daughter\\": \\"person.female.daughter\\"
     }
   }
 }</pre>"
