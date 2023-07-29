@@ -5,7 +5,7 @@ import {
   ChevronRightIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/solid";
-import { computed, ref } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { injectStrict, tailwindEnabledKey } from "./injectionKeys";
@@ -32,7 +32,9 @@ const menuPositions = new Map<string, { top: boolean; left: boolean }>([
   ["bottom-right", { top: false, left: false }],
 ]);
 
-const menuPosition = ref("bottom-right");
+const menuPosition = ref(
+  localStorage.getItem("playground-vue-menu-position") ?? "bottom-right",
+);
 
 const menuPositionClasses = computed(() => {
   const position = menuPositions.get(menuPosition.value);
@@ -46,6 +48,10 @@ const menuPositionClasses = computed(() => {
     right: !position.left,
     bottom: !position.top,
   };
+});
+
+watchEffect(() => {
+  localStorage.setItem("playground-vue-menu-position", menuPosition.value);
 });
 
 const expanded = ref(true);
