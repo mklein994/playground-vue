@@ -26,12 +26,12 @@
   "packageManager": "pnpm@8.6.7",
   "type": "module",
   "dependencies": {
-    "@sentry/vue": "^7.60.0",
-    "@sentry/wasm": "^7.60.0",
+    "@sentry/vue": "^7.60.1",
+    "@sentry/wasm": "^7.60.1",
     "rrweb": "2.0.0-alpha.4",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
-    "wavesurfer.js": "7.0.5"
+    "wavesurfer.js": "7.1.1"
   },
   "devDependencies": {
     "@heroicons/vue": "^2.0.18",
@@ -39,19 +39,19 @@
     "@observablehq/plot": "^0.6.9",
     "@tailwindcss/forms": "^0.5.4",
     "@types/d3": "^7.4.0",
-    "@types/node": "^20.4.4",
-    "@typescript-eslint/eslint-plugin": "^6.1.0",
-    "@typescript-eslint/parser": "^6.1.0",
+    "@types/node": "^20.4.5",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitest/coverage-v8": "^0.33.0",
     "@vue/test-utils": "^2.4.1",
     "autoprefixer": "^10.4.14",
     "d3": "^7.8.5",
-    "eslint": "^8.45.0",
-    "eslint-config-prettier": "^8.8.0",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^8.9.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-tsdoc": "^0.2.17",
-    "eslint-plugin-vue": "^9.15.1",
+    "eslint-plugin-vue": "^9.16.0",
     "fast-glob": "^3.3.1",
     "happy-dom": "^10.5.2",
     "highlight.js": "^11.8.0",
@@ -69,11 +69,11 @@
     "stylelint-config-tailwindcss": "^0.0.7",
     "tailwindcss": "^3.3.3",
     "typescript": "~5.1.6",
-    "vite": "^4.4.6",
+    "vite": "^4.4.7",
     "vitest": "^0.33.0",
-    "vue-tsc": "~1.8.6"
+    "vue-tsc": "~1.8.8"
   },
   "optionalDependencies": {
-    "@sentry/vite-plugin": "^2.3.0"
+    "@sentry/vite-plugin": "^2.5.0"
   }
 }
