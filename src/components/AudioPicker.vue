@@ -16,6 +16,8 @@ const file = ref<File | null>();
 // though, since this component is where we get the URL
 // from, not the caller. It just makes it simpler to use
 // v-model instead of using a custom event.
+// TODO: See discussion at https://github.com/vuejs/eslint-plugin-vue/pull/2244
+// eslint-disable-next-line vue/no-setup-props-destructure
 const url = ref<string | undefined>(props.modelValue);
 
 const handleFileChange = (event: Event) => {

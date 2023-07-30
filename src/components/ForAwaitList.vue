@@ -33,6 +33,8 @@ const fizzBuzz = async (max: number) => {
   return list;
 };
 
+// TODO: See discussion at https://github.com/vuejs/eslint-plugin-vue/pull/2244
+// eslint-disable-next-line vue/no-setup-props-destructure
 const localMax = ref(props.max);
 
 const list = ref<(string | number)[]>([]);
