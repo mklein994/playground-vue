@@ -1,12 +1,32 @@
-body {
-  margin: 0;
+/*
+The namespace `base` is taken by Tailwind CSS, so prefix our own base with
+"pv-" (playground-vue) so it doesn't clash.
+
+The Tailwind CSS layers are prepended here so they fit correctly if the
+Tailwind stylesheet is enabled.
+*/
+
+@layer base, components, reset, pv-base;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
 }
 
-#app {
-  position: relative;
-}
+@layer pv-base {
+  #app {
+    position: relative;
+  }
 
-::selection {
-  /* background-color: theme("colors.sky.200"); */
-  background-color: #bae6fd;
+  ::selection {
+    /* background-color: theme("colors.sky.200"); */
+    background-color: #bae6fd;
+  }
 }
