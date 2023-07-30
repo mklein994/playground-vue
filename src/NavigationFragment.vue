@@ -5,7 +5,7 @@ import {
   ChevronRightIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/solid";
-import { computed, ref, watchEffect } from "vue";
+import { computed, onBeforeMount, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { injectStrict, tailwindEnabledKey } from "./injectionKeys";
@@ -80,16 +80,14 @@ const tailwindLocked = computed(
   () => import.meta.env.DEV && tailwindEnabled.value,
 );
 
-const toggleTailwind = async (event: Event) => {
-  const value = (event.target as HTMLInputElement).checked;
-
+const toggleTailwind = async (enable: boolean) => {
   if (import.meta.env.DEV) {
     await import("./tailwind.css");
-    tailwindEnabled.value = value;
+    tailwindEnabled.value = enable;
     return;
   }
 
-  tailwindEnabled.value = value;
+  tailwindEnabled.value = enable;
 
   const link = document.head.querySelector<HTMLLinkElement>(
     "link[title='tailwind']",
@@ -103,6 +101,18 @@ const toggleTailwind = async (event: Event) => {
 
   link.disabled = !tailwindEnabled.value;
 };
+
+const handleToggleTailwindClick = async (event: Event) => {
+  const value = (event.target as HTMLInputElement).checked;
+
+  await toggleTailwind(value);
+};
+
+onBeforeMount(async () => {
+  if (import.meta.env.VITE_TAILWIND_ENABLED) {
+    await toggleTailwind(true);
+  }
+});
 </script>
 
 <template>
@@ -137,7 +147,7 @@ const toggleTailwind = async (event: Event) => {
           class="tailwind-checkbox"
           :value="tailwindEnabled"
           :disabled="tailwindLocked"
-          @input="toggleTailwind"
+          @input="handleToggleTailwindClick"
         />
         <label for="tailwind">Enable Tailwind</label>
 
