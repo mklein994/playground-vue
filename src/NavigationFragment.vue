@@ -144,7 +144,7 @@ onBeforeMount(async () => {
           id="tailwind"
           v-model="tailwindEnabled"
           type="checkbox"
-          class="tailwind-checkbox"
+          class="tw-form-checkbox tailwind-checkbox"
           :value="tailwindEnabled"
           :disabled="tailwindLocked"
           @input="handleToggleTailwindClick"
@@ -168,6 +168,7 @@ onBeforeMount(async () => {
             type="radio"
             name="menu-position"
             :value="id"
+            class="tw-form-radio"
           />
           <label :for="`menu-position-${id}`">{{ id }}</label>
         </div>

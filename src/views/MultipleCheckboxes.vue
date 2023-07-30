@@ -19,7 +19,7 @@ const selectedFruits = ref<string[]>([]);
           v-model="selectedFruits"
           type="checkbox"
           :value="fruit.id"
-          class="checkbox"
+          class="tw-form-checkbox checkbox"
         />
 
         <label :for="fruit.id" class="label">{{ fruit.name }}</label>

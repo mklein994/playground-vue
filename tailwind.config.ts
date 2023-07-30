@@ -4,5 +4,9 @@ import type { Config } from "tailwindcss";
 export default {
   prefix: "tw-",
   content: ["./index.html", "./src/**/*.{vue,ts,html}"],
-  plugins: [forms()],
+  plugins: [
+    forms({
+      strategy: "class",
+    }),
+  ],
 } satisfies Config;

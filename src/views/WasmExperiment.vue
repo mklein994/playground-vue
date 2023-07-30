@@ -96,7 +96,7 @@ onMounted(async () => {
     />
     <input id="azimuth" v-model="azimuth" type="text" name="azimuth" />
     <!--
-    <select id="azimuth" v-model="azimuth" name="azimuth">
+    <select id="azimuth" v-model="azimuth" name="azimuth" class="tw-form-select">
       <option
         v-for="name of ['Official', 'Civil', 'Nautical', 'Astronomical']"
         :key="name"

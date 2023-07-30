@@ -38,7 +38,7 @@ const backgroundColor = computed(() => {
 <template>
   <div class="multi-line-switch-statement">
     <label for="fruit" class="label">Pick a fruit:</label>
-    <select id="fruit" v-model="selectedFruitId">
+    <select id="fruit" v-model="selectedFruitId" class="tw-form-select">
       <option value="" disabled>Pick a fruit:</option>
       <option v-for="fruit of fruits" :key="fruit.id" :value="fruit.id">
         {{ fruit.name }}

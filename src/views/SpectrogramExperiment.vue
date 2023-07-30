@@ -17,7 +17,12 @@ const vocalRange = ref(false);
 
     <div class="options">
       <label for="vocal-range">Limit to vocal range</label>
-      <input id="vocal-range" v-model="vocalRange" type="checkbox" />
+      <input
+        id="vocal-range"
+        v-model="vocalRange"
+        type="checkbox"
+        class="tw-form-checkbox"
+      />
     </div>
 
     <div class="spectrogram-wrapper">

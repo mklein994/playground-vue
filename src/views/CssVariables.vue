@@ -23,8 +23,18 @@ const updateColor = (event: Event) => {
       enim hanc solam sequimur, quae suavitate aliqua naturam ipsam movet et cum
       iucunditate quadam percipitur sensibus, sed maximam voluptatem illam.
     </p>
-    <input type="text" name="color" @input="updateColor" />
-    <input type="color" name="color-input" @change="updateColor" />
+    <input
+      type="text"
+      name="color"
+      class="tw-form-input"
+      @input="updateColor"
+    />
+    <input
+      type="color"
+      name="color-input"
+      class="tw-form-input"
+      @change="updateColor"
+    />
   </div>
 </template>
 

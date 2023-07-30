@@ -51,7 +51,13 @@ function handlePictureUpload(event: Event) {
       type="text"
       name="capture"
     />
-    <select v-else id="capture" v-model="capturePref" name="capture">
+    <select
+      v-else
+      id="capture"
+      v-model="capturePref"
+      name="capture"
+      class="tw-form-select"
+    >
       <option v-for="(pref, id) in capturePrefs" :key="id">{{ pref }}</option>
     </select>
 
@@ -70,7 +76,13 @@ function handlePictureUpload(event: Event) {
       type="text"
       name="accept"
     />
-    <select v-else id="accept" v-model="acceptPref" name="accept">
+    <select
+      v-else
+      id="accept"
+      v-model="acceptPref"
+      name="accept"
+      class="tw-form-select"
+    >
       <option v-for="(pref, id) in acceptPrefs" :key="id">{{ pref }}</option>
     </select>
   </form>

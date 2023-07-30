@@ -50,7 +50,7 @@ onMounted(() => {
         v-model="selectedFruits"
         name="multiselect"
         multiple
-        class="input"
+        class="tw-form-multiselect input"
       >
         <option
           v-for="{ id, name } of fruits"

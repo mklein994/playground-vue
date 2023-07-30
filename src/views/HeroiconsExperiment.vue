@@ -57,6 +57,7 @@ const handleQuery = (event: Event) => {
       type="search"
       name="iconQuery"
       :value="iconQuery"
+      class="tw-form-input"
       @input="handleQuery"
     />
     <label for="icon-query">Search</label>

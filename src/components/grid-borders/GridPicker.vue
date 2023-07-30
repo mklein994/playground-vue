@@ -72,7 +72,7 @@ const kindValues = computed(() =>
 <template>
   <div class="grid-picker">
     <label>name</label>
-    <select v-model="kindName">
+    <select v-model="kindName" class="tw-form-select">
       <option value=""></option>
       <option v-for="name of kindNames" :key="name">{{ name }}</option>
     </select>
@@ -80,6 +80,7 @@ const kindValues = computed(() =>
     <label>value</label>
     <select
       v-model="kindValue"
+      class="tw-form-select"
       @change="$emit('updateStyle', kindName, kindValue)"
     >
       <option value=""></option>

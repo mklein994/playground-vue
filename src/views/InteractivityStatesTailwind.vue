@@ -37,10 +37,10 @@ const fruits = [
     <div class="tw-grid tw-justify-start">
       <div class="tw-grid tw-gap-1 tw-grid-flow-col tw-grid-cols-2">
         <label for="first-text">First Text</label>
-        <input id="first-text" type="text" />
+        <input id="first-text" type="text" class="tw-form-input" />
 
         <label for="second-text">Second Text</label>
-        <input id="second-text" type="text" />
+        <input id="second-text" type="text" class="tw-form-input" />
       </div>
 
       <div class="tw-grid tw-gap-1 tw-grid-flow-col tw-grid-cols-2">
@@ -62,6 +62,23 @@ const fruits = [
             :id="`${fruit.name}-${fruit.value}`"
             type="radio"
             name="fruit"
+            :value="fruit.value"
+            class="tw-form-radio"
+          />
+        </template>
+      </div>
+
+      <div
+        class="tw-grid tw-items-baseline tw-justify-start tw-gap-x-1 tw-grid-cols-[repeat(2,_auto)]"
+      >
+        <template v-for="fruit of fruits" :key="fruit.name">
+          <label :for="`${fruit.name}-${fruit.value}-default`"
+            >Default {{ fruit.name }}</label
+          >
+          <input
+            :id="`${fruit.name}-${fruit.value}-default`"
+            type="radio"
+            name="fruit-default"
             :value="fruit.value"
           />
         </template>

@@ -47,7 +47,14 @@ watchEffect(async () => {
 <template>
   <div class="for-await-list">
     <label for="max">Max:</label>
-    <input id="max" v-model="localMax" type="number" name="max" min="1" />
+    <input
+      id="max"
+      v-model="localMax"
+      type="number"
+      name="max"
+      min="1"
+      class="tw-form-input"
+    />
 
     <ol>
       <li v-for="(value, index) of list" :key="`${value}${index}`">
