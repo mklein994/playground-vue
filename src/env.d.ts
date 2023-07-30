@@ -58,6 +58,12 @@ interface ImportMetaEnv {
    * For identifying where the build came from, if possible.
    */
   readonly VITE_VERSION_STRING: string | undefined;
+
+  /**
+   * Start with Tailwind CSS enabled. Set to a truthy value to load the
+   * Tailwind CSS styles.
+   */
+  readonly VITE_TAILWIND_ENABLED: string | undefined;
 }
 
 interface ImportMeta {
