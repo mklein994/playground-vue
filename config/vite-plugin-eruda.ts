@@ -8,7 +8,8 @@ export default (): Plugin => {
         {
           tag: "script",
           attrs: {
-            src: "//cdn.jsdelivr.net/npm/eruda",
+            // src: "//cdn.jsdelivr.net/npm/eruda",
+            src: "./node_modules/eruda",
           },
           injectTo: "body",
         },
