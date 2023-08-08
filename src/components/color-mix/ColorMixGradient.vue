@@ -11,18 +11,18 @@ const props = withDefaults(
     stops?: number;
   }>(),
   {
-    stops: 8,
+    stops: 10,
   },
 );
 
-const squareCount = computed(() => props.stops + 2);
+const squareCount = computed(() => props.stops);
 
 const colors = computed(() =>
   generateGradient(
     props.colorSpace,
     props.firstColor,
     props.lastColor,
-    props.stops,
+    props.stops - 2,
   ),
 );
 
@@ -67,6 +67,6 @@ const computedColor = (index: number) => {
 }
 
 .swatch {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: var(--square);
 }
 </style>
