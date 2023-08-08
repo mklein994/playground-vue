@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import ColorMixGradient from "@/components/color-mix/ColorMixGradient.vue";
 import { flatColorSpaces } from "@/use/colorMix";
 
 const firstColor = ref("#ff0000");
 const lastColor = ref("#00ff00");
+const showColorLabel = ref(true);
+const stops = ref(10);
+const square = ref(true);
+const squareAspectRatio = computed(() => square.value ? "1 / 1" : "unset");
 </script>
 
 <template>
@@ -19,8 +23,15 @@ const lastColor = ref("#00ff00");
       <input v-model="lastColor" type="text" class="tw-form-input" />
       <input v-model="lastColor" type="color" class="last-color" />
 
-      <label for="result-color"></label>
-      <output id="result-color" ref="resultColor" class="result-color"></output>
+      <label for="stops">Stops</label>
+      <input id="stops" v-model="stops" type="range" min="2" max="50" step="1" required />
+      <input v-model="stops" type="number" min="2" max="50" step="1" required />
+
+      <label for="show-color-label">Show Color Label</label>
+      <input id="show-color-label" v-model="showColorLabel" type="checkbox" />
+
+      <label for="square-aspect-ratio">Square Aspect Ratio</label>
+      <input id="square-aspect-ratio" v-model="square" type="checkbox" />
     </form>
 
     <div class="gradients">
@@ -31,10 +42,11 @@ const lastColor = ref("#00ff00");
           :first-color="firstColor"
           :last-color="lastColor"
           :color-space="space"
+          :stops="stops"
           class="gradient"
         >
           <div class="gradient-content">
-            {{ dataColor }}
+            <template v-if="showColorLabel">{{ dataColor }}</template>
           </div>
         </ColorMixGradient>
       </template>
@@ -51,8 +63,18 @@ const lastColor = ref("#00ff00");
 .color-mix-form {
   display: grid;
   align-items: start;
+  justify-content: start;
+  justify-items: start;
   gap: 1em;
-  grid: auto-flow / repeat(3, minmax(0, 1fr));
+  grid: auto-flow / repeat(3, minmax(0, auto));
+}
+
+[for="stops"] ~ [type="number"] {
+  max-width: 10ch;
+}
+
+.color-mix-form > [for] {
+  grid-column-start: 1;
 }
 
 .color-space-wrapper {
@@ -73,6 +95,7 @@ const lastColor = ref("#00ff00");
   display: grid;
   gap: var(--gap);
   grid-template-columns: auto 1fr;
+  --square: v-bind("squareAspectRatio");
 }
 
 .gradient-content {
