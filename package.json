@@ -34,7 +34,6 @@
     "wavesurfer.js": "7.1.1"
   },
   "devDependencies": {
-    "@csstools/postcss-color-mix-function": "^2.0.1",
     "@heroicons/vue": "^2.0.18",
     "@highlightjs/vue-plugin": "^2.1.2",
     "@observablehq/plot": "^0.6.9",
