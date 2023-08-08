@@ -5,8 +5,7 @@ import ColorMixGradient from "@/components/color-mix/ColorMixGradient.vue";
 import { flatColorSpaces } from "@/use/colorMix";
 
 const firstColor = ref("#ff0000");
-const secondColor = ref("#00ff00");
-const colorLabel = (text: string) => text.replace(/^\s*rgb\((.*)\)\s*$/, "$1");
+const lastColor = ref("#00ff00");
 </script>
 
 <template>
@@ -14,11 +13,11 @@ const colorLabel = (text: string) => text.replace(/^\s*rgb\((.*)\)\s*$/, "$1");
     <form class="color-mix-form" @submit.prevent>
       <label for="first-color">First Color</label>
       <input v-model="firstColor" type="text" class="tw-form-input" />
-      <div class="first-color"></div>
+      <input v-model="firstColor" type="color" class="first-color" />
 
-      <label for="second-color">Second Color</label>
-      <input v-model="secondColor" type="text" class="tw-form-input" />
-      <div class="second-color"></div>
+      <label for="last-color">Last Color</label>
+      <input v-model="lastColor" type="text" class="tw-form-input" />
+      <input v-model="lastColor" type="color" class="last-color" />
 
       <label for="result-color"></label>
       <output id="result-color" ref="resultColor" class="result-color"></output>
@@ -26,16 +25,16 @@ const colorLabel = (text: string) => text.replace(/^\s*rgb\((.*)\)\s*$/, "$1");
 
     <div class="gradients">
       <template v-for="space of flatColorSpaces" :key="space">
-        <span class="gradient-label">{{ space }}</span
-        ><ColorMixGradient
+        <div class="gradient-label">{{ space }}</div>
+        <ColorMixGradient
           v-slot="{ dataColor }"
           :first-color="firstColor"
-          :second-color="secondColor"
+          :last-color="lastColor"
           :color-space="space"
           class="gradient"
         >
           <div class="gradient-content">
-            {{ dataColor && colorLabel(dataColor) }}
+            {{ dataColor }}
           </div>
         </ColorMixGradient>
       </template>
@@ -63,18 +62,10 @@ const colorLabel = (text: string) => text.replace(/^\s*rgb\((.*)\)\s*$/, "$1");
 }
 
 .first-color,
-.second-color {
+.last-color {
   display: block;
   height: 100%;
   inline-size: 3em;
-}
-
-.first-color {
-  background-color: v-bind("firstColor");
-}
-
-.second-color {
-  background-color: v-bind("secondColor");
 }
 
 .gradients {
@@ -87,5 +78,12 @@ const colorLabel = (text: string) => text.replace(/^\s*rgb\((.*)\)\s*$/, "$1");
 .gradient-content {
   font-family: monospace;
   font-size: 0.2rem;
+}
+
+/* @media (min-width: theme("screens.md")) { */
+@media (min-width: 768px) {
+  .gradient-content {
+    font-size: 0.75rem;
+  }
 }
 </style>
