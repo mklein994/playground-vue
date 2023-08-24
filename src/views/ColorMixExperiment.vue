@@ -9,7 +9,7 @@ const lastColor = ref("#00ff00");
 const showColorLabel = ref(true);
 const stops = ref(10);
 const square = ref(true);
-const squareAspectRatio = computed(() => square.value ? "1 / 1" : "unset");
+const squareAspectRatio = computed(() => (square.value ? "1 / 1" : "unset"));
 </script>
 
 <template>
@@ -24,7 +24,15 @@ const squareAspectRatio = computed(() => square.value ? "1 / 1" : "unset");
       <input v-model="lastColor" type="color" class="last-color" />
 
       <label for="stops">Stops</label>
-      <input id="stops" v-model="stops" type="range" min="2" max="50" step="1" required />
+      <input
+        id="stops"
+        v-model="stops"
+        type="range"
+        min="2"
+        max="50"
+        step="1"
+        required
+      />
       <input v-model="stops" type="number" min="2" max="50" step="1" required />
 
       <label for="show-color-label">Show Color Label</label>
@@ -64,9 +72,9 @@ const squareAspectRatio = computed(() => square.value ? "1 / 1" : "unset");
   display: grid;
   align-items: start;
   justify-content: start;
-  justify-items: start;
   gap: 1em;
   grid: auto-flow / repeat(3, minmax(0, auto));
+  justify-items: start;
 }
 
 [for="stops"] ~ [type="number"] {
