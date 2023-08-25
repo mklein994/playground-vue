@@ -7,3 +7,4 @@ dist-ssr
 public/*.min.css
 coverage/
 .pnpm-debug.log
+.eslintcache
