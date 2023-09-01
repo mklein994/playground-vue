@@ -6,7 +6,7 @@ import { dataSet, dataSetObject, type RecursiveMap } from "@/helpers/dataSet";
 // Props make this easier to test
 const props = withDefaults(
   defineProps<{
-    source?: string[];
+    source?: string[] | [key: string, value: string][];
     split?: (word: string) => string[];
     parseStyle?: "map" | "object";
   }>(),
@@ -17,18 +17,37 @@ const props = withDefaults(
   },
 );
 
+const checkHasValues = (
+  value: unknown,
+): value is [key: string, value: string][] => {
+  return (
+    Array.isArray(value) &&
+    value.some((x) => Array.isArray(x) && x.length === 2)
+  );
+};
+
 const sourceTree = computed(() =>
-  props.source.reduce(
-    (all, one) => dataSet(all, props.split(one), one),
-    new Map() as RecursiveMap,
-  ),
+  checkHasValues(props.source)
+    ? props.source.reduce(
+        (all, [key, value]) => dataSet(all, props.split(key), value),
+        new Map() as RecursiveMap,
+      )
+    : props.source.reduce(
+        (all, one) => dataSet(all, props.split(one), one),
+        new Map() as RecursiveMap,
+      ),
 );
 
 const sourceObject = computed(() =>
-  props.source.reduce(
-    (all, one) => dataSetObject(all, props.split(one), one),
-    {} as Record<string, unknown>,
-  ),
+  checkHasValues(props.source)
+    ? props.source.reduce(
+        (all, [key, value]) => dataSetObject(all, props.split(key), value),
+        {} as Record<string, unknown>,
+      )
+    : props.source.reduce(
+        (all, one) => dataSetObject(all, props.split(one), one),
+        {} as Record<string, unknown>,
+      ),
 );
 </script>
 
