@@ -359,6 +359,8 @@ const baseColors = {
 module.exports = {
   color: {
     base: baseColors,
-    rgb: recursiveTransform(baseColors, "value", (value) => chroma(value).rgb().join(" ")),
+    rgb: recursiveTransform(baseColors, "value", (value) =>
+      chroma(value).rgb().join(" "),
+    ),
   },
 };
