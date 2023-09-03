@@ -42,12 +42,12 @@ export const generateGradient = (
   lastColor: string,
   stops: number,
 ) =>
-  generateGradientPercents(stops).map(
-    (stop) =>
-      `color-mix(in ${colorSpace}, ${firstColor}, ${lastColor} ${(
-        stop * 100
-      ).toFixed(2)}%)`,
-  );
+  generateGradientPercents(stops).map((stop) => {
+    const stopPercent = stop * 100;
+    return `color-mix(in ${colorSpace}, ${firstColor}, ${lastColor} ${
+      Number.isInteger(stopPercent) ? stopPercent : stopPercent.toFixed(2)
+    }%)`;
+  });
 
 if (import.meta.vitest) {
   const { describe, expect, it } = import.meta.vitest;
@@ -60,6 +60,24 @@ if (import.meta.vitest) {
       [3, [0 / 4, 1 / 4, 2 / 4, 3 / 4, 4 / 4]],
     ])("handles %i stops", (stops, expected) => {
       expect(generateGradientPercents(stops)).toStrictEqual(expected);
+    });
+  });
+
+  describe("generateGradient", () => {
+    it("generates a gradient", () => {
+      const actual = generateGradient(
+        "srgb",
+        "rgb(255 0 0)",
+        "rgb(0 255 0)",
+        3,
+      );
+      expect(actual).toStrictEqual([
+        "color-mix(in srgb, rgb(255 0 0), rgb(0 255 0) 0%)",
+        "color-mix(in srgb, rgb(255 0 0), rgb(0 255 0) 25%)",
+        "color-mix(in srgb, rgb(255 0 0), rgb(0 255 0) 50%)",
+        "color-mix(in srgb, rgb(255 0 0), rgb(0 255 0) 75%)",
+        "color-mix(in srgb, rgb(255 0 0), rgb(0 255 0) 100%)",
+      ]);
     });
   });
 }
