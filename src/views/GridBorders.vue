@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import GridPicker from "../components/grid-borders/GridPicker.vue";
+import GridPicker from "@/components/grid-borders/GridPicker.vue";
 
 interface Item {
   id: number;

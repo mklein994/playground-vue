@@ -8,7 +8,7 @@ import {
 } from "vue";
 
 const SunriseSunset = defineAsyncComponent(
-  () => import("../components/SunriseSunset.vue"),
+  () => import("@/components/SunriseSunset.vue"),
 );
 
 const dateFormat = new Intl.DateTimeFormat("en-CA", { dateStyle: "short" });

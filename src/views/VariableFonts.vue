@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import VariableFontAxis from "../components/variable-fonts/VariableFontAxis.vue";
+import VariableFontAxis from "@/components/variable-fonts/VariableFontAxis.vue";
 
 const crsvOpts = [
   { id: "crsv-off", label: "off", value: "0" },

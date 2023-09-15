@@ -2,8 +2,7 @@
 import { provide, ref } from "vue";
 
 import { tailwindEnabledKey } from "@/injectionKeys";
-
-import NavigationFragment from "./NavigationFragment.vue";
+import NavigationFragment from "@/NavigationFragment.vue";
 
 const tailwindEnabled = ref(false);
 

@@ -4,7 +4,7 @@ import hljs from "highlight.js/lib/core";
 import css from "highlight.js/lib/languages/css";
 import { defineCustomElement } from "vue";
 
-import CustomElement from "../components/CustomElement.ce.vue";
+import CustomElement from "@/components/CustomElement.ce.vue";
 
 hljs.registerLanguage("css", css);
 

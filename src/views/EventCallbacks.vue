@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import EventCallbacksHelper from "../components/EventCallbacksHelper.vue";
+import EventCallbacksHelper from "@/components/EventCallbacksHelper.vue";
 
 const success = ref();
 

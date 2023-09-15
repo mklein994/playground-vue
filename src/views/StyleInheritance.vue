@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ChildOne from "../components/style-inheritance/ChildOne.vue";
-import ChildTwo from "../components/style-inheritance/ChildTwo.vue";
+import ChildOne from "@/components/style-inheritance/ChildOne.vue";
+import ChildTwo from "@/components/style-inheritance/ChildTwo.vue";
 </script>
 
 <template>

@@ -8,8 +8,8 @@ import {
 import { computed, onBeforeMount, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import { injectStrict, tailwindEnabledKey } from "./injectionKeys";
-import RouteInfo from "./RouteInfo.vue";
+import { injectStrict, tailwindEnabledKey } from "@/injectionKeys";
+import RouteInfo from "@/RouteInfo.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -82,7 +82,7 @@ const tailwindLocked = computed(
 
 const toggleTailwind = async (enable: boolean) => {
   if (import.meta.env.DEV) {
-    await import("./tailwind.css");
+    await import("@/tailwind.css");
     tailwindEnabled.value = enable;
     return;
   }

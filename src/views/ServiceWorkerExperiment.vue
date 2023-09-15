@@ -4,7 +4,7 @@ import { onBeforeMount, onUnmounted, ref } from "vue";
 const worker = ref<ServiceWorker | null | undefined>();
 const workerStatus = ref("");
 const workerUrl = ref(
-  new URL("../workers/my-first-service-worker", import.meta.url),
+  new URL("@/workers/my-first-service-worker", import.meta.url),
 );
 
 const registerServiceWorker = async () => {

@@ -1,10 +1,10 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import HomeView from "./HomeView.vue";
-import NotFound from "./NotFound.vue";
+import HomeView from "@/HomeView.vue";
+import NotFound from "@/NotFound.vue";
 
 /* c8 ignore next */
-const modules = import.meta.glob("./views/*.vue");
+const modules = import.meta.glob("@/views/*.vue");
 
 const componentRoutes: RouteRecordRaw[] = [];
 

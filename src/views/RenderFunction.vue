@@ -3,8 +3,8 @@ import hljsVuePlugin from "@highlightjs/vue-plugin";
 import hljs from "highlight.js/lib/core";
 import typescript from "highlight.js/lib/languages/typescript";
 
-import CustomRenderFunction from "../components/CustomRenderFunction.vue";
-import CustomRenderFunctionSetup from "../components/CustomRenderFunctionSetup.vue";
+import CustomRenderFunction from "@/components/CustomRenderFunction.vue";
+import CustomRenderFunctionSetup from "@/components/CustomRenderFunctionSetup.vue";
 
 hljs.registerLanguage("ts", typescript);
 

@@ -2,7 +2,7 @@
 import { defineAsyncComponent } from "vue";
 
 const ForAwaitList = defineAsyncComponent(
-  () => import("../components/ForAwaitList.vue"),
+  () => import("@/components/ForAwaitList.vue"),
 );
 </script>
 
