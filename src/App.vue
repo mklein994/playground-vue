@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { provide, ref } from "vue";
 
-import { tailwindEnabledKey } from "@/injectionKeys";
 import NavigationFragment from "@/NavigationFragment.vue";
+
+import { tailwindEnabledKey } from "@/injectionKeys";
 
 const tailwindEnabled = ref(false);
 

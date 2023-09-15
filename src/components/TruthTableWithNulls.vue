@@ -2,6 +2,7 @@
 import { computed } from "vue";
 
 import KeyCellWithNull from "@/components/truth-table/KeyCellWithNull.vue";
+
 import type { KeyItemWithNulls } from "@/types/TruthTable.d.ts";
 
 export type TestWithNulls = (args: (boolean | null)[]) => boolean | null;

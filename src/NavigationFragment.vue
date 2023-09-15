@@ -8,8 +8,9 @@ import {
 import { computed, onBeforeMount, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import { injectStrict, tailwindEnabledKey } from "@/injectionKeys";
 import RouteInfo from "@/RouteInfo.vue";
+
+import { injectStrict, tailwindEnabledKey } from "@/injectionKeys";
 
 const route = useRoute();
 const router = useRouter();

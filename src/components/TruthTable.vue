@@ -2,6 +2,7 @@
 import { computed } from "vue";
 
 import KeyCell from "@/components/truth-table/KeyCell.vue";
+
 import type { KeyItem } from "@/types/TruthTable.d.ts";
 
 export type Test = (args: boolean[]) => boolean | null;

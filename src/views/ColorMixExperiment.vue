@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 
 import ColorMixGradient from "@/components/color-mix/ColorMixGradient.vue";
+
 import { flatColorSpaces } from "@/use/colorMix";
 
 const firstColor = ref("#ff0000");

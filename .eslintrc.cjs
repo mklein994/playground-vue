@@ -27,7 +27,31 @@ module.exports = {
   root: true,
 
   rules: {
-    "simple-import-sort/imports": "warn",
+    "simple-import-sort/imports": [
+      "warn",
+      {
+        // Based on the default groups defined in
+        // the docs:
+        // https://github.com/lydell/eslint-plugin-simple-import-sort
+        groups: [
+          // Side effect imports.
+          ["^\\u0000"],
+          // Node.js builtins prefixed with `node:`.
+          ["^node:"],
+          // Packages.
+          // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
+          ["^@?\\w"],
+          // Custom group: Vue components.
+          ["\\.vue\\u0000?$"],
+          // Absolute imports and other imports such as Vue-style `@/foo`.
+          // Anything not matched in another group.
+          ["^"],
+          // Relative imports.
+          // Anything that starts with a dot.
+          ["^\\."],
+        ],
+      },
+    ],
     "simple-import-sort/exports": "warn",
   },
 

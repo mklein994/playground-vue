@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import AudioPicker from "@/components/AudioPicker.vue";
 import SpectrogramGraph from "@/components/SpectrogramGraph.vue";
+
 import { toColor, useColorMap } from "@/use/colorMap";
 
 const { colors } = useColorMap();
