@@ -12,9 +12,8 @@ declare const __PLAYGROUND_VUE_COVERAGE_EXISTS__: boolean;
 declare const __PLAYGROUND_VUE_FILES_LIST__: string[];
 
 declare module "*.vue" {
-  import { DefineComponent } from "vue";
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
-  const component: DefineComponent<{}, {}, any>;
+  import type { Component } from "vue";
+  const component: Component;
   export default component;
 }
 
