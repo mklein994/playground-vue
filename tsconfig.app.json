@@ -16,7 +16,8 @@
     "src/**/*.vue",
     "src/assets/*",
     "src/assets/*.json",
-    "tests/**/*"
+    "tests/**/*",
+    "*.ts"
   ],
   "exclude": ["tests/**/*", "**/coverage/**", "./src/workers/**"]
 }

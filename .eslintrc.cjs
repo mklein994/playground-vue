@@ -67,7 +67,7 @@ module.exports = {
       extends: [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-type-checked",
         "plugin:vue/vue3-recommended",
         "prettier",
       ],
@@ -86,6 +86,14 @@ module.exports = {
         parser: "@typescript-eslint/parser",
         sourceType: "module",
         ecmaVersion: "latest",
+        project: [
+          "./tsconfig.app.json",
+          "./tsconfig.vite-config.json",
+          "./tsconfig.vitest.json",
+          "./tsconfig.workers.json",
+        ],
+        extraFileExtensions: [".vue"],
+        tsconfigRootDir: __dirname,
       },
       globals: {
         PositionOptions: "readonly",
