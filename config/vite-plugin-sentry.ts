@@ -19,7 +19,7 @@ export default async (): Promise<Plugin | false> => {
           auto: true,
         },
       },
-    });
+    }) as unknown as Plugin;
   } catch {
     return false;
   }
