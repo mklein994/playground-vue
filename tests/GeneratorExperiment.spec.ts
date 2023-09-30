@@ -2,13 +2,15 @@ import { flushPromises, mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
 import { defineComponent, h, Suspense } from "vue";
 
-import ForAwaitList from "@/components/ForAwaitList.vue";
+import GeneratorList from "@/components/GeneratorList.vue";
 
-describe.concurrent("ForAwait", async () => {
+describe.concurrent("GeneratorExperiment", () => {
   const testComponentBuilder = (max?: number) =>
     defineComponent(function TestComponent() {
       return () =>
-        h(Suspense, () => h(ForAwaitList, max == null ? undefined : { max }));
+        h(Suspense, () =>
+          h(GeneratorList, max == null ? undefined : { initialMax: max }),
+        );
     });
 
   describe.concurrent("all in order", async () => {

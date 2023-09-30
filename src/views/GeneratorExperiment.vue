@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from "vue";
 
-const ForAwaitList = defineAsyncComponent(
-  () => import("@/components/ForAwaitList.vue"),
+const GeneratorList = defineAsyncComponent(
+  () => import("@/components/GeneratorList.vue"),
 );
 </script>
 
 <template>
   <Suspense>
-    <ForAwaitList />
+    <GeneratorList />
   </Suspense>
 </template>

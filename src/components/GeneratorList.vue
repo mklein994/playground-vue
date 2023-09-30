@@ -3,23 +3,23 @@ import { ref, watchEffect } from "vue";
 
 const props = withDefaults(
   defineProps<{
-    max?: number;
+    initialMax?: number;
   }>(),
   {
-    max: 25,
+    initialMax: 25,
   },
 );
 
-async function* iteratorGenerator(max: number) {
+function* iteratorGenerator(max: number) {
   let i = 1;
   while (i <= max) {
     yield i++;
   }
 }
 
-const fizzBuzz = async (max: number) => {
+const fizzBuzz = (max: number) => {
   const list = [];
-  for await (let i of iteratorGenerator(max)) {
+  for (let i of iteratorGenerator(max)) {
     list.push(
       i % 15 === 0
         ? "FizzBuzz"
@@ -33,23 +33,21 @@ const fizzBuzz = async (max: number) => {
   return list;
 };
 
-// TODO: See discussion at https://github.com/vuejs/eslint-plugin-vue/pull/2244
-// eslint-disable-next-line vue/no-setup-props-destructure
-const localMax = ref(props.max);
+const max = ref(props.initialMax);
 
 const list = ref<(string | number)[]>([]);
 
-watchEffect(async () => {
-  list.value = await fizzBuzz(localMax.value);
+watchEffect(() => {
+  list.value = fizzBuzz(max.value);
 });
 </script>
 
 <template>
-  <div class="for-await-list">
+  <div class="generator-list">
     <label for="max">Max:</label>
     <input
       id="max"
-      v-model="localMax"
+      v-model="max"
       type="number"
       name="max"
       min="1"

@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GeneratorExperiment > matches snapshot 1`] = `
+"<div data-v-caa99902=\\"\\" class=\\"generator-list\\"><label data-v-caa99902=\\"\\" for=\\"max\\">Max:</label><input data-v-caa99902=\\"\\" id=\\"max\\" type=\\"number\\" name=\\"max\\" min=\\"1\\" class=\\"tw-form-input\\">
+  <ol data-v-caa99902=\\"\\">
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">1</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">2</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Fizz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">4</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Buzz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Fizz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">7</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">8</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Fizz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Buzz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">11</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Fizz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">13</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">14</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">FizzBuzz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">16</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">17</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Fizz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">19</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Buzz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Fizz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">22</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"is-number\\">23</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Fizz</span></li>
+    <li data-v-caa99902=\\"\\"><span data-v-caa99902=\\"\\" class=\\"\\">Buzz</span></li>
+  </ol>
+</div>"
+`;
