@@ -31,7 +31,7 @@
     "rrweb": "2.0.0-alpha.4",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5",
-    "wavesurfer.js": "7.3.2"
+    "wavesurfer.js": "7.3.3"
   },
   "devDependencies": {
     "@heroicons/vue": "^2.0.18",
@@ -39,11 +39,11 @@
     "@observablehq/plot": "^0.6.11",
     "@tailwindcss/forms": "^0.5.6",
     "@types/d3": "^7.4.1",
-    "@types/node": "^20.7.1",
+    "@types/node": "^20.8.0",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
     "@vitejs/plugin-vue": "^4.3.4",
-    "@vitest/coverage-v8": "^0.34.5",
+    "@vitest/coverage-v8": "^0.34.6",
     "@vue/test-utils": "^2.4.1",
     "autoprefixer": "^10.4.16",
     "chroma-js": "^2.4.2",
@@ -54,10 +54,10 @@
     "eslint-plugin-tsdoc": "^0.2.17",
     "eslint-plugin-vue": "^9.17.0",
     "fast-glob": "^3.3.1",
-    "happy-dom": "^12.2.1",
+    "happy-dom": "^12.4.0",
     "highlight.js": "^11.8.0",
     "modern-normalize": "^2.0.0",
-    "postcss": "^8.4.30",
+    "postcss": "^8.4.31",
     "postcss-dir-pseudo-class": "^8.0.0",
     "postcss-html": "^1.5.0",
     "postcss-logical": "^7.0.0",
@@ -72,7 +72,7 @@
     "tailwindcss": "^3.3.3",
     "typescript": "~5.2.2",
     "vite": "^4.4.9",
-    "vitest": "^0.34.5",
+    "vitest": "^0.34.6",
     "vue-tsc": "~1.8.15"
   },
   "optionalDependencies": {
