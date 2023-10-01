@@ -51,7 +51,7 @@ const handleQuery = (event: Event) => {
 </script>
 
 <template>
-  <div class="icon-query">
+  <search class="icon-query">
     <input
       id="icon-query"
       type="search"
@@ -61,7 +61,7 @@ const handleQuery = (event: Event) => {
       @input="handleQuery"
     />
     <label for="icon-query">Search</label>
-  </div>
+  </search>
 
   <div class="icon-grid">
     <template

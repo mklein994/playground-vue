@@ -117,7 +117,7 @@ export default defineConfig(({ mode }) => {
       vue({
         template: {
           compilerOptions: {
-            isCustomElement: (tag) => tag.includes("-"),
+            isCustomElement: (tag) => tag.includes("-") || tag === "search",
           },
         },
       }),
