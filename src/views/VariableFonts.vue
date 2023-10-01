@@ -168,18 +168,18 @@ const mono = ref(monoOpts.default);
   margin: 1rem;
   gap: 1rem 0.5rem;
   grid: auto-flow / repeat(3, minmax(auto, 1fr)) repeat(3, auto);
-}
 
-.input-group button {
-  padding: 0.25em 1em;
-  border: 1px solid lightgray;
-  border-radius: 0.5em;
-}
+  :where(button) {
+    padding: 0.25em 1em;
+    border: 1px solid lightgray;
+    border-radius: 0.5em;
 
-.input-group button:disabled {
-  background: rgb(0 0 0 / 0.125);
-  cursor: auto;
-  opacity: 0.5;
+    &:disabled {
+      background: rgb(0 0 0 / 0.125);
+      cursor: auto;
+      opacity: 0.5;
+    }
+  }
 }
 
 .crsv-group {
@@ -189,12 +189,12 @@ const mono = ref(monoOpts.default);
   column-gap: 1rem;
   grid-column: 1 / -1;
   grid-template-columns: 1fr repeat(3, minmax(0, 1fr));
-}
 
-.crsv-group > * {
-  display: flex;
-  align-items: center;
-  column-gap: 0.25rem;
+  & > * {
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+  }
 }
 
 .content {
@@ -210,9 +210,9 @@ const mono = ref(monoOpts.default);
 
   overflow-wrap: break-word;
   word-break: break-word;
-}
 
-.content :first-child {
-  margin: 0;
+  :first-child {
+    margin: 0;
+  }
 }
 </style>

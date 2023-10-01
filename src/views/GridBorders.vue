@@ -229,10 +229,10 @@ function handleItemStyleUpdate(
   font-size: 1.5em;
   font-style: italic;
   font-weight: bold;
-}
 
-.special::before {
-  content: "*";
+  &::before {
+    content: "*";
+  }
 }
 
 .grid {
@@ -240,31 +240,31 @@ function handleItemStyleUpdate(
   background-color: var(--border-color);
   grid-template-columns: repeat(var(--column-count), auto);
   row-gap: var(--border-width);
-}
 
-.grid .grid-row {
-  display: grid;
-  background-color: white;
+  .grid-row {
+    display: grid;
+    background-color: white;
+  }
 }
 
 .subgrid {
   display: grid;
   grid-template-columns: repeat(var(--column-count), auto);
-}
 
-.subgrid .row {
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: subgrid;
+  .row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
 }
 
 .contents {
   display: grid;
   grid-template-columns: repeat(var(--column-count), auto);
-}
 
-.contents .row {
-  display: contents;
+  .row {
+    display: contents;
+  }
 }
 
 .list .row {

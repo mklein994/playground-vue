@@ -217,12 +217,12 @@ onBeforeMount(async () => {
   background-color: #f9fafbee;
   gap: 1rem;
   --border-radius: 0.5rem;
-}
 
-@supports not (inset: 0) {
-  .home.bottom.right {
-    right: 0;
-    bottom: 0;
+  @supports not (inset: 0) {
+    &.bottom.right {
+      right: 0;
+      bottom: 0;
+    }
   }
 }
 

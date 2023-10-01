@@ -76,14 +76,14 @@ const squareAspectRatio = computed(() => (square.value ? "1 / 1" : "unset"));
   gap: 1em;
   grid: auto-flow / repeat(3, minmax(0, auto));
   justify-items: start;
+
+  > [for] {
+    grid-column-start: 1;
+  }
 }
 
 [for="stops"] ~ [type="number"] {
   max-width: 10ch;
-}
-
-.color-mix-form > [for] {
-  grid-column-start: 1;
 }
 
 .color-space-wrapper {

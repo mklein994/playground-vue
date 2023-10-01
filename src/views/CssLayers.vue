@@ -38,20 +38,20 @@ const color = computed(() =>
 @layer second {
   .layer-color {
     color: var(--layer-color-second);
-  }
 
-  .layer-color::after {
-    content: " (second layer)";
+    &::after {
+      content: " (second layer)";
+    }
   }
 }
 
 @layer first {
   .layer-color {
     color: var(--layer-color-first);
-  }
 
-  .layer-color::after {
-    content: " (first layer)";
+    &::after {
+      content: " (first layer)";
+    }
   }
 }
 

@@ -124,8 +124,7 @@ onMounted(() => {
   grid-column: 1 / -1;
 }
 
-.color-test-code::before,
-.color-test-code::after {
+.color-test-code:where(::before, ::after) {
   content: "`";
 }
 
@@ -146,12 +145,12 @@ onMounted(() => {
   column-gap: 1em;
   grid-column-end: span 3;
   white-space: nowrap;
-}
 
-.card.other {
-  grid-template-columns:
-    auto minmax(calc(v-bind("longestColorLength") * 1ch), min-content)
-    1fr;
+  &.other {
+    grid-template-columns:
+      auto minmax(calc(v-bind("longestColorLength") * 1ch), min-content)
+      1fr;
+  }
 }
 
 .color-heading {

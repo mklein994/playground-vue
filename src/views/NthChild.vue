@@ -24,13 +24,13 @@
   flex-wrap: wrap;
   border: 1px solid lightblue;
   gap: 1rem;
-}
 
-.item-list.nth-child > .item:nth-child(n + 2) {
-  color: tomato;
-}
+  &.nth-child > .item:nth-child(n + 2) {
+    color: tomato;
+  }
 
-.item-list.sibling > .item + .item {
-  color: blue;
+  &.sibling > .item + .item {
+    color: blue;
+  }
 }
 </style>

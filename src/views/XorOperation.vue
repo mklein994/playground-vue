@@ -130,6 +130,14 @@ const testCode = tests.map((test) => test.toString());
   font-family: monospace;
   font-size: 1rem;
   padding-inline: 0.5em;
+
+  &.true {
+    color: green;
+  }
+
+  &.false {
+    color: red;
+  }
 }
 
 .header .cell {
@@ -149,14 +157,6 @@ const testCode = tests.map((test) => test.toString());
 
 .header .cell:first-child {
   z-index: 2;
-}
-
-.cell.true {
-  color: green;
-}
-
-.cell.false {
-  color: red;
 }
 
 .code {

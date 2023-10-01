@@ -189,55 +189,55 @@ const fruits = [
   margin: 3px 3px 0 5px;
   block-size: var(--size);
   inline-size: var(--size);
-}
 
-.radio.custom::after {
-  block-size: calc(var(--size) * var(--ratio));
-  content: "";
-  inline-size: calc(var(--size) * var(--ratio));
-}
+  &::after {
+    block-size: calc(var(--size) * var(--ratio));
+    content: "";
+    inline-size: calc(var(--size) * var(--ratio));
+  }
 
-.radio.custom:hover {
-  border-color: var(--hover-color);
-}
+  &:hover {
+    border-color: var(--hover-color);
+  }
 
-.radio.custom:active {
-  border-color: var(--active-color);
-}
+  &:active {
+    border-color: var(--active-color);
+  }
 
-.radio.custom:focus {
-  outline: 2px solid lightskyblue;
-  outline-offset: 1px;
-}
+  &:focus {
+    outline: 2px solid lightskyblue;
+    outline-offset: 1px;
+  }
 
-.radio.custom:checked {
-  border-color: var(--checked-default-color);
-}
+  &:checked {
+    border-color: var(--checked-default-color);
 
-/* Support browsers that don't support :focus-visible */
-.radio.custom:focus:not(:focus-visible) {
-  outline: unset;
-  outline-offset: unset;
-}
+    &::after {
+      border-radius: inherit;
+      background-color: var(--checked-default-color);
+    }
 
-.radio.custom:checked:hover {
-  border-color: var(--checked-hover-color);
-}
+    &:hover {
+      border-color: var(--checked-hover-color);
 
-.radio.custom:checked:active {
-  border-color: var(--checked-active-color);
-}
+      &::after {
+        background-color: var(--checked-hover-color);
+      }
+    }
 
-.radio.custom:checked::after {
-  border-radius: inherit;
-  background-color: var(--checked-default-color);
-}
+    &:active {
+      border-color: var(--checked-active-color);
 
-.radio.custom:checked:hover::after {
-  background-color: var(--checked-hover-color);
-}
+      &::after {
+        background-color: var(--checked-active-color);
+      }
+    }
+  }
 
-.radio.custom:checked:active::after {
-  background-color: var(--checked-active-color);
+  /* Support browsers that don't support :focus-visible */
+  &:focus:not(:focus-visible) {
+    outline: unset;
+    outline-offset: unset;
+  }
 }
 </style>
