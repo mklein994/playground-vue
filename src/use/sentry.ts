@@ -21,7 +21,7 @@ export const sentry: Plugin = {
         app,
         dsn,
         environment: import.meta.env.VITE_SENTRY_ENVIRONMENT,
-        replaysSessionSampleRate: 1.0, // If there's lots of traffic, set this to a lower value
+        replaysSessionSampleRate: 0, // If there's lots of traffic, set this to a lower value
         replaysOnErrorSampleRate: 1.0,
         integrations: [
           new SentryReplay(),
