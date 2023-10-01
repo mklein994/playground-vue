@@ -61,6 +61,7 @@
     "postcss-dir-pseudo-class": "^8.0.0",
     "postcss-html": "^1.5.0",
     "postcss-logical": "^7.0.0",
+    "postcss-nesting": "^12.0.1",
     "prettier": "^3.0.3",
     "sass": "^1.68.0",
     "style-dictionary": "^3.8.0",
