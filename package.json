@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:all": "pnpm run build:tokens && build:tailwind && vite build",
+    "build:all": "pnpm run build:tokens && pnpm build:tailwind && vite build",
     "build:tokens": "style-dictionary build --config sd.config.cjs",
     "build:tailwind": "tailwind --minify --input ./src/tailwind.css --output ./public/tailwind.min.css",
     "preview": "vite preview",
