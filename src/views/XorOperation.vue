@@ -54,7 +54,7 @@ const map = data.map((row) => {
 const headerNames = Array.from(map[0].results, (_, i) => `t${i}`);
 
 // Convert functions to strings
-const testCode = tests.map((test) => `${test}`);
+const testCode = tests.map((test) => test.toString());
 </script>
 
 <template>

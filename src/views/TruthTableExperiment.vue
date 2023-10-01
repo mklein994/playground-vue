@@ -23,13 +23,18 @@ const headers = computed({
 const testExpressionsText = ref("return args[0] || args[1];");
 const testExpressions = computed({
   get() {
-    return testExpressionsText.value
-      .trim()
-      .split("\n")
-      .map((x) => new Function("args", x)) as TestWithNulls[] | Test[];
+    return (
+      testExpressionsText.value
+        .trim()
+        .split("\n")
+        // eslint-disable-next-line @typescript-eslint/no-implied-eval
+        .map((x) => new Function("args", x)) as TestWithNulls[] | Test[]
+    );
   },
   set(expressions) {
-    testExpressionsText.value = expressions.map((x) => x.toString()).join("\n");
+    testExpressionsText.value = expressions
+      .map((x) => (x as (...args: unknown[]) => unknown).toString())
+      .join("\n");
   },
 });
 

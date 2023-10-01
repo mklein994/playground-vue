@@ -14,7 +14,7 @@ import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 // https://vitejs.dev/config/
-export default defineConfig(async ({ mode }) => {
+export default defineConfig(({ mode }) => {
   const cwd = resolve(".");
   const env = loadEnv(mode, cwd, "BUILDTIME_");
 

@@ -10,7 +10,8 @@ hljs.registerLanguage("css", css);
 
 const Highlightjs = hljsVuePlugin.component;
 
-const styles = CustomElement.styles[0];
+// TODO: Remove this if type definitions become more accurate
+const styles = (CustomElement as unknown as { styles: string[] }).styles[0];
 
 if (customElements.get("custom-element") === undefined) {
   customElements.define("custom-element", defineCustomElement(CustomElement));

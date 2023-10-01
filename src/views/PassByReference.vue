@@ -5,7 +5,7 @@ const foo = {
   },
 };
 
-const fooCopy = JSON.parse(JSON.stringify(foo));
+const fooCopy = JSON.parse(JSON.stringify(foo)) as typeof foo;
 
 const bar = foo.bar;
 bar.baz = 6;

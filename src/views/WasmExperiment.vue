@@ -11,6 +11,12 @@ const SunriseSunset = defineAsyncComponent(
   () => import("@/components/SunriseSunset.vue"),
 );
 
+interface CoordinateSettings {
+  highAccuracy: boolean;
+  lat: number;
+  lon: number;
+}
+
 const dateFormat = new Intl.DateTimeFormat("en-CA", { dateStyle: "short" });
 
 const date = ref(dateFormat.format(new Date()));
@@ -34,13 +40,9 @@ watchEffect(() => {
   }
 });
 
-const getOldCoords = (): {
-  highAccuracy: boolean;
-  lat: number;
-  lon: number;
-} | null => {
+const getOldCoords = () => {
   const c = localStorage.getItem("coords");
-  return c ? JSON.parse(c) : null;
+  return c ? (JSON.parse(c) as CoordinateSettings) : null;
 };
 
 const getLocationAsync = (

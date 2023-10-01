@@ -10,7 +10,7 @@ const testColorElement = ref<HTMLElement>();
 // This will generate a warning in the console, since `lightBlue` is deprecated,
 // and that is caught by calling the `get()` function on it.
 const colorsList = Object.entries(colors).reduce(
-  (all, [name, group]) => {
+  (all, [name, group]: [string, string | Record<string, string>]) => {
     // console.log(name, group);
     if (typeof group === "object") {
       all.set(
@@ -27,7 +27,7 @@ const colorsList = Object.entries(colors).reduce(
     }
     return all;
   },
-  new Map([["other", []]]) as Map<string, string[][]>,
+  new Map<string, string[][]>([["other", []]]),
 );
 
 const normalColors = computed(

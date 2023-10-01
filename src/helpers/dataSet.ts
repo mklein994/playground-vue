@@ -136,7 +136,7 @@ if (import.meta.vitest) {
     );
 
     it("return source when path is empty", () => {
-      const source = new Map();
+      const source: RecursiveMap = new Map();
       expect(dataSet(source, [], "")).toStrictEqual(source);
     });
   });

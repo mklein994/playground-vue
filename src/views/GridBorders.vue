@@ -28,7 +28,7 @@ const items = computed<Item[]>(() =>
   }),
 );
 
-const list = computed<Map<number, ItemRow>>(() =>
+const list = computed(() =>
   items.value.reduce((all, current, i) => {
     const chunk = Math.floor(i / columnCount.value);
     const old = all.get(chunk);
@@ -41,7 +41,7 @@ const list = computed<Map<number, ItemRow>>(() =>
       specialRow,
     });
     return all;
-  }, new Map()),
+  }, new Map<number, ItemRow>()),
 );
 
 const contentStyleList = ref();
