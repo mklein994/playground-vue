@@ -205,7 +205,7 @@ onBeforeMount(async () => {
   position: fixed;
   z-index: 11;
   display: flex;
-  /* Allow the menu tk resize based on the current
+  /* Allow the menu to resize based on the current
    * viewport (minus UA chrome)
    */
   max-height: calc(100vh - (100vh - 100%));
