@@ -100,3 +100,4 @@ jobs:
           projectName: playground-vue
           directory: playground-vue/dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: "3"
