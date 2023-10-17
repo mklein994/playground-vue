@@ -23,7 +23,7 @@
     "test:run": "vitest run",
     "coverage": "vitest run --coverage"
   },
-  "packageManager": "pnpm@8.8.0",
+  "packageManager": "pnpm@8.9.2",
   "type": "module",
   "dependencies": {
     "@sentry/vue": "^7.72.0",
