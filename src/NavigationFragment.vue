@@ -5,12 +5,12 @@ import {
   ChevronRightIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/solid";
-import { computed, onBeforeMount, ref, watchEffect } from "vue";
+import { computed, inject, onBeforeMount, ref, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import RouteInfo from "@/RouteInfo.vue";
 
-import { injectStrict, tailwindEnabledKey } from "@/injectionKeys";
+import { tailwindEnabledKey } from "@/injectionKeys";
 
 const route = useRoute();
 const router = useRouter();
@@ -76,7 +76,7 @@ const versionDisplay = computed(
     "(unknown commit)",
 );
 
-const tailwindEnabled = injectStrict(tailwindEnabledKey);
+const tailwindEnabled = inject(tailwindEnabledKey)!;
 const tailwindLocked = computed(
   () => import.meta.env.DEV && tailwindEnabled.value,
 );

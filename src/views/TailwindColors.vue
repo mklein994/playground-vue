@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import colors from "tailwindcss/colors";
-import { computed, onMounted, ref } from "vue";
+import { computed, inject, onMounted, ref } from "vue";
 
-import { injectStrict, tailwindEnabledKey } from "@/injectionKeys";
+import { tailwindEnabledKey } from "@/injectionKeys";
 
 const tailwindColors = ref<HTMLDivElement>();
 const testColorElement = ref<HTMLElement>();
@@ -45,7 +45,7 @@ const longestText = computed(() =>
   ),
 );
 
-const tailwindEnabled = injectStrict(tailwindEnabledKey);
+const tailwindEnabled = inject(tailwindEnabledKey)!;
 const baseFontSize = ref(0);
 const testColorFontSize = ref(0);
 const codeFontSize = computed(() =>

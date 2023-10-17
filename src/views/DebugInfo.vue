@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { injectStrict, tailwindEnabledKey } from "@/injectionKeys";
+import { inject } from "vue";
+
+import { tailwindEnabledKey } from "@/injectionKeys";
 
 const debugInfo = {
   versionString: import.meta.env.VITE_VERSION_STRING ?? "(undefined)",
@@ -14,7 +16,7 @@ const debugInfo = {
   VITEST: import.meta.vitest ?? "(undefined)",
 };
 
-const tailwindEnabled = injectStrict(tailwindEnabledKey);
+const tailwindEnabled = inject(tailwindEnabledKey)!;
 const meta = import.meta;
 </script>
 
