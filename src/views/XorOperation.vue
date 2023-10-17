@@ -163,7 +163,3 @@ const testCode = tests.map((test) => test.toString());
   white-space: pre;
 }
 </style>
-
-<style>
-@import "highlight.js/styles/github-dark-dimmed.min.css" layer(highlight-theme);
-</style>

@@ -14,3 +14,7 @@ provide(tailwindEnabledKey, tailwindEnabled);
   <NavigationFragment />
   <RouterView />
 </template>
+
+<style>
+@import "highlight.js/styles/github-dark-dimmed.min.css" layer(highlight-theme);
+</style>

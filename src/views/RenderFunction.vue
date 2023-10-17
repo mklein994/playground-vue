@@ -50,8 +50,6 @@ const codeStyle = import.meta.env.PROD
 </template>
 
 <style>
-@import "highlight.js/styles/github-dark-dimmed.css" layer(highlight-theme);
-
 .render-output {
   padding-inline: 0.5em;
 }

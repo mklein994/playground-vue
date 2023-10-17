@@ -22,7 +22,3 @@ if (customElements.get("custom-element") === undefined) {
   <custom-element></custom-element>
   <Highlightjs language="css" :code="styles" style="white-space: pre-wrap" />
 </template>
-
-<style>
-@import "highlight.js/styles/github-dark-dimmed.css" layer(highlight-theme);
-</style>
