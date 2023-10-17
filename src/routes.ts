@@ -4,7 +4,16 @@ import HomeView from "@/HomeView.vue";
 import NotFound from "@/NotFound.vue";
 
 /* c8 ignore next */
-const modules = import.meta.glob("@/views/*.vue");
+const modules = import.meta.glob([
+  "@/views/*.vue",
+
+  // TODO: Enable these once sass is working again. Currently, `pnpm sass
+  // --version` is throwing an exception (even though `/usr/bin/sass --version`
+  // is not).
+  "!@/views/SassExperiment.vue",
+  "!@/components/style-inheritance/*",
+  "!@/views/StyleInheritance.vue",
+]);
 
 const componentRoutes: RouteRecordRaw[] = [];
 
