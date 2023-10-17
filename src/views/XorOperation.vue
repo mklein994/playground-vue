@@ -165,5 +165,5 @@ const testCode = tests.map((test) => test.toString());
 </style>
 
 <style>
-@import "highlight.js/styles/github-dark-dimmed.css";
+@import "highlight.js/styles/github-dark-dimmed.min.css" layer(highlight-theme);
 </style>

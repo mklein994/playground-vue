@@ -6,7 +6,7 @@ The Tailwind CSS layers are prepended here so they fit correctly if the
 Tailwind stylesheet is enabled.
 */
 
-@layer base, components, utilities, reset, pv-base;
+@layer base, components, utilities, reset, highlight-theme, pv-base;
 
 @layer reset {
   *,

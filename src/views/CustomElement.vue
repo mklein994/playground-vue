@@ -24,5 +24,5 @@ if (customElements.get("custom-element") === undefined) {
 </template>
 
 <style>
-@import "highlight.js/styles/github-dark-dimmed.css";
+@import "highlight.js/styles/github-dark-dimmed.css" layer(highlight-theme);
 </style>
