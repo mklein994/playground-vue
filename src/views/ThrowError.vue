@@ -1,18 +1,25 @@
 <script setup lang="ts">
+import { inject } from "vue";
+
+import { sentryKey } from "@/injectionKeys";
+
+const Sentry = inject(sentryKey);
+
 const divideNumbers = (a: number, b: number) => {
   try {
+    Sentry?.addBreadcrumb({
+      category: "example",
+      message: "Dividing some numbers",
+      data: { a, b },
+      level: "debug",
+    });
     const result = a / b;
     if (!Number.isFinite(result)) {
       throw new Error("Result is infinite");
     }
     return result;
   } catch (error: unknown) {
-    throw new Error("Failed to divide these numbers", {
-      cause: {
-        error,
-        values: { a, b },
-      },
-    });
+    throw new Error("Failed to divide these numbers", { cause: error });
   }
 };
 

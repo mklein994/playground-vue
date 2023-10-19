@@ -8,7 +8,7 @@ import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
 import { configDefaults } from "vitest/config";
 
 import vitePluginEruda from "./config/vite-plugin-eruda";
-import trySentryVitePlugin from "./config/vite-plugin-sentry";
+import sentryVitePlugin from "./config/vite-plugin-sentry";
 import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
 
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
@@ -126,7 +126,7 @@ export default defineConfig(({ mode }) => {
 
       env.BUILDTIME_ERUDA_ENABLED ? vitePluginEruda() : false,
 
-      trySentryVitePlugin(),
+      env.BUILDTIME_SENTRY_ENABLED ? sentryVitePlugin() : false,
     ],
   };
 });

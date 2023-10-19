@@ -1,15 +1,22 @@
 import type { App, Plugin } from "vue";
+import { provide as vueProvide } from "vue";
 import type { Router } from "vue-router";
 
-export const sentry: Plugin = {
-  async install(app: App, { router }: { router: Router }) {
+import { sentryKey } from "@/injectionKeys";
+
+export const sentryPlugin: Plugin = {
+  async install(
+    app: App,
+    { router, provide = false }: { router: Router; provide: boolean },
+  ) {
     const dsn = import.meta.env.VITE_SENTRY_DSN;
     if (!import.meta.env.VITE_SENTRY_ENABLED || dsn === undefined) {
       return;
     }
 
     try {
-      const Sentry = await import("@/use/analytics");
+      const Sentry = await import("@sentry/vue");
+      const { Wasm } = await import("@sentry/wasm");
       Sentry.init({
         app,
         dsn,
@@ -26,12 +33,16 @@ export const sentry: Plugin = {
           new Sentry.BrowserTracing({
             routingInstrumentation: Sentry.vueRouterInstrumentation(router),
           }),
-          new Sentry.Wasm(),
+          new Wasm(),
         ],
         tracesSampleRate: 1.0,
         release: import.meta.env.VITE_SENTRY_RELEASE,
         logErrors: true,
       });
+
+      if (provide) {
+        vueProvide(sentryKey, Sentry);
+      }
     } catch {
       // Let ad-blockers do their thing without crashing the app
     }
