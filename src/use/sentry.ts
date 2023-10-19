@@ -17,11 +17,15 @@ export const sentry: Plugin = {
         environment: import.meta.env.VITE_SENTRY_ENVIRONMENT,
         replaysSessionSampleRate: 0, // If there's lots of traffic, set this to a lower value
         replaysOnErrorSampleRate: 1.0,
+        tracePropagationTargets: [
+          "localhost",
+          "playground-vue.pages.dev",
+          /^\//,
+        ],
         integrations: [
           new Sentry.Replay(),
           new Sentry.BrowserTracing({
             routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-            tracingOrigins: ["localhost", "playground-vue.pages.dev", /^\//],
           }),
           new Sentry.Wasm(),
         ],
