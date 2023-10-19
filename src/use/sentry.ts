@@ -13,7 +13,6 @@ export const sentry: Plugin = {
       Sentry.init({
         app,
         dsn,
-        enabled: false,
         environment: import.meta.env.VITE_SENTRY_ENVIRONMENT,
         replaysSessionSampleRate: 0, // If there's lots of traffic, set this to a lower value
         replaysOnErrorSampleRate: 1.0,
