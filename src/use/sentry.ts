@@ -28,6 +28,7 @@ export const sentry: Plugin = {
             routingInstrumentation: Sentry.vueRouterInstrumentation(router),
           }),
           new Sentry.Wasm(),
+          new Sentry.ExtraErrorData(),
         ],
         tracesSampleRate: 1.0,
         release: import.meta.env.VITE_SENTRY_RELEASE,

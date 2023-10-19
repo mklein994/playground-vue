@@ -1,3 +1,4 @@
+export { ExtraErrorData } from "@sentry/integrations";
 export {
   BrowserTracing,
   init,
