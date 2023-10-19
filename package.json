@@ -26,6 +26,7 @@
   "packageManager": "pnpm@8.9.2",
   "type": "module",
   "dependencies": {
+    "@sentry/integrations": "^7.74.1",
     "@sentry/vue": "^7.74.1",
     "@sentry/wasm": "^7.74.1",
     "rrweb": "2.0.0-alpha.4",
