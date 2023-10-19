@@ -9,27 +9,21 @@ export const sentry: Plugin = {
     }
 
     try {
-      const {
-        SentryBrowserTracing,
-        SentryReplay,
-        WasmIntegration,
-        sentryInit,
-        vueRouterInstrumentation,
-      } = await import("@/use/analytics");
-
-      sentryInit({
+      const Sentry = await import("@/use/analytics");
+      Sentry.init({
         app,
         dsn,
+        enabled: false,
         environment: import.meta.env.VITE_SENTRY_ENVIRONMENT,
         replaysSessionSampleRate: 0, // If there's lots of traffic, set this to a lower value
         replaysOnErrorSampleRate: 1.0,
         integrations: [
-          new SentryReplay(),
-          new SentryBrowserTracing({
-            routingInstrumentation: vueRouterInstrumentation(router),
+          new Sentry.Replay(),
+          new Sentry.BrowserTracing({
+            routingInstrumentation: Sentry.vueRouterInstrumentation(router),
             tracingOrigins: ["localhost", "playground-vue.pages.dev", /^\//],
           }),
-          new WasmIntegration(),
+          new Sentry.Wasm(),
         ],
         tracesSampleRate: 1.0,
         release: import.meta.env.VITE_SENTRY_RELEASE,
