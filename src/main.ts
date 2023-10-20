@@ -18,6 +18,13 @@ const router = createRouter({
 
 const app = createApp(App);
 
-app.use(sentryPlugin, { router });
+void (async () => {
+  try {
+    const analyticsImports = await import("@/use/analytics");
+    app.use(sentryPlugin, { router, analyticsImports });
+  } catch (error: unknown) {
+    console.warn(new Error("Failed to initialize Sentry", { cause: error }));
+  }
 
-app.use(router).mount("#app");
+  app.use(router).mount("#app");
+})();

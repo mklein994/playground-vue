@@ -3,12 +3,11 @@ import { inject } from "vue";
 
 import { sentryKey } from "@/injectionKeys";
 
-const Sentry = inject(sentryKey);
+const Sentry = inject(sentryKey)!;
 
 const divideNumbers = (a: number, b: number) => {
   try {
-    Sentry?.addBreadcrumb({
-      category: "example",
+    Sentry.addBreadcrumb({
       message: "Dividing some numbers",
       data: { a, b },
       level: "debug",
@@ -19,7 +18,11 @@ const divideNumbers = (a: number, b: number) => {
     }
     return result;
   } catch (error: unknown) {
-    throw new Error("Failed to divide these numbers", { cause: error });
+    const err = new Error("Failed to divide these numbers", {
+      cause: error,
+    });
+    Sentry.captureException(err);
+    throw err;
   }
 };
 
