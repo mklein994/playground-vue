@@ -29,7 +29,7 @@
     "@sentry/vue": "^7.74.1",
     "@sentry/wasm": "^7.74.1",
     "rrweb": "2.0.0-alpha.4",
-    "vue": "^3.3.4",
+    "vue": "^3.3.6",
     "vue-router": "^4.2.5",
     "wavesurfer.js": "7.3.9"
   },
@@ -48,7 +48,7 @@
     "autoprefixer": "^10.4.16",
     "chroma-js": "^2.4.2",
     "d3": "^7.8.5",
-    "eslint": "^8.51.0",
+    "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-tsdoc": "^0.2.17",
