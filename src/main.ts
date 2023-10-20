@@ -20,7 +20,9 @@ const app = createApp(App);
 
 void (async () => {
   try {
-    const analyticsImports = await import("@/plugins/analytics");
+    const analyticsImports = import.meta.env.VITE_SENTRY_ENABLED
+      ? await import("@/plugins/analytics")
+      : { Sentry: undefined, Wasm: undefined };
     app.use(sentryPlugin, { router, analyticsImports });
   } catch (error: unknown) {
     if (import.meta.env.VITE_SENTRY_ENABLED) {
