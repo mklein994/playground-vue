@@ -6,7 +6,7 @@ import { sentryKey } from "@/injectionKeys";
 
 type Flatten<T> = T extends Array<infer U> ? U : never;
 type Integration = Flatten<BrowserOptions["integrations"]>;
-type AnalyticsImports = typeof import("@/use/analytics");
+type AnalyticsImports = typeof import("@/plugins/analytics");
 type SentryImport = AnalyticsImports["Sentry"];
 
 let Sentry: SentryImport;

@@ -1,6 +1,6 @@
 import type { InjectionKey, Ref } from "vue";
 
-import type { Sentry } from "@/use/sentry";
+import type { Sentry } from "@/plugins/sentry";
 
 export const tailwindEnabledKey = Symbol("tailwindEnabled") as InjectionKey<
   Ref<boolean>
