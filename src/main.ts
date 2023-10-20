@@ -23,7 +23,9 @@ void (async () => {
     const analyticsImports = await import("@/plugins/analytics");
     app.use(sentryPlugin, { router, analyticsImports });
   } catch (error: unknown) {
-    console.warn(new Error("Failed to initialize Sentry", { cause: error }));
+    if (import.meta.env.VITE_SENTRY_ENABLED) {
+      console.warn(new Error("Failed to initialize Sentry", { cause: error }));
+    }
   }
 
   app.use(router).mount("#app");
