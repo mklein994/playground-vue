@@ -18,17 +18,7 @@ const router = createRouter({
 
 const app = createApp(App);
 
-void (async () => {
-  try {
-    const analyticsImports = import.meta.env.VITE_SENTRY_ENABLED
-      ? await import("@/plugins/analytics")
-      : { Sentry: undefined, Wasm: undefined };
-    app.use(sentryPlugin, { router, analyticsImports });
-  } catch (error: unknown) {
-    if (import.meta.env.VITE_SENTRY_ENABLED) {
-      console.warn(new Error("Failed to initialize Sentry", { cause: error }));
-    }
-  }
-
-  app.use(router).mount("#app");
-})();
+if (import.meta.env.VITE_SENTRY_ENABLED) {
+  app.use(sentryPlugin, { router });
+}
+app.use(router).mount("#app");

@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { inject } from "vue";
-
-import { sentryKey } from "@/injectionKeys";
-
-const Sentry = inject(sentryKey)!;
+import * as Sentry from "@sentry/vue";
 
 const divideNumbers = (a: number, b: number) => {
   try {
