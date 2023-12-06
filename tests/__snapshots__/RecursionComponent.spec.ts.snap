@@ -1,31 +1,31 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RecursionComponent > renders correctly (map) 1`] = `
-"<div data-v-5572d211=\\"\\" class=\\"recursion\\"><pre data-v-5572d211=\\"\\">{
-  \\"Map(2)\\": {
-    \\"store =>\\": {
-      \\"Map(1)\\": {
-        \\"produce =>\\": {
-          \\"Map(3)\\": {
-            \\"apple =>\\": \\"store.produce.apple\\",
-            \\"banana =>\\": \\"store.produce.banana\\",
-            \\"cherry =>\\": \\"store.produce.cherry\\"
+"<div data-v-5572d211="" class="recursion"><pre data-v-5572d211="">{
+  "Map(2)": {
+    "store =>": {
+      "Map(1)": {
+        "produce =>": {
+          "Map(3)": {
+            "apple =>": "store.produce.apple",
+            "banana =>": "store.produce.banana",
+            "cherry =>": "store.produce.cherry"
           }
         }
       }
     },
-    \\"person =>\\": {
-      \\"Map(2)\\": {
-        \\"male =>\\": {
-          \\"Map(2)\\": {
-            \\"dad =>\\": \\"person.male.dad\\",
-            \\"son =>\\": \\"person.male.son\\"
+    "person =>": {
+      "Map(2)": {
+        "male =>": {
+          "Map(2)": {
+            "dad =>": "person.male.dad",
+            "son =>": "person.male.son"
           }
         },
-        \\"female =>\\": {
-          \\"Map(2)\\": {
-            \\"mom =>\\": \\"person.female.mom\\",
-            \\"daughter =>\\": \\"person.female.daughter\\"
+        "female =>": {
+          "Map(2)": {
+            "mom =>": "person.female.mom",
+            "daughter =>": "person.female.daughter"
           }
         }
       }
@@ -36,22 +36,22 @@ exports[`RecursionComponent > renders correctly (map) 1`] = `
 `;
 
 exports[`RecursionComponent > renders correctly (object) 1`] = `
-"<div data-v-5572d211=\\"\\" class=\\"recursion\\"><pre data-v-5572d211=\\"\\">{
-  \\"store\\": {
-    \\"produce\\": {
-      \\"apple\\": \\"store.produce.apple\\",
-      \\"banana\\": \\"store.produce.banana\\",
-      \\"cherry\\": \\"store.produce.cherry\\"
+"<div data-v-5572d211="" class="recursion"><pre data-v-5572d211="">{
+  "store": {
+    "produce": {
+      "apple": "store.produce.apple",
+      "banana": "store.produce.banana",
+      "cherry": "store.produce.cherry"
     }
   },
-  \\"person\\": {
-    \\"male\\": {
-      \\"dad\\": \\"person.male.dad\\",
-      \\"son\\": \\"person.male.son\\"
+  "person": {
+    "male": {
+      "dad": "person.male.dad",
+      "son": "person.male.son"
     },
-    \\"female\\": {
-      \\"mom\\": \\"person.female.mom\\",
-      \\"daughter\\": \\"person.female.daughter\\"
+    "female": {
+      "mom": "person.female.mom",
+      "daughter": "person.female.daughter"
     }
   }
 }</pre>
