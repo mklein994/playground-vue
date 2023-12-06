@@ -64,7 +64,7 @@ jobs:
 
       - name: Test with Coverage
         working-directory: playground-vue
-        run: pnpm run coverage --isolate
+        run: pnpm run coverage --poolOptions.threads.isolate true
 
       - name: Get Version String
         working-directory: playground-vue
