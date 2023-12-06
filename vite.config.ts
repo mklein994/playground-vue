@@ -81,7 +81,11 @@ export default defineConfig(({ mode }) => {
       environment: "happy-dom",
       includeSource: ["./src/**/*.ts"],
       exclude: [...configDefaults.exclude, "**/*.node-test.*"],
-      isolate: false, // major speed improvement at risk of cross-contamination
+      poolOptions: {
+        threads: {
+          isolate: false, // major speed improvement at risk of cross-contamination
+        },
+      },
       snapshotFormat: {
         printBasicPrototype: true,
       },
