@@ -109,6 +109,20 @@ const handleToggleTailwindClick = async (event: Event) => {
   await toggleTailwind(value);
 };
 
+const handleMenuKeydown = (e: Event) => {
+  if (e instanceof KeyboardEvent === false) {
+    throw new Error(
+      "keydown event handler must be attached to @keydown events",
+    );
+  }
+
+  if (e.key !== "Escape" || e.shiftKey || e.altKey || e.metaKey || e.ctrlKey) {
+    return;
+  }
+
+  toggleMenu();
+};
+
 onBeforeMount(async () => {
   if (import.meta.env.VITE_TAILWIND_ENABLED) {
     await toggleTailwind(true);
@@ -176,10 +190,11 @@ onBeforeMount(async () => {
       </div>
     </template>
 
-    <div
+    <button
       class="nav-button-wrapper"
       :class="menuPositionClasses"
       @click="toggleMenu"
+      @keydown="handleMenuKeydown"
     >
       <button v-if="menuOpen" @click.stop="toggleExpand">
         <Component :is="getChevronIcon" class="icon" />
@@ -189,7 +204,7 @@ onBeforeMount(async () => {
 
       <XMarkIcon v-if="menuOpen" class="icon" />
       <MenuIcon v-else class="icon" />
-    </div>
+    </button>
   </div>
 </template>
 
