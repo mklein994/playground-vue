@@ -18,11 +18,9 @@ const modules = import.meta.glob([
 const componentRoutes: RouteRecordRaw[] = [];
 
 for (const path in modules) {
-  // Since import.meta.glob will always return the path to a file, this is never possible.
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const wordCase = path
     .split("/")
-    .pop()!
+    .pop()! // Since import.meta.glob will always return the path to a file, this is never possible.
     .replace(/(?:Experiment)?\.vue$/, "")
     .replaceAll(/\B([A-Z]|[0-9]+)/g, " $1");
   const kebabCase = wordCase.replaceAll(" ", "-").toLowerCase();
