@@ -11,8 +11,8 @@ provide(tailwindEnabledKey, tailwindEnabled);
 </script>
 
 <template>
-  <NavigationFragment />
-  <RouterView />
+  <NavigationFragment></NavigationFragment>
+  <RouterView></RouterView>
 </template>
 
 <style>

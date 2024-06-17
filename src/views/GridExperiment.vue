@@ -33,13 +33,13 @@ const itemStyle = ref("outline: 1px solid blue");
 <template>
   <div class="input-group">
     <label for="grid-definition">Grid definition</label>
-    <textarea id="grid-definition" v-model="gridDefinition" />
+    <textarea id="grid-definition" v-model="gridDefinition"></textarea>
 
     <label for="grid-style">Grid style</label>
-    <textarea id="grid-style" v-model="gridStyle" />
+    <textarea id="grid-style" v-model="gridStyle"></textarea>
 
     <label for="item-style">Item style</label>
-    <textarea id="item-style" v-model="itemStyle" />
+    <textarea id="item-style" v-model="itemStyle"></textarea>
   </div>
 
   <div class="grid-component" :style="gridStyle">

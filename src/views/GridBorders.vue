@@ -88,12 +88,18 @@ function handleItemStyleUpdate(
 
     <fieldset style="grid-column: 1 / -1">
       <legend>content</legend>
-      <GridPicker kind="content" @update-style="handleContentStyleUpdate" />
+      <GridPicker
+        kind="content"
+        @update-style="handleContentStyleUpdate"
+      ></GridPicker>
     </fieldset>
 
     <fieldset style="grid-column: 1 / -1">
       <legend>item</legend>
-      <GridPicker kind="item" @update-style="handleItemStyleUpdate" />
+      <GridPicker
+        kind="item"
+        @update-style="handleItemStyleUpdate"
+      ></GridPicker>
     </fieldset>
   </div>
 

@@ -14,7 +14,7 @@ const vocalRange = ref(false);
 
 <template>
   <div class="spectrogram-experiment">
-    <AudioPicker v-model="audioSource" />
+    <AudioPicker v-model="audioSource"></AudioPicker>
 
     <div class="options">
       <label for="vocal-range">Limit to vocal range</label>
@@ -32,7 +32,7 @@ const vocalRange = ref(false);
           :src="audioSource"
           :vocal-range="vocalRange"
           class="spectrogram"
-        />
+        ></SpectrogramGraph>
       </template>
     </div>
   </div>

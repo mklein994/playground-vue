@@ -197,13 +197,13 @@ onBeforeMount(async () => {
       @keydown="handleMenuKeydown"
     >
       <button v-if="menuOpen" @click.stop="toggleExpand">
-        <Component :is="getChevronIcon" class="icon" />
+        <Component :is="getChevronIcon" class="icon"></Component>
       </button>
 
-      <RouteInfo v-if="expanded" class="route-info" />
+      <RouteInfo v-if="expanded" class="route-info"></RouteInfo>
 
-      <XMarkIcon v-if="menuOpen" class="icon" />
-      <MenuIcon v-else class="icon" />
+      <XMarkIcon v-if="menuOpen" class="icon"></XMarkIcon>
+      <MenuIcon v-else class="icon"></MenuIcon>
     </button>
   </div>
 </template>

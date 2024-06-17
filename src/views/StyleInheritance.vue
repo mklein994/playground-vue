@@ -8,8 +8,8 @@ import ChildTwo from "@/components/style-inheritance/ChildTwo.vue";
   <div class="child-zero">
     <p>Parent</p>
     <p class="child zero">Parent</p>
-    <ChildOne />
-    <ChildTwo />
+    <ChildOne></ChildOne>
+    <ChildTwo></ChildTwo>
   </div>
 </template>
 

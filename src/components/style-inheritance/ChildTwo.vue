@@ -7,7 +7,7 @@ import ChildFour from "./ChildFour.vue";
   <div class="child-two">
     <p>Child Two</p>
     <p class="child two">Child Two</p>
-    <ChildFour />
+    <ChildFour></ChildFour>
   </div>
 </template>
 

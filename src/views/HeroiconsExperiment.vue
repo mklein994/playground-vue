@@ -69,9 +69,21 @@ const handleQuery = (event: Event) => {
       :key="name"
     >
       <div class="name">{{ name.wordCase }}</div>
-      <Component :is="solid" class="icon solid" :class="name.kebabCase" />
-      <Component :is="outline" class="icon outline" :class="name.kebabCase" />
-      <Component :is="compact" class="icon compact" :class="name.kebabCase" />
+      <Component
+        :is="solid"
+        class="icon solid"
+        :class="name.kebabCase"
+      ></Component>
+      <Component
+        :is="outline"
+        class="icon outline"
+        :class="name.kebabCase"
+      ></Component>
+      <Component
+        :is="compact"
+        class="icon compact"
+        :class="name.kebabCase"
+      ></Component>
     </template>
   </div>
 </template>

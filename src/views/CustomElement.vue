@@ -20,5 +20,9 @@ if (customElements.get("custom-element") === undefined) {
 
 <template>
   <custom-element></custom-element>
-  <Highlightjs language="css" :code="styles" style="white-space: pre-wrap" />
+  <Highlightjs
+    language="css"
+    :code="styles"
+    style="white-space: pre-wrap"
+  ></Highlightjs>
 </template>

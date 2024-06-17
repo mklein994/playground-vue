@@ -73,7 +73,7 @@ onMounted(() => refreshTable());
         rows="10"
         placeholder="return args[0] || args[1];"
         class="tw-form-textarea"
-      />
+      ></textarea>
     </div>
 
     <div class="allow-nulls">
@@ -99,8 +99,13 @@ onMounted(() => refreshTable());
     :headers="headers"
     :tests="tests"
     class="truth-table"
-  />
-  <TruthTable v-else :headers="headers" :tests="tests" class="truth-table" />
+  ></TruthTableWithNulls>
+  <TruthTable
+    v-else
+    :headers="headers"
+    :tests="tests"
+    class="truth-table"
+  ></TruthTable>
 </template>
 
 <style scoped>

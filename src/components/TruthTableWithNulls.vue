@@ -85,7 +85,7 @@ const rows = computed(() => {
     <tbody class="body">
       <tr v-for="row of rows" :key="row.key.id" class="row">
         <td class="cell">
-          <KeyCellWithNull :key-value="row.key.keyItem" />
+          <KeyCellWithNull :key-value="row.key.keyItem"></KeyCellWithNull>
         </td>
         <td
           v-for="keyItem of row.key.keyItem"

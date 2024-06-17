@@ -19,7 +19,7 @@ function* iteratorGenerator(max: number) {
 
 const fizzBuzz = (max: number) => {
   const list = [];
-  for (let i of iteratorGenerator(max)) {
+  for (const i of iteratorGenerator(max)) {
     list.push(
       i % 15 === 0
         ? "FizzBuzz"

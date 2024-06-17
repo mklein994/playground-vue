@@ -17,5 +17,5 @@ const options = ref<PlotOptions>({
 </script>
 
 <template>
-  <PlotGraph :options="options" />
+  <PlotGraph :options="options"></PlotGraph>
 </template>

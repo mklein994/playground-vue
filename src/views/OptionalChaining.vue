@@ -31,5 +31,5 @@ const stores = computed(getStores);
     language="ts"
     :code="getStores.toString()"
     style="white-space: pre-wrap"
-  />
+  ></Highlightjs>
 </template>

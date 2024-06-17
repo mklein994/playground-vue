@@ -16,5 +16,8 @@ const handleDoStuff = async () => {
 </script>
 
 <template>
-  <EventCallbacksHelper :success="success" @stuff="handleDoStuff" />
+  <EventCallbacksHelper
+    :success="success"
+    @stuff="handleDoStuff"
+  ></EventCallbacksHelper>
 </template>

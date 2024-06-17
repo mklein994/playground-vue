@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/vue";
-import { Wasm } from "@sentry/wasm";
+import { wasmIntegration } from "@sentry/wasm";
 import type { Plugin } from "vue";
 import type { Router } from "vue-router";
 
@@ -22,11 +22,9 @@ export const sentryPlugin: Plugin<SentryPluginOptions> = {
       replaysOnErrorSampleRate: 1.0,
       tracePropagationTargets: ["localhost", "playground-vue.pages.dev", /^\//],
       integrations: [
-        new Sentry.Replay(),
-        new Sentry.BrowserTracing({
-          routingInstrumentation: Sentry.vueRouterInstrumentation(router),
-        }),
-        new Wasm(),
+        Sentry.replayIntegration(),
+        Sentry.browserTracingIntegration({ router }),
+        wasmIntegration(),
       ],
       tracesSampleRate: 1.0,
       release: import.meta.env.VITE_SENTRY_RELEASE,

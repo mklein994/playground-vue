@@ -35,17 +35,25 @@ const codeStyle = import.meta.env.PROD
   <div class="render-function">
     <p>This is from a render function:</p>
 
-    <CustomRenderFunction />
+    <CustomRenderFunction></CustomRenderFunction>
 
-    <Highlightjs language="ts" :code="renderCode" :style="codeStyle" />
+    <Highlightjs
+      language="ts"
+      :code="renderCode"
+      :style="codeStyle"
+    ></Highlightjs>
 
     <p>
       This is from the equivalent <code>&lt;script setup&gt;</code> component:
     </p>
 
-    <CustomRenderFunctionSetup />
+    <CustomRenderFunctionSetup></CustomRenderFunctionSetup>
 
-    <Highlightjs language="ts" :code="setupCode" :style="codeStyle" />
+    <Highlightjs
+      language="ts"
+      :code="setupCode"
+      :style="codeStyle"
+    ></Highlightjs>
   </div>
 </template>
 

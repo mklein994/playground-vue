@@ -110,7 +110,7 @@ const split = computed(() => {
       :source="source"
       :parse-style="parseStyle"
       :split="split"
-    />
+    ></RecursionComponent>
   </div>
 </template>
 

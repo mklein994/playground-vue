@@ -8,6 +8,6 @@ const GeneratorList = defineAsyncComponent(
 
 <template>
   <Suspense>
-    <GeneratorList />
+    <GeneratorList></GeneratorList>
   </Suspense>
 </template>

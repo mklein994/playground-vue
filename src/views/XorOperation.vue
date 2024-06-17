@@ -111,7 +111,7 @@ const testCode = tests.map((test) => test.toString());
     language="ts"
     :code="`// t${i}\n${code}`"
     class="code"
-  />
+  ></Highlightjs>
 </template>
 
 <style scoped>

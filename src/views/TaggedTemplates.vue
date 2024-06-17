@@ -5,17 +5,17 @@
  */
 /*eslint @typescript-eslint/no-explicit-any: ["error", { "ignoreRestArgs": true }]*/
 
-let person = "Mike";
-let age = 28;
+const person = "Mike";
+const age = 28;
 
 function myTag(
   strings: TemplateStringsArray,
   personExp: string,
   ageExp: number,
 ) {
-  let str0 = strings[0]; // "That "
-  let str1 = strings[1]; // " is a "
-  let str2 = strings[2]; // "."
+  const str0 = strings[0]; // "That "
+  const str1 = strings[1]; // " is a "
+  const str2 = strings[2]; // "."
 
   let ageStr;
   if (ageExp > 99) {
@@ -28,7 +28,7 @@ function myTag(
   return `${str0}${personExp}${str1}${ageStr}${str2}`;
 }
 
-let output = myTag`That ${person} is a ${age}.`;
+const output = myTag`That ${person} is a ${age}.`;
 
 console.log(output);
 // That mike is a youngster.

@@ -68,15 +68,18 @@ const mono = ref(monoOpts.default);
 
 <template>
   <div class="input-group">
-    <VariableFontAxis v-model="fontSize" :opts="fontSizeOpts" />
+    <VariableFontAxis
+      v-model="fontSize"
+      :opts="fontSizeOpts"
+    ></VariableFontAxis>
 
-    <VariableFontAxis v-model="slnt" :opts="slntOpts" />
+    <VariableFontAxis v-model="slnt" :opts="slntOpts"></VariableFontAxis>
 
-    <VariableFontAxis v-model="wght" :opts="wghtOpts" />
+    <VariableFontAxis v-model="wght" :opts="wghtOpts"></VariableFontAxis>
 
-    <VariableFontAxis v-model="casl" :opts="caslOpts" />
+    <VariableFontAxis v-model="casl" :opts="caslOpts"></VariableFontAxis>
 
-    <VariableFontAxis v-model="mono" :opts="monoOpts" />
+    <VariableFontAxis v-model="mono" :opts="monoOpts"></VariableFontAxis>
 
     <div class="crsv-group">
       <label for="crsv">CRSV</label>
