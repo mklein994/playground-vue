@@ -164,8 +164,9 @@ const filteredLinks = computed(() =>
 );
 
 const vFocus = {
-  mounted: (element: HTMLElement) => {
+  mounted: (element: HTMLInputElement) => {
     element.focus();
+    element.select();
   },
 };
 
