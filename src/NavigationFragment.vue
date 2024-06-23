@@ -5,7 +5,14 @@ import {
   ChevronRightIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/solid";
-import { computed, inject, onBeforeMount, ref, watchEffect } from "vue";
+import {
+  computed,
+  inject,
+  onBeforeMount,
+  onBeforeUnmount,
+  ref,
+  watchEffect,
+} from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import RouteInfo from "@/RouteInfo.vue";
@@ -24,6 +31,22 @@ const menuOpen = ref(false);
 
 const toggleMenu = () => {
   menuOpen.value = !menuOpen.value;
+};
+
+const openMenu = () => {
+  if (menuOpen.value) {
+    throw new Error("Tried opening an already opened menu");
+  }
+
+  menuOpen.value = true;
+};
+
+const closeMenu = () => {
+  if (!menuOpen.value) {
+    throw new Error("Tried closing an already closed menu");
+  }
+
+  menuOpen.value = false;
 };
 
 const menuPositions = new Map<string, { top: boolean; left: boolean }>([
@@ -128,6 +151,79 @@ onBeforeMount(async () => {
     await toggleTailwind(true);
   }
 });
+
+const searchQuery = ref("");
+const filteredLinks = computed(() =>
+  searchQuery.value === ""
+    ? links.value
+    : links.value.filter((x) =>
+        (x.name as string)
+          .toLowerCase()
+          .includes(searchQuery.value.toLowerCase()),
+      ),
+);
+
+const vFocus = {
+  mounted: (element: HTMLElement) => {
+    element.focus();
+  },
+};
+
+const handleSearchSubmit = async (e: Event) => {
+  e.preventDefault();
+
+  const topLink = filteredLinks.value.at(0);
+  if (!topLink) {
+    return;
+  }
+
+  await router.push(topLink);
+  toggleMenu();
+};
+
+// TODO: change this when using the Popover API
+const closeOnEscape = (e: KeyboardEvent) => {
+  if (
+    e.key === "Escape" &&
+    !(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey)
+  ) {
+    if (!e.defaultPrevented) {
+      e.preventDefault();
+
+      closeMenu();
+    }
+  }
+};
+
+const openOnCtrlK = (e: KeyboardEvent) => {
+  if (e.ctrlKey && e.key === "k") {
+    if (!e.defaultPrevented) {
+      e.preventDefault();
+
+      openMenu();
+    }
+  }
+};
+
+const handleGlobalShortcuts = (e: Event) => {
+  if (e instanceof KeyboardEvent === false) {
+    return;
+  }
+
+  if (menuOpen.value) {
+    closeOnEscape(e);
+  } else {
+    openOnCtrlK(e);
+  }
+};
+
+onBeforeMount(() => {
+  document.addEventListener("keydown", handleGlobalShortcuts);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("keydown", handleGlobalShortcuts);
+});
 </script>
 
 <template>
@@ -135,23 +231,34 @@ onBeforeMount(async () => {
   <div class="home" :class="[{ 'menu-open': menuOpen }, menuPositionClasses]">
     <template v-if="menuOpen">
       <nav class="links">
-        <ul class="links-list">
-          <li
-            v-for="link of links"
-            :key="link.path"
-            class="link"
-            :class="{ active: route.path === link.path }"
-          >
-            <RouterLink :to="link.path" @click="toggleMenu">{{
-              link.name
-            }}</RouterLink>
-          </li>
-          <hr />
-          <li class="link">
-            <a v-if="coverageExists" href="/coverage/index.html">Coverage</a
-            ><span v-else>Coverage (Not Found)</span>
-          </li>
-        </ul>
+        <form @submit="handleSearchSubmit">
+          <input
+            v-model="searchQuery"
+            v-focus
+            type="search"
+            placeholder="Search&hellip;"
+            class="search-query"
+          />
+
+          <div v-if="filteredLinks.length === 0">No Results</div>
+          <ul v-else class="links-list">
+            <li
+              v-for="link of filteredLinks"
+              :key="link.path"
+              class="link"
+              :class="{ active: route.path === link.path }"
+            >
+              <RouterLink :to="link.path" @click="toggleMenu">{{
+                link.name
+              }}</RouterLink>
+            </li>
+            <hr />
+            <li class="link">
+              <a v-if="coverageExists" href="/coverage/index.html">Coverage</a
+              ><span v-else>Coverage (Not Found)</span>
+            </li>
+          </ul>
+        </form>
       </nav>
 
       <div class="enable-tailwind">
@@ -352,6 +459,11 @@ onBeforeMount(async () => {
    * browsers that can hide the toolbar on scroll (i.e.
    * Firefox Android)
    */
+}
+
+.site-search {
+  position: sticky;
+  inset-block-start: 0;
 }
 
 .links-list {
