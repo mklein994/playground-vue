@@ -4,7 +4,7 @@
  * @param {number} v
  * @returns {number}
  */
-function compactHex(v) {
+export function compactHex(v) {
   return ((v & 0x0ff00000) >> 12) | ((v & 0x00000ff0) >> 4);
 }
 
@@ -13,7 +13,7 @@ function compactHex(v) {
  * @param {number} v
  * @returns {number}
  */
-function expandHex(v) {
+export function expandHex(v) {
   return (
     ((v & 0xf000) << 16) |
     ((v & 0xff00) << 12) |
@@ -62,7 +62,7 @@ const shortNameMap = new Map([
  * @param {number} v
  * @returns {string | undefined}
  */
-function shortColorName(v) {
+export function shortColorName(v) {
   return shortNameMap.get(v);
 }
 
@@ -78,7 +78,7 @@ function shortColorName(v) {
  *
  * @returns {RecursiveObject}
  */
-function recursiveTransform(source, keyName, transform) {
+export function recursiveTransform(source, keyName, transform) {
   const results = {};
   for (const key in source) {
     const value = source[key];
@@ -93,10 +93,3 @@ function recursiveTransform(source, keyName, transform) {
 
   return results;
 }
-
-module.exports = {
-  compactHex,
-  expandHex,
-  shortColorName,
-  recursiveTransform,
-};

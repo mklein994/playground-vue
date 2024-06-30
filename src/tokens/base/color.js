@@ -1,5 +1,5 @@
-const chroma = require("chroma-js");
-const { recursiveTransform } = require("../helpers.cjs");
+import chroma from "chroma-js";
+import { recursiveTransform } from "../helpers.js";
 
 const baseColors = {
   amber: {
@@ -356,7 +356,7 @@ const baseColors = {
 };
 
 /** @type {import("style-dictionary/types/DesignToken").DesignTokens} */
-module.exports = {
+export default {
   color: {
     base: baseColors,
     rgb: recursiveTransform(baseColors, "value", (value) =>

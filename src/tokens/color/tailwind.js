@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   color: {
     amber: {
       100: { value: "#fef3c7" },
