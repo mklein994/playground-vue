@@ -3,6 +3,8 @@ import hljsVuePlugin from "@highlightjs/vue-plugin";
 import hljs from "highlight.js/lib/core";
 import css from "highlight.js/lib/languages/css";
 
+import ColorWheelGenerator from "@/components/ColorWheelGenerator.vue";
+
 hljs.registerLanguage("css", css);
 
 const Highlightjs = hljsVuePlugin.component;
@@ -33,6 +35,8 @@ const code = `
         neque deserunt omnis porro hic.
       </p>
     </div>
+
+    <ColorWheelGenerator></ColorWheelGenerator>
   </div>
 </template>
 
