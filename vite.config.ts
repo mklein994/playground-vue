@@ -82,7 +82,7 @@ export default defineConfig(({ mode }) => {
       includeSource: ["./src/**/*.ts"],
       exclude: [...configDefaults.exclude, "**/*.node-test.*"],
       poolOptions: {
-        threads: {
+        forks: {
           isolate: false, // major speed improvement at risk of cross-contamination
         },
       },
