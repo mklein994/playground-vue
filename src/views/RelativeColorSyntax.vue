@@ -43,7 +43,7 @@ const code = `
 <style scoped>
 .demo {
   --color: green;
-  color: green;
+  color: var(--color);
 }
 
 .outer {
