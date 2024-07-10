@@ -46,6 +46,7 @@ jobs:
         with:
           node-version: latest
           cache: 'pnpm'
+          cache-dependency-path: 'playground-vue/pnpm-lock.yaml'
 
       - name: Install
         working-directory: playground-vue
