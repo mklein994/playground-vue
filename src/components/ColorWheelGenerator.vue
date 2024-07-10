@@ -1,10 +1,12 @@
+<!-- Inspired by the demo at https://www.stefanjudis.com/notes/new-in-css-relative-colors/ -->
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import ColorWheel from "@/components/ColorWheel.vue";
 
 const steps = ref(5);
 const initialColor = ref("#613583");
+const baseColor = computed(() => `hsl(from ${initialColor.value} h s 50%)`);
 </script>
 
 <template>
@@ -18,6 +20,7 @@ const initialColor = ref("#613583");
         name="steps"
         min="4"
         max="16"
+        class="color-steps"
       />
       <output>{{ steps }}</output>
     </div>
@@ -31,5 +34,9 @@ const initialColor = ref("#613583");
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.color-steps {
+  accent-color: v-bind("baseColor");
 }
 </style>
