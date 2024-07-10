@@ -133,7 +133,7 @@ const handleToggleTailwindClick = async (event: Event) => {
 };
 
 const handleMenuKeydown = (e: Event) => {
-  if (e instanceof KeyboardEvent === false) {
+  if (!(e instanceof KeyboardEvent)) {
     throw new Error(
       "keydown event handler must be attached to @keydown events",
     );
@@ -207,7 +207,7 @@ const openOnCtrlK = (e: KeyboardEvent) => {
 };
 
 const handleGlobalShortcuts = (e: Event) => {
-  if (e instanceof KeyboardEvent === false) {
+  if (!(e instanceof KeyboardEvent)) {
     return;
   }
 
