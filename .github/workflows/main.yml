@@ -39,14 +39,14 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          package_json_file: 'playground-vue/package.json'
+          package_json_file: "playground-vue/package.json"
 
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: latest
-          cache: 'pnpm'
-          cache-dependency-path: 'playground-vue/pnpm-lock.yaml'
+          cache: "pnpm"
+          cache-dependency-path: "playground-vue/pnpm-lock.yaml"
 
       - name: Install
         working-directory: playground-vue
