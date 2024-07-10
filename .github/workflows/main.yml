@@ -36,22 +36,20 @@ jobs:
 
       - run: wasm-pack build --target web sunrise-cli
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: 'playground-vue/package.json'
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: latest
-
-      - name: Cache pnpm store
-        uses: actions/cache@v4
-        with:
-          path: ~/.local/share/pnpm/store
-          key: ${{ runner.os }}-node-${{ hashFiles('playground-vue/**/pnpm-lock.yaml') }}
+          cache: 'pnpm'
 
       - name: Install
         working-directory: playground-vue
-        run: |
-          corepack enable pnpm
-          pnpm install
+        run: pnpm install
 
       - name: Lint
         working-directory: playground-vue
