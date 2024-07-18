@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
 
   const wasmSupported = (env.BUILDTIME_WASM_SUPPORTED ?? "true") === "true";
   const sunriseRoot = wasmSupported
-    ? env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli"
+    ? (env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli")
     : "./src/fake/sunrise-cli";
   const isReproducible =
     (env.BUILDTIME_REPRODUCIBLE_ENABLED ?? "false") === "true";
