@@ -93,11 +93,8 @@ jobs:
         run: pnpm run build:all
 
       - name: Deploy to Cloudflare
-        uses: cloudflare/pages-action@1 # https://github.com/marketplace/actions/cloudflare-pages-github-action
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: playground-vue
-          directory: playground-vue/dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          wranglerVersion: "3"
+        working-directory: playground-vue
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: pnpm dlx wrangler pages deploy dist --project-name=playground-vue
