@@ -12,7 +12,7 @@ defineEmits<{
 const result = ref("result before");
 
 watchEffect(
-  function () {
+  () => {
     if (props.success !== undefined) {
       return props.success ? console.log("success!") : console.warn("fail!");
     }

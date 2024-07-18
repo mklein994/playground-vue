@@ -15,15 +15,13 @@ const escapeRegExp = (input: string) =>
 
 const splitFunc = (char: string) => {
   const c = escapeRegExp(char);
-  return new RegExp(c + "[^" + char + "]+", "g");
+  return new RegExp(`${c}[^${char}]+`, "g");
 };
 
 const source = computed(() => {
   const charText = splitCharText.value;
   const text = sourceText.value?.trim().split(/\n/);
-  const re = charText
-    ? new RegExp("^" + escapeRegExp(charText) + "*")
-    : undefined;
+  const re = charText ? new RegExp(`^${escapeRegExp(charText)}*`) : undefined;
 
   if (!text) {
     return undefined;

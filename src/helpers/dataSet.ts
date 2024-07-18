@@ -2,7 +2,7 @@ export type RecursiveMap = Map<string, RecursiveMap | string>;
 type DataGetReturn = string | RecursiveMap | undefined;
 
 export const dataSet = (
-  source: RecursiveMap = new Map(),
+  source: RecursiveMap,
   path: string[],
   value: string,
 ) => {

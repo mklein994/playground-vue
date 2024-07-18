@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 
-import { type Test } from "@/components/TruthTable.vue";
+import type { Test } from "@/components/TruthTable.vue";
 import TruthTable from "@/components/TruthTable.vue";
 import type { TestWithNulls } from "@/components/TruthTableWithNulls.vue";
 import TruthTableWithNulls from "@/components/TruthTableWithNulls.vue";
