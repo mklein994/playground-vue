@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, reactive } from "vue";
 
+import MediaQueries from "@/components/MediaQueries.vue";
+
 const userAgent = navigator.userAgent;
 const inner = reactive({
   width: window.innerWidth,
@@ -36,6 +38,7 @@ onUnmounted(() => {
     <span>{{ inner }}</span>
     <span>Outer Width</span>
     <span>{{ outer }}</span>
+    <MediaQueries class="media-queries"></MediaQueries>
   </div>
 </template>
 
@@ -48,5 +51,9 @@ onUnmounted(() => {
   font-family: monospace;
   gap: 0.5em 2em;
   grid: auto-flow / auto auto;
+}
+
+.media-queries {
+  grid-column: 1 / -1;
 }
 </style>
