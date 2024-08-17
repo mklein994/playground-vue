@@ -96,9 +96,12 @@ onMounted(async () => {
       name="lon"
       step="0.0000001"
     />
-    <input id="azimuth" v-model="azimuth" type="text" name="azimuth" />
-    <!--
-    <select id="azimuth" v-model="azimuth" name="azimuth" class="tw-form-select">
+    <select
+      id="azimuth"
+      v-model="azimuth"
+      name="azimuth"
+      class="tw-form-select"
+    >
       <option
         v-for="name of ['Official', 'Civil', 'Nautical', 'Astronomical']"
         :key="name"
@@ -106,7 +109,6 @@ onMounted(async () => {
         {{ name }}
       </option>
     </select>
-    -->
 
     <Suspense>
       <SunriseSunset :coords="coords" :date="date" :azimuth="azimuth" />
