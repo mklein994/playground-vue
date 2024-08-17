@@ -5,6 +5,7 @@ import fastGlob from "fast-glob";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
 import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
+import wasm from "vite-plugin-wasm";
 import { configDefaults } from "vitest/config";
 
 import vitePluginEruda from "./config/vite-plugin-eruda";
@@ -125,11 +126,9 @@ export default defineConfig(({ mode }) => {
           },
         },
       }),
-
       tailwindPlugin(),
-
+      wasm(),
       env.BUILDTIME_ERUDA_ENABLED ? vitePluginEruda() : false,
-
       env.BUILDTIME_SENTRY_ENABLED ? sentryVitePlugin() : false,
     ],
   };

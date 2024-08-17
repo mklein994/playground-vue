@@ -34,7 +34,7 @@ jobs:
             sunrise-cli/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('sunrise-cli/**/Cargo.lock') }}
 
-      - run: wasm-pack build --target web sunrise-cli
+      - run: wasm-pack build --target bundler sunrise-cli
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4

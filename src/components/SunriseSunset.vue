@@ -6,7 +6,7 @@ interface Coord {
 </script>
 
 <script setup lang="ts">
-import init, { getSunriseSunset } from "@sunrise-cli/pkg/sunrise_cli";
+import { getSunriseSunset } from "@sunrise-cli/pkg/sunrise_cli";
 import { computed, type PropType } from "vue";
 
 const props = defineProps({
@@ -26,8 +26,6 @@ const props = defineProps({
     // ["Official", "Civil", "Nautical", "Astronomical"].includes(value),
   },
 });
-
-await init();
 
 const fullDateFormat = new Intl.DateTimeFormat("en-CA", {
   dateStyle: "medium",

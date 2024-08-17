@@ -29,6 +29,7 @@
     "@sentry/vue": "^8.18.0",
     "@sentry/wasm": "^8.18.0",
     "rrweb": "2.0.0-alpha.4",
+    "vite-plugin-wasm": "^3.3.0",
     "vue": "^3.4.32",
     "vue-router": "^4.4.0",
     "wavesurfer.js": "7.8.2"
