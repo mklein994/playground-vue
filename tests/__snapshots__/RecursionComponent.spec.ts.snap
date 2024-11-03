@@ -3,29 +3,29 @@
 exports[`RecursionComponent > renders correctly (map) 1`] = `
 "<div data-v-5572d211="" class="recursion"><pre data-v-5572d211="">{
   "Map(2)": {
-    "store =>": {
+    "store =&gt;": {
       "Map(1)": {
-        "produce =>": {
+        "produce =&gt;": {
           "Map(3)": {
-            "apple =>": "store.produce.apple",
-            "banana =>": "store.produce.banana",
-            "cherry =>": "store.produce.cherry"
+            "apple =&gt;": "store.produce.apple",
+            "banana =&gt;": "store.produce.banana",
+            "cherry =&gt;": "store.produce.cherry"
           }
         }
       }
     },
-    "person =>": {
+    "person =&gt;": {
       "Map(2)": {
-        "male =>": {
+        "male =&gt;": {
           "Map(2)": {
-            "dad =>": "person.male.dad",
-            "son =>": "person.male.son"
+            "dad =&gt;": "person.male.dad",
+            "son =&gt;": "person.male.son"
           }
         },
-        "female =>": {
+        "female =&gt;": {
           "Map(2)": {
-            "mom =>": "person.female.mom",
-            "daughter =>": "person.female.daughter"
+            "mom =&gt;": "person.female.mom",
+            "daughter =&gt;": "person.female.daughter"
           }
         }
       }

@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import { ref, watchEffect } from "vue";
 
-const props = withDefaults(
-  defineProps<{
-    initialMax?: number;
-  }>(),
-  {
-    initialMax: 25,
-  },
-);
+const { initialMax = 25 } = defineProps<{
+  initialMax?: number;
+}>();
 
 function* iteratorGenerator(max: number) {
   let i = 1;
@@ -33,7 +28,7 @@ const fizzBuzz = (max: number) => {
   return list;
 };
 
-const max = ref(props.initialMax);
+const max = ref(initialMax);
 
 const list = ref<(string | number)[]>([]);
 
