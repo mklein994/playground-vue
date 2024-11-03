@@ -5,6 +5,7 @@ import fastGlob from "fast-glob";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
 import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
+import topLevelAwait from "vite-plugin-top-level-await";
 import wasm from "vite-plugin-wasm";
 import { configDefaults } from "vitest/config";
 
@@ -128,6 +129,7 @@ export default defineConfig(({ mode }) => {
       }),
       tailwindPlugin(),
       wasm(),
+      topLevelAwait(),
       env.BUILDTIME_ERUDA_ENABLED ? vitePluginEruda() : false,
       env.BUILDTIME_SENTRY_ENABLED ? sentryVitePlugin() : false,
     ],
