@@ -65,11 +65,11 @@ export default defineConfig(({ mode }) => {
             : "assets/[name]-[hash].js",
 
           // https://rollupjs.org/guide/en/#outputassetfilenames
-          assetFileNames({ name }) {
+          assetFileNames({ names }) {
             const hash = isReproducible ? "" : "-[hash]";
             const asset = `[name]${hash}[extname]`;
 
-            if (/\.(?:woff2?|[ot]tf)$/.test(name ?? "")) {
+            if (names?.some((name) => /\.(?:woff2?|[ot]tf)$/.test(name))) {
               return `assets/fonts/${asset}`;
             }
 
