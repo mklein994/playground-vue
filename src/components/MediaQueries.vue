@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 
 type ComboType = (string | number | boolean)[][];
 const combos = (categories: ComboType): ComboType => {
@@ -62,7 +62,7 @@ const mediaQueryValues = ref<Map<string, boolean | null>>(new Map());
 const onlyTrue = ref(false);
 const filteredValues = computed(() =>
   [...mediaQueryValues.value.entries()].filter(
-    ([k, v]) => !onlyTrue.value || v,
+    ([_k, v]) => !onlyTrue.value || v,
   ),
 );
 
@@ -93,14 +93,18 @@ onUnmounted(() => {
     <input id="only-true" v-model="onlyTrue" type="checkbox" name="onlyTrue" />
     <label for="only-true">Only True</label>
     <table>
-      <tr>
-        <th>Matches</th>
-        <th>Media</th>
-      </tr>
-      <tr v-for="[query, matches] of filteredValues" :key="query">
-        <td class="cell-matches" :data-matches="matches">{{ matches }}</td>
-        <td class="cell-media">{{ query }}</td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Matches</th>
+          <th>Media</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="[query, matches] of filteredValues" :key="query">
+          <td class="cell-matches" :data-matches="matches">{{ matches }}</td>
+          <td class="cell-media">{{ query }}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -116,7 +120,7 @@ onUnmounted(() => {
   &[data-matches="false"] {
     color: red;
 
-    &+.cell-media {
+    & + .cell-media {
       color: grey;
     }
   }
