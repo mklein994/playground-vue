@@ -212,7 +212,6 @@ const mono = ref(monoOpts.default);
   hyphens: auto;
 
   overflow-wrap: break-word;
-  word-break: break-word;
 
   :first-child {
     margin: 0;
