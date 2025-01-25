@@ -16,7 +16,14 @@ export default {
             ignoreFunctions: ["v-bind", "theme"],
           },
         ],
-        "declaration-property-value-no-unknown": null,
+        "declaration-property-value-no-unknown": [
+          true,
+          {
+            ignoreProperties: {
+              "/.*/": "/(?:v-bind|theme)\\(.+\\)/",
+            },
+          },
+        ],
       },
     },
   ],
