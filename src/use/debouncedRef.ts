@@ -2,12 +2,16 @@ import type { MaybeRefOrGetter, Ref } from "vue";
 import { customRef, ref, toValue } from "vue";
 
 // Inspired by https://learnersbucket.com/examples/interview/debouncing-with-leading-and-trailing-options/
-const debounce = <T extends unknown[], U>(
-  fn: (...args: T) => U,
-  wait = 0,
+export const debounce = <T extends unknown[]>(
+  fn: (...args: T) => void,
+  wait = 250,
   options: { leading?: boolean; trailing?: boolean } = {},
 ): ((...args: T) => void) => {
   const { leading = false, trailing = true } = options;
+
+  if (!leading && !trailing) {
+    throw new Error("At least one of leading or trailing must be set to true");
+  }
 
   let timeout: ReturnType<typeof setTimeout> | undefined;
   let isLeadingInvoked = false;
