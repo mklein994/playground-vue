@@ -11,9 +11,9 @@ watch(
   [wait, leading, trailing],
   ([newWait, newLeading, newTrailing], [oldWait, oldLeading, oldTrailing]) => {
     if (
-      newWait !== oldWait ||
-      newLeading !== oldLeading ||
-      newTrailing !== oldTrailing
+      newWait !== oldWait
+      || newLeading !== oldLeading
+      || newTrailing !== oldTrailing
     ) {
       changed.value = true;
     }

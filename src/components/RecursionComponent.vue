@@ -21,8 +21,8 @@ const checkHasValues = (
   value: unknown,
 ): value is [key: string, value: string][] => {
   return (
-    Array.isArray(value) &&
-    value.some((x) => Array.isArray(x) && x.length === 2)
+    Array.isArray(value)
+    && value.some((x) => Array.isArray(x) && x.length === 2)
   );
 };
 

@@ -7,8 +7,8 @@ const updateColor = (event: Event) => {
   const newColor = (event.target as HTMLInputElement).value;
 
   const cssVariablesEl =
-    cssVariables.value ??
-    (() => {
+    cssVariables.value
+    ?? (() => {
       throw new Error(".css-variables is undefined");
     })();
 

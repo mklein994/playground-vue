@@ -95,8 +95,8 @@ const commitHash = import.meta.env.VITE_COMMIT_HASH;
 const versionString = import.meta.env.VITE_VERSION_STRING;
 const versionDisplay = computed(
   () =>
-    (expanded.value ? versionString : commitHash?.slice(0, 7)) ??
-    "(unknown commit)",
+    (expanded.value ? versionString : commitHash?.slice(0, 7))
+    ?? "(unknown commit)",
 );
 
 const tailwindEnabled = inject(tailwindEnabledKey)!;
@@ -185,8 +185,8 @@ const handleSearchSubmit = async (e: Event) => {
 // TODO: change this when using the Popover API
 const closeOnEscape = (e: KeyboardEvent) => {
   if (
-    e.key === "Escape" &&
-    !(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey)
+    e.key === "Escape"
+    && !(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey)
   ) {
     if (!e.defaultPrevented) {
       e.preventDefault();

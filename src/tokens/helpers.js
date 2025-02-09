@@ -15,11 +15,11 @@ export function compactHex(v) {
  */
 export function expandHex(v) {
   return (
-    ((v & 0xf000) << 16) |
-    ((v & 0xff00) << 12) |
-    ((v & 0x0ff0) << 8) |
-    ((v & 0x00ff) << 4) |
-    (v & 0x000f)
+    ((v & 0xf000) << 16)
+    | ((v & 0xff00) << 12)
+    | ((v & 0x0ff0) << 8)
+    | ((v & 0x00ff) << 4)
+    | (v & 0x000f)
   );
 }
 
