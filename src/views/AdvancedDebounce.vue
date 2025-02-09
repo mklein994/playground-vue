@@ -61,11 +61,11 @@ const handleSubmit = () => {
 <style scoped>
 .settings {
   display: grid;
-  grid-template-columns: auto auto;
-  gap: 0.5rem;
-  justify-content: start;
-  justify-items: start;
-  margin: 1rem;
   max-width: max-content;
+  justify-content: start;
+  margin: 1rem;
+  gap: 0.5rem;
+  grid-template-columns: auto auto;
+  justify-items: start;
 }
 </style>
