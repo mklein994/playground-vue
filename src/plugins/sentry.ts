@@ -22,13 +22,13 @@ export const sentryPlugin: Plugin<SentryPluginOptions> = {
       replaysOnErrorSampleRate: 1.0,
       tracePropagationTargets: ["localhost", "playground-vue.pages.dev", /^\//],
       integrations: [
+        Sentry.vueIntegration(),
         Sentry.replayIntegration(),
         Sentry.browserTracingIntegration({ router }),
         wasmIntegration(),
       ],
       tracesSampleRate: 1.0,
       release: import.meta.env.VITE_SENTRY_RELEASE,
-      logErrors: true,
     });
   },
 };
