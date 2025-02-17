@@ -138,14 +138,12 @@ jobs:
         run: pnpm install
 
       - name: Download sunrise-cli pkg
-        if: matrix.task == 'typecheck'
         uses: actions/download-artifact@v4
         with:
           name: sunrise-cli-pkg
           path: sunrise-cli/pkg
 
       - name: Download date-diff pkg
-        if: matrix.task == 'typecheck'
         uses: actions/download-artifact@v4
         with:
           name: date-diff-pkg
