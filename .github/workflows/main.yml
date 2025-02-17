@@ -1,12 +1,36 @@
 name: Build and Lint Project
 on: [push]
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      deployments: write
+    steps:
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: "playground-vue/package.json"
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: "pnpm"
+          cache-dependency-path: "playground-vue/pnpm-lock.yaml"
+
+  setup-wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          targets: wasm32-unknown-unknown
+
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+  checkout-wasm:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -18,17 +42,10 @@ jobs:
           repository: "mklein994/date-diff"
           path: date-diff
 
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: stable
-          targets: wasm32-unknown-unknown
-
-      - uses: actions/checkout@v4
-        with:
-          path: playground-vue
-
-      - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
+  build-sunrise:
+    needs: [setup-wasm, checkout-wasm]
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/cache@v4
         with:
           path: |
@@ -37,52 +54,83 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             sunrise-cli/target/
-            date-diff/target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('date-diff/**/Cargo.lock', 'sunrise-cli/**/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-sunrise-${{ hashFiles('sunrise-cli/**/Cargo.lock') }}
 
-      - run: wasm-pack build date-diff
       - run: wasm-pack build sunrise-cli
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+  build-date-diff:
+    needs: [setup-wasm, checkout-wasm]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/cache@v4
         with:
-          package_json_file: "playground-vue/package.json"
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            date-diff/target/
+          key: ${{ runner.os }}-cargo-date-diff-${{ hashFiles('date-diff/**/Cargo.lock') }}
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      - run: wasm-pack build date-diff
+
+  install-dependencies:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
         with:
-          node-version: latest
-          cache: "pnpm"
-          cache-dependency-path: "playground-vue/pnpm-lock.yaml"
+          path: playground-vue
 
       - name: Install
         working-directory: playground-vue
         run: pnpm install
 
-      - name: Lint
-        working-directory: playground-vue
-        run: pnpm run lint:ci
+  verify:
+    needs: [install-dependencies]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        task: ['lint', 'test-node', 'test-coverage', 'typecheck']
+        include:
+          - task: lint
+            command: pnpm run lint:ci
+          - task: test-node
+            command: pnpm run test:node
+            continue-on-error: true
+          - task: test-coverage
+            command: pnpm run coverage --poolOptions.threads.isolate true
+          - task: typecheck
+            command: pnpm run typecheck
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: playground-vue
 
-      - name: Node Tests
+      - name: Run ${{ matrix.task }}
         working-directory: playground-vue
-        run: pnpm run test:node
-        continue-on-error: true
+        continue-on-error: ${{ matrix.continue-on-error || false }}
+        run: ${{ matrix.command }}
 
-      - name: Test with Coverage
-        working-directory: playground-vue
-        run: pnpm run coverage --poolOptions.threads.isolate true
-
+  prepare-build:
+    needs: [verify]
+    runs-on: ubuntu-latest
+    outputs:
+      version_string: ${{ steps.version.outputs.version_string }}
+    steps:
       - name: Get Version String
-        working-directory: playground-vue
-        env:
-          VITE_COMMIT_HASH: ${{ github.sha }}
+        id: version
         run: |
-          VITE_VERSION_STRING="${GITHUB_REF_NAME} (${GITHUB_SHA:0:7} $(date -Is))"
-          echo "VITE_VERSION_STRING=${VITE_VERSION_STRING}" >> "${GITHUB_ENV}"
+          VERSION_STRING="${GITHUB_REF_NAME} (${GITHUB_SHA:0:7} $(date -Is))"
+          echo "version_string=${VERSION_STRING}" >> "$GITHUB_OUTPUT"
 
-      - name: Typecheck
-        working-directory: playground-vue
-        run: pnpm run typecheck
+  build:
+    needs: [prepare-build, build-sunrise, build-date-diff]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: playground-vue
 
       - name: Build
         working-directory: playground-vue
@@ -90,15 +138,21 @@ jobs:
           SENTRY_ORG: matthew-klein
           SENTRY_PROJECT: matthew-klein
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          # This should correspond with 'sentry-cli releases propose-version'
           VITE_SENTRY_RELEASE: ${{ github.sha }}
           VITE_SENTRY_ENABLED: true
           BUILDTIME_SENTRY_ENABLED: true
           VITE_COMMIT_HASH: ${{ github.sha }}
+          VITE_VERSION_STRING: ${{ needs.prepare-build.outputs.version_string }}
           VITE_SENTRY_DSN: https://931d497682d84de1ad9db23083a1a6c0@o1124115.ingest.sentry.io/6162360
           VITE_SENTRY_ENVIRONMENT: ${{ github.ref_name == 'main' && 'release' || 'development' }}
         run: pnpm run build:all
 
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      deployments: write
+    steps:
       - name: Deploy to Cloudflare
         working-directory: playground-vue
         env:
