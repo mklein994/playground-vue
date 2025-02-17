@@ -141,6 +141,13 @@ jobs:
           name: date-diff-pkg
           path: date-diff/pkg
 
+      - name: Cache eslint
+        if: matrix.task == 'lint'
+        uses: actions/cache@v4
+        with:
+          path: .eslintcache
+          key: ${{ runner.os }}-eslint-${{ hashFiles('playground-vue/.eslintcache') }}
+
       - name: Run ${{ matrix.task }}
         working-directory: playground-vue
         continue-on-error: ${{ matrix.continue-on-error || false }}
@@ -234,6 +241,10 @@ jobs:
     permissions:
       deployments: write
     steps:
+      - uses: actions/checkout@v4
+        with:
+          path: playground-vue
+
       - name: Download final build
         uses: actions/download-artifact@v4
         with:

@@ -16,7 +16,7 @@
     "typecheck": "pnpm typecheck:config && pnpm typecheck:workers && pnpm typecheck:tests && pnpm typecheck:node-tests",
     "lint": "eslint .",
     "lint:style": "stylelint 'src/**/*.{vue,css}'",
-    "lint:ci": "eslint --max-warnings 0 . && pnpm lint:style && prettier --check .",
+    "lint:ci": "eslint --max-warnings 0 --cache --cache-location .eslintcache . && pnpm lint:style && prettier --check .",
     "format": "eslint --fix --fix-type layout . && pnpm lint:style --fix && prettier --write .",
     "test": "vitest",
     "test:node": "node --test --test-reporter=spec",
