@@ -240,6 +240,18 @@ jobs:
           name: final-build
           path: playground-vue/dist/
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: "playground-vue/package.json"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: "pnpm"
+          cache-dependency-path: "playground-vue/pnpm-lock.yaml"
+
       - name: Deploy to Cloudflare
         working-directory: playground-vue
         env:
