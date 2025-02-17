@@ -6,6 +6,7 @@
     "types": ["vitest/importMeta"],
     "paths": {
       "@sunrise-cli/*": ["../sunrise-cli/*", "./src/fake/sunrise-cli/*"],
+      "@date-diff/*": ["../date-diff/*", "./src/fake/date-diff/*"],
       "@/*": ["./src/*"]
     }
   },

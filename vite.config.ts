@@ -5,13 +5,13 @@ import fastGlob from "fast-glob";
 import fs from "fs";
 import { fileURLToPath, URL } from "url";
 import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
-import topLevelAwait from "vite-plugin-top-level-await";
 import wasm from "vite-plugin-wasm";
 import { configDefaults } from "vitest/config";
 
 import vitePluginEruda from "./config/vite-plugin-eruda";
 import sentryVitePlugin from "./config/vite-plugin-sentry";
 import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
+import { wasmProject } from "./config/vite-plugin-wasm-project";
 
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
@@ -24,6 +24,9 @@ export default defineConfig(({ mode }) => {
   const sunriseRoot = wasmSupported
     ? (env.BUILDTIME_SUNRISE_CLI_ROOT ?? "../sunrise-cli")
     : "./src/fake/sunrise-cli";
+  const dateDiffRoot = wasmSupported
+    ? (env.BUILDTIME_DATE_DIFF_ROOT ?? "../date-diff")
+    : "./src/fake/date-diff";
   const isReproducible =
     (env.BUILDTIME_REPRODUCIBLE_ENABLED ?? "false") === "true";
 
@@ -37,12 +40,20 @@ export default defineConfig(({ mode }) => {
   return {
     server: {
       fs: {
-        allow: [searchForWorkspaceRoot(cwd), sunriseRoot],
+        allow: [searchForWorkspaceRoot(cwd)],
       },
       host: env.BUILDTIME_HOST,
     },
 
     build: {
+      // The default, "modules", doesn't include top-level await, necessary for wasm support
+      target: [
+        "es2022", // es2020
+        "edge89", // edge88
+        "firefox89", // firefox78
+        "chrome89", // chrome87
+        "safari15", // safari14
+      ],
       sourcemap: !isReproducible, // sourcemaps change on every build
       rollupOptions: {
         output: {
@@ -114,7 +125,6 @@ export default defineConfig(({ mode }) => {
 
     resolve: {
       alias: {
-        "@sunrise-cli": resolve(sunriseRoot),
         "@": resolve("./src"),
       },
     },
@@ -129,7 +139,12 @@ export default defineConfig(({ mode }) => {
       }),
       tailwindPlugin(),
       wasm(),
-      topLevelAwait(),
+      wasmProject(wasmSupported, sunriseRoot, {
+        "@sunrise-cli": resolve(sunriseRoot),
+      }),
+      wasmProject(wasmSupported, dateDiffRoot, {
+        "@date-diff": resolve(dateDiffRoot),
+      }),
       env.BUILDTIME_ERUDA_ENABLED ? vitePluginEruda() : false,
       env.BUILDTIME_SENTRY_ENABLED ? sentryVitePlugin() : false,
     ],

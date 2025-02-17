@@ -3,8 +3,10 @@ import type { RouteRecordRaw } from "vue-router";
 import HomeView from "@/HomeView.vue";
 import NotFound from "@/NotFound.vue";
 
+import { useAsyncComponent } from "./use/use-async-component";
+
 /* c8 ignore next */
-const modules = import.meta.glob("@/views/*.vue");
+const modules = import.meta.glob<typeof import("*.vue")>("@/views/*.vue");
 
 const componentRoutes: RouteRecordRaw[] = [];
 
@@ -12,14 +14,16 @@ for (const path in modules) {
   const wordCase = path
     .split("/")
     .pop()! // Since import.meta.glob will always return the path to a file, this is never possible.
-    .replace(/(?:Experiment)?\.vue$/, "")
+    .replace(/(?:Experiment)?(Async)?\.vue$/, "$1")
     .replaceAll(/\B([A-Z]|[0-9]+)/g, " $1");
   const kebabCase = wordCase.replaceAll(" ", "-").toLowerCase();
 
   componentRoutes.push({
     path: `/${kebabCase}`,
     name: wordCase,
-    component: modules[path],
+    component: kebabCase.endsWith("async")
+      ? useAsyncComponent(modules[path])
+      : modules[path],
   });
 }
 

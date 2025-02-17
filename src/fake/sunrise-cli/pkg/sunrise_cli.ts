@@ -3,6 +3,7 @@ async function init() {
 }
 
 const getSunriseSunset = (..._args: unknown[]): [number, number] => {
+  console.warn("Faked function: getSunriseSunset");
   return [0, 0];
 };
 
