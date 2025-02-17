@@ -137,6 +137,20 @@ jobs:
         working-directory: playground-vue
         run: pnpm install
 
+      - name: Download sunrise-cli pkg
+        if: matrix.task == 'typecheck'
+        uses: actions/download-artifact@v4
+        with:
+          name: sunrise-cli-pkg
+          path: sunrise-cli/pkg
+
+      - name: Download date-diff pkg
+        if: matrix.task == 'typecheck'
+        uses: actions/download-artifact@v4
+        with:
+          name: date-diff-pkg
+          path: date-diff/pkg
+
       - name: Run ${{ matrix.task }}
         working-directory: playground-vue
         continue-on-error: ${{ matrix.continue-on-error || false }}
