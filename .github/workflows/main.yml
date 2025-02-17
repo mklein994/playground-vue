@@ -133,6 +133,10 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "playground-vue/pnpm-lock.yaml"
 
+      - name: Install dependencies
+        working-directory: playground-vue
+        run: pnpm install
+
       - name: Run ${{ matrix.task }}
         working-directory: playground-vue
         continue-on-error: ${{ matrix.continue-on-error || false }}
@@ -196,6 +200,10 @@ jobs:
           node-version: latest
           cache: "pnpm"
           cache-dependency-path: "playground-vue/pnpm-lock.yaml"
+
+      - name: Install dependencies
+        working-directory: playground-vue
+        run: pnpm install
 
       - name: Build
         working-directory: playground-vue
