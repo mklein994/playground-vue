@@ -13,6 +13,11 @@ jobs:
           repository: "mklein994/sunrise-cli"
           path: sunrise-cli
 
+      - uses: actions/checkout@v4
+        with:
+          repository: "mklein994/date-diff"
+          path: date-diff
+
       - uses: dtolnay/rust-toolchain@stable
         with:
           toolchain: stable
@@ -32,9 +37,11 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             sunrise-cli/target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('sunrise-cli/**/Cargo.lock') }}
+            date-diff/target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('date-diff/**/Cargo.lock', sunrise-cli/**/Cargo.lock') }}
 
-      - run: wasm-pack build --target web sunrise-cli
+      - run: wasm-pack build date-diff
+      - run: wasm-pack build sunrise-cli
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
