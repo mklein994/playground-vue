@@ -38,7 +38,7 @@ jobs:
             ~/.cargo/git/db/
             sunrise-cli/target/
             date-diff/target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('date-diff/**/Cargo.lock', sunrise-cli/**/Cargo.lock') }}
+          key: ${{ runner.os }}-cargo-${{ hashFiles('date-diff/**/Cargo.lock', 'sunrise-cli/**/Cargo.lock') }}
 
       - run: wasm-pack build date-diff
       - run: wasm-pack build sunrise-cli
