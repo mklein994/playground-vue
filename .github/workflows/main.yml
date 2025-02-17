@@ -103,7 +103,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        task: ['lint', 'test-node', 'test-coverage', 'typecheck']
+        task: ["lint", "test-node", "test-coverage", "typecheck"]
         include:
           - task: lint
             command: pnpm run lint:ci
