@@ -63,6 +63,8 @@ jobs:
           name: wasm-pack
           path: ~/.cargo/bin/wasm-pack
 
+      - run: echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+
       - uses: actions/cache@v4
         with:
           path: |
@@ -88,6 +90,13 @@ jobs:
         with:
           repository: "mklein994/date-diff"
           path: date-diff
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: wasm-pack
+          path: ~/.cargo/bin/wasm-pack
+
+      - run: echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
 
       - uses: actions/cache@v4
         with:
