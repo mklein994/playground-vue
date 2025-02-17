@@ -26,12 +26,6 @@ jobs:
         working-directory: playground-vue
         run: pnpm install
 
-      - name: Upload playground-vue
-        uses: actions/upload-artifact@v4
-        with:
-          name: playground-vue
-          path: playground-vue
-
   setup-rust:
     runs-on: ubuntu-latest
     steps:
@@ -115,10 +109,8 @@ jobs:
           - task: typecheck
             command: pnpm run typecheck
     steps:
-      - name: Download playground-vue
-        uses: actions/download-artifact@v4
+      - uses: actions/checkout@v4
         with:
-          name: playground-vue
           path: playground-vue
 
       - name: Setup pnpm
@@ -177,10 +169,8 @@ jobs:
     needs: [prepare-build, build-sunrise, build-date-diff]
     runs-on: ubuntu-latest
     steps:
-      - name: Download playground-vue
-        uses: actions/download-artifact@v4
+      - uses: actions/checkout@v4
         with:
-          name: playground-vue
           path: playground-vue
 
       - name: Download coverage
