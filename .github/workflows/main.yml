@@ -6,6 +6,10 @@ jobs:
     permissions:
       contents: read
     steps:
+      - uses: actions/checkout@v4
+        with:
+          path: playground-vue
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -18,6 +22,16 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "playground-vue/pnpm-lock.yaml"
 
+      - name: Install dependencies
+        working-directory: playground-vue
+        run: pnpm install
+
+      - name: Upload playground-vue
+        uses: actions/upload-artifact@v4
+        with:
+          name: playground-vue
+          path: playground-vue
+
   setup-wasm:
     runs-on: ubuntu-latest
     steps:
@@ -29,7 +43,8 @@ jobs:
       - name: Install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-  checkout-wasm:
+  build-sunrise:
+    needs: [setup-wasm]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -37,15 +52,6 @@ jobs:
           repository: "mklein994/sunrise-cli"
           path: sunrise-cli
 
-      - uses: actions/checkout@v4
-        with:
-          repository: "mklein994/date-diff"
-          path: date-diff
-
-  build-sunrise:
-    needs: [setup-wasm, checkout-wasm]
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/cache@v4
         with:
           path: |
@@ -58,10 +64,21 @@ jobs:
 
       - run: wasm-pack build sunrise-cli
 
+      - name: Upload sunrise-cli pkg
+        uses: actions/upload-artifact@v4
+        with:
+          name: sunrise-cli-pkg
+          path: sunrise-cli/pkg/
+
   build-date-diff:
-    needs: [setup-wasm, checkout-wasm]
+    needs: [setup-wasm]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: "mklein994/date-diff"
+          path: date-diff
+
       - uses: actions/cache@v4
         with:
           path: |
@@ -74,20 +91,14 @@ jobs:
 
       - run: wasm-pack build date-diff
 
-  install-dependencies:
-    needs: [setup]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+      - name: Upload date-diff pkg
+        uses: actions/upload-artifact@v4
         with:
-          path: playground-vue
-
-      - name: Install
-        working-directory: playground-vue
-        run: pnpm install
+          name: date-diff-pkg
+          path: date-diff/pkg/
 
   verify:
-    needs: [install-dependencies]
+    needs: [setup]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -103,14 +114,35 @@ jobs:
           - task: typecheck
             command: pnpm run typecheck
     steps:
-      - uses: actions/checkout@v4
+      - name: Download playground-vue
+        uses: actions/download-artifact@v4
         with:
+          name: playground-vue
           path: playground-vue
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: "playground-vue/package.json"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: "pnpm"
+          cache-dependency-path: "playground-vue/pnpm-lock.yaml"
 
       - name: Run ${{ matrix.task }}
         working-directory: playground-vue
         continue-on-error: ${{ matrix.continue-on-error || false }}
         run: ${{ matrix.command }}
+
+      - name: Upload coverage
+        if: matrix.task == 'test-coverage'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: playground-vue/public/coverage/
 
   prepare-build:
     needs: [verify]
@@ -128,9 +160,41 @@ jobs:
     needs: [prepare-build, build-sunrise, build-date-diff]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Download playground-vue
+        uses: actions/download-artifact@v4
         with:
+          name: playground-vue
           path: playground-vue
+
+      - name: Download coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
+          path: playground-vue/public/coverage
+
+      - name: Download sunrise-cli pkg
+        uses: actions/download-artifact@v4
+        with:
+          name: sunrise-cli-pkg
+          path: sunrise-cli/pkg
+
+      - name: Download date-diff pkg
+        uses: actions/download-artifact@v4
+        with:
+          name: date-diff-pkg
+          path: date-diff/pkg
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: "playground-vue/package.json"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: "pnpm"
+          cache-dependency-path: "playground-vue/pnpm-lock.yaml"
 
       - name: Build
         working-directory: playground-vue
