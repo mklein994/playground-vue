@@ -32,7 +32,7 @@ jobs:
           name: playground-vue
           path: playground-vue
 
-  setup-wasm:
+  setup-rust:
     runs-on: ubuntu-latest
     steps:
       - uses: dtolnay/rust-toolchain@stable
@@ -40,17 +40,8 @@ jobs:
           toolchain: stable
           targets: wasm32-unknown-unknown
 
-      - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
-      - name: Upload wasm-pack
-        uses: actions/upload-artifact@v4
-        with:
-          name: wasm-pack
-          path: ~/.cargo/bin/wasm-pack
-
   build-sunrise:
-    needs: [setup-wasm]
+    needs: [setup-rust]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -58,12 +49,8 @@ jobs:
           repository: "mklein994/sunrise-cli"
           path: sunrise-cli
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: wasm-pack
-          path: ~/.cargo/bin/wasm-pack
-
-      - run: echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - uses: actions/cache@v4
         with:
@@ -83,7 +70,7 @@ jobs:
           path: sunrise-cli/pkg/
 
   build-date-diff:
-    needs: [setup-wasm]
+    needs: [setup-rust]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -91,12 +78,8 @@ jobs:
           repository: "mklein994/date-diff"
           path: date-diff
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: wasm-pack
-          path: ~/.cargo/bin/wasm-pack
-
-      - run: echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - uses: actions/cache@v4
         with:
