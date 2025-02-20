@@ -29,7 +29,7 @@ jobs:
   setup-rust:
     runs-on: ubuntu-latest
     steps:
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: stable
           targets: wasm32-unknown-unknown
