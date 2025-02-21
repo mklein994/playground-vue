@@ -62,9 +62,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: playground-vue/.eslintcache
-          key: eslint-src-${{ hashFiles('src/**') }}
+          key: eslint-src-${{ hashFiles('playground-vue/src/**') }}
           restore-keys: |
-            eslint-src-${{ hashFiles('src/**') }}
+            eslint-src-${{ hashFiles('playground-vue/src/**') }}
             eslint-src-
 
       - name: Lint
