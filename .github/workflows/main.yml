@@ -62,7 +62,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: playground-vue/.eslintcache
-          key: eslint-${{ hashFiles('playground-vue/.eslintcache') }}
+          key: eslint-${{ hashFiles('playground-vue/package.json', 'playground-vue/eslint.config.*') }}
 
       - name: Lint
         working-directory: playground-vue
