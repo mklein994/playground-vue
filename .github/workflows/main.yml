@@ -63,6 +63,11 @@ jobs:
         with:
           path: playground-vue/.eslintcache
           key: eslint-${{ hashFiles('playground-vue/package.json', 'playground-vue/eslint.config.*') }}
+          restore-keys: |
+            eslint-src-${{ hashFiles('playground-vue/src/**') }}
+            eslint-src-
+            eslint-lock-${{ hashFiles('playground-vue/pnpm-lock.yml') }}
+            eslint-lock-
 
       - name: Lint
         working-directory: playground-vue
