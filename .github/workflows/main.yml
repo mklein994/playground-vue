@@ -58,6 +58,12 @@ jobs:
         working-directory: playground-vue
         run: pnpm install
 
+      - name: Cache ESLint
+        uses: actions/cache@v4
+        with:
+          path: playground-vue/.eslintcache
+          key: eslint-${{ hashFiles('playground-vue/.eslintcache') }}
+
       - name: Lint
         working-directory: playground-vue
         run: pnpm run lint:ci
