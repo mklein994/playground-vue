@@ -34,14 +34,16 @@ jobs:
           toolchain: stable
           targets: wasm32-unknown-unknown
 
-  build-sunrise:
-    needs: [setup-rust]
+  build-rust-projects:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: ["sunrise-cli", "date-diff"]
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: "mklein994/sunrise-cli"
-          path: sunrise-cli
+          repository: "mklein994/${{ matrix.project }}"
+          path: ${{ matrix.project }}
 
       - uses: actions/cache@v4
         with:
@@ -50,49 +52,19 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-            sunrise-cli/target/
-          key: ${{ runner.os }}-cargo-sunrise-${{ hashFiles('sunrise-cli/**/Cargo.lock') }}
+            ${{ matrix.project }}/target/
+          key: ${{ runner.os }}-cargo-${{ matrix.project }}-${{ hashFiles(format('{0}/**/Cargo.lock', matrix.project)) }}
 
       - name: Install wasm-pack
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-      - run: wasm-pack build sunrise-cli
+      - run: wasm-pack build ${{ matrix.project }}
 
-      - name: Upload sunrise-cli pkg
+      - name: Upload ${{ matrix.project }} pkg
         uses: actions/upload-artifact@v4
         with:
-          name: sunrise-cli-pkg
-          path: sunrise-cli/pkg/
-
-  build-date-diff:
-    needs: [setup-rust]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: "mklein994/date-diff"
-          path: date-diff
-
-      - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-
-      - uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            date-diff/target/
-          key: ${{ runner.os }}-cargo-date-diff-${{ hashFiles('date-diff/**/Cargo.lock') }}
-
-      - run: wasm-pack build date-diff
-
-      - name: Upload date-diff pkg
-        uses: actions/upload-artifact@v4
-        with:
-          name: date-diff-pkg
-          path: date-diff/pkg/
+          name: ${{ matrix.project }}-pkg
+          path: ${{ matrix.project }}/pkg/
 
   verify:
     needs: [setup]
@@ -175,7 +147,7 @@ jobs:
           echo "version_string=${VERSION_STRING}" >> "$GITHUB_OUTPUT"
 
   build:
-    needs: [prepare-build, build-sunrise, build-date-diff]
+    needs: [prepare-build, build-rust-projects]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
