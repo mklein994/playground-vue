@@ -35,6 +35,7 @@ jobs:
           targets: wasm32-unknown-unknown
 
   build-rust-projects:
+    needs: [setup-rust]
     runs-on: ubuntu-latest
     strategy:
       matrix:
