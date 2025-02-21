@@ -127,9 +127,11 @@ export default tseslint.config(
       "simple-import-sort/exports": "warn",
 
       "@typescript-eslint/no-unused-vars": noUnusedVarsRule,
-      "vue/component-tags-order": [
+      "vue/block-order": [
         "error",
-        { order: ["script", "template", "style"] },
+        {
+          order: ["script:not([setup])", "script[setup]", "template", "style"],
+        },
       ],
       "vue/component-api-style": ["error", ["script-setup"]],
       "vue/define-macros-order": "warn",
