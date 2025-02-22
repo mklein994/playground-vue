@@ -70,7 +70,9 @@ const difference = computed(() => {
   }
 });
 
-const relativeDateInput = ref(toDate(new Date()));
+const relativeDateInput = ref(
+  new Date().toLocaleDateString("en-CA", { dateStyle: "short" }),
+);
 const relativeDate = computed(() =>
   relativeDateInput.value === "" ? null : relativeDateInput.value,
 );
