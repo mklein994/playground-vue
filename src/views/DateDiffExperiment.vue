@@ -34,7 +34,7 @@ const initialTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 const startTimeZone = ref(initialTimeZone);
 const endTimeZone = ref(initialTimeZone);
 
-const durationText = ref("30000s");
+const durationText = ref(`${1e9}s`);
 
 const options = computed(
   () =>
@@ -70,7 +70,7 @@ const difference = computed(() => {
   }
 });
 
-const relativeDateInput = ref("");
+const relativeDateInput = ref(toDate(new Date()));
 const relativeDate = computed(() =>
   relativeDateInput.value === "" ? null : relativeDateInput.value,
 );
