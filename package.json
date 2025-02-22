@@ -68,7 +68,7 @@
     "postcss-html": "^1.8.0",
     "postcss-logical": "^8.0.0",
     "postcss-nesting": "^13.0.1",
-    "prettier": "^3.5.1",
+    "prettier": "^3.5.2",
     "sass": "^1.85.0",
     "style-dictionary": "^4.3.3",
     "stylelint": "^16.14.1",
