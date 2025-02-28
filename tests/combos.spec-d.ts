@@ -17,26 +17,20 @@ describe("TupleListItems", () => {
   it("handles when the first item is an empty list", () => {
     expectTypeOf<
       TupleListItems<[[], [Record<string, unknown>]]>
-      // >().toEqualTypeOf<[never, Record<string, unknown>]>();
     >().toEqualTypeOf<[]>();
   });
 
   it("handles when the last item is an empty list", () => {
-    expectTypeOf<TupleListItems<[string[], []]>>().toEqualTypeOf<
-      // [string, never]
-      []
-    >();
+    expectTypeOf<TupleListItems<[string[], []]>>().toEqualTypeOf<[]>();
   });
 
   it("handles when a middle item is an empty list", () => {
     expectTypeOf<TupleListItems<[string[], [], string[]]>>().toEqualTypeOf<
-      // [string, never, string]
       []
     >();
   });
 
   it("handles when multiple items are empty lists", () => {
-    // expectTypeOf<TupleListItems<[[], []]>>().toEqualTypeOf<[never, never]>();
     expectTypeOf<TupleListItems<[[], []]>>().toEqualTypeOf<[]>();
   });
 });
