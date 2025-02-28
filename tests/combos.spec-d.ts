@@ -1,37 +1,35 @@
 import { assertType, describe, expectTypeOf, it } from "vitest";
 
-import type { TupleListItems } from "@/helpers/combos";
+import type { TupleListItem } from "@/helpers/combos";
 import { combos } from "@/helpers/combos";
 
-describe("TupleListItems", () => {
+describe("TupleListItem", () => {
   it("handles empty lists", () => {
-    expectTypeOf<TupleListItems<[]>>().toEqualTypeOf<[]>();
+    expectTypeOf<TupleListItem<[]>>().toEqualTypeOf<[]>();
   });
 
   it("handles the simple case", () => {
-    expectTypeOf<TupleListItems<[string[], number[]]>>().toEqualTypeOf<
+    expectTypeOf<TupleListItem<[string[], number[]]>>().toEqualTypeOf<
       [string, number]
     >();
   });
 
   it("handles when the first item is an empty list", () => {
     expectTypeOf<
-      TupleListItems<[[], [Record<string, unknown>]]>
+      TupleListItem<[[], [Record<string, unknown>]]>
     >().toEqualTypeOf<[]>();
   });
 
   it("handles when the last item is an empty list", () => {
-    expectTypeOf<TupleListItems<[string[], []]>>().toEqualTypeOf<[]>();
+    expectTypeOf<TupleListItem<[string[], []]>>().toEqualTypeOf<[]>();
   });
 
   it("handles when a middle item is an empty list", () => {
-    expectTypeOf<TupleListItems<[string[], [], string[]]>>().toEqualTypeOf<
-      []
-    >();
+    expectTypeOf<TupleListItem<[string[], [], string[]]>>().toEqualTypeOf<[]>();
   });
 
   it("handles when multiple items are empty lists", () => {
-    expectTypeOf<TupleListItems<[[], []]>>().toEqualTypeOf<[]>();
+    expectTypeOf<TupleListItem<[[], []]>>().toEqualTypeOf<[]>();
   });
 });
 

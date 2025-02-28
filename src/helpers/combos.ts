@@ -9,11 +9,11 @@ type HasEmptyArray<T extends unknown[]> = T extends [
   : false;
 
 // Main type that converts tuple of arrays to tuple of elements
-export type TupleListItems<T extends unknown[]> =
+export type TupleListItem<T extends unknown[]> =
   HasEmptyArray<T> extends true
     ? []
     : T extends [(infer First)[], ...infer Rest extends unknown[]]
-      ? [First, ...TupleListItems<Rest>]
+      ? [First, ...TupleListItem<Rest>]
       : [];
 
 /**
@@ -27,9 +27,9 @@ export type TupleListItems<T extends unknown[]> =
  */
 export const combos = <T extends [...unknown[][]]>(
   items: [...T],
-): TupleListItems<T>[] => {
+): TupleListItem<T>[] => {
   if (items.length === 0 || items.some((x) => x.length === 0)) {
-    return [] as TupleListItems<T>[];
+    return [] as TupleListItem<T>[];
   }
 
   const [firstItem, ...remainingItems] = items;
@@ -37,11 +37,11 @@ export const combos = <T extends [...unknown[][]]>(
   const remainingCombos = combos(remainingItems);
 
   if (remainingCombos.length === 0) {
-    return firstItem.map((item) => [item]) as TupleListItems<T>[];
+    return firstItem.map((item) => [item]) as TupleListItem<T>[];
   }
 
   return firstItem.flatMap((item) =>
-    remainingCombos.map((combo) => [item, ...combo] as TupleListItems<T>),
+    remainingCombos.map((combo) => [item, ...combo] as TupleListItem<T>),
   );
 };
 
