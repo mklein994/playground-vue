@@ -18,10 +18,6 @@ const setMessageAsync = async (input: string) => {
 };
 
 const handleSubmit = async () => {
-  //@ts-expect-error Promise.try isn't recognized by TypeScript yet, but it
-  //still works. See
-  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/try
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   await Promise.try(
     useAsync.value ? setMessageAsync : setMessage,
     message.value,
