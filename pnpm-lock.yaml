@@ -166,7 +166,7 @@ importers:
         specifier: ^6.2.0
         version: 6.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.1)(sass@1.85.1)(yaml@2.7.0)
       vitest:
-        specifier: ^3.0.7
+        specifier: 3.0.7
         version: 3.0.7(@types/node@22.13.5)(happy-dom@17.1.8)(jiti@2.4.2)(lightningcss@1.29.1)(sass@1.85.1)(yaml@2.7.0)
       vue-tsc:
         specifier: ~2.2.4
