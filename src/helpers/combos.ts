@@ -1,7 +1,20 @@
-// Recursively convert a tuple of arrays into a tuple of those array elements
-export type TupleListItems<T> = T extends [(infer First)[], ...infer Rest]
-  ? [First, ...TupleListItems<Rest>]
-  : [];
+// Check if any array in a tuple is empty
+type HasEmptyArray<T extends unknown[]> = T extends [
+  infer First extends unknown[],
+  ...infer Rest,
+]
+  ? First extends []
+    ? true
+    : HasEmptyArray<Rest>
+  : false;
+
+// Main type that converts tuple of arrays to tuple of elements
+export type TupleListItems<T extends unknown[]> =
+  HasEmptyArray<T> extends true
+    ? []
+    : T extends [(infer First)[], ...infer Rest extends unknown[]]
+      ? [First, ...TupleListItems<Rest>]
+      : [];
 
 /**
  * Generate combinations from the inputs given
