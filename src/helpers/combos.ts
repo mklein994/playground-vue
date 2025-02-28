@@ -40,18 +40,9 @@ export const combos = <T extends [...unknown[][]]>(
     return firstItem.map((item) => [item]) as TupleListItems<T>[];
   }
 
-  const newCombos = Array<TupleListItems<T>>(
-    firstItem.length * remainingCombos.length,
+  return firstItem.flatMap((item) =>
+    remainingCombos.map((combo) => [item, ...combo] as TupleListItems<T>),
   );
-  let index = 0;
-  for (const item of firstItem) {
-    for (const combo of remainingCombos) {
-      const newItem = [item, ...combo] as TupleListItems<T>;
-      newCombos[index++] = newItem;
-    }
-  }
-
-  return newCombos;
 };
 
 if (import.meta.vitest) {
