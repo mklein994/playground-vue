@@ -336,7 +336,7 @@ onBeforeUnmount(() => {
   flex-flow: column;
   justify-content: space-between;
   padding: 1rem 1.5rem;
-  border: 1px solid theme("colors.gray.300");
+  border: 1px solid var(--pv-gray-300);
   background-color: #f9fafbee;
   gap: 1rem;
   --border-radius: 0.5rem;

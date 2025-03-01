@@ -28,7 +28,6 @@ Tailwind stylesheet is enabled.
   }
 
   ::selection {
-    /* background-color: theme("colors.sky.200"); */
-    background-color: #bae6fd;
+    background-color: var(--pv-sky-200);
   }
 }

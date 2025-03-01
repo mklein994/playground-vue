@@ -1,11 +1,11 @@
 <template>
   <div class="sass">
-    This is highlighted in <code class="code">theme("colors.red.500")</code>.
+    This is highlighted in <code class="code">#{var(--pv-red-500)}</code>.
   </div>
 </template>
 
 <style lang="scss" scoped>
-$primary-color: theme("colors.red.500");
+$primary-color: #{var(--pv-red-500)};
 
 .sass {
   color: $primary-color;
