@@ -145,6 +145,7 @@ export default tseslint.config(
           "./tsconfig.vite-config.json",
           "./tsconfig.vitest.json",
           "./tsconfig.workers.json",
+          "./tsconfig.sd.json",
         ],
         extraFileExtensions: [".vue"],
         tsconfigRootDir: resolve("."),

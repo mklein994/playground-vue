@@ -1,19 +1,12 @@
 // From esbuild: https://github.com/evanw/esbuild/blob/18e13bdfdca5cd3c7a2fae1a8bd739f8f891572c/internal/css_parser/css_decls_color.go#L218
+
 // 0xAABBCCDD => 0xABCD
-/**
- * @param {number} v
- * @returns {number}
- */
-export function compactHex(v) {
+export function compactHex(v: number): number {
   return ((v & 0x0ff00000) >> 12) | ((v & 0x00000ff0) >> 4);
 }
 
 // 0xABCD => 0xAABBCCDD
-/**
- * @param {number} v
- * @returns {number}
- */
-export function expandHex(v) {
+export function expandHex(v: number): number {
   return (
     ((v & 0xf000) << 16)
     | ((v & 0xff00) << 12)
@@ -58,28 +51,24 @@ const shortNameMap = new Map([
   [0xfffff0, "ivory"],
 ]);
 
-/**
- * @param {number} v
- * @returns {string | undefined}
- */
-export function shortColorName(v) {
+export function shortColorName(v: number): string | undefined {
   return shortNameMap.get(v);
 }
+
+export type RecursiveObject = {
+  [k: string]: string | RecursiveObject;
+};
 
 /**
  * Get a new object where {@link transform} was called on all children with the
  * key {@link keyName}.
- *
- * @typedef { { [k: string]: string | RecursiveObject } } RecursiveObject
- *
- * @param {RecursiveObject} source
- * @param {string} keyName
- * @param {(value: string) => string} transform
- *
- * @returns {RecursiveObject}
  */
-export function recursiveTransform(source, keyName, transform) {
-  const results = {};
+export function recursiveTransform(
+  source: RecursiveObject,
+  keyName: string,
+  transform: (value: string) => string,
+): RecursiveObject {
+  const results: RecursiveObject = {};
   for (const key in source) {
     const value = source[key];
     if (key === keyName && typeof value === "string") {

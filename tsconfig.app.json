@@ -20,5 +20,11 @@
     "tests/**/*",
     "*.ts"
   ],
-  "exclude": ["tests/**/*", "**/coverage/**", "./src/workers/**"]
+  "exclude": [
+    "tests/**/*",
+    "**/coverage/**",
+    "./src/workers/**",
+    "./src/tokens/**",
+    "./sd.config.ts"
+  ]
 }

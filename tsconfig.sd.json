@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ESNext"],
+    "types": ["node"],
+    "allowImportingTsExtensions": true
+  },
+  "include": ["./sd.config.ts", "./src/tokens/**/*.ts"]
+}

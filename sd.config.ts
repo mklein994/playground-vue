@@ -1,23 +1,25 @@
-import StyleDictionary from "style-dictionary";
 import chroma from "chroma-js";
-import { compactHex, expandHex, shortColorName } from "./src/tokens/helpers.js";
-import { URL, fileURLToPath } from "url";
+import type { Config, TransformedToken } from "style-dictionary";
+import StyleDictionary from "style-dictionary";
+import { fileURLToPath, URL } from "url";
 
-const resolve = (path) => fileURLToPath(new URL(path, import.meta.url));
+import { compactHex, expandHex, shortColorName } from "./src/tokens/helpers.ts";
+
+const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 const cssTransforms = [
   "attribute/cti",
   "name/kebab",
   "custom/name/rgb",
   "custom/name/short-color/kebab",
-  "custom/value/color/short",
+  // "custom/value/color/short",
 ];
 
-/**
- * @param {import("style-dictionary").TransformedToken} token
- */
-const isRawRgb = (token) =>
-  token.attributes.category === "color" && token.attributes.type === "rgb";
+const isRawRgb = (token: TransformedToken) =>
+  token.attributes?.category === "color" && token.attributes.type === "rgb";
+
+const isRawOklch = (token: TransformedToken) =>
+  token.attributes?.category === "color" && token.attributes.type === "oklch";
 
 StyleDictionary.registerTransform({
   name: "custom/value/color/short",
@@ -26,9 +28,9 @@ StyleDictionary.registerTransform({
     return token.type === "color" && !isRawRgb(token);
   },
   transform(token, _options) {
-    const color = chroma(token.value);
+    const color = chroma(token.value as string);
     const hex = color.num();
-    let name = shortColorName(hex);
+    const name = shortColorName(hex);
     if (name) {
       return name;
     }
@@ -70,9 +72,8 @@ StyleDictionary.registerTransform({
   },
 });
 
-/** @type {import("style-dictionary/types").Config} */
-export default {
-  source: [resolve("./src/tokens/base/**/*.js")],
+const config: Config = {
+  source: [resolve("./src/tokens/base/**/*.ts")],
 
   platforms: {
     css: {
@@ -83,7 +84,7 @@ export default {
       files: [
         {
           format: "css/variables",
-          filter: (token) => !isRawRgb(token),
+          filter: (token) => !isRawRgb(token) && !isRawOklch(token),
           destination: "variables.css",
         },
 
@@ -92,7 +93,17 @@ export default {
           filter: isRawRgb,
           destination: "variables.raw.css",
         },
+
+        {
+          format: "css/variables",
+          filter: isRawOklch,
+          destination: "variables.raw.oklch.css",
+        },
       ],
     },
   },
 };
+
+// export default config;
+const sd = new StyleDictionary(config);
+await sd.buildAllPlatforms();
