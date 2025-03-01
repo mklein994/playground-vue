@@ -8,6 +8,8 @@ Tailwind stylesheet is enabled.
 
 @layer base, components, utilities, reset, highlight-theme, pv-base;
 
+@import url("@/assets/generated/variables.css") layer(pv-base);
+
 @layer reset {
   *,
   *::before,
