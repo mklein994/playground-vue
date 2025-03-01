@@ -18,9 +18,6 @@ const cssTransforms = [
 const isRawRgb = (token: TransformedToken) =>
   token.attributes?.category === "color" && token.attributes.type === "rgb";
 
-const isRawOklch = (token: TransformedToken) =>
-  token.attributes?.category === "color" && token.attributes.type === "oklch";
-
 StyleDictionary.registerTransform({
   name: "custom/value/color/short",
   type: "value",
@@ -84,7 +81,7 @@ const config: Config = {
       files: [
         {
           format: "css/variables",
-          filter: (token) => !isRawRgb(token) && !isRawOklch(token),
+          filter: (token) => !isRawRgb(token),
           destination: "variables.css",
         },
 
@@ -92,12 +89,6 @@ const config: Config = {
           format: "css/variables",
           filter: isRawRgb,
           destination: "variables.raw.css",
-        },
-
-        {
-          format: "css/variables",
-          filter: isRawOklch,
-          destination: "variables.raw.oklch.css",
         },
       ],
     },
