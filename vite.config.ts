@@ -57,14 +57,6 @@ export default defineConfig(({ mode }) => {
       sourcemap: !isReproducible, // sourcemaps change on every build
       rollupOptions: {
         output: {
-          // The Heroicons output can get quite large, so split these up into
-          // smaller pieces.
-          manualChunks: {
-            "heroicons/20-solid": ["@heroicons/vue/20/solid"],
-            "heroicons/24-outline": ["@heroicons/vue/24/outline"],
-            "heroicons/24-solid": ["@heroicons/vue/24/solid"],
-          },
-
           // https://rollupjs.org/guide/en/#outputentryfilenames
           entryFileNames: isReproducible
             ? "assets/[name].js"
