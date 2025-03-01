@@ -1,5 +1,5 @@
 import type { MaybeRefOrGetter } from "vue";
-import { ref, toValue, watch } from "vue";
+import { onBeforeUnmount, ref, toValue, watch } from "vue";
 
 export const useUnsavedChanges = (
   hasChanges: MaybeRefOrGetter<boolean>,
@@ -16,7 +16,7 @@ export const useUnsavedChanges = (
     }
   };
 
-  watch(
+  const stop = watch(
     () => toValue(hasChanges),
     (changed) => {
       if (changed) {
@@ -32,4 +32,12 @@ export const useUnsavedChanges = (
       }
     },
   );
+
+  onBeforeUnmount(() => {
+    if (listening.value) {
+      window.removeEventListener("beforeunload", listener);
+      listening.value = false;
+    }
+    stop();
+  });
 };
