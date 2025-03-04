@@ -108,7 +108,7 @@ const rows = computed(() => {
 
 <style scoped>
 .truth-table {
-  border: 1px solid black;
+  border: 1px solid ButtonBorder;
   border-collapse: collapse;
 
   /* --true-text-color: green; */
@@ -119,7 +119,7 @@ const rows = computed(() => {
 
 .cell {
   padding: 0 0.5em;
-  border: 1px solid black;
+  border: 1px solid ButtonBorder;
 }
 
 .body .cell {

@@ -27,7 +27,7 @@ import ChildFour from "./ChildFour.vue";
 
 <style scoped>
 .child {
-  color: red;
+  color: tomato;
 }
 
 .child::after {

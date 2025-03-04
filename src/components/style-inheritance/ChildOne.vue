@@ -14,7 +14,7 @@ import ChildThree from "./ChildThree.vue";
 <style lang="scss">
 .child-one > {
   .child {
-    color: blue;
+    color: dodgerblue;
   }
 
   .child::after {

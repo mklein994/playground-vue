@@ -515,17 +515,15 @@ onBeforeUnmount(() => {
 }
 
 .tailwind-checkbox:disabled {
-  color: gray;
-  outline-color: gray;
+  color: GrayText;
+  outline-color: GrayText;
 }
 
 .tailwind-checkbox:disabled ~ * {
-  color: gray;
+  color: GrayText;
 }
 
 .reset-message {
-  color: gray;
-
   /* @apply tw-text-sm; */
   font-size: 0.875rem;
   grid-column-end: -1;

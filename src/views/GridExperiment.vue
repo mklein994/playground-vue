@@ -27,7 +27,7 @@ const fruits = ref([
 
 const gridDefinition = ref("auto-flow / repeat(3, 1fr)");
 const gridStyle = ref("gap: 0.25em");
-const itemStyle = ref("outline: 1px solid blue");
+const itemStyle = ref("outline: 1px solid teal");
 </script>
 
 <template>

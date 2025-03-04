@@ -17,6 +17,6 @@ const foo = ref<string>(css.foo);
 
 <style module>
 .foo {
-  color: red;
+  color: light-dark(red, tomato);
 }
 </style>

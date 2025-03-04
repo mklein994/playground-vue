@@ -42,7 +42,7 @@ const code = `
 
 <style scoped>
 .demo {
-  --color: green;
+  --color: forestgreen;
   color: var(--color);
 }
 
@@ -51,6 +51,6 @@ const code = `
 }
 
 .inner {
-  color: hsl(from var(--color) calc(h + 180) s l);
+  color: hsl(from var(--color) calc(h + 180) s calc(l * 2));
 }
 </style>

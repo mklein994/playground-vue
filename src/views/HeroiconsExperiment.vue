@@ -115,15 +115,15 @@ const handleQuery = (event: Event) => {
 }
 
 .solid {
-  color: red;
+  color: tomato;
 }
 
 .outline {
-  color: blue;
+  color: dodgerblue;
 }
 
 .compact {
   --length: 20px;
-  color: green;
+  color: forestgreen;
 }
 </style>

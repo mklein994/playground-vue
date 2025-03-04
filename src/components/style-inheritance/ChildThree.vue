@@ -22,7 +22,7 @@
 
 <style scoped>
 .child {
-  color: darkblue;
+  color: darkcyan;
 }
 
 .child::after {

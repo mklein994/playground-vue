@@ -30,7 +30,7 @@
   }
 
   &.sibling > .item + .item {
-    color: blue;
+    color: dodgerblue;
   }
 }
 </style>

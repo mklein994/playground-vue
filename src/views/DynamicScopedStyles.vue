@@ -26,10 +26,10 @@ const fooClass = computed(() =>
 
 <style scoped>
 .red-class {
-  color: red;
+  color: light-dark(red, tomato);
 }
 
 .blue-class {
-  color: blue;
+  color: light-dark(blue, deepskyblue);
 }
 </style>

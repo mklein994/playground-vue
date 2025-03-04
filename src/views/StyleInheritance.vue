@@ -16,7 +16,7 @@ import ChildTwo from "@/components/style-inheritance/ChildTwo.vue";
 <style lang="scss">
 .child-zero > {
   .child {
-    color: green;
+    color: forestgreen;
   }
 
   .child::after {

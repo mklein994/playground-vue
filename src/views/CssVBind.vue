@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const color = ref("blue");
+const color = ref("#737373");
 </script>
 
 <template>

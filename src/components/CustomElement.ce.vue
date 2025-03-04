@@ -14,7 +14,7 @@
 
 .item {
   padding: 1em;
-  border: 1px solid black;
+  border: 1px solid light-dark(black, white);
   text-align: center;
 }
 </style>

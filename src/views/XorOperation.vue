@@ -83,7 +83,9 @@ const testCode = tests.map((test) => test.toString());
             <span
               v-for="i of key"
               :key="i"
-              :style="{ color: i ? 'green' : 'lightgray' }"
+              :style="{
+                color: i ? 'forestgreen' : 'light-dark(lightgray, gray)',
+              }"
               >{{ i }}</span
             >
           </td>
@@ -132,26 +134,26 @@ const testCode = tests.map((test) => test.toString());
   padding-inline: 0.5em;
 
   &.true {
-    color: green;
+    color: forestgreen;
   }
 
   &.false {
-    color: red;
+    color: tomato;
   }
 }
 
 .header .cell {
   position: sticky;
-  background: white;
-  border-block-end: 2px solid black;
+  background: Canvas;
+  border-block-end: 2px solid ButtonBorder;
   inset-block-start: 0;
 }
 
 .cell:first-child {
   position: sticky;
   z-index: 1;
-  background: white;
-  border-inline-end: 2px solid black;
+  background: Canvas;
+  border-inline-end: 2px solid ButtonBorder;
   inset-inline-start: 0;
 }
 

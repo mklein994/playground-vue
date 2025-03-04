@@ -231,7 +231,7 @@ function handleItemStyleUpdate(
 }
 
 .special {
-  color: red;
+  color: tomato;
   font-size: 1.5em;
   font-style: italic;
   font-weight: bold;
@@ -249,7 +249,7 @@ function handleItemStyleUpdate(
 
   .grid-row {
     display: grid;
-    background-color: white;
+    background-color: Canvas;
   }
 }
 

@@ -110,16 +110,17 @@ const rows = computed(() => {
 
 <style scoped>
 .truth-table {
-  border: 1px solid black;
+  border: 1px solid ButtonBorder;
   border-collapse: collapse;
 
+  /* TODO: figure out if these are used anywhere */
   --true-color: green;
   --false-color: gray;
 }
 
 .cell {
   padding: 0 0.5em;
-  border: 1px solid black;
+  border: 1px solid ButtonBorder;
 }
 
 .body .cell {
