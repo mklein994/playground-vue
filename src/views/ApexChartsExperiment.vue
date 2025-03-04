@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { ApexOptions } from "apexcharts";
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import ApexCharts from "vue3-apexcharts";
+
+import { resolvedSchemeKey } from "@/injectionKeys";
+
+const resolvedScheme = inject(resolvedSchemeKey)!;
 
 const series = computed<ApexOptions["series"]>(() => [
   {
@@ -13,6 +17,9 @@ const options = computed<ApexOptions>(() => ({
   chart: {
     type: "line",
     zoom: { enabled: false },
+  },
+  theme: {
+    mode: resolvedScheme.value,
   },
 }));
 </script>
