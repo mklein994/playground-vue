@@ -15,9 +15,10 @@ import {
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
+import ColorSchemePicker from "./components/ColorSchemePicker.vue";
 import RouteInfo from "@/RouteInfo.vue";
 
-import { tailwindEnabledKey } from "@/injectionKeys";
+import { schemeKey, tailwindEnabledKey } from "@/injectionKeys";
 
 const route = useRoute();
 const router = useRouter();
@@ -26,6 +27,20 @@ const links = computed(() =>
 );
 
 const coverageExists = __PLAYGROUND_VUE_COVERAGE_EXISTS__;
+
+const colorSchemes = [
+  { id: "os-default", value: "os-default", name: "Default" },
+  { id: "light", value: "light", name: "Light" },
+  { id: "dark", value: "dark", name: "Dark" },
+] as const;
+
+const scheme = inject(schemeKey)!;
+const selectedScheme = computed(
+  () => colorSchemes.find((x) => x.id === scheme.value)!,
+);
+watchEffect(() => {
+  scheme.value = selectedScheme.value.value;
+});
 
 const menuOpen = ref(false);
 
@@ -277,6 +292,10 @@ onBeforeUnmount(() => {
         <div v-if="tailwindLocked" class="reset-message">
           (refresh to reset)
         </div>
+      </div>
+
+      <div>
+        <ColorSchemePicker v-model="scheme"></ColorSchemePicker>
       </div>
 
       <code class="commit-hash" :title="commitHash">

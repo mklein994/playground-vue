@@ -3,11 +3,20 @@ import { provide, ref } from "vue";
 
 import NavigationFragment from "@/NavigationFragment.vue";
 
-import { tailwindEnabledKey } from "@/injectionKeys";
+import {
+  resolvedSchemeKey,
+  schemeKey,
+  tailwindEnabledKey,
+} from "@/injectionKeys";
+import { useColorScheme } from "@/use/use-color-scheme";
 
 const tailwindEnabled = ref(false);
 
 provide(tailwindEnabledKey, tailwindEnabled);
+
+const { scheme, resolvedScheme } = useColorScheme();
+provide(schemeKey, scheme);
+provide(resolvedSchemeKey, resolvedScheme);
 </script>
 
 <template>
