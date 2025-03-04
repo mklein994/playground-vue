@@ -114,14 +114,14 @@ onUnmounted(() => {
   text-align: end;
 
   &[data-matches="true"] {
-    color: green;
+    color: var(--pv-yes);
   }
 
   &[data-matches="false"] {
-    color: red;
+    color: var(--pv-no);
 
     & + .cell-media {
-      color: grey;
+      color: var(--pv-na);
     }
   }
 }
