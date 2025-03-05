@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import * as Compact from "@heroicons/vue/20/solid";
-import * as Outline from "@heroicons/vue/24/outline";
-import * as Solid from "@heroicons/vue/24/solid";
 import { computed, ref } from "vue";
+
+const [Compact, Outline, Solid] = await Promise.all([
+  import("@heroicons/vue/20/solid"),
+  import("@heroicons/vue/24/outline"),
+  import("@heroicons/vue/24/solid"),
+]);
 
 const solidIcons = Solid;
 const outlineIcons = Object.values(Outline);
