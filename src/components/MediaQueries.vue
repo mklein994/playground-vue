@@ -70,7 +70,7 @@ const listeners = ref<Map<string, (x: MediaQueryListEvent) => void>>(new Map());
 
 onMounted(() => {
   queries.value.forEach((query) => {
-    const media = matchMedia(query);
+    const media = window.matchMedia(query);
     mediaQueries.value.set(query, media);
     mediaQueryValues.value.set(query, media.matches);
     const listener = (x: MediaQueryListEvent) => {
