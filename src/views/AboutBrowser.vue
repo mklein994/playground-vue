@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, reactive } from "vue";
+import { onMounted, onUnmounted, reactive, ref } from "vue";
 
 import MediaQueries from "@/components/MediaQueries.vue";
 
@@ -14,11 +14,16 @@ const outer = reactive({
   height: window.outerHeight,
 });
 
+const dpx = ref(window.devicePixelRatio);
+
 const handleResize = () => {
   inner.width = window.innerWidth;
   inner.height = window.innerHeight;
   outer.width = window.outerWidth;
   outer.height = window.outerHeight;
+
+  // Cheat a bit and listen to resize events to update the dpx
+  dpx.value = window.devicePixelRatio;
 };
 
 onMounted(() => {
@@ -38,6 +43,8 @@ onUnmounted(() => {
     <span>{{ inner }}</span>
     <span>Outer Width</span>
     <span>{{ outer }}</span>
+    <abbr title="Device Pixel Ratio">DPX</abbr>
+    <span>{{ dpx }}</span>
     <MediaQueries class="media-queries"></MediaQueries>
   </div>
 </template>
