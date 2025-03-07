@@ -14,34 +14,43 @@ interface FontSpec {
   text?: string;
 }
 
+function getFontUrls(options: string | string[] | FontOptions): string[] {
+  let fontHrefs: string[];
+  if (typeof options === "string") {
+    fontHrefs = [options];
+  } else if (Array.isArray(options)) {
+    fontHrefs = options;
+  } else {
+    // Build separate URLs for fonts with text specs,
+    // and group the rest of them together.
+    const fontsWithoutText: Omit<FontSpec, "text">[] = [];
+    fontHrefs = [];
+    for (const fontSpec of wrap(options.fonts).sort((a, b) =>
+      compareStrings(a.family, b.family),
+    )) {
+      if (fontSpec.text != null) {
+        fontHrefs.push(
+          buildFontUrl({
+            ...options,
+            fonts: fontSpec,
+            text: fontSpec.text,
+          }),
+        );
+      } else {
+        fontsWithoutText.push(fontSpec);
+      }
+    }
+    fontHrefs.push(buildFontUrl({ ...options, fonts: fontsWithoutText }));
+  }
+  return fontHrefs;
+}
+
 export function vitePluginGoogleFonts(options: string | FontOptions): Plugin {
+  const fontHrefs = getFontUrls(options);
+
   return {
     name: "vite-plugin-google-fonts",
     transformIndexHtml() {
-      let fontHrefs: string[];
-      if (typeof options === "string") {
-        fontHrefs = [options];
-      } else {
-        // Build separate URLs for fonts with text specs,
-        // and group the rest of them together.
-        const fontsWithoutText: Omit<FontSpec, "text">[] = [];
-        fontHrefs = [];
-        for (const fontSpec of wrap(options.fonts)) {
-          if (fontSpec.text != null) {
-            fontHrefs.push(
-              buildFontUrl({
-                ...options,
-                fonts: fontSpec,
-                text: fontSpec.text,
-              }),
-            );
-          } else {
-            fontsWithoutText.push(fontSpec);
-          }
-        }
-        fontHrefs.push(buildFontUrl({ ...options, fonts: fontsWithoutText }));
-      }
-
       return [
         {
           tag: "link",
@@ -256,6 +265,70 @@ if (import.meta.vitest) {
       const input = "Gr\u{fc}ssen";
       const expected = "Gr\u{fc}ssen";
       const actual = minifyText(input);
+      expect(actual).toStrictEqual(expected);
+    });
+  });
+
+  describe("getFontUrls", () => {
+    it("splits text fonts from non-text fonts", () => {
+      const options: FontOptions = {
+        fonts: [
+          {
+            family: "Source Code Pro",
+            specs: [
+              {
+                ital: 0,
+                wght: "200..900",
+              },
+              {
+                ital: 1,
+                wght: "200..900",
+              },
+            ],
+          },
+          {
+            family: "Recursive",
+            specs: {
+              slnt: "-15..0",
+              CASL: "0..1",
+              wght: 520,
+              CRSV: "0..1",
+              MONO: 1,
+            },
+            text: "the quick brown fox jumps over the lazy dog",
+          },
+          {
+            family: "Roboto",
+          },
+          {
+            family: "Andada Pro",
+            specs: {
+              wght: "400..840",
+            },
+          },
+        ],
+        display: "swap",
+      };
+
+      const expected = [
+        "https://fonts.googleapis.com/css2?family=Recursive%3Aslnt%2Cwght%2CCASL%2CCRSV%2CMONO%40-15..0%2C520%2C0..1%2C0..1%2C1&display=swap&text=+abcdefghijklmnopqrstuvwxyz",
+        "https://fonts.googleapis.com/css2?family=Andada+Pro%3Awght%40400..840&family=Roboto&family=Source+Code+Pro%3Aital%2Cwght%400%2C200..900%3B1%2C200..900&display=swap",
+      ];
+      const actual = getFontUrls(options);
+      expect(actual).toStrictEqual(expected);
+    });
+
+    it("accepts a raw Google Font URL", () => {
+      const input = "https://example.com";
+      const expected = ["https://example.com"];
+      const actual = getFontUrls(input);
+      expect(actual).toStrictEqual(expected);
+    });
+
+    it("accepts multiple raw Google Font URLs", () => {
+      const input = ["https://example.com", "https://example.org"];
+      const expected = ["https://example.com", "https://example.org"];
+      const actual = getFontUrls(input);
       expect(actual).toStrictEqual(expected);
     });
   });
