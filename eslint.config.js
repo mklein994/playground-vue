@@ -3,7 +3,7 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
 import tseslint from "typescript-eslint";
 import eslint from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
-import pluginPrettier from "eslint-config-prettier";
+import pluginPrettier from "eslint-config-prettier/flat";
 import { fileURLToPath, URL } from "url";
 
 const resolve = (path) => fileURLToPath(new URL(path, import.meta.url));
