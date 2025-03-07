@@ -84,7 +84,7 @@ export default defineConfig(({ mode }) => {
 
     test: {
       environment: "happy-dom",
-      includeSource: ["./src/**/*.ts"],
+      includeSource: ["./src/**/*.ts", "./config/**/*.ts"],
       exclude: [...configDefaults.exclude, "**/*.node-test.*"],
       poolOptions: {
         forks: {
