@@ -4,7 +4,7 @@ type Arrayable<T> = T | T[];
 
 interface FontOptions {
   fonts: Arrayable<FontSpec>;
-  display?: "swap";
+  display?: "auto" | "block" | "swap" | "fallback" | "optional";
   text?: string;
 }
 
