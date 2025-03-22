@@ -112,10 +112,6 @@ const rows = computed(() => {
 .truth-table {
   border: 1px solid ButtonBorder;
   border-collapse: collapse;
-
-  /* TODO: figure out if these are used anywhere */
-  --true-color: green;
-  --false-color: gray;
 }
 
 .cell {
