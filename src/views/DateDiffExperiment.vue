@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { diff, duration, list_time_zones } from "@date-diff/pkg";
+import { diff, duration, list_time_zones } from "@date-diff/pkg/date_diff";
 import { computed, ref } from "vue";
 
 import DateDiffOptions from "@/components/DateDiffOptions.vue";
