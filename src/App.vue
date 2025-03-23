@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide, ref } from "vue";
+import { provide, ref, watchEffect } from "vue";
 
 import NavigationFragment from "@/NavigationFragment.vue";
 
@@ -17,13 +17,23 @@ provide(tailwindEnabledKey, tailwindEnabled);
 const { scheme, resolvedScheme } = useColorScheme();
 provide(schemeKey, scheme);
 provide(resolvedSchemeKey, resolvedScheme);
+
+const darkLink = document.head.querySelector<HTMLLinkElement>(
+  'link[title="code-dark"]',
+)!;
+const lightLink = document.head.querySelector<HTMLLinkElement>(
+  'link[title="code-light"]',
+)!;
+
+watchEffect(() => {
+  const isDark = resolvedScheme.value === "dark";
+
+  darkLink.disabled = !isDark;
+  lightLink.disabled = isDark;
+});
 </script>
 
 <template>
   <NavigationFragment></NavigationFragment>
   <RouterView></RouterView>
 </template>
-
-<style>
-@import "highlight.js/styles/github-dark-dimmed.min.css" layer(highlight-theme);
-</style>
