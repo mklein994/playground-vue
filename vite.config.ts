@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
   const tailwindPlugin = () =>
     mode === "production"
       ? isReproducible
-        ? separateTailwind(new Date(2000, 0, 1))
+        ? separateTailwind(Date.parse("2000-01-01"))
         : separateTailwind()
       : false;
 
