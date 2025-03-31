@@ -29,6 +29,7 @@ export default defineConfig(({ mode }) => {
     : "./src/fake/date-diff";
   const isReproducible =
     (env.BUILDTIME_REPRODUCIBLE_ENABLED ?? "false") === "true";
+  const lowMemory = (env.BUILDTIME_LOW_MEMORY ?? "false") === "true";
 
   const tailwindPlugin = () =>
     mode === "production"
@@ -54,7 +55,7 @@ export default defineConfig(({ mode }) => {
         "chrome89", // chrome87
         "safari15", // safari14
       ],
-      sourcemap: !isReproducible, // sourcemaps change on every build
+      sourcemap: !lowMemory && !isReproducible, // sourcemaps change on every build
       rollupOptions: {
         output: {
           // https://rollupjs.org/guide/en/#outputentryfilenames
