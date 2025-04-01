@@ -6,6 +6,7 @@ dist-ssr
 .idea
 public/*.min.css
 coverage/
+.vitest-reports/
 .pnpm-debug.log
 .eslintcache
 .eslint-config-inspector/
