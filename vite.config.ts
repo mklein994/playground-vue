@@ -140,6 +140,13 @@ export default defineConfig(({ mode }) => {
       }),
       env.BUILDTIME_ERUDA_ENABLED ? vitePluginEruda() : false,
       env.BUILDTIME_SENTRY_ENABLED ? sentryVitePlugin() : false,
+      {
+        name: "debugging",
+        configureVitest(context) {
+          console.log(process.env.GITHUB_ACTIONS);
+          console.log(context.vitest.config.reporters);
+        },
+      },
     ],
   };
 });
