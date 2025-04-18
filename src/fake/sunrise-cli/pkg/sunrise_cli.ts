@@ -2,10 +2,10 @@ async function init() {
   // no-op
 }
 
-const getSunriseSunset = (..._args: unknown[]): [number, number] => {
+const getSolarEvents = (..._args: unknown[]): BigInt64Array => {
   console.warn("Faked function: getSunriseSunset");
-  return [0, 0];
+  return new BigInt64Array();
 };
 
-export { getSunriseSunset };
+export { getSolarEvents };
 export default init;

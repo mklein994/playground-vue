@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  computed,
   defineAsyncComponent,
   onMounted,
   reactive,
@@ -10,12 +11,39 @@ import {
 const SunriseSunset = defineAsyncComponent(
   () => import("@/components/SunriseSunset.vue"),
 );
+import type { SolarEvent } from "@/components/SunriseSunset.vue";
 
 interface CoordinateSettings {
   highAccuracy: boolean;
   lat: number;
   lon: number;
 }
+
+interface SolarEventOption {
+  id: SolarEvent;
+  name: string;
+}
+
+const titleCase = (x: string) =>
+  x
+    .split("-")
+    .map((x) => x.replace(/^\w/, (x) => x.toUpperCase()))
+    .join(" ");
+
+const availableEvents = computed<SolarEventOption[]>(() =>
+  (
+    [
+      "dawn-astronomical",
+      "dawn-nautical",
+      "dawn-civil",
+      "sunrise",
+      "sunset",
+      "dusk-civil",
+      "dusk-nautical",
+      "dusk-astronomical",
+    ] as const
+  ).map((x): SolarEventOption => ({ id: x, name: titleCase(x) })),
+);
 
 const dateFormat = new Intl.DateTimeFormat("en-CA", { dateStyle: "short" });
 
@@ -24,7 +52,7 @@ const coords = reactive({
   lat: 0,
   lon: 0,
 });
-const azimuth = ref("Official");
+const events = ref<SolarEvent[]>([]);
 const highAccuracy = ref(false);
 
 watchEffect(() => {
@@ -97,21 +125,23 @@ onMounted(async () => {
       step="0.0000001"
     />
     <select
-      id="azimuth"
-      v-model="azimuth"
-      name="azimuth"
+      id="events"
+      v-model="events"
+      multiple
+      name="events"
       class="tw-form-select"
     >
       <option
-        v-for="name of ['Official', 'Civil', 'Nautical', 'Astronomical']"
-        :key="name"
+        v-for="availableEvent of availableEvents"
+        :key="availableEvent.id"
+        :value="availableEvent.id"
       >
-        {{ name }}
+        {{ availableEvent.name }}
       </option>
     </select>
 
     <Suspense>
-      <SunriseSunset :coords="coords" :date="date" :azimuth="azimuth" />
+      <SunriseSunset :coords="coords" :date="date" :events="events" />
     </Suspense>
   </div>
 </template>

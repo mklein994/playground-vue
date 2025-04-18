@@ -6,48 +6,50 @@ interface Coord {
 </script>
 
 <script setup lang="ts">
-import { getSunriseSunset } from "@sunrise-cli/pkg/sunrise_cli";
-import { computed, type PropType } from "vue";
+import { getSolarEvents } from "@sunrise-cli/pkg/sunrise_cli";
+import { computed } from "vue";
 
-const props = defineProps({
-  coords: {
-    type: Object as PropType<Coord>,
-    required: true,
-  },
-  date: {
-    type: String,
-    required: true,
-    validator: (value: string) => /^\d{4}-\d{2}-\d{2}$/.test(value),
-  },
-  azimuth: {
-    type: String,
-    required: true,
-    // validator: (value: string) =>
-    // ["Official", "Civil", "Nautical", "Astronomical"].includes(value),
-  },
-});
+import { zip } from "@/helpers/zip";
+
+export type SolarEvent =
+  | `${"dawn" | "dusk"}-${"astronomical" | "nautical" | "civil"}`
+  | "sunrise"
+  | "sunset";
+
+const props = defineProps<{
+  coords: Coord;
+  date: string;
+  events: SolarEvent[];
+}>();
 
 const fullDateFormat = new Intl.DateTimeFormat("en-CA", {
   dateStyle: "medium",
   timeStyle: "medium",
 });
 
-const sunriseSunset = (coords: Coord, date: string, azimuth: string) => {
+const solarEvents = (coords: Coord, date: string, events: string[]) => {
   const [year, month, day] = date.split("-").map((x) => Number.parseInt(x, 10));
-
-  const [sunrise, sunset] = Array.from(
-    getSunriseSunset(coords.lat, coords.lon, year, month, day, azimuth),
+  const times = Array.from(
+    getSolarEvents(coords.lat, coords.lon, year, month, day, events),
     (timestamp) =>
-      fullDateFormat.format(
-        new Date(Number.parseInt(timestamp.toString(10), 10) * 1000),
-      ),
+      fullDateFormat.format(Number.parseInt(timestamp.toString(10), 10) * 1000),
   );
 
-  return { sunrise, sunset };
+  return Object.fromEntries(
+    zip(
+      events.map((x) =>
+        x
+          .split("-")
+          .map((x) => x.replace(/^\w/, (x) => x.toUpperCase()))
+          .join(" "),
+      ),
+      times,
+    ),
+  );
 };
 
 const output = computed(() =>
-  sunriseSunset(props.coords, props.date, props.azimuth),
+  solarEvents(props.coords, props.date, props.events),
 );
 </script>
 
