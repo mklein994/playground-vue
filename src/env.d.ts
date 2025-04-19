@@ -59,6 +59,11 @@ interface ImportMetaEnv {
   readonly VITE_VERSION_STRING: string | undefined;
 
   /**
+   * Identify when the build was created (RFC3339 in seconds precision), if possible.
+   */
+  readonly VITE_VERSION_DATE: string | undefined;
+
+  /**
    * Start with Tailwind CSS enabled. Set to a truthy value to load the
    * Tailwind CSS styles.
    */

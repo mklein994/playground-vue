@@ -108,6 +108,22 @@ const toggleExpand = () => {
 
 const commitHash = import.meta.env.VITE_COMMIT_HASH;
 const versionString = import.meta.env.VITE_VERSION_STRING;
+const versionDateRaw = import.meta.env.VITE_VERSION_DATE;
+const versionDate = computed(() =>
+  versionDateRaw == null ? null : new Date(versionDateRaw),
+);
+const versionDateDisplay = computed(
+  () =>
+    versionDate.value?.toLocaleString([], {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZoneName: "short",
+    }) ?? "(unknown build date)",
+);
 const versionDisplay = computed(
   () =>
     (expanded.value ? versionString : commitHash?.slice(0, 7))
@@ -300,6 +316,12 @@ onBeforeUnmount(() => {
 
       <code class="commit-hash" :title="commitHash">
         Version: {{ versionDisplay }}</code
+      >
+      <time
+        class="build-date"
+        :datetime="versionDateRaw"
+        :title="versionDateRaw"
+        >{{ versionDateDisplay }}</time
       >
 
       <div class="menu-positions">
@@ -532,5 +554,9 @@ onBeforeUnmount(() => {
 
 .commit-hash {
   font-size: 1rem;
+}
+
+.build-date {
+  font-size: 0.8em;
 }
 </style>

@@ -88,8 +88,10 @@ jobs:
         env:
           VITE_COMMIT_HASH: ${{ github.sha }}
         run: |
-          VITE_VERSION_STRING="${GITHUB_REF_NAME} (${GITHUB_SHA:0:7} $(date -Is))"
+          VITE_VERSION_STRING="${GITHUB_REF_NAME} (${GITHUB_SHA:0:7})"
+          VITE_VERSION_DATE="$(date --rfc-3339=seconds)"
           echo "VITE_VERSION_STRING=${VITE_VERSION_STRING}" >> "${GITHUB_ENV}"
+          echo "VITE_VERSION_DATE=${VITE_VERSION_DATE}" >> "${GITHUB_ENV}"
 
       - name: Typecheck
         working-directory: playground-vue
