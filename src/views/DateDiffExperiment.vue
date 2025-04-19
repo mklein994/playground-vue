@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { diff, duration, list_time_zones } from "@date-diff/pkg/date_diff";
-import { computed, ref } from "vue";
+import { add, diff, duration, list_time_zones } from "@date-diff/pkg/date_diff";
+import { computed, ref, watchEffect } from "vue";
 
 import DateDiffOptions from "@/components/DateDiffOptions.vue";
 
@@ -102,9 +102,37 @@ const setRelativeDateToNow = () => {
   });
 };
 
+const setDateAddStartToNow = () => {
+  dateAddStart.value = toDate(new Date());
+};
+
 const clearRelativeDate = () => {
   relativeDateInput.value = "";
 };
+
+const dateAddStart = ref(toDate(new Date()));
+const dateAddStartTimeZone = ref(initialTimeZone);
+const dateAddDuration = ref("1d");
+const dateAddEndDateString = ref("");
+const dateAddEndDate = ref<Date | null>(null);
+watchEffect(() => {
+  try {
+    const endDate = add(
+      dateAddStart.value,
+      dateAddStartTimeZone.value,
+      dateAddDuration.value,
+    );
+    dateAddEndDateString.value = endDate;
+    dateAddEndDate.value = new Date(endDate);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      dateAddEndDateString.value = err.message;
+      dateAddEndDate.value = null;
+    } else {
+      dateAddEndDateString.value = JSON.stringify(err);
+    }
+  }
+});
 </script>
 
 <template>
@@ -176,6 +204,48 @@ const clearRelativeDate = () => {
 
       <p>{{ durationOutput ?? "invalid" }}</p>
     </details>
+
+    <details name="date-diff">
+      <summary>Add</summary>
+
+      <form @submit.prevent>
+        <label for="date-add-start">Start</label>
+        <input
+          id="date-add-start"
+          v-model="dateAddStart"
+          type="datetime-local"
+        />
+        <button type="button" @click="setDateAddStartToNow">Now</button>
+        <input
+          id="date-add-start-text"
+          v-model="dateAddStart"
+          type="text"
+          class="date-add-start-text"
+        />
+
+        <label for="date-add-start-time-zone">Start Time Zone</label>
+        <input
+          id="date-add-start-time-zone"
+          v-model="dateAddStartTimeZone"
+          type="text"
+          list="time-zones"
+        />
+
+        <label for="date-add-duration">Duration</label>
+        <input id="date-add-duration" v-model="dateAddDuration" type="text" />
+        <div>
+          <p>
+            {{ dateAddEndDateString ?? "invalid" }}
+          </p>
+          <pre class="date-add-output">{{
+            dateAddEndDate?.toLocaleString([], {
+              dateStyle: "full",
+              timeStyle: "full",
+            }) ?? "invalid"
+          }}</pre>
+        </div>
+      </form>
+    </details>
   </div>
 </template>
 
@@ -192,5 +262,9 @@ const clearRelativeDate = () => {
   justify-content: start;
   gap: 1rem;
   grid-template-columns: repeat(6, auto);
+}
+
+.date-add-output {
+  font-size: 1rem;
 }
 </style>
