@@ -124,8 +124,11 @@ onMounted(() => {
   grid-column: 1 / -1;
 }
 
-.color-test-code:where(::before, ::after) {
-  content: "`";
+.color-test-code {
+  &::before,
+  &::after {
+    content: "`";
+  }
 }
 
 .colors {
