@@ -30,10 +30,10 @@ const closeDialog = () => {
 
 <template>
   <p>
-    The <code>&lt;dialog&gt;</code> element will be added to Firefox 98. (<a
-      href="https://www.mozilla.org/en-US/firefox/98.0beta/releasenotes/"
+    The <code>&lt;dialog&gt;</code> element was added in Firefox 98. (<a
+      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog"
       target="_blank"
-      >Firefox 98 beta release notes</a
+      >Documentation</a
     >)
   </p>
 
