@@ -30,6 +30,8 @@ export default defineConfig(({ mode }) => {
   const isReproducible =
     (env.BUILDTIME_REPRODUCIBLE_ENABLED ?? "false") === "true";
   const lowMemory = (env.BUILDTIME_LOW_MEMORY ?? "false") === "true";
+  const tailwindSupported =
+    (env.BUILDTIME_TAILWIND_SUPPORTED ?? "true") === "true";
 
   const tailwindPlugin = () =>
     mode === "production"
@@ -130,7 +132,7 @@ export default defineConfig(({ mode }) => {
           },
         },
       }),
-      tailwindPlugin(),
+      tailwindSupported ? tailwindPlugin() : false,
       wasm(),
       wasmProject(wasmSupported, sunriseRoot, {
         "@sunrise-cli": resolve(sunriseRoot),
