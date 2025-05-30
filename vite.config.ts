@@ -112,6 +112,7 @@ export default defineConfig(({ mode }) => {
       __PLAYGROUND_VUE_FILES_LIST__: fastGlob
         .sync("./src/**", { cwd })
         .map((x) => x.slice(1)),
+      __PLAYGROUND_VUE_TAILWIND_SUPPORTED__: tailwindSupported,
     },
 
     worker: {

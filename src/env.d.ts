@@ -11,6 +11,14 @@ declare const __PLAYGROUND_VUE_COVERAGE_EXISTS__: boolean;
  */
 declare const __PLAYGROUND_VUE_FILES_LIST__: string[];
 
+/**
+ * Indicate that Tailwind is supported when building.
+ *
+ * This may be false on Termux for example, where lightingcss (a dependency of
+ * Tailwind) does not provide arm64 builds. Defaults to true.
+ */
+declare const __PLAYGROUND_VUE_TAILWIND_SUPPORTED__: boolean;
+
 declare module "*.vue" {
   import type { Component } from "vue";
   const component: Component;

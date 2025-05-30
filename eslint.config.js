@@ -157,6 +157,7 @@ export default tseslint.config(
         GeolocationPositionError: "readonly",
         __PLAYGROUND_VUE_COVERAGE_EXISTS__: "readonly",
         __PLAYGROUND_VUE_FILES_LIST__: "readonly",
+        __PLAYGROUND_VUE_TAILWIND_SUPPORTED__: "readonly",
       },
     },
   },
