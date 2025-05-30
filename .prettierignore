@@ -6,3 +6,4 @@ coverage/
 .eslint-config-inspector/
 .eslintcache
 tsconfig.*-temp.json
+src/tokens/vendor/
