@@ -1,4 +1,4 @@
-import tailwindColors from "tailwindcss/colors";
+import tailwindColors from "../vendor/tailwind.ts";
 
 export default Object.fromEntries(
   Object.entries(tailwindColors)
