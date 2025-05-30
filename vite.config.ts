@@ -122,6 +122,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         "@": resolve("./src"),
+        "tailwindcss/colors": resolve("./src/tokens/vendor/tailwind.ts"),
       },
     },
 
