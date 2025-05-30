@@ -27,6 +27,7 @@ const links = computed(() =>
 );
 
 const coverageExists = __PLAYGROUND_VUE_COVERAGE_EXISTS__;
+const tailwindSupported = __PLAYGROUND_VUE_TAILWIND_SUPPORTED__;
 
 const colorSchemes = [
   { id: "os-default", value: "os-default", name: "Default" },
@@ -132,7 +133,7 @@ const versionDisplay = computed(
 
 const tailwindEnabled = inject(tailwindEnabledKey)!;
 const tailwindLocked = computed(
-  () => import.meta.env.DEV && tailwindEnabled.value,
+  () => !tailwindSupported || (import.meta.env.DEV && tailwindEnabled.value),
 );
 
 const toggleTailwind = async (enable: boolean) => {
@@ -306,7 +307,8 @@ onBeforeUnmount(() => {
         <label for="tailwind">Enable Tailwind</label>
 
         <div v-if="tailwindLocked" class="reset-message">
-          (refresh to reset)
+          <template v-if="tailwindSupported">(refresh to reset)</template>
+          <template v-else>(not supported)</template>
         </div>
       </div>
 
