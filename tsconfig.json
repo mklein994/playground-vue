@@ -12,6 +12,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["ESNext"],
+    "noEmit": true,
     "isolatedModules": true,
     "skipLibCheck": true
   },
