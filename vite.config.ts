@@ -50,13 +50,6 @@ export default defineConfig(({ mode }) => {
 
     build: {
       // The default, "modules", doesn't include top-level await, necessary for wasm support
-      target: [
-        "es2022", // es2020
-        "edge89", // edge88
-        "firefox89", // firefox78
-        "chrome89", // chrome87
-        "safari15", // safari14
-      ],
       sourcemap: !lowMemory && !isReproducible, // sourcemaps change on every build
       rollupOptions: {
         output: {
