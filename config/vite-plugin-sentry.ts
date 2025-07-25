@@ -1,7 +1,7 @@
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 import type { Plugin } from "vite";
 
-export default (): Plugin =>
+export default (): Plugin[] =>
   sentryVitePlugin({
     org: process.env.SENTRY_ORG,
     project: process.env.SENTRY_PROJECT,
@@ -14,4 +14,4 @@ export default (): Plugin =>
         auto: true,
       },
     },
-  }) as unknown as Plugin;
+  });
