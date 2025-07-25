@@ -49,7 +49,13 @@ const variant = ref("normal");
     </select>
 
     <ul>
-      <li v-for="value of emoji" :key="value" class="emoji" :style="{ 'font-variant-emoji': variant }">{{ value }}</li>
+      <li v-for="value of emoji" :key="value" class="emoji">{{ value }}</li>
     </ul>
   </div>
 </template>
+
+<style scoped>
+.emoji {
+  font-variant-emoji: v-bind("variant");
+}
+</style>
