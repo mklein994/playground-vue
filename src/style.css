@@ -28,11 +28,23 @@ Tailwind stylesheet is enabled.
   }
 
   :root {
-    --pv-selection-color: light-dark(var(--pv-sky-200), var(--pv-sky-800));
+    --pv-selection-color: light-dark(
+      var(--pv-color-base-sky-200),
+      var(--pv-color-base-sky-800)
+    );
 
-    --pv-yes: light-dark(var(--pv-green-600), var(--pv-green-400));
-    --pv-no: light-dark(var(--pv-red-600), var(--pv-red-400));
-    --pv-na: light-dark(var(--pv-gray-500), var(--pv-gray-400));
+    --pv-yes: light-dark(
+      var(--pv-color-base-green-600),
+      var(--pv-color-base-green-400)
+    );
+    --pv-no: light-dark(
+      var(--pv-color-base-red-600),
+      var(--pv-color-base-red-400)
+    );
+    --pv-na: light-dark(
+      var(--pv-color-base-gray-500),
+      var(--pv-color-base-gray-400)
+    );
   }
 
   ::selection {

@@ -110,14 +110,17 @@ onMounted(() => refreshTable());
 
 <style scoped>
 .truth-table {
-  --true-text-color: var(--pv-emerald-700);
-  --false-text-color: var(--pv-red-700);
+  --true-text-color: var(--pv-color-base-emerald-700);
+  --false-text-color: var(--pv-color-base-red-700);
 
   --true-background-color: light-dark(
-    var(--pv-emerald-200),
-    var(--pv-emerald-700)
+    var(--pv-color-base-emerald-200),
+    var(--pv-color-base-emerald-700)
   );
-  --false-background-color: light-dark(var(--pv-red-200), var(--pv-red-700));
+  --false-background-color: light-dark(
+    var(--pv-color-base-red-200),
+    var(--pv-color-base-red-700)
+  );
 }
 
 .truth-table-inputs {

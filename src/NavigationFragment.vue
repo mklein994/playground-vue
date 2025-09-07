@@ -379,8 +379,12 @@ onBeforeUnmount(() => {
   flex-flow: column;
   justify-content: space-between;
   padding: 1rem 1.5rem;
-  border: 1px solid light-dark(var(--pv-gray-300), var(--pv-gray-700));
-  background-color: light-dark(var(--pv-gray-50), var(--pv-gray-950));
+  border: 1px solid
+    light-dark(var(--pv-color-base-gray-300), var(--pv-color-base-gray-700));
+  background-color: light-dark(
+    var(--pv-color-base-gray-50),
+    var(--pv-color-base-gray-950)
+  );
   gap: 1rem;
   --border-radius: 0.5rem;
 
@@ -521,7 +525,10 @@ onBeforeUnmount(() => {
 }
 
 .active {
-  color: light-dark(var(--pv-green-700), var(--pv-green-500));
+  color: light-dark(
+    var(--pv-color-base-green-700),
+    var(--pv-color-base-green-500)
+  );
   list-style-type: disc;
 }
 
