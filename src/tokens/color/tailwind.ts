@@ -6,10 +6,7 @@ export default Object.fromEntries(
     .map(([name, colors]) => [
       name,
       Object.fromEntries(
-        Object.entries(colors).map(([k, v]) => [
-          k,
-          { value: v, type: "color" },
-        ]),
+        Object.entries(colors).map(([k, v]) => [k, { $value: v }]),
       ),
     ]),
 );
