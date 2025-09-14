@@ -81,6 +81,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.6)
+      change-case:
+        specifier: ^5.4.4
+        version: 5.4.4
       chroma-js:
         specifier: ^3.1.2
         version: 3.1.2
