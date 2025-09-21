@@ -380,10 +380,10 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   padding: 1rem 1.5rem;
   border: 1px solid
-    light-dark(var(--pv-color-base-gray-300), var(--pv-color-base-gray-700));
+    light-dark(var(--pv-base-color-gray-300), var(--pv-base-color-gray-700));
   background-color: light-dark(
-    var(--pv-color-base-gray-50),
-    var(--pv-color-base-gray-950)
+    var(--pv-base-color-gray-50),
+    var(--pv-base-color-gray-950)
   );
   gap: 1rem;
   --border-radius: 0.5rem;
@@ -526,8 +526,8 @@ onBeforeUnmount(() => {
 
 .active {
   color: light-dark(
-    var(--pv-color-base-green-700),
-    var(--pv-color-base-green-500)
+    var(--pv-base-color-green-700),
+    var(--pv-base-color-green-500)
   );
   list-style-type: disc;
 }

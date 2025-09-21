@@ -45,8 +45,8 @@ const color = ref("#000");
   width: min(20em, 100vw);
   padding: 1rem;
   border-radius: 1rem;
-  background: var(--pv-color-base-stone-200);
-  color: var(--pv-color-base-stone-800);
+  background: var(--pv-base-color-stone-200);
+  color: var(--pv-base-color-stone-800);
   color-scheme: light;
 }
 

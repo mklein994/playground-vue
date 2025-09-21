@@ -14,8 +14,10 @@ const baseColors = Object.fromEntries(
 );
 
 export default {
-  color: {
-    $type: "color",
-    base: baseColors,
+  base: {
+    color: {
+      $type: "color",
+      ...baseColors,
+    },
   },
 } satisfies DesignTokens;
