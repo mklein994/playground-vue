@@ -5,7 +5,7 @@ import { fileURLToPath, URL } from "url";
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 export default {
-  source: [resolve("./src/tokens/base/**/*.ts")],
+  source: [resolve("./src/tokens/base.ts")],
 
   platforms: {
     css: {
