@@ -6,7 +6,7 @@
     "build": "vite build",
     "build:all": "pnpm build:tokens && pnpm build:tailwind && vite build",
     "build:all-no-tailwind": "pnpm build:tokens && vite build",
-    "build:tokens": "node ./sd.config.ts",
+    "build:tokens": "style-dictionary build --config ./sd.config.ts",
     "build:tailwind": "tailwindcss --minify --input ./src/tailwind.css --output ./public/tailwind.min.css",
     "preview": "vite preview",
     "typecheck:config": "vue-tsc --composite false -p tsconfig.vite-config.json",
