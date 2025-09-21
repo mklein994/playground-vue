@@ -1,3 +1,5 @@
+import type { DesignTokens } from "style-dictionary/types";
+
 import baseColors from "../color/tailwind.ts";
 
 export default {
@@ -5,4 +7,4 @@ export default {
     $type: "color",
     base: baseColors,
   },
-};
+} satisfies DesignTokens;
