@@ -3,6 +3,7 @@
 import vue from "@vitejs/plugin-vue";
 import fastGlob from "fast-glob";
 import fs from "fs";
+import { Features } from "lightningcss";
 import { fileURLToPath, URL } from "url";
 import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
 import wasm from "vite-plugin-wasm";
@@ -48,6 +49,13 @@ export default defineConfig(({ mode }) => {
       host: env.BUILDTIME_HOST,
     },
 
+    css: {
+      transformer: "lightningcss",
+      lightningcss: {
+        exclude: Features.OklabColors | Features.LightDark,
+      },
+    },
+
     build: {
       // The default, "modules", doesn't include top-level await, necessary for wasm support
       sourcemap: !lowMemory && !isReproducible, // sourcemaps change on every build
@@ -76,6 +84,8 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
+
+      cssMinify: "lightningcss",
     },
 
     test: {
