@@ -117,45 +117,45 @@ const rows = computed(() => {
   /* --false-background-color: ; */
 }
 
-.cell {
-  padding: 0 0.5em;
-  border: 1px solid ButtonBorder;
-}
-
 .body .cell {
   font-family: monospace;
   font-size: 1rem;
 }
 
-.cell .code {
-  font-size: 1rem;
-}
+.cell {
+  padding: 0 0.5em;
+  border: 1px solid ButtonBorder;
 
-.cell.key {
-  text-align: center;
-}
+  .code {
+    font-size: 1rem;
+  }
 
-.cell.true {
-  background-color: var(--true-background-color);
-}
+  &.key {
+    text-align: center;
+  }
 
-.cell.true::before {
-  content: "• ";
-}
+  &.true {
+    background-color: var(--true-background-color);
 
-.cell.true::after {
-  content: "\a0";
-}
+    &::before {
+      content: "• ";
+    }
 
-.cell.false {
-  background-color: var(--false-background-color);
-}
+    &::after {
+      content: "\a0";
+    }
+  }
 
-.cell.false::before {
-  content: "\a0\a0";
-}
+  &.false {
+    background-color: var(--false-background-color);
 
-.cell.invalid {
-  background-color: lightpink;
+    &::before {
+      content: "\a0\a0";
+    }
+  }
+
+  &.invalid {
+    background-color: lightpink;
+  }
 }
 </style>
