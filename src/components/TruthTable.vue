@@ -117,11 +117,6 @@ const rows = computed(() => {
   /* --false-background-color: ; */
 }
 
-.body .cell {
-  font-family: monospace;
-  font-size: 1rem;
-}
-
 .cell {
   padding: 0 0.5em;
   border: 1px solid ButtonBorder;
@@ -157,5 +152,10 @@ const rows = computed(() => {
   &.invalid {
     background-color: lightpink;
   }
+}
+
+.body .cell {
+  font-family: monospace;
+  font-size: 1rem;
 }
 </style>
