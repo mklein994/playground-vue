@@ -10,6 +10,7 @@ import wasm from "vite-plugin-wasm";
 import { configDefaults } from "vitest/config";
 
 import vitePluginEruda from "./config/vite-plugin-eruda";
+import { vitePluginGoogleFonts } from "./config/vite-plugin-google-fonts";
 import sentryVitePlugin from "./config/vite-plugin-sentry";
 import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
 import { wasmProject } from "./config/vite-plugin-wasm-project";
@@ -147,6 +148,19 @@ export default defineConfig(({ mode }) => {
       }),
       env.BUILDTIME_ERUDA_ENABLED ? vitePluginEruda() : false,
       env.BUILDTIME_SENTRY_ENABLED ? sentryVitePlugin() : false,
+
+      vitePluginGoogleFonts({
+        fonts: {
+          family: "Material Symbols Outlined",
+          specs: {
+            opsz: "20..40",
+            wght: "100..700",
+            FILL: "0..1",
+            GRAD: "-50..200",
+          },
+        },
+        display: "block",
+      }),
     ],
   };
 });
