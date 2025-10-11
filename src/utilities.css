@@ -1,0 +1,18 @@
+.pv-code {
+  border: 1px solid
+    light-dark(var(--pv-base-color-lime-100), var(--pv-base-color-lime-900));
+  border-radius: 0.125em;
+  background: light-dark(
+    var(--pv-base-color-lime-50),
+    var(--pv-base-color-lime-950)
+  );
+  color: light-dark(
+    var(--pv-base-color-lime-950),
+    var(--pv-base-color-lime-50)
+  );
+
+  &::before,
+  &::after {
+    content: "`";
+  }
+}

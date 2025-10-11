@@ -6,9 +6,10 @@ The Tailwind CSS layers are prepended here so they fit correctly if the
 Tailwind stylesheet is enabled.
 */
 
-@layer base, components, utilities, reset, highlight-theme, pv-base;
+@layer base, components, utilities, reset, highlight-theme, pv-base, pv-utilities;
 
 @import url("@/assets/generated/variables.css") layer(pv-base);
+@import url("@/utilities.css") layer(pv-utilities);
 
 @layer reset {
   *,
