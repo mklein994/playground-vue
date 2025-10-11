@@ -29,7 +29,19 @@ const imageRendering = ref<string>(defaultImageRendering.value);
     </form>
 
     <p>
-      Images come from the <a href="https://ghostty.org">Ghostty project</a>.
+      Images come from the
+      <a href="https://ghostty.org"
+        ><img
+          srcset="
+            @/assets/ghostty_icon_16.png,
+            @/assets/ghostty_icon_16@2x.png 2x
+          "
+          src="@/assets/ghostty_icon_16.png"
+          alt="Ghostty Icon (original size)"
+          class="link-image"
+        />
+        Ghostty project</a
+      >.
     </p>
 
     <p>
