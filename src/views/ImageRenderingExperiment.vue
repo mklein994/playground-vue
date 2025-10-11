@@ -68,8 +68,8 @@ const imageRendering = ref<string>(defaultImageRendering.value);
 
 .settings {
   display: grid;
-  place-items: start;
   gap: 0.25rem;
+  place-items: start;
 }
 
 .image {
