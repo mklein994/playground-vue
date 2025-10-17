@@ -2,3 +2,29 @@
 @plugin "@tailwindcss/forms" {
   strategy: "class";
 }
+
+@layer utilities {
+  :where(.tw-dark) {
+    .tw\:form-input,
+    .tw\:form-textarea,
+    .tw\:form-select,
+    .tw\:form-multiselect,
+    .tw\:form-checkbox,
+    .tw\:form-radio {
+      background-color: Field;
+      color: FieldText;
+
+      &:focus {
+        --tw-ring-offset-color: black;
+        --tw-ring-color: var(--pv-base-color-indigo-500);
+        border-color: var(--pv-base-color-indigo-500);
+      }
+    }
+
+    /* stylelint-disable no-descending-specificity -- Overriding it like this keeps the grouping smaller */
+    .tw\:form-checkbox,
+    .tw\:form-radio {
+      color: var(--pv-base-color-indigo-500);
+    }
+  }
+}

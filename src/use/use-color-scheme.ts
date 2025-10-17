@@ -56,6 +56,10 @@ export const useColorScheme = () => {
     }
 
     meta.setAttribute("content", metaContent);
+    document.documentElement.classList.toggle(
+      "tw-dark",
+      resolvedScheme.value === "dark",
+    );
   });
 
   return {
