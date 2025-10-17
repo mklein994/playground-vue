@@ -129,7 +129,7 @@ onMounted(async () => {
       v-model="events"
       multiple
       name="events"
-      class="tw-form-select"
+      class="tw:form-select"
     >
       <option
         v-for="availableEvent of availableEvents"

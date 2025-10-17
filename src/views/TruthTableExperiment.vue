@@ -59,7 +59,7 @@ onMounted(() => refreshTable());
         name="headers"
         cols="30"
         rows="10"
-        class="tw-form-textarea"
+        class="tw:form-textarea"
       ></textarea>
     </div>
 
@@ -72,7 +72,7 @@ onMounted(() => refreshTable());
         cols="30"
         rows="10"
         placeholder="return args[0] || args[1];"
-        class="tw-form-textarea"
+        class="tw:form-textarea"
       ></textarea>
     </div>
 
@@ -82,7 +82,7 @@ onMounted(() => refreshTable());
         v-model="allowNulls"
         name="allowNulls"
         type="checkbox"
-        class="tw-form-checkbox"
+        class="tw:form-checkbox"
       />
       <label for="allow-nulls"
         >Arguments may have <code>null</code> values</label

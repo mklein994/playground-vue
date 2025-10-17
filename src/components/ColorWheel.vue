@@ -25,7 +25,7 @@ const gradient = computed(() => {
 </script>
 
 <template>
-  <div class="color-wheel before:tw-shadow tw-shadow">
+  <div class="color-wheel tw:before:shadow tw:shadow">
     <input v-model="color" type="color" class="color-input" />
   </div>
 </template>

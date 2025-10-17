@@ -6,8 +6,8 @@ const color = ref("#737373");
 
 <template>
   <div class="text">hello</div>
-  <input v-model="color" type="text" name="color" class="tw-form-input" />
-  <input v-model="color" type="color" name="color" class="tw-form-input" />
+  <input v-model="color" type="text" name="color" class="tw:form-input" />
+  <input v-model="color" type="color" name="color" class="tw:form-input" />
 </template>
 
 <style scoped>

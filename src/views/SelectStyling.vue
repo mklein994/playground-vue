@@ -5,7 +5,7 @@
       :key="classes"
       class="select-wrapper"
     >
-      <select class="tw-form-select select" :class="classes">
+      <select class="tw:form-select select" :class="classes">
         <option disabled value="">Choose a fruit:</option>
         <option>Apple</option>
         <option>Banana</option>

@@ -26,13 +26,13 @@ const updateColor = (event: Event) => {
     <input
       type="text"
       name="color"
-      class="tw-form-input"
+      class="tw:form-input"
       @input="updateColor"
     />
     <input
       type="color"
       name="color-input"
-      class="tw-form-input"
+      class="tw:form-input"
       @change="updateColor"
     />
   </div>

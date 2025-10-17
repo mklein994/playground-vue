@@ -1,5 +1,6 @@
 /// <reference types="vitest" />
 
+import tailwindcss from "@tailwindcss/vite";
 import vue from "@vitejs/plugin-vue";
 import fastGlob from "fast-glob";
 import fs from "fs";
@@ -18,7 +19,7 @@ import { wasmProject } from "./config/vite-plugin-wasm-project";
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command }) => {
   const cwd = resolve(".");
   const env = loadEnv(mode, cwd, "BUILDTIME_");
 
@@ -35,12 +36,14 @@ export default defineConfig(({ mode }) => {
   const tailwindSupported =
     (env.BUILDTIME_TAILWIND_SUPPORTED ?? "true") === "true";
 
-  const tailwindPlugin = () =>
-    mode === "production"
-      ? isReproducible
-        ? separateTailwind(Date.parse("2000-01-01"))
-        : separateTailwind()
-      : false;
+  const tailwindPlugin = () => {
+    if (command === "serve") {
+      return mode === "production" ? false : tailwindcss();
+    }
+    return isReproducible
+      ? separateTailwind(Date.parse("2000-01-01"))
+      : separateTailwind();
+  };
 
   return {
     server: {

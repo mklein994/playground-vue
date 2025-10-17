@@ -22,7 +22,7 @@ const vocalRange = ref(false);
         id="vocal-range"
         v-model="vocalRange"
         type="checkbox"
-        class="tw-form-checkbox"
+        class="tw:form-checkbox"
       />
     </div>
 

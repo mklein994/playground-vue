@@ -47,7 +47,7 @@ onBeforeUnmount(() => {
   <input
     type="file"
     accept="audio/*"
-    class="tw-form-input"
+    class="tw:form-input"
     @change="handleFileChange"
   />
 </template>

@@ -17,11 +17,11 @@ const squareAspectRatio = computed(() => (square.value ? "1 / 1" : "unset"));
   <div class="color-mix-experiment">
     <form class="color-mix-form" @submit.prevent>
       <label for="first-color">First Color</label>
-      <input v-model="firstColor" type="text" class="tw-form-input" />
+      <input v-model="firstColor" type="text" class="tw:form-input" />
       <input v-model="firstColor" type="color" class="first-color" />
 
       <label for="last-color">Last Color</label>
-      <input v-model="lastColor" type="text" class="tw-form-input" />
+      <input v-model="lastColor" type="text" class="tw:form-input" />
       <input v-model="lastColor" type="color" class="last-color" />
 
       <label for="stops">Stops</label>

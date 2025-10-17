@@ -299,7 +299,7 @@ onBeforeUnmount(() => {
           id="tailwind"
           v-model="tailwindEnabled"
           type="checkbox"
-          class="tw-form-checkbox tailwind-checkbox"
+          class="tw:form-checkbox tailwind-checkbox"
           :value="tailwindEnabled"
           :disabled="tailwindLocked"
           @input="handleToggleTailwindClick"
@@ -334,7 +334,7 @@ onBeforeUnmount(() => {
             type="radio"
             name="menu-position"
             :value="id"
-            class="tw-form-radio"
+            class="tw:form-radio"
           />
           <label :for="`menu-position-${id}`">{{ id }}</label>
         </div>
@@ -555,7 +555,7 @@ onBeforeUnmount(() => {
 }
 
 .reset-message {
-  /* @apply tw-text-sm; */
+  /* @apply tw:text-sm; */
   font-size: 0.875rem;
   grid-column-end: -1;
   line-height: 1.25rem;

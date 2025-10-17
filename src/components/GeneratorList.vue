@@ -46,7 +46,7 @@ watchEffect(() => {
       type="number"
       name="max"
       min="1"
-      class="tw-form-input"
+      class="tw:form-input"
     />
 
     <ol>
