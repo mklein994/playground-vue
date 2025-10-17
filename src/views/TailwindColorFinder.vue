@@ -53,7 +53,13 @@ const sortedColors = computed(() => {
 <template>
   <div class="tailwind-color-finder">
     <label for="search-color">Color</label>
-    <input id="search-color" v-model="searchColor" type="text" />
+    <input
+      id="search-color"
+      v-model="searchColor"
+      type="text"
+      placeholder="Search"
+      class="tw:form-input"
+    />
     <span class="swatch" :style="{ backgroundColor: searchColor }"></span>
 
     <div class="colors">
