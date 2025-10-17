@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`GeneratorExperiment > max > updates when changed 1`] = `
-"<div data-v-caa99902="" class="generator-list"><label data-v-caa99902="" for="max">Max:</label><input data-v-caa99902="" id="max" type="number" name="max" min="1" class="tw-form-input">
+"<div data-v-caa99902="" class="generator-list"><label data-v-caa99902="" for="max">Max:</label><input data-v-caa99902="" id="max" type="number" name="max" min="1" class="tw:form-input">
   <ol data-v-caa99902="">
     <li data-v-caa99902=""><span data-v-caa99902="" class="is-number">1</span></li>
     <li data-v-caa99902=""><span data-v-caa99902="" class="is-number">2</span></li>
