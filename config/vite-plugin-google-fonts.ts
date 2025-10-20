@@ -29,24 +29,30 @@ function getFontUrls(options: string | string[] | FontOptions): string[] {
       compareStrings(a.family, b.family),
     )) {
       if (fontSpec.text != null) {
-        fontHrefs.push(
-          buildFontUrl({
-            ...options,
-            fonts: fontSpec,
-            text: fontSpec.text,
-          }),
-        );
+        const newUrl = buildFontUrl({
+          ...options,
+          fonts: fontSpec,
+          text: fontSpec.text,
+        });
+        if (newUrl != null) {
+          fontHrefs.push(newUrl);
+        }
       } else {
         fontsWithoutText.push(fontSpec);
       }
     }
-    fontHrefs.push(buildFontUrl({ ...options, fonts: fontsWithoutText }));
+    const newUrl = buildFontUrl({ ...options, fonts: fontsWithoutText });
+    if (newUrl != null) {
+      fontHrefs.push(newUrl);
+    }
   }
   return fontHrefs;
 }
 
-export function vitePluginGoogleFonts(options: string | FontOptions): Plugin {
-  const fontHrefs = getFontUrls(options);
+export function vitePluginGoogleFonts(
+  options: Arrayable<string | FontOptions>,
+): Plugin {
+  const fontHrefs = wrap(options).flatMap(getFontUrls);
 
   return {
     name: "vite-plugin-google-fonts",
@@ -116,8 +122,13 @@ const minifyText = (text: string) =>
 /**
  * Create a font URL from the options given
  */
-function buildFontUrl(options: FontOptions): string {
+function buildFontUrl(options: FontOptions): string | null {
   const { fonts, ...opts } = options;
+  // TODO: Figure out why some fonts come in empty here
+  if (Array.isArray(fonts) && fonts.length === 0) {
+    return null;
+  }
+
   const url = new URL("https://fonts.googleapis.com/css2");
   const params = new URLSearchParams(
     wrap(fonts)
