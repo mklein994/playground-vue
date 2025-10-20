@@ -26,16 +26,19 @@ const pointerHandler = (e: PointerEvent) => {
 
   if (e.pressure > 0) {
     c.beginPath();
-    c.strokeStyle = "white";
+    c.strokeStyle = "#663399bf"; // rebeccapurple at 75% opacity
     if (prev.value != null) {
       c.moveTo(prev.value.x, prev.value.y);
     }
     const pressure =
       e.pressure < 0.1 && e.pressure > 0.4 ? e.pressure : e.pressure * 20;
     c.lineWidth = pressure;
-    c.lineTo(e.clientX, e.clientY);
+    const min = Math.min(window.outerWidth, window.outerHeight);
+    const x = (e.clientX / min) * canvas.value!.width;
+    const y = (e.clientY / min) * canvas.value!.height;
+    c.lineTo(x, y);
     c.stroke();
-    prev.value = { x: e.clientX, y: e.clientY };
+    prev.value = { x, y };
   }
 };
 
@@ -74,23 +77,16 @@ const handleClear = (e: PointerEvent) => {
 
 <style scoped>
 .pointer-experiment {
-  position: relative;
-  overflow: hidden;
-  /* aspect-ratio: 1; */
-  width: 100vw;
-  height: 100svh;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100vw;
+  max-height: 100svh;
   user-select: none;
 }
 
-.info {
-  position: fixed;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-}
-
 #canvas {
-  max-width: calc(100vw - 2px);
-  max-height: calc(100svh - 2px);
+  max-width: min(calc(100vw - 2px), 1024px);
+  max-height: min(calc(100svh - 2px), 1024px);
   border: 1px solid hotpink;
   aspect-ratio: 1;
 }
