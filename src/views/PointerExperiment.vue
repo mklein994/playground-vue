@@ -78,9 +78,9 @@ const handleClear = (e: PointerEvent) => {
 <style scoped>
 .pointer-experiment {
   display: flex;
-  flex-wrap: wrap;
   max-width: 100vw;
   max-height: 100svh;
+  flex-wrap: wrap;
   user-select: none;
 }
 
