@@ -14,6 +14,13 @@
 }
 
 .welcome {
+  font:
+    700 var(--font-size) "Andada Pro",
+    serif;
+
+  margin-block: 0;
+  text-align: center;
+
   /* Don't let this go below a comfortable font size. */
   --min-font-size: 1rem;
 
@@ -23,13 +30,10 @@
   /* Based on its proportions on super-wide screens. */
   --max-font-size: 40vh;
 
-  font-family: "Andada Pro", serif;
-
-  font-size: clamp(
+  --font-size: clamp(
     var(--min-font-size),
     var(--preferred-font-size),
     var(--max-font-size)
   );
-  text-align: center;
 }
 </style>
