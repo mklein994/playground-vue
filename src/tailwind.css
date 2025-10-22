@@ -1,4 +1,5 @@
 @import "tailwindcss" prefix(tw);
+@custom-variant dark (&:where(.tw-dark, .tw-dark *));
 @plugin "@tailwindcss/forms" {
   strategy: "class";
 }

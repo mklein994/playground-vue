@@ -152,18 +152,32 @@ export default defineConfig(({ mode, command }) => {
       env.BUILDTIME_ERUDA_ENABLED ? vitePluginEruda() : false,
       env.BUILDTIME_SENTRY_ENABLED ? sentryVitePlugin() : false,
 
-      vitePluginGoogleFonts({
-        fonts: {
-          family: "Material Symbols Outlined",
-          specs: {
-            opsz: "20..40",
-            wght: "100..700",
-            FILL: "0..1",
-            GRAD: "-50..200",
+      vitePluginGoogleFonts([
+        {
+          fonts: {
+            family: "Material Symbols Outlined",
+            specs: {
+              opsz: "20..40",
+              wght: "100..700",
+              FILL: "0..1",
+              GRAD: "-50..200",
+            },
           },
+          display: "block",
         },
-        display: "block",
-      }),
+
+        {
+          fonts: {
+            family: "Honk",
+            specs: {
+              MORF: "0..45",
+              SHLN: "0..100",
+            },
+            text: "Welcome",
+          },
+          display: "block",
+        },
+      ]),
     ],
   };
 });

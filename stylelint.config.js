@@ -24,6 +24,12 @@ export default {
             },
           },
         ],
+        "at-rule-no-unknown": [
+          true,
+          {
+            ignoreAtRules: ["custom-variant", "plugin", "reference"],
+          },
+        ],
       },
     },
   ],

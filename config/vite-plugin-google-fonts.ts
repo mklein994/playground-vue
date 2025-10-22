@@ -6,6 +6,7 @@ interface FontOptions {
   fonts: Arrayable<FontSpec>;
   display?: "auto" | "block" | "swap" | "fallback" | "optional";
   text?: string;
+  icon_names?: string[];
 }
 
 interface FontSpec {
@@ -135,7 +136,7 @@ function buildFontUrl(options: FontOptions): string | null {
       .map((font): [string, string] => ["family", buildFamilySpec(font)])
       .concat(
         Object.entries(opts).map(([k, v]) =>
-          k === "text" ? [k, minifyText(v)] : [k, v],
+          k === "text" ? [k, minifyText(v.toString())] : [k, v.toString()],
         ),
       ),
   );
