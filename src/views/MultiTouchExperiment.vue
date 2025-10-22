@@ -132,6 +132,7 @@ const clearCanvas = () => {
   overflow: hidden;
   width: 100vw;
   height: 100svh;
+  touch-action: none;
 }
 
 .info {
