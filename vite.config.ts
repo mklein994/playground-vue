@@ -96,11 +96,7 @@ export default defineConfig(({ mode, command }) => {
       environment: "happy-dom",
       includeSource: ["./src/**/*.ts", "./config/**/*.ts"],
       exclude: [...configDefaults.exclude, "**/*.node-test.*"],
-      poolOptions: {
-        forks: {
-          isolate: false, // major speed improvement at risk of cross-contamination
-        },
-      },
+      isolate: false, // major speed improvement at risk of cross-contamination
       snapshotFormat: {
         printBasicPrototype: true,
       },
