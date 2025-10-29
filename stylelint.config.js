@@ -9,6 +9,7 @@ export default {
   overrides: [
     {
       files: ["**/*.vue", "*.vue", "**/*.css", "*.css"],
+      ignoreFiles: "**/reset.css",
       rules: {
         "function-no-unknown": [
           true,
