@@ -10,7 +10,7 @@ import {
 } from "@/injectionKeys";
 import { useColorScheme } from "@/use/use-color-scheme";
 
-const tailwindEnabled = ref(false);
+const tailwindEnabled = ref(!!import.meta.env.VITE_TAILWIND_ENABLED);
 
 provide(tailwindEnabledKey, tailwindEnabled);
 

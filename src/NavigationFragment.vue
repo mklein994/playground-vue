@@ -11,14 +11,16 @@ import {
   onBeforeMount,
   onBeforeUnmount,
   ref,
+  useTemplateRef,
   watchEffect,
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import ColorSchemePicker from "./components/ColorSchemePicker.vue";
+import TailwindToggle from "@/components/navigation/TailwindToggle.vue";
 import RouteInfo from "@/RouteInfo.vue";
 
-import { schemeKey, tailwindEnabledKey } from "@/injectionKeys";
+import { schemeKey } from "@/injectionKeys";
 
 const route = useRoute();
 const router = useRouter();
@@ -27,7 +29,6 @@ const links = computed(() =>
 );
 
 const coverageExists = __PLAYGROUND_VUE_COVERAGE_EXISTS__;
-const tailwindSupported = __PLAYGROUND_VUE_TAILWIND_SUPPORTED__;
 
 const colorSchemes = [
   { id: "os-default", value: "os-default", name: "Default" },
@@ -43,10 +44,15 @@ watchEffect(() => {
   scheme.value = selectedScheme.value.value;
 });
 
+const menu = useTemplateRef("menu");
 const menuOpen = ref(false);
 
 const toggleMenu = () => {
-  menuOpen.value = !menuOpen.value;
+  if (menuOpen.value) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
 };
 
 const openMenu = () => {
@@ -55,13 +61,14 @@ const openMenu = () => {
   }
 
   menuOpen.value = true;
+  (menu.value as HTMLDialogElement).showModal();
 };
 
 const closeMenu = () => {
-  if (!menuOpen.value) {
-    throw new Error("Tried closing an already closed menu");
-  }
+  (menu.value as HTMLDialogElement).close();
+};
 
+const handleMenuClose = () => {
   menuOpen.value = false;
 };
 
@@ -131,59 +138,6 @@ const versionDisplay = computed(
     ?? "(unknown commit)",
 );
 
-const tailwindEnabled = inject(tailwindEnabledKey)!;
-const tailwindLocked = computed(
-  () => !tailwindSupported || (import.meta.env.DEV && tailwindEnabled.value),
-);
-
-const toggleTailwind = async (enable: boolean) => {
-  if (import.meta.env.DEV) {
-    await import("@/tailwind.css");
-    tailwindEnabled.value = enable;
-    return;
-  }
-
-  tailwindEnabled.value = enable;
-
-  const link = document.head.querySelector<HTMLLinkElement>(
-    "link[title='tailwind']",
-  );
-
-  if (link == null) {
-    throw new Error(
-      "tailwind style <link title='tailwind'> not found. This is only available on production builds.",
-    );
-  }
-
-  link.disabled = !tailwindEnabled.value;
-};
-
-const handleToggleTailwindClick = async (event: Event) => {
-  const value = (event.target as HTMLInputElement).checked;
-
-  await toggleTailwind(value);
-};
-
-const handleMenuKeydown = (e: Event) => {
-  if (!(e instanceof KeyboardEvent)) {
-    throw new Error(
-      "keydown event handler must be attached to @keydown events",
-    );
-  }
-
-  if (e.key !== "Escape" || e.shiftKey || e.altKey || e.metaKey || e.ctrlKey) {
-    return;
-  }
-
-  toggleMenu();
-};
-
-onBeforeMount(async () => {
-  if (import.meta.env.VITE_TAILWIND_ENABLED) {
-    await toggleTailwind(true);
-  }
-});
-
 const searchQuery = ref("");
 const filteredLinks = computed(() =>
   searchQuery.value === ""
@@ -195,13 +149,6 @@ const filteredLinks = computed(() =>
       ),
 );
 
-const vFocus = {
-  mounted: (element: HTMLInputElement) => {
-    element.focus();
-    element.select();
-  },
-};
-
 const handleSearchSubmit = async (e: Event) => {
   e.preventDefault();
 
@@ -212,20 +159,6 @@ const handleSearchSubmit = async (e: Event) => {
 
   await router.push(topLink);
   toggleMenu();
-};
-
-// TODO: change this when using the Popover API
-const closeOnEscape = (e: KeyboardEvent) => {
-  if (
-    e.key === "Escape"
-    && !(e.ctrlKey || e.shiftKey || e.altKey || e.metaKey)
-  ) {
-    if (!e.defaultPrevented) {
-      e.preventDefault();
-
-      closeMenu();
-    }
-  }
 };
 
 const openOnCtrlK = (e: KeyboardEvent) => {
@@ -243,9 +176,7 @@ const handleGlobalShortcuts = (e: Event) => {
     return;
   }
 
-  if (menuOpen.value) {
-    closeOnEscape(e);
-  } else {
+  if (!menuOpen.value) {
     openOnCtrlK(e);
   }
 };
@@ -260,59 +191,48 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="menuOpen" class="background" @click="toggleMenu"></div>
-  <div class="home" :class="[{ 'menu-open': menuOpen }, menuPositionClasses]">
-    <template v-if="menuOpen">
-      <nav class="links">
-        <form @submit="handleSearchSubmit">
-          <input
-            v-model="searchQuery"
-            v-focus
-            type="search"
-            placeholder="Search&hellip;"
-            class="search-query"
-          />
-
-          <div v-if="filteredLinks.length === 0">No Results</div>
-          <ul v-else class="links-list">
-            <li
-              v-for="link of filteredLinks"
-              :key="link.path"
-              class="link"
-              :class="{ active: route.path === link.path }"
-            >
-              <RouterLink :to="link.path" @click="toggleMenu">{{
-                link.name
-              }}</RouterLink>
-            </li>
-            <hr />
-            <li class="link">
-              <a v-if="coverageExists" href="/coverage/index.html">Coverage</a
-              ><span v-else>Coverage (Not Found)</span>
-            </li>
-          </ul>
-        </form>
-      </nav>
-
-      <div class="enable-tailwind">
+  <dialog
+    ref="menu"
+    closedby="any"
+    class="home"
+    :class="menuPositionClasses"
+    @close="handleMenuClose"
+  >
+    <nav class="links">
+      <form @submit="handleSearchSubmit">
         <input
-          id="tailwind"
-          v-model="tailwindEnabled"
-          type="checkbox"
-          class="tw:form-checkbox tailwind-checkbox"
-          :value="tailwindEnabled"
-          :disabled="tailwindLocked"
-          @input="handleToggleTailwindClick"
+          v-model="searchQuery"
+          type="search"
+          placeholder="Search&hellip;"
+          autofocus
+          class="search-query"
         />
-        <label for="tailwind">Enable Tailwind</label>
 
-        <div v-if="tailwindLocked" class="reset-message">
-          <template v-if="tailwindSupported">(refresh to reset)</template>
-          <template v-else>(not supported)</template>
-        </div>
-      </div>
+        <div v-if="filteredLinks.length === 0">No Results</div>
+        <ul v-else class="links-list">
+          <li
+            v-for="link of filteredLinks"
+            :key="link.path"
+            class="link"
+            :class="{ active: route.path === link.path }"
+          >
+            <RouterLink :to="link.path" @click="toggleMenu">{{
+              link.name
+            }}</RouterLink>
+          </li>
+          <hr />
+          <li class="link">
+            <a v-if="coverageExists" href="/coverage/index.html">Coverage</a
+            ><span v-else>Coverage (Not Found)</span>
+          </li>
+        </ul>
+      </form>
+    </nav>
 
-      <div>
+    <div class="menu-bottom">
+      <TailwindToggle class="tailwind-toggle"></TailwindToggle>
+
+      <div class="color-scheme-picker">
         <ColorSchemePicker v-model="scheme"></ColorSchemePicker>
       </div>
 
@@ -339,13 +259,13 @@ onBeforeUnmount(() => {
           <label :for="`menu-position-${id}`">{{ id }}</label>
         </div>
       </div>
-    </template>
+    </div>
 
     <button
+      type="button"
       class="nav-button-wrapper"
       :class="menuPositionClasses"
       @click="toggleMenu"
-      @keydown="handleMenuKeydown"
     >
       <button v-if="menuOpen" @click.stop="toggleExpand">
         <Component :is="getChevronIcon" class="icon"></Component>
@@ -356,20 +276,12 @@ onBeforeUnmount(() => {
       <XMarkIcon v-if="menuOpen" class="icon"></XMarkIcon>
       <MenuIcon v-else class="icon"></MenuIcon>
     </button>
-  </div>
+  </dialog>
 </template>
 
 <style scoped>
-.background {
-  position: fixed;
-  z-index: 10;
-  background-color: rgb(0 0 0 / 0.25);
-  inset: 0;
-}
-
 .home {
   position: fixed;
-  z-index: 11;
   display: flex;
   /* Allow the menu to resize based on the current
    * viewport (minus UA chrome)
@@ -386,6 +298,8 @@ onBeforeUnmount(() => {
     var(--pv-base-color-gray-950)
   );
   gap: 1rem;
+  /** Allow us to position the menu button (which is inside the dialog) */
+  inset: auto;
   --border-radius: 0.5rem;
 
   @supports not (inset: 0) {
@@ -394,10 +308,19 @@ onBeforeUnmount(() => {
       bottom: 0;
     }
   }
+
+  &::backdrop {
+    background-color: rgb(0 0 0 / 0.25);
+  }
 }
 
-.menu-open {
-  box-shadow: inset var(--shadow-x) var(--shadow-y) 20px rgb(0 0 0 / 10%);
+.links,
+.menu-bottom {
+  display: none;
+}
+
+.menu-bottom {
+  gap: 1rem;
 }
 
 /**
@@ -450,21 +373,43 @@ onBeforeUnmount(() => {
   border-start-start-radius: var(--border-radius);
 }
 
-.menu-open.bottom {
-  --shadow-y: 10px;
+.links {
+  /* scroll the links when there's not enough space */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* TODO: figure out how to make this less janky on
+   * browsers that can hide the toolbar on scroll (i.e.
+   * Firefox Android)
+   */
 }
 
-.menu-open.right {
-  --shadow-x: 10px;
-}
+.home[open] {
+  box-shadow: var(--shadow-x) var(--shadow-y) 20px rgb(0 0 0 / 10%);
 
-.menu-open.left {
-  --shadow-x: -10px;
-}
+  &.bottom {
+    --shadow-y: 10px;
+  }
 
-.menu-open.top {
-  --shadow-y: -10px;
-  flex-flow: column-reverse;
+  &.right {
+    --shadow-x: 10px;
+  }
+
+  &.left {
+    --shadow-x: -10px;
+  }
+
+  &.top {
+    --shadow-y: -10px;
+    flex-flow: column-reverse;
+  }
+
+  .links {
+    display: unset;
+  }
+
+  .menu-bottom {
+    display: grid;
+  }
 }
 
 .menu-positions {
@@ -481,12 +426,14 @@ onBeforeUnmount(() => {
 }
 
 .nav-button-wrapper {
+  position: sticky;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   cursor: pointer;
   gap: 1em;
+  inset-block-end: 0;
 }
 
 .left .nav-button-wrapper {
@@ -497,16 +444,6 @@ onBeforeUnmount(() => {
   flex: 1;
   margin-block: -0.25em;
   text-align: center;
-}
-
-.links {
-  /* scroll the links when there's not enough space */
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  /* TODO: figure out how to make this less janky on
-   * browsers that can hide the toolbar on scroll (i.e.
-   * Firefox Android)
-   */
 }
 
 .site-search {
@@ -535,30 +472,6 @@ onBeforeUnmount(() => {
 .icon {
   width: 1.5rem;
   height: 1.5rem;
-}
-
-.enable-tailwind {
-  display: grid;
-  align-items: center;
-  justify-content: start;
-  column-gap: 0.5em;
-  grid-template-columns: repeat(2, auto);
-}
-
-.tailwind-checkbox:disabled {
-  color: GrayText;
-  outline-color: GrayText;
-}
-
-.tailwind-checkbox:disabled ~ * {
-  color: GrayText;
-}
-
-.reset-message {
-  /* @apply tw:text-sm; */
-  font-size: 0.875rem;
-  grid-column-end: -1;
-  line-height: 1.25rem;
 }
 
 .commit-hash {
