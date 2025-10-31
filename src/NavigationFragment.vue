@@ -309,6 +309,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .home {
   position: fixed;
+  z-index: 1;
   display: flex;
   max-height: 100dvh;
   box-sizing: border-box; /* Make max-height work without Tailwind */
