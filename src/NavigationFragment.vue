@@ -21,6 +21,7 @@ import TailwindToggle from "@/components/navigation/TailwindToggle.vue";
 import RouteInfo from "@/RouteInfo.vue";
 
 import { schemeKey } from "@/injectionKeys";
+import { useMetaViewport } from "@/use/use-meta-viewport";
 
 const route = useRoute();
 const router = useRouter();
@@ -43,6 +44,21 @@ const selectedScheme = computed(
 watchEffect(() => {
   scheme.value = selectedScheme.value.value;
 });
+
+const { viewportContent } = useMetaViewport();
+const selectedInteractiveWidget = ref<string>(
+  viewportContent.value.get("interactive-widget") ?? "",
+);
+const handleInteractiveWidgetChange = (e: Event) => {
+  const value = (e.target as HTMLSelectElement).value;
+  const key = "interactive-widget";
+  if (value === "") {
+    viewportContent.value.delete(key);
+  } else {
+    viewportContent.value.set(key, value);
+  }
+  selectedInteractiveWidget.value = value;
+};
 
 const menu = useTemplateRef("menu");
 const menuOpen = ref(false);
@@ -236,6 +252,17 @@ onBeforeUnmount(() => {
         <ColorSchemePicker v-model="scheme"></ColorSchemePicker>
       </div>
 
+      <div>
+        <select
+          :value="selectedInteractiveWidget"
+          @change="handleInteractiveWidgetChange"
+        >
+          <option value="">Resizes Visual (default)</option>
+          <option value="resizes-content">Resizes Content</option>
+          <option value="overlays-content">Overlays Content</option>
+        </select>
+      </div>
+
       <code class="commit-hash" :title="commitHash">
         Version: {{ versionDisplay }}</code
       >
@@ -283,10 +310,7 @@ onBeforeUnmount(() => {
 .home {
   position: fixed;
   display: flex;
-  /* Allow the menu to resize based on the current
-   * viewport (minus UA chrome)
-   */
-  max-height: calc(100vh - (100vh - 100%));
+  max-height: 100dvh;
   box-sizing: border-box; /* Make max-height work without Tailwind */
   flex-flow: column;
   justify-content: space-between;
@@ -374,6 +398,7 @@ onBeforeUnmount(() => {
 }
 
 .links {
+  min-height: 5rem;
   /* scroll the links when there's not enough space */
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -426,14 +451,12 @@ onBeforeUnmount(() => {
 }
 
 .nav-button-wrapper {
-  position: sticky;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   cursor: pointer;
   gap: 1em;
-  inset-block-end: 0;
 }
 
 .left .nav-button-wrapper {
