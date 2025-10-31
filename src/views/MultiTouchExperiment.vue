@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from "vue";
+import { onMounted, ref, useTemplateRef } from "vue";
 
 const scale = (
   n: number,
@@ -8,6 +8,9 @@ const scale = (
   min_f: number,
   max_f: number,
 ) => ((n - min_i) / (max_i - min_i)) * (max_f - min_f) + min_f;
+
+const INITIAL_CANVAS_SIZE =
+  Math.min(window.innerWidth, window.innerHeight) * window.devicePixelRatio;
 
 const canvas = useTemplateRef("canvas");
 
@@ -23,6 +26,19 @@ const pressureOutput = ref<Record<string, number>>({
   screenY: window.outerHeight / 2,
   identifier: 0,
   rotationAngle: 0,
+});
+
+const canvasSize = ref({
+  width: 0,
+  height: 0,
+});
+
+onMounted(() => {
+  const size = (canvas.value as HTMLCanvasElement).getBoundingClientRect();
+  canvasSize.value = {
+    width: size.width,
+    height: size.height,
+  };
 });
 
 const touch = ref<{
@@ -72,15 +88,18 @@ const touchHandler = (e: TouchEvent) => {
 
   const c = (canvas.value as HTMLCanvasElement).getContext("2d")!;
 
-  c.strokeStyle = "CanvasText";
   c.beginPath();
   if (prev.value != null) {
     c.moveTo(prev.value.x, prev.value.y);
   }
-  const min = Math.min(t.force, 0.15);
-  c.lineWidth = scale(t.force, min, maxForce.value, 0, 25);
-  const x = (t.screenX / window.outerWidth) * 1024;
-  const y = (t.screenY / window.outerHeight) * 2048;
+  c.lineWidth = scale(t.force, 0, maxForce.value, 0, 50);
+  const force = scale(t.force, 0, maxForce.value, 0, 1);
+  const redPortion = scale(force, 0, 1, 50, 100);
+  const canvasOpacity = scale(force, 0, 1, 0.25, 1);
+  c.strokeStyle = `color-mix(in srgb, red ${redPortion}%, rgb(from CanvasText r g b / ${canvasOpacity}))`;
+  c.lineCap = "round";
+  const x = (t.clientX / canvasSize.value.width) * INITIAL_CANVAS_SIZE;
+  const y = (t.clientY / canvasSize.value.height) * INITIAL_CANVAS_SIZE;
   c.lineTo(x, y);
   c.stroke();
 
@@ -99,22 +118,15 @@ const clearCanvas = () => {
 
 <template>
   <div class="multi-touch-experiment">
-    <div
-      class="square"
-      :data-x="touch.x"
-      :data-y="touch.y"
-      :data-rx="touch.rx"
-      :data-ry="touch.ry"
-      :data-a="touch.a"
-    ></div>
     <canvas
       id="canvas"
       ref="canvas"
-      width="1024"
-      height="1024"
+      :width="INITIAL_CANVAS_SIZE"
+      :height="INITIAL_CANVAS_SIZE"
       @touchmove="touchHandler"
       @touchend="touchEndHandler"
     ></canvas>
+    <p>CANVAS_SIZE: {{ INITIAL_CANVAS_SIZE }}</p>
     <button type="button" @click="clearCanvas">Clear</button>
     <output class="info">
       <pre>{{ pressureOutput }}</pre>
@@ -126,12 +138,28 @@ const clearCanvas = () => {
 <style scoped>
 .multi-touch-experiment {
   position: relative;
-  touch-action: none;
+  display: flex;
+  height: 100svh;
+  flex-wrap: wrap;
+  align-content: start;
+  align-items: start;
+}
+
+.info {
+  position: fixed;
+  pointer-events: none;
 }
 
 #canvas {
-  width: 100vmin;
-  border: 1px solid hotpink;
+  width: 100svmin;
   aspect-ratio: 1;
+  border-block-end: 1px solid hotpink;
+}
+
+@media (orientation: landscape) {
+  #canvas {
+    border: none;
+    border-inline-end: 1px solid hotpink;
+  }
 }
 </style>
