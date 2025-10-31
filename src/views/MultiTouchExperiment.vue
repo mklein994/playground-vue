@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, useTemplateRef } from "vue";
+import { ref, useTemplateRef } from "vue";
 
 const scale = (
   n: number,
@@ -91,16 +91,6 @@ const touchEndHandler = () => {
   prev.value = null;
 };
 
-onMounted(() => {
-  document.addEventListener("touchmove", touchHandler);
-  document.addEventListener("touchend", touchEndHandler);
-});
-
-onUnmounted(() => {
-  document.removeEventListener("touchmove", touchHandler);
-  document.removeEventListener("touchend", touchEndHandler);
-});
-
 const clearCanvas = () => {
   const c = canvas.value as HTMLCanvasElement;
   c.getContext("2d")!.clearRect(0, 0, c.width, c.height);
@@ -109,11 +99,6 @@ const clearCanvas = () => {
 
 <template>
   <div class="multi-touch-experiment">
-    <output class="info">
-      <pre>{{ pressureOutput }}</pre>
-      <pre>{{ touch }}</pre>
-      <button type="button" @click="clearCanvas">Clear</button>
-    </output>
     <div
       class="square"
       :data-x="touch.x"
@@ -122,21 +107,26 @@ const clearCanvas = () => {
       :data-ry="touch.ry"
       :data-a="touch.a"
     ></div>
-    <canvas id="canvas" ref="canvas" width="1024" height="1024"></canvas>
+    <canvas
+      id="canvas"
+      ref="canvas"
+      width="1024"
+      height="1024"
+      @touchmove="touchHandler"
+      @touchend="touchEndHandler"
+    ></canvas>
+    <button type="button" @click="clearCanvas">Clear</button>
+    <output class="info">
+      <pre>{{ pressureOutput }}</pre>
+      <pre>{{ touch }}</pre>
+    </output>
   </div>
 </template>
 
 <style scoped>
 .multi-touch-experiment {
   position: relative;
-  overflow: hidden;
-  width: 100vw;
-  height: 100svh;
   touch-action: none;
-}
-
-.info {
-  position: fixed;
 }
 
 #canvas {
