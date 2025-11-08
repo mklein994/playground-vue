@@ -1,103 +1,48 @@
 <script setup lang="ts">
-import { computed, inject, onBeforeMount, ref, watch } from "vue";
+import { computed, inject, ref } from "vue";
 
 import { tailwindEnabledKey } from "@/injectionKeys";
 import { useResetCss } from "@/use/use-reset-css";
+import { useRulerOptions } from "@/use/use-ruler-options";
 
 useResetCss();
+
+const toMetric = (inches: number) => inches / 2.54;
 
 const tailwindEnabled = inject(tailwindEnabledKey)!;
 
 const width = window.screen.width;
 const height = window.screen.height;
-const dpr = window.devicePixelRatio;
 
-const useRulerOptions = () => {
-  type UnitSystem = "metric" | "imperial";
-  type RulerOrientation = "portrait" | "landscape";
-
-  interface RulerOptions {
-    screenSize: number;
-    screenSizeUnit: UnitSystem;
-    rulerUnit: UnitSystem;
-    rulerOrientation: RulerOrientation;
-  }
-
-  const defaults: RulerOptions = {
-    screenSize: 25,
-    screenSizeUnit: "imperial",
-    rulerUnit: "metric",
-    rulerOrientation: window.screen.orientation.type.startsWith("portrait")
-      ? "portrait"
-      : "landscape",
-  };
-
-  const screenSize = ref(defaults.screenSize);
-  const screenSizeUnit = ref<UnitSystem>(defaults.screenSizeUnit);
-  const rulerUnit = ref<UnitSystem>(defaults.rulerUnit);
-  const rulerOrientation = ref<RulerOrientation>(defaults.rulerOrientation);
-
-  onBeforeMount(() => {
-    const rulerOptionsText = localStorage.getItem("pvRulerOptions");
-    const rulerOptions =
-      rulerOptionsText == null
-        ? defaults
-        : {
-            ...defaults,
-            ...(JSON.parse(rulerOptionsText) as Partial<RulerOptions>),
-          };
-
-    screenSize.value = rulerOptions.screenSize;
-    screenSizeUnit.value = rulerOptions.screenSizeUnit;
-    rulerUnit.value = rulerOptions.rulerUnit;
-    rulerOrientation.value = rulerOptions.rulerOrientation;
-  });
-
-  watch(
-    [screenSize, screenSizeUnit, rulerUnit, rulerOrientation],
-    (
-      [newSize, newUnit, newRulerUnit, newRulerOrientstion],
-      [oldSize, oldUnit, _oldRulerUnit, _oldRulerOrientation],
-    ) => {
-      let size = newSize;
-      if (newUnit !== oldUnit && oldSize === newSize) {
-        const conversionFactor = newUnit === "imperial" ? 1 / 2.54 : 2.54;
-        const scaleFactor = 100;
-
-        size = newSize * conversionFactor;
-        size = Math.round(size * scaleFactor) / scaleFactor;
-
-        screenSize.value = size;
-      }
-      const newOptions: RulerOptions = {
-        screenSize: size,
-        screenSizeUnit: newUnit,
-        rulerUnit: newRulerUnit,
-        rulerOrientation: newRulerOrientstion,
-      };
-      localStorage.setItem("pvRulerOptions", JSON.stringify(newOptions));
-    },
-  );
-
-  return {
-    screenSize,
-    screenSizeUnit,
-    rulerUnit,
-    rulerOrientation,
-  };
-};
-
-const { screenSize, screenSizeUnit, rulerUnit, rulerOrientation } =
+const { screenSizeInches, rulerUnit, rulerOrientation, usePadding } =
   useRulerOptions();
 const scrollLock = ref(false);
 
-const baseSize = computed(
-  () =>
-    Math.sqrt(width ** 2 + height ** 2)
-    / screenSize.value
-    / (rulerUnit.value === "imperial" ? 1 : 2.54),
-);
+const baseSize = computed(() => {
+  const size = Math.sqrt(width ** 2 + height ** 2) / screenSizeInches.value;
+  if (rulerUnit.value === "metric") {
+    return toMetric(size);
+  } else {
+    return size;
+  }
+});
 const majorTickCount = computed(() => (rulerUnit.value === "metric" ? 30 : 12));
+const minorTickCount = computed(() => (rulerUnit.value === "metric" ? 10 : 32));
+
+const screenSizeDisplay = computed(() =>
+  screenSizeInches.value.toLocaleString([], {
+    style: "unit",
+    unit: "inch",
+    unitDisplay: "narrow",
+  }),
+);
+const screenSizeDisplayMetric = computed(() =>
+  toMetric(screenSizeInches.value).toLocaleString([], {
+    style: "unit",
+    unit: "centimeter",
+    maximumFractionDigits: 2,
+  }),
+);
 </script>
 
 <template>
@@ -105,7 +50,12 @@ const majorTickCount = computed(() => (rulerUnit.value === "metric" ? 30 : 12));
     class="ruler-experiment"
     :class="[
       rulerOrientation,
-      { 'scroll-lock': scrollLock, 'tailwind-disabled': !tailwindEnabled },
+      rulerUnit,
+      {
+        'scroll-lock': scrollLock,
+        'tailwind-disabled': !tailwindEnabled,
+        'with-padding': usePadding,
+      },
     ]"
   >
     <form class="options" @submit.prevent>
@@ -113,22 +63,15 @@ const majorTickCount = computed(() => (rulerUnit.value === "metric" ? 30 : 12));
         <label for="screen-size">Screen Size</label>
         <input
           id="screen-size"
-          v-model="screenSize"
+          v-model="screenSizeInches"
           type="number"
           min="0"
           step="0.01"
           size="5"
           class="tw:form-input"
         />
-
-        <select
-          id="screen-size-unit"
-          v-model="screenSizeUnit"
-          class="tw:form-select"
-        >
-          <option value="metric">cm</option>
-          <option value="imperial">in</option>
-        </select>
+        <output>{{ screenSizeDisplay }}</output>
+        <output> ({{ screenSizeDisplayMetric }})</output>
       </div>
 
       <div class="input-wrapper">
@@ -160,30 +103,50 @@ const majorTickCount = computed(() => (rulerUnit.value === "metric" ? 30 : 12));
         />
         <label for="scroll-lock">Scroll Lock</label>
       </div>
+
+      <div class="input-wrapper">
+        <input
+          id="use-padding"
+          v-model="usePadding"
+          type="checkbox"
+          class="tw:form-checkbox"
+        />
+        <label for="use-padding">Use Padding</label>
+      </div>
     </form>
 
     <ol class="ruler" :data-orientation="rulerOrientation">
-      <li
-        v-for="tick of majorTickCount + 1"
-        :key="tick - 1"
-        class="tick"
-        :style="`--tick: ${tick - 1}`"
-      ></li>
+      <ol
+        v-for="majorTick of majorTickCount + 1"
+        :key="majorTick - 1"
+        class="major-ticks"
+      >
+        <li
+          v-for="minorTick of minorTickCount"
+          :key="minorTick - 1"
+          class="tick"
+          :class="{ major: minorTick === 1 }"
+          :style="`--major-tick: ${majorTick - 1}; --minor-tick: ${minorTick - 1}`"
+        ></li>
+      </ol>
     </ol>
-
-    <pre class="dev">
-width: {{ width }}
-height: {{ height }}
-dpr: {{ dpr }}
-baseSize: {{ baseSize }}</pre
-    >
   </div>
 </template>
 
 <style>
+@counter-style ticks {
+  system: extends decimal;
+}
+
 .ruler-experiment {
   --base: calc(v-bind("baseSize") * 1px);
-  --ruler-block-size: 5rem;
+  --minor-base: calc(var(--base) / v-bind("minorTickCount"));
+  --ruler-block-size: 3rem;
+  --tick-marker-padding: 0px;
+
+  &.with-padding {
+    --tick-marker-padding: 0.5rem;
+  }
 
   .options {
     position: fixed;
@@ -205,7 +168,7 @@ baseSize: {{ baseSize }}</pre
     max-width: 100dvw;
     max-height: 100dvh;
 
-    counter-reset: ticks -1;
+    counter-reset: var(--reset, ticks -1);
     inset: 0;
   }
 
@@ -213,19 +176,62 @@ baseSize: {{ baseSize }}</pre
     position: absolute;
     border: none;
     background: AccentColor;
-    --offset: calc(var(--tick) * var(--base));
-    --tick-length: calc(var(--len, 1) * var(--ruler-block-size));
 
-    counter-increment: ticks;
+    --offset: calc(
+      var(--major-tick) * var(--base) + var(--minor-tick) * var(--minor-base)
+    );
+    --tick-length: calc(
+      var(--len, var(--default-tick-len, 0.25)) * var(--ruler-block-size)
+    );
+
+    --tick-content: counter(ticks);
 
     &::after {
       position: absolute;
-      content: counter(ticks);
+      content: "";
+      font-family: monospace;
+      font-size: 0.8rem;
     }
   }
 
-  &.scroll-lock .ruler {
-    overflow: hidden;
+  &.imperial .tick {
+    --default-tick-len: 0;
+
+    &:nth-child(2n + 1) {
+      --len: 0.35;
+    }
+
+    &:nth-child(4n + 1) {
+      --len: 0.5;
+    }
+
+    &:nth-child(16n + 1) {
+      --len: 0.75;
+    }
+
+    &:nth-child(32n + 1) {
+      --len: 1;
+      counter-increment: var(--inc, ticks);
+
+      &::after {
+        content: var(--tick-content) "″";
+      }
+    }
+  }
+
+  &.metric .tick {
+    &:nth-child(5n + 1) {
+      --len: 0.65;
+    }
+
+    &:nth-child(10n + 1) {
+      --len: 1;
+      counter-increment: var(--inc, ticks);
+
+      &::after {
+        content: var(--tick-content);
+      }
+    }
   }
 
   &.portrait {
@@ -235,12 +241,16 @@ baseSize: {{ baseSize }}</pre
 
     .ruler {
       width: 100dvw;
-      height: calc(v-bind("majorTickCount") * var(--base));
+      height: calc(
+        2 * var(--tick-marker-padding) + (v-bind("majorTickCount") + 1) *
+          var(--base)
+      );
 
       .tick {
         width: var(--tick-length);
         height: 1px;
         inset-block-start: var(--offset);
+        margin-block: var(--tick-marker-padding);
 
         &::after {
           inset-block-start: 0;
@@ -258,27 +268,51 @@ baseSize: {{ baseSize }}</pre
     }
 
     .ruler {
-      width: calc(v-bind("majorTickCount") * var(--base));
+      width: calc(
+        2 * var(--tick-marker-padding) + (v-bind("majorTickCount") + 1) *
+          var(--base)
+      );
       height: 100dvh;
 
       .tick {
         width: 1px;
         height: var(--tick-length);
         inset-inline-start: var(--offset);
+        margin-inline: var(--tick-marker-padding);
 
         &::after {
           inset-block-end: 0;
-          text-align: center;
+          inset-inline-start: 0;
           transform: translate(-50%, 100%);
         }
       }
     }
   }
 
-  .dev {
-    position: fixed;
-    inset-block-end: 0;
-    inset-inline-start: 0;
+  &.imperial .ruler .major-ticks:where(:first-child, :last-child) .tick {
+    &:nth-child(n + 1) {
+      --len: 0.25;
+    }
+
+    &:nth-child(2n + 1) {
+      --len: 0.35;
+    }
+
+    &:nth-child(4n + 1) {
+      --len: 0.5;
+    }
+
+    &:nth-child(16n + 1) {
+      --len: 0.75;
+    }
+
+    &:nth-child(32n + 1) {
+      --len: 1;
+    }
+  }
+
+  &.scroll-lock .ruler {
+    overflow: hidden;
   }
 }
 </style>
