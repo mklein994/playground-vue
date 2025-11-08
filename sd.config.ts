@@ -1,6 +1,7 @@
+import { fileURLToPath, URL } from "node:url";
+
 import type { Config } from "style-dictionary";
 import { formats, transforms } from "style-dictionary/enums";
-import { fileURLToPath, URL } from "url";
 
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 

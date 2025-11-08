@@ -1,5 +1,5 @@
 #!/bin/env node
-import { resolve } from "path";
+import { resolve } from "node:path";
 
 try {
   const validCompactArgs =
