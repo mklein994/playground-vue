@@ -1,4 +1,4 @@
-import { onBeforeMount, ref, watch } from "vue";
+import { ref, watch } from "vue";
 
 export type UnitSystem = "metric" | "imperial";
 export type RulerOrientation = "portrait" | "landscape";
@@ -11,6 +11,8 @@ export interface RulerOptions {
 }
 
 export const useRulerOptions = () => {
+  const storageKey = "pvRulerOptions";
+
   const defaults: RulerOptions = {
     screenSizeInches: 25,
     rulerUnit: "metric",
@@ -20,44 +22,27 @@ export const useRulerOptions = () => {
     usePadding: false,
   };
 
-  const screenSizeInches = ref(defaults.screenSizeInches);
-  const rulerUnit = ref<UnitSystem>(defaults.rulerUnit);
-  const rulerOrientation = ref<RulerOrientation>(defaults.rulerOrientation);
-  const usePadding = ref(defaults.usePadding);
-
-  onBeforeMount(() => {
-    const rulerOptionsText = localStorage.getItem("pvRulerOptions");
-    const rulerOptions =
-      rulerOptionsText == null
-        ? defaults
-        : {
-            ...defaults,
-            ...(JSON.parse(rulerOptionsText) as Partial<RulerOptions>),
-          };
-
-    screenSizeInches.value = rulerOptions.screenSizeInches;
-    rulerUnit.value = rulerOptions.rulerUnit;
-    rulerOrientation.value = rulerOptions.rulerOrientation;
-    usePadding.value = rulerOptions.usePadding;
-
-    watch(
-      [screenSizeInches, rulerUnit, rulerOrientation, usePadding],
-      ([newSize, newRulerUnit, newRulerOrientstion, newUsePadding]) => {
-        const newOptions: RulerOptions = {
-          screenSizeInches: newSize,
-          rulerUnit: newRulerUnit,
-          rulerOrientation: newRulerOrientstion,
-          usePadding: newUsePadding,
+  const loadOptions = () => {
+    const rulerOptionsText = localStorage.getItem(storageKey);
+    return rulerOptionsText == null
+      ? defaults
+      : {
+          ...defaults,
+          ...(JSON.parse(rulerOptionsText) as Partial<RulerOptions>),
         };
-        localStorage.setItem("pvRulerOptions", JSON.stringify(newOptions));
-      },
-    );
-  });
+  };
+
+  const rulerOptions = ref(loadOptions());
+
+  watch(
+    rulerOptions,
+    (newOptions) => {
+      localStorage.setItem(storageKey, JSON.stringify(newOptions));
+    },
+    { deep: true },
+  );
 
   return {
-    screenSizeInches,
-    rulerUnit,
-    rulerOrientation,
-    usePadding,
+    rulerOptions,
   };
 };

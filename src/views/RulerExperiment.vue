@@ -14,30 +14,34 @@ const tailwindEnabled = inject(tailwindEnabledKey)!;
 const width = window.screen.width;
 const height = window.screen.height;
 
-const { screenSizeInches, rulerUnit, rulerOrientation, usePadding } =
-  useRulerOptions();
+const { rulerOptions } = useRulerOptions();
 const scrollLock = ref(false);
 
 const baseSize = computed(() => {
-  const size = Math.sqrt(width ** 2 + height ** 2) / screenSizeInches.value;
-  if (rulerUnit.value === "metric") {
+  const size =
+    Math.sqrt(width ** 2 + height ** 2) / rulerOptions.value.screenSizeInches;
+  if (rulerOptions.value.rulerUnit === "metric") {
     return toMetric(size);
   } else {
     return size;
   }
 });
-const majorTickCount = computed(() => (rulerUnit.value === "metric" ? 30 : 12));
-const minorTickCount = computed(() => (rulerUnit.value === "metric" ? 10 : 32));
+const majorTickCount = computed(() =>
+  rulerOptions.value.rulerUnit === "metric" ? 30 : 12,
+);
+const minorTickCount = computed(() =>
+  rulerOptions.value.rulerUnit === "metric" ? 10 : 32,
+);
 
 const screenSizeDisplay = computed(() =>
-  screenSizeInches.value.toLocaleString([], {
+  rulerOptions.value.screenSizeInches.toLocaleString([], {
     style: "unit",
     unit: "inch",
     unitDisplay: "narrow",
   }),
 );
 const screenSizeDisplayMetric = computed(() =>
-  toMetric(screenSizeInches.value).toLocaleString([], {
+  toMetric(rulerOptions.value.screenSizeInches).toLocaleString([], {
     style: "unit",
     unit: "centimeter",
     maximumFractionDigits: 2,
@@ -49,12 +53,12 @@ const screenSizeDisplayMetric = computed(() =>
   <div
     class="ruler-experiment"
     :class="[
-      rulerOrientation,
-      rulerUnit,
+      rulerOptions.rulerOrientation,
+      rulerOptions.rulerUnit,
       {
         'scroll-lock': scrollLock,
         'tailwind-disabled': !tailwindEnabled,
-        'with-padding': usePadding,
+        'with-padding': rulerOptions.usePadding,
       },
     ]"
   >
@@ -63,7 +67,7 @@ const screenSizeDisplayMetric = computed(() =>
         <label for="screen-size">Screen Size</label>
         <input
           id="screen-size"
-          v-model="screenSizeInches"
+          v-model="rulerOptions.screenSizeInches"
           type="number"
           min="0"
           step="0.01"
@@ -76,7 +80,11 @@ const screenSizeDisplayMetric = computed(() =>
 
       <div class="input-wrapper">
         <label for="ruler-unit">Ruler Unit</label>
-        <select id="ruler-unit" v-model="rulerUnit" class="tw:form-select">
+        <select
+          id="ruler-unit"
+          v-model="rulerOptions.rulerUnit"
+          class="tw:form-select"
+        >
           <option value="imperial">Imperial</option>
           <option value="metric">Metric</option>
         </select>
@@ -86,7 +94,7 @@ const screenSizeDisplayMetric = computed(() =>
         <label for="ruler-orientation">Ruler Orientation</label>
         <select
           id="ruler-orientation"
-          v-model="rulerOrientation"
+          v-model="rulerOptions.rulerOrientation"
           class="tw:form-select"
         >
           <option value="portrait">Vertical</option>
@@ -107,7 +115,7 @@ const screenSizeDisplayMetric = computed(() =>
       <div class="input-wrapper">
         <input
           id="use-padding"
-          v-model="usePadding"
+          v-model="rulerOptions.usePadding"
           type="checkbox"
           class="tw:form-checkbox"
         />
@@ -115,7 +123,7 @@ const screenSizeDisplayMetric = computed(() =>
       </div>
     </form>
 
-    <ol class="ruler" :data-orientation="rulerOrientation">
+    <ol class="ruler" :data-orientation="rulerOptions.rulerOrientation">
       <ol
         v-for="majorTick of majorTickCount + 1"
         :key="majorTick - 1"
