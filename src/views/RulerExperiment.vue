@@ -14,7 +14,13 @@ const tailwindEnabled = inject(tailwindEnabledKey)!;
 const width = window.screen.width;
 const height = window.screen.height;
 
-const { rulerOptions } = useRulerOptions();
+const { rulerOptions, resetAllExceptScreenSize } = useRulerOptions();
+
+const handleResetButtonClick = (e: Event) => {
+  e.preventDefault();
+  resetAllExceptScreenSize();
+};
+
 const scrollLock = ref(false);
 
 const baseSize = computed(() => {
@@ -26,9 +32,16 @@ const baseSize = computed(() => {
     return size;
   }
 });
-const majorTickCount = computed(() =>
-  rulerOptions.value.rulerUnit === "metric" ? 30 : 12,
-);
+
+const majorTickCount = computed(() => {
+  const opts = rulerOptions.value;
+  if (opts.fullLength) {
+    const maxLength = opts.rulerOrientation === "portrait" ? height : width;
+    return Math.floor((maxLength - 1) / baseSize.value);
+  } else {
+    return opts.rulerUnit === "metric" ? 30 : 12;
+  }
+});
 const minorTickCount = computed(() =>
   rulerOptions.value.rulerUnit === "metric" ? 10 : 32,
 );
@@ -58,7 +71,8 @@ const screenSizeDisplayMetric = computed(() =>
       {
         'scroll-lock': scrollLock,
         'tailwind-disabled': !tailwindEnabled,
-        'with-padding': rulerOptions.usePadding,
+        'no-padding': !rulerOptions.usePadding,
+        'full-length': rulerOptions.fullLength,
       },
     ]"
   >
@@ -78,63 +92,85 @@ const screenSizeDisplayMetric = computed(() =>
         <output> ({{ screenSizeDisplayMetric }})</output>
       </div>
 
-      <div class="input-wrapper">
-        <label for="ruler-unit">Ruler Unit</label>
-        <select
-          id="ruler-unit"
-          v-model="rulerOptions.rulerUnit"
-          class="tw:form-select"
+      <fieldset>
+        <div class="input-wrapper">
+          <label for="ruler-unit">Ruler Unit</label>
+          <select
+            id="ruler-unit"
+            v-model="rulerOptions.rulerUnit"
+            class="tw:form-select"
+          >
+            <option value="imperial">Imperial</option>
+            <option value="metric">Metric</option>
+          </select>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="ruler-orientation">Ruler Orientation</label>
+          <select
+            id="ruler-orientation"
+            v-model="rulerOptions.rulerOrientation"
+            class="tw:form-select"
+          >
+            <option value="portrait">Vertical</option>
+            <option value="landscape">Horizontal</option>
+          </select>
+        </div>
+
+        <div class="input-wrapper">
+          <input
+            id="scroll-lock"
+            v-model="scrollLock"
+            type="checkbox"
+            class="tw:form-checkbox"
+          />
+          <label for="scroll-lock">Scroll Lock</label>
+        </div>
+
+        <div class="input-wrapper">
+          <input
+            id="use-padding"
+            v-model="rulerOptions.usePadding"
+            type="checkbox"
+            class="tw:form-checkbox"
+          />
+          <label for="use-padding">Use Padding</label>
+        </div>
+
+        <div class="input-wrapper">
+          <input
+            id="full-length"
+            v-model="rulerOptions.fullLength"
+            type="checkbox"
+            class="tw:form-checkbox"
+          />
+          <label for="full-length">Full Length</label>
+        </div>
+
+        <button
+          type="reset"
+          class="reset-button"
+          @click="handleResetButtonClick"
         >
-          <option value="imperial">Imperial</option>
-          <option value="metric">Metric</option>
-        </select>
-      </div>
-
-      <div class="input-wrapper">
-        <label for="ruler-orientation">Ruler Orientation</label>
-        <select
-          id="ruler-orientation"
-          v-model="rulerOptions.rulerOrientation"
-          class="tw:form-select"
-        >
-          <option value="portrait">Vertical</option>
-          <option value="landscape">Horizontal</option>
-        </select>
-      </div>
-
-      <div class="input-wrapper">
-        <input
-          id="scroll-lock"
-          v-model="scrollLock"
-          type="checkbox"
-          class="tw:form-checkbox"
-        />
-        <label for="scroll-lock">Scroll Lock</label>
-      </div>
-
-      <div class="input-wrapper">
-        <input
-          id="use-padding"
-          v-model="rulerOptions.usePadding"
-          type="checkbox"
-          class="tw:form-checkbox"
-        />
-        <label for="use-padding">Use Padding</label>
-      </div>
+          Reset to Defaults
+        </button>
+      </fieldset>
     </form>
 
-    <ol class="ruler" :data-orientation="rulerOptions.rulerOrientation">
+    <ol class="ruler">
       <ol
         v-for="majorTick of majorTickCount + 1"
         :key="majorTick - 1"
         class="major-ticks"
+        :style="`--major-tick: ${majorTick - 1}`"
       >
         <li
-          v-for="minorTick of minorTickCount"
+          v-for="minorTick of majorTick === majorTickCount + 1
+            ? 1
+            : minorTickCount"
           :key="minorTick - 1"
           class="tick"
-          :class="{ major: minorTick === 1 }"
-          :style="`--major-tick: ${majorTick - 1}; --minor-tick: ${minorTick - 1}`"
+          :style="`--minor-tick: ${minorTick - 1}`"
         ></li>
       </ol>
     </ol>
@@ -150,10 +186,11 @@ const screenSizeDisplayMetric = computed(() =>
   --base: calc(v-bind("baseSize") * 1px);
   --minor-base: calc(var(--base) / v-bind("minorTickCount"));
   --ruler-block-size: 3rem;
-  --tick-marker-padding: 0px;
+  --tick-marker-padding: 0.5rem;
+  --ruler-transform: initial;
 
-  &.with-padding {
-    --tick-marker-padding: 0.5rem;
+  &.no-padding {
+    --tick-marker-padding: 0px;
   }
 
   .options {
@@ -165,7 +202,8 @@ const screenSizeDisplayMetric = computed(() =>
 
   &.tailwind-disabled .options {
     input,
-    select {
+    select,
+    button {
       all: revert;
     }
   }
@@ -178,6 +216,7 @@ const screenSizeDisplayMetric = computed(() =>
 
     counter-reset: var(--reset, ticks -1);
     inset: 0;
+    transform: var(--ruler-transform);
   }
 
   .tick {
@@ -242,7 +281,15 @@ const screenSizeDisplayMetric = computed(() =>
     }
   }
 
+  &.scroll-lock .ruler {
+    overflow: hidden;
+  }
+
   &.portrait {
+    &.no-padding {
+      --ruler-transform: translateY(-1px);
+    }
+
     .options {
       inset-inline-end: 0;
     }
@@ -270,6 +317,10 @@ const screenSizeDisplayMetric = computed(() =>
   }
 
   &.landscape {
+    &.no-padding {
+      --ruler-transform: translateX(-1px);
+    }
+
     .options {
       inset-block-start: var(--ruler-block-size);
       inset-inline-start: 0;
@@ -297,10 +348,8 @@ const screenSizeDisplayMetric = computed(() =>
     }
   }
 
-  &.imperial .ruler .major-ticks:where(:first-child, :last-child) .tick {
-    &:nth-child(n + 1) {
-      --len: 0.25;
-    }
+  &.imperial .ruler .major-ticks:where(:first-child, :nth-last-child(2)) .tick {
+    --default-tick-len: 0.25;
 
     &:nth-child(2n + 1) {
       --len: 0.35;
@@ -319,8 +368,8 @@ const screenSizeDisplayMetric = computed(() =>
     }
   }
 
-  &.scroll-lock .ruler {
-    overflow: hidden;
+  &.no-padding .major-ticks:first-child .tick:first-child::after {
+    content: none;
   }
 }
 </style>

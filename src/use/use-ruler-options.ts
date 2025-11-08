@@ -8,6 +8,7 @@ export interface RulerOptions {
   rulerUnit: UnitSystem;
   rulerOrientation: RulerOrientation;
   usePadding: boolean;
+  fullLength: boolean;
 }
 
 export const useRulerOptions = () => {
@@ -20,6 +21,7 @@ export const useRulerOptions = () => {
       ? "portrait"
       : "landscape",
     usePadding: false,
+    fullLength: false,
   };
 
   const loadOptions = () => {
@@ -42,7 +44,15 @@ export const useRulerOptions = () => {
     { deep: true },
   );
 
+  const resetAllExceptScreenSize = () => {
+    rulerOptions.value = {
+      ...defaults,
+      screenSizeInches: rulerOptions.value.screenSizeInches,
+    };
+  };
+
   return {
     rulerOptions,
+    resetAllExceptScreenSize,
   };
 };
