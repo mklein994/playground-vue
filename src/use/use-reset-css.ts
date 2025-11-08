@@ -1,4 +1,4 @@
-import { onBeforeMount, onUnmounted, ref } from "vue";
+import { onBeforeMount, onBeforeUnmount, ref } from "vue";
 
 export const resetActive = ref(false);
 
@@ -22,7 +22,7 @@ export const useResetCss = () => {
     enableReset();
   });
 
-  onUnmounted(() => {
+  onBeforeUnmount(() => {
     disableReset();
   });
 };
