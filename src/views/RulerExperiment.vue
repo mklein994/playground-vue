@@ -2,16 +2,21 @@
 import { computed, inject, ref, useTemplateRef, watchEffect } from "vue";
 
 import { tailwindEnabledKey } from "@/injectionKeys";
+import { useMetaViewport } from "@/use/use-meta-viewport";
 import { useResetCss } from "@/use/use-reset-css";
 import { useRulerOptions } from "@/use/use-ruler-options";
 
-useResetCss();
+const { viewportContent } = useMetaViewport();
+viewportContent.value.set("viewport-fit", "cover");
 
-const toMetric = (inches: number) => inches / 2.54;
+useResetCss();
 
 const tailwindEnabled = inject(tailwindEnabledKey)!;
 
+const rulerExperiment = useTemplateRef<HTMLDivElement>("rulerExperiment");
 const ruler = useTemplateRef<HTMLOListElement>("ruler");
+
+const toMetric = (inches: number) => inches / 2.54;
 
 const width = window.screen.width;
 const height = window.screen.height;
@@ -44,6 +49,28 @@ watchEffect(() => {
     ruler.value!.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
 });
+
+const orientationLock = ref(false);
+const orientationLockSupported = ref("lock" in window.screen.orientation);
+const handleOrientationLockToggle = async () => {
+  if (!document.fullscreenElement || !orientationLockSupported.value) {
+    return;
+  }
+
+  if (orientationLock.value) {
+    window.screen.orientation.unlock();
+  } else {
+    const currentOrientation = window.screen.orientation.type;
+    try {
+      await window.screen.orientation.lock(currentOrientation);
+    } catch {
+      orientationLockSupported.value = false;
+      return;
+    }
+  }
+
+  orientationLock.value = !orientationLock.value;
+};
 
 const baseSize = computed(() => {
   const size =
@@ -79,10 +106,51 @@ const isLarge = computed(
     majorTickCount.value
     > (rulerOptions.value.rulerUnit === "metric" ? 50 : 12 * 3),
 );
+
+const handleToggleFullscreenClick = async () => {
+  const el = rulerExperiment.value!;
+  if (document.fullscreenElement == null) {
+    await el.requestFullscreen();
+  } else {
+    await document.exitFullscreen();
+  }
+};
+
+const handleTickKeydown = (e: KeyboardEvent) => {
+  const target = e.target as HTMLInputElement;
+
+  const isArrowKey = ["ArrowUp", "ArrowDown"].includes(e.key);
+  if (e.altKey || e.ctrlKey || e.metaKey || !(e.shiftKey && isArrowKey)) {
+    return;
+  }
+
+  e.preventDefault();
+
+  const getClosest = (from: number, to: number): number =>
+    Math.round(from / to) * to;
+
+  const up = e.key === "ArrowUp";
+  if (target.id === "metric-major-tick-count") {
+    const newAmount = Math.max(
+      10,
+      getClosest(rulerOptions.value.metricMajorTickCount, 10)
+        + 10 * (up ? 1 : -1),
+    );
+    rulerOptions.value.metricMajorTickCount = newAmount;
+  } else if (target.id === "imperial-major-tick-count") {
+    const newAmount = Math.max(
+      12,
+      getClosest(rulerOptions.value.imperialMajorTickCount, 12)
+        + 12 * (up ? 1 : -1),
+    );
+    rulerOptions.value.imperialMajorTickCount = newAmount;
+  }
+};
 </script>
 
 <template>
   <div
+    ref="rulerExperiment"
     class="ruler-experiment"
     :class="[
       rulerOptions.rulerOrientation,
@@ -152,6 +220,7 @@ const isLarge = computed(
             size="5"
             :disabled="rulerOptions.rulerUnit === 'metric'"
             class="tw:form-input"
+            @keydown="handleTickKeydown"
           />
         </div>
 
@@ -165,6 +234,7 @@ const isLarge = computed(
             size="5"
             :disabled="rulerOptions.rulerUnit === 'imperial'"
             class="tw:form-input"
+            @keydown="handleTickKeydown"
           />
         </div>
 
@@ -196,6 +266,21 @@ const isLarge = computed(
           Reset to Defaults
         </button>
       </fieldset>
+
+      <button type="button" @click="handleToggleFullscreenClick">
+        Toggle Fullscreen
+      </button>
+
+      <div class="input-wrapper orientation-lock-wrapper">
+        <input
+          id="orientation-lock"
+          type="checkbox"
+          :value="orientationLock"
+          :disabled="!orientationLockSupported"
+          @input="handleOrientationLockToggle"
+        />
+        <label for="orientation-lock">Lock Orientation</label>
+      </div>
     </form>
 
     <ol ref="ruler" class="ruler">
@@ -226,9 +311,33 @@ const isLarge = computed(
 .ruler-experiment {
   --base: calc(v-bind("baseSize") * 1px);
   --minor-base: calc(var(--base) / v-bind("minorTickCount"));
-  --ruler-block-size: 3rem;
+  --ruler-block-size: 1rem;
   --tick-marker-padding: 0.5rem;
   --ruler-transform: initial;
+  --tick-color: light-dark(
+    var(--pv-base-color-slate-700),
+    var(--pv-base-color-slate-600)
+  );
+
+  .fullscreen-button {
+    max-width: max-content;
+  }
+
+  #orientation-lock:disabled + label::after {
+    content: " (Tried; not supported)";
+  }
+
+  &::backdrop {
+    background: Canvas;
+  }
+
+  .orientation-lock-wrapper {
+    display: none;
+  }
+
+  &:fullscreen .orientation-lock-wrapper {
+    display: block;
+  }
 
   &.no-padding {
     --tick-marker-padding: 0px;
@@ -247,6 +356,7 @@ const isLarge = computed(
     max-width: max-content;
     padding: 1rem;
     gap: 1rem;
+    justify-items: start;
 
     #screen-size {
       max-width: 7rem;
@@ -294,10 +404,7 @@ const isLarge = computed(
   .tick {
     position: absolute;
     border: none;
-    background: light-dark(
-      var(--pv-base-color-slate-700),
-      var(--pv-base-color-slate-400)
-    );
+    background: var(--tick-color);
 
     --offset: calc(
       var(--major-tick) * var(--base) + var(--minor-tick) * var(--minor-base)
@@ -409,6 +516,10 @@ const isLarge = computed(
 
       &:nth-child(10n + 1) {
         --len: 1;
+        background: light-dark(
+          var(--pv-base-color-slate-500),
+          var(--pv-base-color-slate-400)
+        );
         counter-increment: var(--inc, ticks);
 
         &::after {
