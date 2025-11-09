@@ -8,7 +8,8 @@ export interface RulerOptions {
   rulerUnit: UnitSystem;
   rulerOrientation: RulerOrientation;
   usePadding: boolean;
-  fullLength: boolean;
+  imperialMajorTickCount: number;
+  metricMajorTickCount: number;
 }
 
 export const useRulerOptions = () => {
@@ -21,7 +22,8 @@ export const useRulerOptions = () => {
       ? "portrait"
       : "landscape",
     usePadding: false,
-    fullLength: false,
+    imperialMajorTickCount: 12,
+    metricMajorTickCount: 30,
   };
 
   const loadOptions = () => {
@@ -44,15 +46,14 @@ export const useRulerOptions = () => {
     { deep: true },
   );
 
-  const resetAllExceptScreenSize = () => {
-    rulerOptions.value = {
-      ...defaults,
-      screenSizeInches: rulerOptions.value.screenSizeInches,
-    };
+  const resetOptions = <T extends keyof RulerOptions>(optionKeys: T[]) => {
+    for (const option of optionKeys) {
+      rulerOptions.value[option] = defaults[option];
+    }
   };
 
   return {
     rulerOptions,
-    resetAllExceptScreenSize,
+    resetOptions,
   };
 };

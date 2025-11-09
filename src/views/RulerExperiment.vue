@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, ref } from "vue";
+import { computed, inject, ref, useTemplateRef, watchEffect } from "vue";
 
 import { tailwindEnabledKey } from "@/injectionKeys";
 import { useResetCss } from "@/use/use-reset-css";
@@ -11,17 +11,39 @@ const toMetric = (inches: number) => inches / 2.54;
 
 const tailwindEnabled = inject(tailwindEnabledKey)!;
 
+const ruler = useTemplateRef<HTMLOListElement>("ruler");
+
 const width = window.screen.width;
 const height = window.screen.height;
 
-const { rulerOptions, resetAllExceptScreenSize } = useRulerOptions();
+const { rulerOptions, resetOptions } = useRulerOptions();
+const majorTickCount = computed(() => {
+  const opts = rulerOptions.value;
+  return opts.rulerUnit === "metric"
+    ? opts.metricMajorTickCount
+    : opts.imperialMajorTickCount;
+});
 
-const handleResetButtonClick = (e: Event) => {
+const handleTopResetClick = (e: Event) => {
   e.preventDefault();
-  resetAllExceptScreenSize();
+  resetOptions(["rulerOrientation", "rulerUnit"]);
+};
+
+const handleBottomResetClick = (e: Event) => {
+  e.preventDefault();
+  resetOptions([
+    "metricMajorTickCount",
+    "imperialMajorTickCount",
+    "usePadding",
+  ]);
 };
 
 const scrollLock = ref(false);
+watchEffect(() => {
+  if (scrollLock.value) {
+    ruler.value!.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }
+});
 
 const baseSize = computed(() => {
   const size =
@@ -33,15 +55,6 @@ const baseSize = computed(() => {
   }
 });
 
-const majorTickCount = computed(() => {
-  const opts = rulerOptions.value;
-  if (opts.fullLength) {
-    const maxLength = opts.rulerOrientation === "portrait" ? height : width;
-    return Math.floor((maxLength - 1) / baseSize.value);
-  } else {
-    return opts.rulerUnit === "metric" ? 30 : 12;
-  }
-});
 const minorTickCount = computed(() =>
   rulerOptions.value.rulerUnit === "metric" ? 10 : 32,
 );
@@ -60,6 +73,12 @@ const screenSizeDisplayMetric = computed(() =>
     maximumFractionDigits: 2,
   }),
 );
+
+const isLarge = computed(
+  () =>
+    majorTickCount.value
+    > (rulerOptions.value.rulerUnit === "metric" ? 50 : 12 * 3),
+);
 </script>
 
 <template>
@@ -72,37 +91,25 @@ const screenSizeDisplayMetric = computed(() =>
         'scroll-lock': scrollLock,
         'tailwind-disabled': !tailwindEnabled,
         'no-padding': !rulerOptions.usePadding,
-        'full-length': rulerOptions.fullLength,
+        'is-large': isLarge,
       },
     ]"
   >
     <form class="options" @submit.prevent>
-      <div class="input-wrapper">
-        <label for="screen-size">Screen Size</label>
-        <input
-          id="screen-size"
-          v-model="rulerOptions.screenSizeInches"
-          type="number"
-          min="0"
-          step="0.01"
-          size="5"
-          class="tw:form-input"
-        />
-        <output>{{ screenSizeDisplay }}</output>
-        <output> ({{ screenSizeDisplayMetric }})</output>
-      </div>
-
-      <fieldset>
+      <fieldset class="options-fieldset">
         <div class="input-wrapper">
-          <label for="ruler-unit">Ruler Unit</label>
-          <select
-            id="ruler-unit"
-            v-model="rulerOptions.rulerUnit"
-            class="tw:form-select"
-          >
-            <option value="imperial">Imperial</option>
-            <option value="metric">Metric</option>
-          </select>
+          <label for="screen-size">Screen Size</label>
+          <input
+            id="screen-size"
+            v-model="rulerOptions.screenSizeInches"
+            type="number"
+            min="0"
+            step="0.01"
+            size="5"
+            class="tw:form-input"
+          />
+          <output>{{ screenSizeDisplay }}</output>
+          <output> ({{ screenSizeDisplayMetric }})</output>
         </div>
 
         <div class="input-wrapper">
@@ -115,6 +122,50 @@ const screenSizeDisplayMetric = computed(() =>
             <option value="portrait">Vertical</option>
             <option value="landscape">Horizontal</option>
           </select>
+        </div>
+
+        <div class="input-wrapper">
+          <label for="ruler-unit">Ruler Unit</label>
+          <select
+            id="ruler-unit"
+            v-model="rulerOptions.rulerUnit"
+            class="tw:form-select"
+          >
+            <option value="imperial">Imperial</option>
+            <option value="metric">Metric</option>
+          </select>
+        </div>
+
+        <button type="reset" class="reset-button" @click="handleTopResetClick">
+          Reset to Defaults
+        </button>
+      </fieldset>
+
+      <fieldset class="options-fieldset">
+        <div class="input-wrapper">
+          <label for="imperial-major-tick-count">Ticks (Imperial)</label>
+          <input
+            id="imperial-major-tick-count"
+            v-model="rulerOptions.imperialMajorTickCount"
+            type="number"
+            min="2"
+            size="5"
+            :disabled="rulerOptions.rulerUnit === 'metric'"
+            class="tw:form-input"
+          />
+        </div>
+
+        <div class="input-wrapper">
+          <label for="metric-major-tick-count">Ticks (Metric)</label>
+          <input
+            id="metric-major-tick-count"
+            v-model="rulerOptions.metricMajorTickCount"
+            type="number"
+            min="2"
+            size="5"
+            :disabled="rulerOptions.rulerUnit === 'imperial'"
+            class="tw:form-input"
+          />
         </div>
 
         <div class="input-wrapper">
@@ -137,27 +188,17 @@ const screenSizeDisplayMetric = computed(() =>
           <label for="use-padding">Use Padding</label>
         </div>
 
-        <div class="input-wrapper">
-          <input
-            id="full-length"
-            v-model="rulerOptions.fullLength"
-            type="checkbox"
-            class="tw:form-checkbox"
-          />
-          <label for="full-length">Full Length</label>
-        </div>
-
         <button
           type="reset"
           class="reset-button"
-          @click="handleResetButtonClick"
+          @click="handleBottomResetClick"
         >
           Reset to Defaults
         </button>
       </fieldset>
     </form>
 
-    <ol class="ruler">
+    <ol ref="ruler" class="ruler">
       <ol
         v-for="majorTick of majorTickCount + 1"
         :key="majorTick - 1"
@@ -193,19 +234,50 @@ const screenSizeDisplayMetric = computed(() =>
     --tick-marker-padding: 0px;
   }
 
+  &.tailwind-disabled .options :where(input, select, button) {
+    all: revert;
+  }
+
   .options {
     position: fixed;
     z-index: 1;
+
+    display: grid;
+    overflow: auto;
     max-width: max-content;
-    margin: 2rem;
+    padding: 1rem;
+    gap: 1rem;
+
+    #screen-size {
+      max-width: 7rem;
+    }
+
+    .options-fieldset {
+      display: grid;
+      margin: 0.5rem;
+      gap: 0.5rem;
+      place-items: start;
+
+      .input-wrapper {
+        display: flex;
+        gap: 0.25rem;
+      }
+    }
+
+    .reset-button {
+      margin-block-start: 1rem;
+    }
   }
 
-  &.tailwind-disabled .options {
-    input,
-    select,
-    button {
-      all: revert;
-    }
+  &.portrait .options {
+    max-height: calc(100dvh - 4rem);
+    inset-inline-end: 0;
+  }
+
+  &.landscape .options {
+    max-height: calc(100dvh - var(--ruler-block-size) * 2);
+    inset-block-start: calc(var(--ruler-block-size) * 2);
+    inset-inline-start: 0;
   }
 
   .ruler {
@@ -222,7 +294,10 @@ const screenSizeDisplayMetric = computed(() =>
   .tick {
     position: absolute;
     border: none;
-    background: AccentColor;
+    background: light-dark(
+      var(--pv-base-color-slate-700),
+      var(--pv-base-color-slate-400)
+    );
 
     --offset: calc(
       var(--major-tick) * var(--base) + var(--minor-tick) * var(--minor-base)
@@ -241,46 +316,6 @@ const screenSizeDisplayMetric = computed(() =>
     }
   }
 
-  &.imperial .tick {
-    --default-tick-len: 0;
-
-    &:nth-child(2n + 1) {
-      --len: 0.35;
-    }
-
-    &:nth-child(4n + 1) {
-      --len: 0.5;
-    }
-
-    &:nth-child(16n + 1) {
-      --len: 0.75;
-    }
-
-    &:nth-child(32n + 1) {
-      --len: 1;
-      counter-increment: var(--inc, ticks);
-
-      &::after {
-        content: var(--tick-content) "″";
-      }
-    }
-  }
-
-  &.metric .tick {
-    &:nth-child(5n + 1) {
-      --len: 0.65;
-    }
-
-    &:nth-child(10n + 1) {
-      --len: 1;
-      counter-increment: var(--inc, ticks);
-
-      &::after {
-        content: var(--tick-content);
-      }
-    }
-  }
-
   &.scroll-lock .ruler {
     overflow: hidden;
   }
@@ -290,28 +325,24 @@ const screenSizeDisplayMetric = computed(() =>
       --ruler-transform: translateY(-1px);
     }
 
-    .options {
-      inset-inline-end: 0;
-    }
-
     .ruler {
       width: 100dvw;
       height: calc(
         2 * var(--tick-marker-padding) + (v-bind("majorTickCount") + 1) *
           var(--base)
       );
+    }
 
-      .tick {
-        width: var(--tick-length);
-        height: 1px;
-        inset-block-start: var(--offset);
-        margin-block: var(--tick-marker-padding);
+    .tick {
+      width: var(--tick-length);
+      height: 1px;
+      inset-block-start: var(--offset);
+      margin-block: var(--tick-marker-padding);
 
-        &::after {
-          inset-block-start: 0;
-          inset-inline-end: 0;
-          transform: translate(100%, -50%);
-        }
+      &::after {
+        inset-block-start: 0;
+        inset-inline-end: 0;
+        transform: translate(100%, -50%);
       }
     }
   }
@@ -321,34 +352,73 @@ const screenSizeDisplayMetric = computed(() =>
       --ruler-transform: translateX(-1px);
     }
 
-    .options {
-      inset-block-start: var(--ruler-block-size);
-      inset-inline-start: 0;
-    }
-
     .ruler {
       width: calc(
         2 * var(--tick-marker-padding) + (v-bind("majorTickCount") + 1) *
           var(--base)
       );
       height: 100dvh;
+    }
 
-      .tick {
-        width: 1px;
-        height: var(--tick-length);
-        inset-inline-start: var(--offset);
-        margin-inline: var(--tick-marker-padding);
+    .tick {
+      width: 1px;
+      height: var(--tick-length);
+      inset-inline-start: var(--offset);
+      margin-inline: var(--tick-marker-padding);
+
+      &::after {
+        inset-block-end: 0;
+        inset-inline-start: 0;
+        transform: translate(-50%, 100%);
+      }
+    }
+  }
+
+  &.imperial {
+    .tick {
+      --default-tick-len: 0;
+
+      &:nth-child(2n + 1) {
+        --len: 0.35;
+      }
+
+      &:nth-child(4n + 1) {
+        --len: 0.5;
+      }
+
+      &:nth-child(16n + 1) {
+        --len: 0.75;
+      }
+
+      &:nth-child(32n + 1) {
+        --len: 1;
+        counter-increment: var(--inc, ticks);
 
         &::after {
-          inset-block-end: 0;
-          inset-inline-start: 0;
-          transform: translate(-50%, 100%);
+          content: var(--tick-content) "\2033";
         }
       }
     }
   }
 
-  &.imperial .ruler .major-ticks:where(:first-child, :nth-last-child(2)) .tick {
+  &.metric {
+    .tick {
+      &:nth-child(5n + 1) {
+        --len: 0.65;
+      }
+
+      &:nth-child(10n + 1) {
+        --len: 1;
+        counter-increment: var(--inc, ticks);
+
+        &::after {
+          content: var(--tick-content);
+        }
+      }
+    }
+  }
+
+  &.imperial .major-ticks:where(:first-child, :nth-last-child(2)) .tick {
     --default-tick-len: 0.25;
 
     &:nth-child(2n + 1) {
@@ -365,6 +435,35 @@ const screenSizeDisplayMetric = computed(() =>
 
     &:nth-child(32n + 1) {
       --len: 1;
+    }
+  }
+
+  &.metric:where(.is-large) .major-ticks {
+    &:nth-child(n + 1) .tick:first-child {
+      &::after {
+        content: none;
+      }
+    }
+
+    &:nth-child(5n + 1) .tick:first-child {
+      --len: 1.25;
+    }
+
+    &:nth-child(10n + 1) .tick:first-child {
+      --len: 1.5;
+      &::after {
+        content: var(--tick-content);
+      }
+    }
+
+    &:nth-child(100n + 1) .tick:first-child {
+      --len: 1.75;
+    }
+  }
+
+  &.imperial:where(.is-large) .major-ticks {
+    &:nth-child(12n + 1) .tick:first-child {
+      --len: 2;
     }
   }
 
