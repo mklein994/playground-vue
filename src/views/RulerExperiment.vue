@@ -6,8 +6,7 @@ import { useMetaViewport } from "@/use/use-meta-viewport";
 import { useResetCss } from "@/use/use-reset-css";
 import { useRulerOptions } from "@/use/use-ruler-options";
 
-const { viewportContent } = useMetaViewport();
-viewportContent.value.set("viewport-fit", "cover");
+useMetaViewport(["viewport-fit", "cover"]);
 
 useResetCss();
 
