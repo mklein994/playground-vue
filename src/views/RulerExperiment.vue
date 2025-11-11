@@ -375,19 +375,19 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     }
 
     .reset-button {
-      margin-block-start: 1rem;
+      margin-top: 1rem;
     }
   }
 
   &.portrait .options {
+    right: 0;
     max-height: calc(100dvh - 4rem);
-    inset-inline-end: 0;
   }
 
   &.landscape .options {
+    top: calc(var(--ruler-block-size) * 2);
+    left: 0;
     max-height: calc(100dvh - var(--ruler-block-size) * 2);
-    inset-block-start: calc(var(--ruler-block-size) * 2);
-    inset-inline-start: 0;
   }
 
   .ruler {
@@ -443,14 +443,14 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     }
 
     .tick {
+      bottom: var(--offset);
       width: var(--tick-length);
       height: 1px;
-      inset-block-end: var(--offset);
       margin-block: var(--tick-marker-padding);
 
       &::after {
-        inset-block-start: 0;
-        inset-inline-end: 0;
+        top: 0;
+        right: 0;
         transform: translate(100%, -50%);
       }
     }
@@ -471,14 +471,14 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     }
 
     .tick {
+      left: var(--offset);
       width: 1px;
       height: var(--tick-length);
-      inset-inline-start: var(--offset);
       margin-inline: var(--tick-marker-padding);
 
       &::after {
-        inset-block-end: 0;
-        inset-inline-start: 0;
+        bottom: 0;
+        left: 0;
         transform: translate(-50%, 100%);
       }
     }
