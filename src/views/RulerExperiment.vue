@@ -392,6 +392,7 @@ const handleTickKeydown = (e: KeyboardEvent) => {
 
   .ruler {
     position: absolute;
+    display: flex;
     overflow: auto;
     max-width: 100dvw;
     max-height: 100dvh;
@@ -429,7 +430,7 @@ const handleTickKeydown = (e: KeyboardEvent) => {
 
   &.portrait {
     &.no-padding {
-      --ruler-transform: translateY(-1px);
+      --ruler-transform: translateY(1px);
     }
 
     .ruler {
@@ -438,12 +439,13 @@ const handleTickKeydown = (e: KeyboardEvent) => {
         2 * var(--tick-marker-padding) + (v-bind("majorTickCount") + 1) *
           var(--base)
       );
+      flex-direction: column-reverse;
     }
 
     .tick {
       width: var(--tick-length);
       height: 1px;
-      inset-block-start: var(--offset);
+      inset-block-end: var(--offset);
       margin-block: var(--tick-marker-padding);
 
       &::after {
@@ -465,6 +467,7 @@ const handleTickKeydown = (e: KeyboardEvent) => {
           var(--base)
       );
       height: 100dvh;
+      grid-auto-flow: column;
     }
 
     .tick {
