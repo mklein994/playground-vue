@@ -55,7 +55,7 @@ const isValidRulerOptions = (
 
     if (
       ["imperialMajorTickCount", "metricMajorTickCount"].includes(key)
-      && !(Number.isSafeInteger(value) && value >= 0)
+      && !(Number.isSafeInteger(value) && value >= 0 && value <= 200)
     ) {
       valid = false;
       break;
