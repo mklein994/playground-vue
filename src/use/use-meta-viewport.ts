@@ -1,4 +1,4 @@
-import { ref, watch } from "vue";
+import { onBeforeUnmount, ref, watch } from "vue";
 
 const parseContent = (content: string): Map<string, string> =>
   new Map(
@@ -8,12 +8,13 @@ const parseContent = (content: string): Map<string, string> =>
 const toContent = (content: Map<string, string>): string =>
   [...content].map((x) => x.join("=")).join(", ");
 
-export const useMetaViewport = () => {
+export const useMetaViewport = (initial?: [string, string]) => {
   const meta = document.head.querySelector<HTMLMetaElement>(
     "meta[name='viewport']",
   )!;
 
-  const content = ref(parseContent(meta.content));
+  const originalMetaContent = meta.content;
+  const content = ref(parseContent(originalMetaContent));
 
   watch(
     content,
@@ -22,6 +23,14 @@ export const useMetaViewport = () => {
     },
     { deep: true },
   );
+
+  if (initial) {
+    content.value.set(initial[0], initial[1]);
+  }
+
+  onBeforeUnmount(() => {
+    meta.content = originalMetaContent;
+  });
 
   return {
     viewportContent: content,
