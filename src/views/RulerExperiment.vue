@@ -283,21 +283,20 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     </form>
 
     <ol ref="ruler" class="ruler">
-      <ol
-        v-for="majorTick of majorTickCount + 1"
-        :key="majorTick - 1"
-        class="major-ticks"
-        :style="`--major-tick: ${majorTick - 1}`"
-      >
+      <template v-for="majorTick of majorTickCount + 1" :key="majorTick - 1">
         <li
           v-for="minorTick of majorTick === majorTickCount + 1
             ? 1
             : minorTickCount"
           :key="minorTick - 1"
           class="tick"
-          :style="`--minor-tick: ${minorTick - 1}`"
+          :class="{ 'major-ticks': minorTick === 1 }"
+          :style="{
+            '--major-tick': majorTick - 1,
+            '--minor-tick': minorTick - 1,
+          }"
         ></li>
-      </ol>
+      </template>
     </ol>
   </div>
 </template>
@@ -489,29 +488,31 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     }
   }
 
-  &.imperial {
-    .tick {
-      --default-tick-len: 0;
+  &.imperial .tick {
+    --default-tick-len: 0;
 
-      &:nth-child(2n + 1) {
-        --len: 0.35;
-      }
+    &:where(:nth-child(-n + 32), :nth-last-child(-n + 32)) {
+      --default-tick-len: 0.25;
+    }
 
-      &:nth-child(4n + 1) {
-        --len: 0.5;
-      }
+    &:nth-child(2n + 1) {
+      --len: 0.35;
+    }
 
-      &:nth-child(16n + 1) {
-        --len: 0.75;
-      }
+    &:nth-child(4n + 1) {
+      --len: 0.5;
+    }
 
-      &:nth-child(32n + 1) {
-        --len: 1;
-        counter-increment: var(--inc, ticks);
+    &:nth-child(16n + 1) {
+      --len: 0.75;
+    }
 
-        &::after {
-          content: var(--tick-content) "\2033";
-        }
+    &:nth-child(32n + 1) {
+      --len: 1;
+      counter-increment: var(--inc, ticks);
+
+      &::after {
+        content: var(--tick-content) "\2033";
       }
     }
   }
@@ -537,56 +538,36 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     }
   }
 
-  &.imperial .major-ticks:where(:first-child, :nth-last-child(2)) .tick {
-    --default-tick-len: 0.25;
-
-    &:nth-child(2n + 1) {
-      --len: 0.35;
-    }
-
-    &:nth-child(4n + 1) {
-      --len: 0.5;
-    }
-
-    &:nth-child(16n + 1) {
-      --len: 0.75;
-    }
-
-    &:nth-child(32n + 1) {
-      --len: 1;
-    }
-  }
-
-  &.metric:where(.is-large) .major-ticks {
-    &:nth-child(n + 1) .tick:first-child {
+  &.metric:where(.is-large) .tick {
+    &:nth-child(n + 1 of .major-ticks) {
       &::after {
         content: none;
       }
     }
 
-    &:nth-child(5n + 1) .tick:first-child {
+    &:nth-child(5n + 1 of .major-ticks) {
       --len: 1.25;
     }
 
-    &:nth-child(10n + 1) .tick:first-child {
+    &:nth-child(10n + 1 of .major-ticks) {
       --len: 1.5;
       &::after {
         content: var(--tick-content);
       }
     }
 
-    &:nth-child(100n + 1) .tick:first-child {
+    &:nth-child(100n + 1 of .major-ticks) {
       --len: 1.75;
     }
   }
 
-  &.imperial:where(.is-large) .major-ticks {
-    &:nth-child(12n + 1) .tick:first-child {
+  &.imperial:where(.is-large) .tick {
+    &:nth-child(12n + 1 of .major-ticks) {
       --len: 2;
     }
   }
 
-  &.no-padding .major-ticks:first-child .tick:first-child::after {
+  &.no-padding .tick:nth-child(1 of .major-ticks)::after {
     content: none;
   }
 }
