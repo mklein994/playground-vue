@@ -318,6 +318,10 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     var(--pv-base-color-slate-600)
   );
 
+  position: relative;
+  width: 100dvw;
+  height: 100dvh;
+
   .fullscreen-button {
     max-width: max-content;
   }
@@ -397,7 +401,6 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     max-height: 100dvh;
 
     counter-reset: var(--reset, ticks -1);
-    inset: 0;
     transform: var(--ruler-transform);
   }
 
@@ -428,11 +431,14 @@ const handleTickKeydown = (e: KeyboardEvent) => {
   }
 
   &.portrait {
+    overflow-y: hidden;
+
     &.no-padding {
       --ruler-transform: translateY(1px);
     }
 
     .ruler {
+      bottom: 0;
       width: 100dvw;
       height: calc(
         2 * var(--tick-marker-padding) + (v-bind("majorTickCount") + 1) *
