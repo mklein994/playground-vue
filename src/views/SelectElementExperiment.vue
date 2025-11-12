@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 
 const foodItems = computed(() => [
   { id: "apple", kind: "fruit", name: "Apple" },
@@ -13,10 +13,22 @@ const foodItems = computed(() => [
   { id: "strawberry", kind: "berry", name: "Strawberry" },
 ]);
 
-const selectedFoodItemIds = ref<string[]>([]);
+const selectedFoodItemIds = ref<undefined | string | string[]>([]);
 
 const showLine = ref(true);
 const isGrouped = ref(false);
+const isMultiple = ref(false);
+
+watch(isMultiple, (multiple) => {
+  if (multiple) {
+    selectedFoodItemIds.value =
+      typeof selectedFoodItemIds.value === "string"
+        ? [selectedFoodItemIds.value]
+        : [];
+  } else {
+    selectedFoodItemIds.value = selectedFoodItemIds.value?.at(0);
+  }
+});
 
 const groupedFoodItems = computed(() =>
   Object.groupBy(foodItems.value, (x) => x.kind),
@@ -24,12 +36,18 @@ const groupedFoodItems = computed(() =>
 
 const shouldShowLine = (id: string) => showLine.value && id === "peanut";
 
-const getGroupLabel = (kind: string) =>
-  ({
-    fruit: "Fruit",
-    nut: "Nut",
-    berry: "Berry",
-  })[kind];
+const getGroupLabel = (kind: string) => {
+  switch (kind) {
+    case "fruit":
+      return "Fruit";
+    case "nut":
+      return "Nuts";
+    case "berry":
+      return "Berries";
+    default:
+      return "Unknown";
+  }
+};
 </script>
 
 <template>
@@ -44,30 +62,31 @@ const getGroupLabel = (kind: string) =>
       <label for="is-grouped">Is Grouped</label>
     </div>
 
-    <select
-      v-if="isGrouped"
-      id="food-item"
-      v-model="selectedFoodItemIds"
-      multiple
-    >
-      <optgroup
-        v-for="[kind, items] of Object.entries(groupedFoodItems)"
-        :key="kind"
-        :label="getGroupLabel(kind)"
-      >
-        <template v-for="item of items" :key="item.id">
-          <hr v-if="shouldShowLine(item.id)" class="select-line" />
-          <option :value="item.id">
-            {{ item.name }}
-          </option>
-        </template>
-      </optgroup>
-    </select>
+    <div class="input-wrapper">
+      <input id="is-multiple" v-model="isMultiple" type="checkbox" />
+      <label for="is-multiple">Is Multiple</label>
+    </div>
 
-    <select v-else id="food-item" v-model="selectedFoodItemIds" multiple>
-      <template v-for="item of foodItems" :key="item.id">
-        <hr v-if="shouldShowLine(item.id)" class="select-line" />
-        <option :value="item.id">{{ item.name }}</option>
+    <select id="food-item" v-model="selectedFoodItemIds" :multiple="isMultiple">
+      <template v-if="isGrouped">
+        <optgroup
+          v-for="[kind, items] of Object.entries(groupedFoodItems)"
+          :key="kind"
+          :label="getGroupLabel(kind)"
+        >
+          <template v-for="item of items" :key="item.id">
+            <hr v-if="shouldShowLine(item.id)" class="select-line" />
+            <option :value="item.id">
+              {{ item.name }}
+            </option>
+          </template>
+        </optgroup>
+      </template>
+      <template v-else>
+        <template v-for="item of foodItems" :key="item.id">
+          <hr v-if="shouldShowLine(item.id)" class="select-line" />
+          <option :value="item.id">{{ item.name }}</option>
+        </template>
       </template>
     </select>
 
