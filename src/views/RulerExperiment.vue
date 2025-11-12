@@ -274,7 +274,7 @@ const handleTickKeydown = (e: KeyboardEvent) => {
         <input
           id="orientation-lock"
           type="checkbox"
-          :value="orientationLock"
+          :checked="orientationLock"
           :disabled="!orientationLockSupported"
           @input="handleOrientationLockToggle"
         />
