@@ -21,18 +21,18 @@
  * Use this class as a function to calculate the contrast color for a given color.
  *
  * Parameters:
- *   --color <color>: The color to calculate contrast for.
+ *   --pv-color <color>: The color to calculate contrast for.
  *
  * Result:
  *   --pv-contrast-color <color>: The contrast color (white or black).
  */
 .pv-contrast-color {
   --_luminance: rgb(
-    from var(--color) none none none /
+    from var(--pv-color) none none none /
       /* Use oefficients from BT.709: https://en.wikipedia.org/wiki/Rec._709#Luma_coefficients */
       calc((r * 0.2126 + g * 0.7152 + b * 0.0722) / 255)
   );
-  --_alpha-color: color-mix(in oklch, var(--color) 0%, var(--_luminance));
+  --_alpha-color: color-mix(in oklch, var(--pv-color) 0%, var(--_luminance));
   --pv-contrast-color: oklch(
     from var(--_alpha-color) calc(1 - round(alpha)) none none / 1
   );
