@@ -448,7 +448,10 @@ const handleTickKeydown = (e: KeyboardEvent) => {
 
     .tick {
       bottom: var(--offset);
-      width: var(--tick-length);
+      width: calc(
+        var(--tick-length) + sign(abs(var(--tick-length))) *
+          env(safe-area-inset-left, 0px)
+      );
       height: 1px;
       margin-block: var(--tick-marker-padding);
 
@@ -477,7 +480,10 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     .tick {
       left: var(--offset);
       width: 1px;
-      height: var(--tick-length);
+      height: calc(
+        var(--tick-length) + sign(abs(var(--tick-length))) *
+          env(safe-area-inset-top, 0px)
+      );
       margin-inline: var(--tick-marker-padding);
 
       &::after {
