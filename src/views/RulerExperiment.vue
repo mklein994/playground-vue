@@ -387,9 +387,12 @@ const handleTickKeydown = (e: KeyboardEvent) => {
   }
 
   &.landscape .options {
-    top: calc(var(--ruler-block-size) * 2);
-    left: 0;
-    max-height: calc(100dvh - var(--ruler-block-size) * 2);
+    --top-offset: calc(
+      var(--ruler-block-size) * 2 + env(safe-area-inset-top, 0px)
+    );
+    top: var(--top-offset);
+    left: env(safe-area-inset-left, 0px);
+    max-height: calc(100dvh - var(--top-offset));
   }
 
   .ruler {
