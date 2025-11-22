@@ -446,6 +446,7 @@ const handleToggleFullscreenClick = async () => {
     position: absolute;
     border: none;
     background: var(--tick-color);
+    text-wrap: nowrap;
 
     --offset: calc(
       var(--major-tick) * var(--base) + var(--minor-tick) * var(--minor-base)
@@ -598,6 +599,10 @@ const handleToggleFullscreenClick = async () => {
       --tick-color: var(--heavy-tick-color);
       &::after {
         content: var(--tick-content);
+      }
+
+      &:where(:nth-child(101))::after {
+        content: var(--tick-content) " cm";
       }
     }
 
