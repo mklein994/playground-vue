@@ -43,7 +43,7 @@ onUnmounted(() => {
     <span>{{ inner }}</span>
     <span>Outer Width</span>
     <span>{{ outer }}</span>
-    <abbr title="Device Pixel Ratio">DPR</abbr>
+    <abbr title="Device Pixel Ratio" class="pv-mobile-abbr">DPR</abbr>
     <span>{{ dpr }}</span>
     <MediaQueries class="media-queries"></MediaQueries>
   </div>
