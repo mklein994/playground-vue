@@ -382,8 +382,10 @@ const handleTickKeydown = (e: KeyboardEvent) => {
   }
 
   &.portrait .options {
-    right: 0;
+    top: env(safe-area-inset-top, 0px);
+    right: env(safe-area-inset-right, 0px);
     max-height: calc(100dvh - 4rem);
+    align-content: start;
   }
 
   &.landscape .options {
