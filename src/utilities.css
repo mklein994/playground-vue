@@ -41,3 +41,23 @@
     );
   }
 }
+
+@media (hover: none) {
+  abbr.pv-mobile-abbr:hover {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      width: max-content;
+      padding: 0.25em 0.5em;
+      border: 1px solid ButtonBorder;
+      border-radius: 6px;
+      background-color: Canvas;
+      color: CanvasText;
+      content: attr(title);
+      inset-block-end: 0;
+      inset-inline-start: 0;
+      transform: translateY(100%);
+    }
+  }
+}
