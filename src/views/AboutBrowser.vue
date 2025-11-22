@@ -14,7 +14,7 @@ const outer = reactive({
   height: window.outerHeight,
 });
 
-const dpx = ref(window.devicePixelRatio);
+const dpr = ref(window.devicePixelRatio);
 
 const handleResize = () => {
   inner.width = window.innerWidth;
@@ -22,8 +22,8 @@ const handleResize = () => {
   outer.width = window.outerWidth;
   outer.height = window.outerHeight;
 
-  // Cheat a bit and listen to resize events to update the dpx
-  dpx.value = window.devicePixelRatio;
+  // Cheat a bit and listen to resize events to update the dpr
+  dpr.value = window.devicePixelRatio;
 };
 
 onMounted(() => {
@@ -43,8 +43,8 @@ onUnmounted(() => {
     <span>{{ inner }}</span>
     <span>Outer Width</span>
     <span>{{ outer }}</span>
-    <abbr title="Device Pixel Ratio">DPX</abbr>
-    <span>{{ dpx }}</span>
+    <abbr title="Device Pixel Ratio">DPR</abbr>
+    <span>{{ dpr }}</span>
     <MediaQueries class="media-queries"></MediaQueries>
   </div>
 </template>
