@@ -312,10 +312,19 @@ const handleTickKeydown = (e: KeyboardEvent) => {
   --ruler-block-size: 1rem;
   --tick-marker-padding: 0.5rem;
   --ruler-transform: initial;
-  --tick-color: light-dark(
-    var(--pv-base-color-slate-700),
+  --default-tick-color: light-dark(
+    var(--pv-base-color-slate-400),
     var(--pv-base-color-slate-600)
   );
+  --medium-tick-color: light-dark(
+    var(--pv-base-color-slate-600),
+    var(--pv-base-color-slate-400)
+  );
+  --heavy-tick-color: light-dark(
+    var(--pv-base-color-slate-950),
+    var(--pv-base-color-slate-50)
+  );
+  --tick-color: var(--default-tick-color);
 
   position: relative;
   width: 100dvw;
@@ -521,6 +530,7 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     &:nth-child(32n + 1) {
       --len: 1;
       counter-increment: var(--inc, ticks);
+      --tick-color: var(--heavy-tick-color);
 
       &::after {
         content: var(--tick-content) "\2033";
@@ -536,10 +546,7 @@ const handleTickKeydown = (e: KeyboardEvent) => {
 
       &:nth-child(10n + 1) {
         --len: 1;
-        background: light-dark(
-          var(--pv-base-color-slate-500),
-          var(--pv-base-color-slate-400)
-        );
+        --tick-color: var(--heavy-tick-color);
         counter-increment: var(--inc, ticks);
 
         &::after {
@@ -551,6 +558,7 @@ const handleTickKeydown = (e: KeyboardEvent) => {
 
   &.metric:where(.is-large) .tick {
     &:nth-child(n + 1 of .major-ticks) {
+      --tick-color: var(--medium-tick-color);
       &::after {
         content: none;
       }
@@ -562,6 +570,7 @@ const handleTickKeydown = (e: KeyboardEvent) => {
 
     &:nth-child(10n + 1 of .major-ticks) {
       --len: 1.5;
+      --tick-color: var(--heavy-tick-color);
       &::after {
         content: var(--tick-content);
       }
@@ -573,8 +582,13 @@ const handleTickKeydown = (e: KeyboardEvent) => {
   }
 
   &.imperial:where(.is-large) .tick {
+    &:nth-child(n + 1 of .major-ticks) {
+      --tick-color: var(--medium-tick-color);
+    }
+
     &:nth-child(12n + 1 of .major-ticks) {
       --len: 2;
+      --tick-color: var(--heavy-tick-color);
     }
   }
 
