@@ -242,15 +242,14 @@ const handleToggleFullscreenClick = async () => {
       <fieldset class="options-is-large-group">
         <legend>Major Tick Count: {{ majorTickCount }}</legend>
         <input
-          id="is-large-no"
+          id="is-large-auto"
           v-model="isLargeOverrideInput"
           type="radio"
           name="isLargeOverride"
-          value="no"
+          value="auto"
           class="tw:form-radio"
-          :class="{ default: !isLarge }"
         />
-        <label for="is-large-no">No</label>
+        <label for="is-large-auto">Auto</label>
 
         <input
           id="is-large-yes"
@@ -264,14 +263,15 @@ const handleToggleFullscreenClick = async () => {
         <label for="is-large-yes">Yes</label>
 
         <input
-          id="is-large-auto"
+          id="is-large-no"
           v-model="isLargeOverrideInput"
           type="radio"
           name="isLargeOverride"
-          value="auto"
+          value="no"
           class="tw:form-radio"
+          :class="{ default: !isLarge }"
         />
-        <label for="is-large-auto">Auto</label>
+        <label for="is-large-no">No</label>
       </fieldset>
 
       <button type="button" @click="handleToggleFullscreenClick">
