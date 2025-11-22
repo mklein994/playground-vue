@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { computed, inject, ref, useTemplateRef, watchEffect } from "vue";
+import {
+  computed,
+  inject,
+  onMounted,
+  ref,
+  useTemplateRef,
+  watchEffect,
+} from "vue";
 
 import { tailwindEnabledKey } from "@/injectionKeys";
 import { useMetaViewport } from "@/use/use-meta-viewport";
@@ -36,11 +43,13 @@ const handleBottomResetClick = (e: Event) => {
   resetOptions(["usePadding"]);
 };
 
-const scrollLock = ref(false);
-watchEffect(() => {
-  if (scrollLock.value) {
-    ruler.value!.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }
+const scrollLock = ref(true);
+onMounted(() => {
+  watchEffect(() => {
+    if (scrollLock.value) {
+      ruler.value!.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  });
 });
 
 const orientationLock = ref(false);
