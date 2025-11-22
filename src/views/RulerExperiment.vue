@@ -15,7 +15,8 @@ const tailwindEnabled = inject(tailwindEnabledKey)!;
 const rulerExperiment = useTemplateRef<HTMLDivElement>("rulerExperiment");
 const ruler = useTemplateRef<HTMLOListElement>("ruler");
 
-const toMetric = (inches: number) => inches / 2.54;
+const toImperial = (cm: number) => cm / 2.54;
+const toMetric = (inches: number) => inches * 2.54;
 
 const width = window.screen.width;
 const height = window.screen.height;
@@ -75,10 +76,31 @@ const baseSize = computed(() => {
   const size =
     Math.sqrt(width ** 2 + height ** 2) / rulerOptions.value.screenSizeInches;
   if (rulerOptions.value.rulerUnit === "metric") {
-    return toMetric(size);
+    return toImperial(size);
   } else {
     return size;
   }
+});
+
+const screenDimensionsDisplay = computed(() => {
+  const screenSize =
+    rulerOptions.value.rulerUnit === "metric"
+      ? toMetric(rulerOptions.value.screenSizeInches)
+      : rulerOptions.value.screenSizeInches;
+  const diagonalPixels = Math.sqrt(width ** 2 + height ** 2);
+  const screenWidth = (screenSize / diagonalPixels) * width;
+  const screenHeight = (screenSize / diagonalPixels) * height;
+
+  const formatter = new Intl.NumberFormat([], {
+    style: "unit",
+    unit: rulerOptions.value.rulerUnit === "imperial" ? "inch" : "centimeter",
+    unitDisplay: "narrow",
+  });
+
+  const screenWidthDisplay = formatter.format(screenWidth);
+  const screenHeightDisplay = formatter.format(screenHeight);
+
+  return `W: ${screenWidthDisplay} H: ${screenHeightDisplay}`;
 });
 
 const minorTickCount = computed(() =>
@@ -178,6 +200,8 @@ const handleTickKeydown = (e: KeyboardEvent) => {
           <output>{{ screenSizeDisplay }}</output>
           <output> ({{ screenSizeDisplayMetric }})</output>
         </div>
+
+        <output>{{ screenDimensionsDisplay }}</output>
 
         <div class="input-wrapper">
           <label for="ruler-orientation">Ruler Orientation</label>
