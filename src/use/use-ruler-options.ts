@@ -8,8 +8,6 @@ export interface RulerOptions {
   rulerUnit: UnitSystem;
   rulerOrientation: RulerOrientation;
   usePadding: boolean;
-  imperialMajorTickCount: number;
-  metricMajorTickCount: number;
 }
 
 const isValidRulerOptions = (
@@ -52,14 +50,6 @@ const isValidRulerOptions = (
       valid = false;
       break;
     }
-
-    if (
-      ["imperialMajorTickCount", "metricMajorTickCount"].includes(key)
-      && !(Number.isSafeInteger(value) && value >= 0 && value <= 200)
-    ) {
-      valid = false;
-      break;
-    }
   }
 
   if (!valid) {
@@ -79,8 +69,6 @@ export const useRulerOptions = () => {
       ? "portrait"
       : "landscape",
     usePadding: false,
-    imperialMajorTickCount: 12,
-    metricMajorTickCount: 30,
   };
 
   const loadOptions = () => {

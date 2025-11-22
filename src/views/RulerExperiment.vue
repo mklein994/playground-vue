@@ -4,6 +4,7 @@ import { computed, inject, ref, useTemplateRef, watchEffect } from "vue";
 import { tailwindEnabledKey } from "@/injectionKeys";
 import { useMetaViewport } from "@/use/use-meta-viewport";
 import { useResetCss } from "@/use/use-reset-css";
+import { useRuler } from "@/use/use-ruler";
 import { useRulerOptions } from "@/use/use-ruler-options";
 
 useMetaViewport(["viewport-fit", "cover"]);
@@ -22,12 +23,8 @@ const width = window.screen.width;
 const height = window.screen.height;
 
 const { rulerOptions, resetOptions } = useRulerOptions();
-const majorTickCount = computed(() => {
-  const opts = rulerOptions.value;
-  return opts.rulerUnit === "metric"
-    ? opts.metricMajorTickCount
-    : opts.imperialMajorTickCount;
-});
+
+const { majorTickCount, isLarge } = useRuler(rulerOptions);
 
 const handleTopResetClick = (e: Event) => {
   e.preventDefault();
@@ -36,11 +33,7 @@ const handleTopResetClick = (e: Event) => {
 
 const handleBottomResetClick = (e: Event) => {
   e.preventDefault();
-  resetOptions([
-    "metricMajorTickCount",
-    "imperialMajorTickCount",
-    "usePadding",
-  ]);
+  resetOptions(["usePadding"]);
 };
 
 const scrollLock = ref(false);
@@ -122,10 +115,14 @@ const screenSizeDisplayMetric = computed(() =>
   }),
 );
 
-const isLarge = computed(
+const isLargeOverrideInput = ref<"yes" | "no" | "auto">("auto");
+const isLargeOverride = computed(
   () =>
-    majorTickCount.value
-    > (rulerOptions.value.rulerUnit === "metric" ? 50 : 12 * 3),
+    ({
+      yes: true,
+      no: false,
+      auto: null,
+    })[isLargeOverrideInput.value],
 );
 
 const handleToggleFullscreenClick = async () => {
@@ -134,37 +131,6 @@ const handleToggleFullscreenClick = async () => {
     await el.requestFullscreen();
   } else {
     await document.exitFullscreen();
-  }
-};
-
-const handleTickKeydown = (e: KeyboardEvent) => {
-  const target = e.target as HTMLInputElement;
-
-  const isArrowKey = ["ArrowUp", "ArrowDown"].includes(e.key);
-  if (e.altKey || e.ctrlKey || e.metaKey || !(e.shiftKey && isArrowKey)) {
-    return;
-  }
-
-  e.preventDefault();
-
-  const getClosest = (from: number, to: number): number =>
-    Math.round(from / to) * to;
-
-  const up = e.key === "ArrowUp";
-  if (target.id === "metric-major-tick-count") {
-    const newAmount = Math.max(
-      10,
-      getClosest(rulerOptions.value.metricMajorTickCount, 10)
-        + 10 * (up ? 1 : -1),
-    );
-    rulerOptions.value.metricMajorTickCount = newAmount;
-  } else if (target.id === "imperial-major-tick-count") {
-    const newAmount = Math.max(
-      12,
-      getClosest(rulerOptions.value.imperialMajorTickCount, 12)
-        + 12 * (up ? 1 : -1),
-    );
-    rulerOptions.value.imperialMajorTickCount = newAmount;
   }
 };
 </script>
@@ -180,7 +146,8 @@ const handleTickKeydown = (e: KeyboardEvent) => {
         'scroll-lock': scrollLock,
         'tailwind-disabled': !tailwindEnabled,
         'no-padding': !rulerOptions.usePadding,
-        'is-large': isLarge,
+        'is-large': isLargeOverride ?? isLarge,
+        'is-large-resolved': isLarge,
       },
     ]"
   >
@@ -234,34 +201,6 @@ const handleTickKeydown = (e: KeyboardEvent) => {
 
       <fieldset class="options-fieldset">
         <div class="input-wrapper">
-          <label for="imperial-major-tick-count">Ticks (Imperial)</label>
-          <input
-            id="imperial-major-tick-count"
-            v-model="rulerOptions.imperialMajorTickCount"
-            type="number"
-            min="2"
-            size="5"
-            :disabled="rulerOptions.rulerUnit === 'metric'"
-            class="tw:form-input"
-            @keydown="handleTickKeydown"
-          />
-        </div>
-
-        <div class="input-wrapper">
-          <label for="metric-major-tick-count">Ticks (Metric)</label>
-          <input
-            id="metric-major-tick-count"
-            v-model="rulerOptions.metricMajorTickCount"
-            type="number"
-            min="2"
-            size="5"
-            :disabled="rulerOptions.rulerUnit === 'imperial'"
-            class="tw:form-input"
-            @keydown="handleTickKeydown"
-          />
-        </div>
-
-        <div class="input-wrapper">
           <input
             id="scroll-lock"
             v-model="scrollLock"
@@ -290,6 +229,41 @@ const handleTickKeydown = (e: KeyboardEvent) => {
         </button>
       </fieldset>
 
+      <fieldset class="options-is-large-group">
+        <legend>Major Tick Count: {{ majorTickCount }}</legend>
+        <input
+          id="is-large-no"
+          v-model="isLargeOverrideInput"
+          type="radio"
+          name="isLargeOverride"
+          value="no"
+          class="tw:form-radio"
+          :class="{ default: !isLarge }"
+        />
+        <label for="is-large-no">No</label>
+
+        <input
+          id="is-large-yes"
+          v-model="isLargeOverrideInput"
+          type="radio"
+          name="isLargeOverride"
+          value="yes"
+          class="tw:form-radio"
+          :class="{ default: isLarge }"
+        />
+        <label for="is-large-yes">Yes</label>
+
+        <input
+          id="is-large-auto"
+          v-model="isLargeOverrideInput"
+          type="radio"
+          name="isLargeOverride"
+          value="auto"
+          class="tw:form-radio"
+        />
+        <label for="is-large-auto">Auto</label>
+      </fieldset>
+
       <button type="button" @click="handleToggleFullscreenClick">
         Toggle Fullscreen
       </button>
@@ -300,6 +274,7 @@ const handleTickKeydown = (e: KeyboardEvent) => {
           type="checkbox"
           :checked="orientationLock"
           :disabled="!orientationLockSupported"
+          class="tw:form-checkbox"
           @input="handleOrientationLockToggle"
         />
         <label for="orientation-lock">Lock Orientation</label>
@@ -358,6 +333,14 @@ const handleTickKeydown = (e: KeyboardEvent) => {
     max-width: max-content;
   }
 
+  .options-is-large-group {
+    input.default + label::after {
+      color: var(--pv-base-color-neutral-500);
+      content: " (auto default)";
+      font-size: 0.8em;
+    }
+  }
+
   #orientation-lock:disabled + label::after {
     content: " (Tried; not supported)";
   }
@@ -407,6 +390,14 @@ const handleTickKeydown = (e: KeyboardEvent) => {
         display: flex;
         gap: 0.25rem;
       }
+    }
+
+    .options-is-large-group {
+      display: grid;
+      align-items: baseline;
+      margin: 0.5rem;
+      gap: 0.5rem;
+      grid-template-columns: auto auto;
     }
 
     .reset-button {
