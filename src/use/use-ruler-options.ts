@@ -24,7 +24,10 @@ const isValidRulerOptions = (
 
   let valid = true;
   for (const [key, value] of Object.entries(o)) {
-    if (key === "screenSizeInches" && typeof value !== "number") {
+    if (
+      key === "screenSizeInches"
+      && (typeof value !== "number" || value < 0 || value > 100)
+    ) {
       valid = false;
       break;
     }

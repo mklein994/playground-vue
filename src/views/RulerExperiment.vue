@@ -162,6 +162,7 @@ const handleToggleFullscreenClick = async () => {
             min="0"
             step="0.01"
             size="5"
+            max="100"
             class="tw:form-input"
           />
           <output>{{ screenSizeDisplay }}</output>
