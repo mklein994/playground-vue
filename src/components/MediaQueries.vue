@@ -90,7 +90,13 @@ onUnmounted(() => {
 
 <template>
   <div class="media-queries">
-    <input id="only-true" v-model="onlyTrue" type="checkbox" name="onlyTrue" />
+    <input
+      id="only-true"
+      v-model="onlyTrue"
+      type="checkbox"
+      name="onlyTrue"
+      class="tw:form-checkbox"
+    />
     <label for="only-true">Only True</label>
     <table>
       <thead>
