@@ -36,7 +36,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="about-grid">
+  <div class="about-browser-experiment">
     <span>User Agent</span>
     <span>{{ userAgent }}</span>
     <span>Inner Width</span>
@@ -49,8 +49,8 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped>
-.about-grid {
+<style>
+.about-browser-experiment {
   display: grid;
   width: 100%;
   justify-content: center;
@@ -58,9 +58,9 @@ onUnmounted(() => {
   font-family: monospace;
   gap: 0.5em 2em;
   grid: auto-flow / auto auto;
-}
 
-.media-queries {
-  grid-column: 1 / -1;
+  .media-queries {
+    grid-column: 1 / -1;
+  }
 }
 </style>
