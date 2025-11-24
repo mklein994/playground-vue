@@ -153,7 +153,7 @@ onMounted(() => {
     justify-items: start;
   }
 
-  @supports (accent-color: rebeccapurple) {
+  @supports (accent-color: red) {
     .input,
     .regular-fields > :not(label) {
       accent-color: v-bind("color");
