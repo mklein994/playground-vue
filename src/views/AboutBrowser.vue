@@ -106,10 +106,10 @@ const handleToggleFullscreen = async () => {
   grid: auto-flow / auto auto;
 
   &:fullscreen {
-    color: CanvasText;
-    background-color: Canvas;
-    height: 100vh;
     overflow: auto;
+    height: 100vh;
+    background-color: Canvas;
+    color: CanvasText;
   }
 
   .media-queries {

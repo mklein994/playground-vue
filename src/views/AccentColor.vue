@@ -8,7 +8,8 @@ const fruits = [
 ];
 
 const selectedFruits = ref(fruits.filter((f) => f.checked).map((f) => f.id));
-const selectedFruit = ref(selectedFruits.value[0]);
+const selectedFruitRadio = ref(selectedFruits.value[0]);
+const selectedFruitSelect = ref(selectedFruits.value[0]);
 
 const color = ref("rebeccapurple");
 const checkbox = ref<HTMLInputElement>();
@@ -35,7 +36,7 @@ onMounted(() => {
     <div v-for="{ id, name } of fruits" :key="id" class="radio">
       <input
         :id="id"
-        v-model="selectedFruit"
+        v-model="selectedFruitRadio"
         type="radio"
         name="fruit"
         class="input"
@@ -51,6 +52,24 @@ onMounted(() => {
         name="multiselect"
         multiple
         class="tw:form-multiselect input"
+      >
+        <option
+          v-for="{ id, name } of fruits"
+          :key="id"
+          :value="id"
+          class="input"
+        >
+          {{ name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="select">
+      <select
+        id="select"
+        v-model="selectedFruitSelect"
+        name="select"
+        class="tw:form-select input"
       >
         <option
           v-for="{ id, name } of fruits"
