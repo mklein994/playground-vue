@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="accent-color">
+  <div class="accent-color-experiment">
     <div class="text">
       <label for="color">Accent Color</label>
       <input id="color" v-model="color" type="text" />
@@ -125,39 +125,39 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.accent-color {
+.accent-color-experiment {
   display: flex;
   flex-wrap: wrap;
   margin: 1em;
 
   font-family: system-ui;
   gap: 1em;
-}
 
-.text,
-.checkbox,
-.radio {
-  display: flex;
-  align-items: baseline;
-  column-gap: 0.5em;
-}
+  .text,
+  .checkbox,
+  .radio {
+    display: flex;
+    align-items: baseline;
+    column-gap: 0.5em;
+  }
 
-.text,
-.checkbox {
-  flex: 1 100%;
-}
+  .text,
+  .checkbox {
+    flex: 1 100%;
+  }
 
-.regular-fields {
-  display: grid;
-  gap: 0.5em;
-  grid: auto-flow / repeat(2, auto);
-  justify-items: start;
-}
+  .regular-fields {
+    display: grid;
+    gap: 0.5em;
+    grid: auto-flow / repeat(2, auto);
+    justify-items: start;
+  }
 
-@supports (accent-color: rebeccapurple) {
-  .input,
-  .regular-fields > :not(label) {
-    accent-color: v-bind("color");
+  @supports (accent-color: rebeccapurple) {
+    .input,
+    .regular-fields > :not(label) {
+      accent-color: v-bind("color");
+    }
   }
 }
 </style>
