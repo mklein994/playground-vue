@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { computed, onBeforeMount, onMounted, ref, useTemplateRef } from "vue";
+import {
+  computed,
+  onBeforeMount,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  useTemplateRef,
+} from "vue";
 
 const selfie = useTemplateRef("selfie");
 const stream = ref<MediaStream>();
@@ -31,11 +38,21 @@ const pause = () => {
   (selfie.value as HTMLVideoElement | null)?.pause();
 };
 
-const cameras = ref();
+const play = async () => {
+  await (selfie.value as HTMLVideoElement | null)?.play();
+};
+
+const cameras = ref<MediaDeviceInfo[]>([]);
 onBeforeMount(async () => {
   cameras.value = (await navigator.mediaDevices.enumerateDevices()).filter(
     (x) => x.kind === "videoinput",
   );
+});
+
+onBeforeUnmount(() => {
+  stream.value?.getTracks().forEach((track) => {
+    track.stop();
+  });
 });
 </script>
 
@@ -43,7 +60,10 @@ onBeforeMount(async () => {
   <div class="selfie-cam-experiment">
     <div v-if="mediaDevicesAvailable && !error" class="video-wrapper">
       <video ref="selfie" autoplay muted class="selfie"></video>
-      <div class="controls"><button @click="pause">Pause</button></div>
+      <div class="controls">
+        <button @click="pause">Pause</button>
+        <button @click="play">Play</button>
+      </div>
       <pre>{{ cameras }}</pre>
     </div>
     <div v-else class="error-message">
