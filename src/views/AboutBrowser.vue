@@ -1,7 +1,31 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, reactive, ref } from "vue";
+import {
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+  useTemplateRef,
+  watchEffect,
+} from "vue";
 
 import MediaQueries from "@/components/MediaQueries.vue";
+
+import { useMetaViewport } from "@/use/use-meta-viewport";
+
+const aboutBrowser = useTemplateRef<HTMLDivElement>("aboutBrowser");
+
+const { viewportContent } = useMetaViewport();
+
+const viewportFitOverridden = ref(
+  viewportContent.value.get("viewport-fit") === "cover",
+);
+watchEffect(() => {
+  if (viewportFitOverridden.value) {
+    viewportContent.value.set("viewport-fit", "cover");
+  } else {
+    viewportContent.value.delete("viewport-fit");
+  }
+});
 
 const userAgent = navigator.userAgent;
 const inner = reactive({
@@ -33,10 +57,18 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("resize", handleResize);
 });
+
+const handleToggleFullscreen = async () => {
+  if (document.fullscreenElement) {
+    await document.exitFullscreen();
+  } else {
+    await aboutBrowser.value!.requestFullscreen();
+  }
+};
 </script>
 
 <template>
-  <div class="about-browser-experiment">
+  <div ref="aboutBrowser" class="about-browser-experiment">
     <span>User Agent</span>
     <span>{{ userAgent }}</span>
     <span>Inner Width</span>
@@ -45,6 +77,20 @@ onUnmounted(() => {
     <span>{{ outer }}</span>
     <abbr title="Device Pixel Ratio" class="pv-mobile-abbr">DPR</abbr>
     <span>{{ dpr }}</span>
+
+    <button type="button" @click="handleToggleFullscreen">
+      Toggle Fullscreen
+    </button>
+
+    <div>
+      <input
+        id="viewport-fit-checkbox"
+        v-model="viewportFitOverridden"
+        type="checkbox"
+      />
+      <label for="viewport-fit-checkbox">Viewport Fit</label>
+    </div>
+
     <MediaQueries class="media-queries"></MediaQueries>
   </div>
 </template>
@@ -58,6 +104,13 @@ onUnmounted(() => {
   font-family: monospace;
   gap: 0.5em 2em;
   grid: auto-flow / auto auto;
+
+  &:fullscreen {
+    color: CanvasText;
+    background-color: Canvas;
+    height: 100vh;
+    overflow: auto;
+  }
 
   .media-queries {
     grid-column: 1 / -1;
