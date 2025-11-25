@@ -28,12 +28,12 @@
   "packageManager": "pnpm@10.23.0+sha512.21c4e5698002ade97e4efe8b8b4a89a8de3c85a37919f957e7a0f30f38fbc5bbdd05980ffe29179b2fb6e6e691242e098d945d1601772cad0fef5fb6411e2a4b",
   "type": "module",
   "dependencies": {
-    "@sentry/vue": "^10.26.0",
-    "@sentry/wasm": "^10.26.0",
+    "@sentry/vue": "^10.27.0",
+    "@sentry/wasm": "^10.27.0",
     "rrweb": "2.0.0-alpha.4",
     "temporal-polyfill": "^0.3.0",
     "vite-plugin-wasm": "^3.5.0",
-    "vue": "^3.5.24",
+    "vue": "^3.5.25",
     "vue-router": "^4.6.3",
     "wavesurfer.js": "7.11.1"
   },
@@ -50,7 +50,7 @@
     "@types/d3": "^7.4.3",
     "@types/node": "^24.10.1",
     "@vitejs/plugin-vue": "^6.0.2",
-    "@vitest/coverage-v8": "^4.0.13",
+    "@vitest/coverage-v8": "^4.0.14",
     "@vue/test-utils": "^2.4.6",
     "@vue/typescript-plugin": "^3.1.5",
     "change-case": "^5.4.4",
@@ -79,9 +79,9 @@
     "stylelint-config-tailwindcss": "^1.0.0",
     "tailwindcss": "^4.1.17",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.47.0",
+    "typescript-eslint": "^8.48.0",
     "vite": "^7.2.4",
-    "vitest": "4.0.13",
+    "vitest": "4.0.14",
     "vue-eslint-parser": "^10.2.0",
     "vue-tsc": "~3.1.5"
   }
