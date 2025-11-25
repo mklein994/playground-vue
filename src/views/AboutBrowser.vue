@@ -99,6 +99,7 @@ const handleToggleFullscreen = async () => {
 .about-browser-experiment {
   display: grid;
   width: 100%;
+  align-content: start;
   justify-content: center;
 
   font-family: monospace;
