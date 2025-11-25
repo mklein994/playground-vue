@@ -66,17 +66,17 @@ export default defineConfig(({ mode, command }) => {
       sourcemap: !lowMemory && !isReproducible, // sourcemaps change on every build
       rollupOptions: {
         output: {
-          // https://rollupjs.org/guide/en/#outputentryfilenames
+          // https://rollupjs.org/configuration-options/#output-entryfilenames
           entryFileNames: isReproducible
             ? "assets/[name].js"
             : "assets/[name]-[hash].js",
 
-          // https://rollupjs.org/guide/en/#outputchunkfilenames
+          // https://rollupjs.org/configuration-options/#output-chunkfilenames
           chunkFileNames: isReproducible
             ? "assets/[name].js"
             : "assets/[name]-[hash].js",
 
-          // https://rollupjs.org/guide/en/#outputassetfilenames
+          // https://rollupjs.org/configuration-options/#output-assetfilenames
           assetFileNames({ names }) {
             const hash = isReproducible ? "" : "-[hash]";
             const asset = `[name]${hash}[extname]`;
