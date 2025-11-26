@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`RecursionComponent > renders correctly (map) 1`] = `
-"<div data-v-5572d211="" class="recursion"><pre data-v-5572d211="">{
+"<div class="recursion"><pre>{
   "Map(2)": {
     "store =&gt;": {
       "Map(1)": {
@@ -36,7 +36,7 @@ exports[`RecursionComponent > renders correctly (map) 1`] = `
 `;
 
 exports[`RecursionComponent > renders correctly (object) 1`] = `
-"<div data-v-5572d211="" class="recursion"><pre data-v-5572d211="">{
+"<div class="recursion"><pre>{
   "store": {
     "produce": {
       "apple": "store.produce.apple",
