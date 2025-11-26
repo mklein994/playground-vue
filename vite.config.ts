@@ -72,9 +72,16 @@ export default defineConfig(({ mode, command }) => {
             : "assets/[name]-[hash].js",
 
           // https://rollupjs.org/configuration-options/#output-chunkfilenames
-          chunkFileNames: isReproducible
-            ? "assets/[name].js"
-            : "assets/[name]-[hash].js",
+          chunkFileNames({ moduleIds }) {
+            const base = isReproducible ? "[name].js" : "[name]-[hash].js";
+            if (
+              moduleIds.some((id) => id.includes("highlight.js/es/languages/"))
+            ) {
+              return `assets/languages/${base}`;
+            }
+
+            return `assets/${base}`;
+          },
 
           // https://rollupjs.org/configuration-options/#output-assetfilenames
           assetFileNames({ names }) {
