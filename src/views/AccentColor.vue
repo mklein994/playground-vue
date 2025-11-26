@@ -143,7 +143,7 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .accent-color-experiment {
   display: flex;
   flex-wrap: wrap;

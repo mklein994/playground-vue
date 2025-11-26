@@ -38,12 +38,12 @@ const updateColor = (event: Event) => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .css-variables {
   --color: tomato;
-}
 
-.text {
-  color: var(--color);
+  .text {
+    color: var(--color);
+  }
 }
 </style>

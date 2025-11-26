@@ -69,7 +69,7 @@ const rows = computed(() => {
 </script>
 
 <template>
-  <table class="truth-table">
+  <table class="truth-table-with-nulls">
     <thead class="head">
       <tr class="row header">
         <th class="cell">key</th>
@@ -108,51 +108,51 @@ const rows = computed(() => {
   </table>
 </template>
 
-<style scoped>
-.truth-table {
+<style>
+.truth-table-with-nulls {
   border: 1px solid ButtonBorder;
   border-collapse: collapse;
-}
 
-.cell {
-  padding: 0 0.5em;
-  border: 1px solid ButtonBorder;
-}
+  .cell {
+    padding: 0 0.5em;
+    border: 1px solid ButtonBorder;
+  }
 
-.body .cell {
-  font-family: monospace;
-  font-size: 1rem;
-}
+  .body .cell {
+    font-family: monospace;
+    font-size: 1rem;
+  }
 
-.cell .code {
-  font-size: 1rem;
-}
+  .cell .code {
+    font-size: 1rem;
+  }
 
-.cell.key {
-  text-align: center;
-}
+  .cell.key {
+    text-align: center;
+  }
 
-.cell.true {
-  background-color: var(--true-background-color);
-}
+  .cell.true {
+    background-color: var(--true-background-color);
+  }
 
-.cell.true::before {
-  content: "• ";
-}
+  .cell.true::before {
+    content: "• ";
+  }
 
-.cell.true::after {
-  content: "\a0";
-}
+  .cell.true::after {
+    content: "\a0";
+  }
 
-.cell.false {
-  background-color: var(--false-background-color);
-}
+  .cell.false {
+    background-color: var(--false-background-color);
+  }
 
-.cell.false::before {
-  content: "\a0\a0";
-}
+  .cell.false::before {
+    content: "\a0\a0";
+  }
 
-.cell.invalid {
-  background-color: lightpink;
+  .cell.invalid {
+    background-color: lightpink;
+  }
 }
 </style>

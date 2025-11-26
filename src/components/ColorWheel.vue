@@ -30,7 +30,7 @@ const gradient = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .color-wheel {
   --base-color: v-bind("baseColor");
 
@@ -61,29 +61,29 @@ const gradient = computed(() => {
     content: "";
     grid-area: 1 / 1 / 1 / 1;
   }
-}
 
-.color-input {
-  width: 65%;
-  height: 65%;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  box-shadow: var(--box-shadow);
-  grid-area: 1 / 1 / 1 / 1;
-
-  /* Hacks for <input type="color"> */
-  &::-moz-color-swatch {
-    border-width: 0;
-  }
-
-  &::-webkit-color-swatch-wrapper {
+  .color-input {
+    width: 65%;
+    height: 65%;
     padding: 0;
-  }
-
-  &::-webkit-color-swatch {
-    border-width: 0;
+    border: none;
     border-radius: 50%;
+    box-shadow: var(--box-shadow);
+    grid-area: 1 / 1 / 1 / 1;
+
+    /* Hacks for <input type="color"> */
+    &::-moz-color-swatch {
+      border-width: 0;
+    }
+
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    &::-webkit-color-swatch {
+      border-width: 0;
+      border-radius: 50%;
+    }
   }
 }
 </style>

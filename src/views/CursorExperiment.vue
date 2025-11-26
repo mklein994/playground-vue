@@ -56,19 +56,19 @@ const cursors = [
   </div>
 </template>
 
-<style scoped>
+<style>
 .cursor-experiment {
   display: grid;
   padding: 1rem;
   gap: 1em;
-}
 
-.cursors {
-  display: grid;
-}
+  .cursors {
+    display: grid;
+  }
 
-.cursor {
-  display: block;
-  padding: 0.25em;
+  .cursor {
+    display: block;
+    padding: 0.25em;
+  }
 }
 </style>

@@ -338,25 +338,27 @@ watchEffect(() => {
   </div>
 </template>
 
-<style scoped>
-.golden-ratio {
-  display: block;
-  width: 80vmin;
-}
+<style>
+.golden-ratio-experiment {
+  .golden-ratio {
+    display: block;
+    width: 80vmin;
+  }
 
-.form {
-  display: grid;
-  align-items: center;
-  justify-content: start;
-  padding: 1rem;
-  gap: 0.5rem 1rem;
-  grid-auto-columns: auto;
-  grid-auto-flow: column;
-}
+  .form {
+    display: grid;
+    align-items: center;
+    justify-content: start;
+    padding: 1rem;
+    gap: 0.5rem 1rem;
+    grid-auto-columns: auto;
+    grid-auto-flow: column;
+  }
 
-.current-petal-count {
-  display: flex;
-  width: 100%;
-  text-wrap: nowrap;
+  .current-petal-count {
+    display: flex;
+    width: 100%;
+    text-wrap: nowrap;
+  }
 }
 </style>

@@ -115,19 +115,21 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped>
-.cell-matches {
-  text-align: end;
+<style>
+.media-queries {
+  .cell-matches {
+    text-align: end;
 
-  &[data-matches="true"] {
-    color: var(--pv-yes);
-  }
+    &[data-matches="true"] {
+      color: var(--pv-yes);
+    }
 
-  &[data-matches="false"] {
-    color: var(--pv-no);
+    &[data-matches="false"] {
+      color: var(--pv-no);
 
-    & + .cell-media {
-      color: var(--pv-na);
+      & + .cell-media {
+        color: var(--pv-na);
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="time-element">
+  <div class="time-element-experiment">
     <time datetime="PT5M">5 minutes</time>
 
     <p>
@@ -9,12 +9,12 @@
   </div>
 </template>
 
-<style scoped>
-.time-element {
+<style>
+.time-element-experiment {
   margin: 1rem;
-}
 
-.code {
-  font-size: 0.9rem;
+  .code {
+    font-size: 0.9rem;
+  }
 }
 </style>

@@ -30,14 +30,14 @@ const selectedFruits = ref<string[]>([]);
   </div>
 </template>
 
-<style scoped>
+<style>
 .multiple-checkboxes {
   padding: 1em;
-}
 
-.checkboxes {
-  display: grid;
-  gap: 0.25em 0.125em;
-  grid: auto / auto 1fr;
+  .checkboxes {
+    display: grid;
+    gap: 0.25em 0.125em;
+    grid: auto / auto 1fr;
+  }
 }
 </style>

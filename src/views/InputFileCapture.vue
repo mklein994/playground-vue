@@ -35,77 +35,81 @@ function handlePictureUpload(event: Event) {
 </script>
 
 <template>
-  <form class="grid" @submit.stop>
-    <label for="capture">capture</label>
-    <input
-      id="custom-capture"
-      v-model="custom.capture"
-      type="checkbox"
-      name="customCapture"
-    />
-    <label for="custom-capture">(custom)</label>
-    <input
-      v-if="custom.capture"
-      id="capture"
-      v-model="capturePref"
-      type="text"
-      name="capture"
-    />
-    <select
-      v-else
-      id="capture"
-      v-model="capturePref"
-      name="capture"
-      class="tw:form-select"
-    >
-      <option v-for="(pref, id) in capturePrefs" :key="id">{{ pref }}</option>
-    </select>
+  <div class="image-file-capture-experiment">
+    <form class="grid" @submit.stop>
+      <label for="capture">capture</label>
+      <input
+        id="custom-capture"
+        v-model="custom.capture"
+        type="checkbox"
+        name="customCapture"
+      />
+      <label for="custom-capture">(custom)</label>
+      <input
+        v-if="custom.capture"
+        id="capture"
+        v-model="capturePref"
+        type="text"
+        name="capture"
+      />
+      <select
+        v-else
+        id="capture"
+        v-model="capturePref"
+        name="capture"
+        class="tw:form-select"
+      >
+        <option v-for="(pref, id) in capturePrefs" :key="id">{{ pref }}</option>
+      </select>
 
-    <label for="accept">accept</label>
-    <input
-      id="custom-accept"
-      v-model="custom.accept"
-      type="checkbox"
-      name="customAccept"
-    />
-    <label for="custom-accept">(custom)</label>
-    <input
-      v-if="custom.accept"
-      id="accept"
-      v-model="acceptPref"
-      type="text"
-      name="accept"
-    />
-    <select
-      v-else
-      id="accept"
-      v-model="acceptPref"
-      name="accept"
-      class="tw:form-select"
-    >
-      <option v-for="(pref, id) in acceptPrefs" :key="id">{{ pref }}</option>
-    </select>
-  </form>
+      <label for="accept">accept</label>
+      <input
+        id="custom-accept"
+        v-model="custom.accept"
+        type="checkbox"
+        name="customAccept"
+      />
+      <label for="custom-accept">(custom)</label>
+      <input
+        v-if="custom.accept"
+        id="accept"
+        v-model="acceptPref"
+        type="text"
+        name="accept"
+      />
+      <select
+        v-else
+        id="accept"
+        v-model="acceptPref"
+        name="accept"
+        class="tw:form-select"
+      >
+        <option v-for="(pref, id) in acceptPrefs" :key="id">{{ pref }}</option>
+      </select>
+    </form>
 
-  <label for="picture">Upload a picture:</label>
-  <input
-    id="picture"
-    type="file"
-    :capture="capturePref"
-    name="picture"
-    :accept="acceptPref"
-    @input="handlePictureUpload"
-  />
+    <label for="picture">Upload a picture:</label>
+    <input
+      id="picture"
+      type="file"
+      :capture="capturePref"
+      name="picture"
+      :accept="acceptPref"
+      @input="handlePictureUpload"
+    />
 
-  <pre>{{ picture }}</pre>
+    <pre>{{ picture }}</pre>
+  </div>
 </template>
 
-<style scoped>
-.grid {
-  display: grid;
-  justify-content: start;
-  margin: 1em;
-  gap: 1em;
-  grid: auto-flow / repeat(4, auto);
+<style>
+.image-file-capture-experiment {
+  .grid {
+    display: grid;
+    justify-content: start;
+    margin: 1em;
+    gap: 1em;
+    grid: auto-flow / repeat(4, auto);
+  }
 }
 </style>

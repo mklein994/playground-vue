@@ -88,67 +88,67 @@ const options = computed<PlotOptions>(() => ({
   </div>
 </template>
 
-<style scoped>
+<style>
 .plot-curve-experiment {
   padding: 1em;
   font-family: sans-serif;
-}
 
-.form {
-  display: grid;
-  justify-content: start;
-  gap: 1em 0.5em;
-  justify-items: start;
-}
-
-.input-group {
-  display: flex;
-  gap: 0.5em;
-}
-
-.curve-item {
-  .curve-item-label {
-    cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  .form {
+    display: grid;
+    justify-content: start;
+    gap: 1em 0.5em;
+    justify-items: start;
   }
 
-  &.active .curve-item-label {
-    --color: light-dark(
-      var(--pv-base-color-blue-600),
-      var(--pv-base-color-blue-400)
-    );
-    color: var(--color);
+  .input-group {
+    display: flex;
+    gap: 0.5em;
+  }
 
-    &:hover {
-      color: light-dark(
-        var(--pv-base-color-blue-800),
-        var(--pv-base-color-blue-300)
+  .curve-item {
+    .curve-item-label {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.active .curve-item-label {
+      --color: light-dark(
+        var(--pv-base-color-blue-600),
+        var(--pv-base-color-blue-400)
       );
-    }
-  }
+      color: var(--color);
 
-  &[data-version]::after {
-    display: inline-block;
-    border-radius: 1em;
-    background-color: light-dark(
-      var(--pv-base-color-teal-100),
-      var(--pv-base-color-teal-950)
-    );
-    color: light-dark(
-      var(--pv-base-color-teal-700),
-      var(--pv-base-color-teal-400)
-    );
-    content: attr(data-version);
-    font-family: sans-serif;
-    font-size: 0.75em;
-    font-weight: 500;
-    margin-inline-start: 1ch;
-    padding-inline: calc(5 / 8 * 1em);
-    text-decoration: underline;
-    text-underline-offset: 2px;
+      &:hover {
+        color: light-dark(
+          var(--pv-base-color-blue-800),
+          var(--pv-base-color-blue-300)
+        );
+      }
+    }
+
+    &[data-version]::after {
+      display: inline-block;
+      border-radius: 1em;
+      background-color: light-dark(
+        var(--pv-base-color-teal-100),
+        var(--pv-base-color-teal-950)
+      );
+      color: light-dark(
+        var(--pv-base-color-teal-700),
+        var(--pv-base-color-teal-400)
+      );
+      content: attr(data-version);
+      font-family: sans-serif;
+      font-size: 0.75em;
+      font-weight: 500;
+      margin-inline-start: 1ch;
+      padding-inline: calc(5 / 8 * 1em);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
   }
 }
 </style>

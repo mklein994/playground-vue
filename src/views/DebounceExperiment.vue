@@ -19,7 +19,7 @@ const handleClick = debounce((amount: number) => bump(amount), 500);
   </div>
 </template>
 
-<style scoped>
+<style>
 .debounce-experiment {
   display: flex;
   align-items: baseline;

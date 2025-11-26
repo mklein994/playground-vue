@@ -58,7 +58,7 @@ const sourceObject = computed(() =>
   </div>
 </template>
 
-<style scoped>
+<style>
 .recursion {
   display: grid;
   max-width: max-content;

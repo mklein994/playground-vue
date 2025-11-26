@@ -11,7 +11,7 @@ const routeName = computed(() => route.name ?? "(unknown)");
   <pre class="route-name">{{ routeName }}</pre>
 </template>
 
-<style scoped>
+<style>
 .route-name {
   display: inline-block;
   padding: 0.125rem 0.25rem;

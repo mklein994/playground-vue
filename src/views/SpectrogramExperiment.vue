@@ -47,20 +47,20 @@ const vocalRange = ref(false);
   </div>
 </template>
 
-<style scoped>
+<style>
 .spectrogram-experiment {
   display: grid;
   padding-block-start: 1em;
-}
 
-.colors {
-  --size: 2px;
+  + .colors {
+    --size: 2px;
 
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--size), 1fr));
-}
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--size), 1fr));
 
-.color {
-  height: var(--size);
+    .color {
+      height: var(--size);
+    }
+  }
 }
 </style>

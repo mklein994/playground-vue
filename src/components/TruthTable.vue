@@ -106,7 +106,7 @@ const rows = computed(() => {
   </table>
 </template>
 
-<style scoped>
+<style>
 .truth-table {
   border: 1px solid ButtonBorder;
   border-collapse: collapse;
@@ -115,47 +115,47 @@ const rows = computed(() => {
   /* --true-background-color: ; */
   /* --false-text-color: gray; */
   /* --false-background-color: ; */
-}
 
-.cell {
-  padding: 0 0.5em;
-  border: 1px solid ButtonBorder;
+  .cell {
+    padding: 0 0.5em;
+    border: 1px solid ButtonBorder;
 
-  .code {
+    .code {
+      font-size: 1rem;
+    }
+
+    &.key {
+      text-align: center;
+    }
+
+    &.true {
+      background-color: var(--true-background-color);
+
+      &::before {
+        content: "• ";
+      }
+
+      &::after {
+        content: "\a0";
+      }
+    }
+
+    &.false {
+      background-color: var(--false-background-color);
+
+      &::before {
+        content: "\a0\a0";
+      }
+    }
+
+    &.invalid {
+      background-color: lightpink;
+    }
+  }
+
+  .body .cell {
+    font-family: monospace;
     font-size: 1rem;
   }
-
-  &.key {
-    text-align: center;
-  }
-
-  &.true {
-    background-color: var(--true-background-color);
-
-    &::before {
-      content: "• ";
-    }
-
-    &::after {
-      content: "\a0";
-    }
-  }
-
-  &.false {
-    background-color: var(--false-background-color);
-
-    &::before {
-      content: "\a0\a0";
-    }
-  }
-
-  &.invalid {
-    background-color: lightpink;
-  }
-}
-
-.body .cell {
-  font-family: monospace;
-  font-size: 1rem;
 }
 </style>

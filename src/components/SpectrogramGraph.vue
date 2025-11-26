@@ -121,21 +121,21 @@ watch(
   </div>
 </template>
 
-<style scoped>
+<style>
 .audio-box {
   z-index: 10; /* arbitrary */
   display: grid;
   width: 100%;
-}
 
-:global(.audio-box > *) {
-  display: grid;
-  height: min-content;
-  padding: 0;
-  margin: 0;
-}
+  > * {
+    display: grid;
+    height: min-content;
+    padding: 0;
+    margin: 0;
+  }
 
-.spectrogram {
-  padding-top: 1em;
+  .spectrogram {
+    padding-top: 1em;
+  }
 }
 </style>

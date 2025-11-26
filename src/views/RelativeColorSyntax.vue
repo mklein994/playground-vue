@@ -40,17 +40,19 @@ const code = `
   </div>
 </template>
 
-<style scoped>
-.demo {
-  --color: forestgreen;
-  color: var(--color);
-}
+<style>
+.relative-color-syntax {
+  .demo {
+    --color: forestgreen;
+    color: var(--color);
+  }
 
-.outer {
-  color: rgb(from var(--color) r g 128);
-}
+  .outer {
+    color: rgb(from var(--color) r g 128);
+  }
 
-.inner {
-  color: hsl(from var(--color) calc(h + 180) s calc(l * 2));
+  .inner {
+    color: hsl(from var(--color) calc(h + 180) s calc(l * 2));
+  }
 }
 </style>

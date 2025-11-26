@@ -163,44 +163,46 @@ const handleFillCheckToggle = (e: InputEvent) => {
   </div>
 </template>
 
-<style scoped>
-.settings {
-  display: grid;
-  max-width: max-content;
-  justify-content: start;
-  gap: var(--pv-spacing-2);
-  grid-template-columns: auto auto auto;
-}
+<style>
+.material-symbols-experiment {
+  .settings {
+    display: grid;
+    max-width: max-content;
+    justify-content: start;
+    gap: var(--pv-spacing-2);
+    grid-template-columns: auto auto auto;
+  }
 
-.wrapper {
-  display: grid;
-  gap: inherit;
-  grid-column: 2 / -1;
-  grid-template-columns: subgrid;
-}
+  .wrapper {
+    display: grid;
+    gap: inherit;
+    grid-column: 2 / -1;
+    grid-template-columns: subgrid;
+  }
 
-.fill-input-wrapper {
-  display: grid;
-  grid-template-columns: auto auto;
-}
+  .fill-input-wrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
 
-.text-input {
-  font-family: monospace;
-  text-align: end;
-}
+  .text-input {
+    font-family: monospace;
+    text-align: end;
+  }
 
-.show-large-wrapper {
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: subgrid;
-}
+  .show-large-wrapper {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
 
-.icon {
-  font-size: v-bind("showLarge ? '128px': `${opticalSize}px`");
-  font-variation-settings:
-    "FILL" v-bind("fill"),
-    "wght" v-bind("weight"),
-    "GRAD" v-bind("grade"),
-    "opsz" v-bind("opticalSize");
+  .icon {
+    font-size: v-bind("showLarge ? '128px': `${opticalSize}px`");
+    font-variation-settings:
+      "FILL" v-bind("fill"),
+      "wght" v-bind("weight"),
+      "GRAD" v-bind("grade"),
+      "opsz" v-bind("opticalSize");
+  }
 }
 </style>

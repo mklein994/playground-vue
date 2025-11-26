@@ -59,8 +59,10 @@ watchEffect(() => {
   </div>
 </template>
 
-<style scoped>
-.is-number {
-  color: dodgerblue;
+<style>
+.generator-list {
+  .is-number {
+    color: dodgerblue;
+  }
 }
 </style>

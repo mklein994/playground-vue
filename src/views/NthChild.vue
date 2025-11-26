@@ -11,26 +11,26 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 .nth-child-component {
   display: grid;
   justify-content: start;
   padding: 1rem;
   gap: 1rem;
-}
 
-.item-list {
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px solid lightblue;
-  gap: 1rem;
+  .item-list {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid lightblue;
+    gap: 1rem;
 
-  &.nth-child > .item:nth-child(n + 2) {
-    color: tomato;
-  }
+    &.nth-child > .item:nth-child(n + 2) {
+      color: tomato;
+    }
 
-  &.sibling > .item + .item {
-    color: dodgerblue;
+    &.sibling > .item + .item {
+      color: dodgerblue;
+    }
   }
 }
 </style>

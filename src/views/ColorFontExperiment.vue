@@ -38,7 +38,7 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 .color-font-experiment {
   display: grid;
   height: 100vh;
@@ -53,119 +53,119 @@
   &:has(#animate-shadow:checked) {
     --shadow-state: running;
   }
-}
 
-.welcome-container {
-  /* necessary to contain hidden checkbox */
-  position: relative;
-}
-
-.welcome {
-  position: relative;
-  padding: 0;
-
-  animation:
-    morph-pulse calc(var(--morph-states) * 1s) var(--morph-easing) infinite
-      alternate,
-    shadow-pulse 5s var(--shadow-easing) infinite alternate;
-  animation-play-state:
-    var(--global-state, var(--morph-state, paused)),
-    var(--global-state, var(--shadow-state, paused));
-
-  font-family: "Honk", fantasy;
-  font-size: var(--font-size);
-
-  font-variation-settings:
-    "MORF" var(--morph),
-    "SHLN" var(--shadow);
-  line-height: normal;
-
-  /* reset default h1 CSS styles here */
-  margin-block: 0;
-
-  text-align: center;
-
-  /* Don't let this go below a comfortable font size. */
-  --min-font-size: 1rem;
-
-  /* Based on the distance away from the edges on narrow screens. */
-  --preferred-font-size: 15vw;
-
-  /* Based on its proportions on super-wide screens. */
-  --max-font-size: 40vh;
-
-  --font-size: clamp(
-    var(--min-font-size),
-    var(--preferred-font-size),
-    var(--max-font-size)
-  );
-
-  @media (prefers-color-scheme: dark) {
-    padding: 1rem;
-    border-radius: 8px;
-    /* stylelint-disable declaration-property-value-no-unknown -- browsers support <system-color> here */
-    background: oklch(from Canvas calc(l + 0.1) c h);
+  .welcome-container {
+    /* necessary to contain hidden checkbox */
+    position: relative;
   }
 
-  --shadow-easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+  .welcome {
+    position: relative;
+    padding: 0;
 
-  --morph-states: 45;
-  --morph-easing: linear;
-}
+    animation:
+      morph-pulse calc(var(--morph-states) * 1s) var(--morph-easing) infinite
+        alternate,
+      shadow-pulse 5s var(--shadow-easing) infinite alternate;
+    animation-play-state:
+      var(--global-state, var(--morph-state, paused)),
+      var(--global-state, var(--shadow-state, paused));
 
-.animate-toggle {
-  position: absolute;
-  z-index: 1;
-  appearance: none;
-  cursor: pointer;
-  inset: 0;
+    font-family: "Honk", fantasy;
+    font-size: var(--font-size);
 
-  &:not(:checked) ~ .welcome {
-    --global-state: paused;
+    font-variation-settings:
+      "MORF" var(--cf-morph),
+      "SHLN" var(--cf-shadow);
+    line-height: normal;
+
+    /* reset default h1 CSS styles here */
+    margin-block: 0;
+
+    text-align: center;
+
+    /* Don't let this go below a comfortable font size. */
+    --min-font-size: 1rem;
+
+    /* Based on the distance away from the edges on narrow screens. */
+    --preferred-font-size: 15vw;
+
+    /* Based on its proportions on super-wide screens. */
+    --max-font-size: 40vh;
+
+    --font-size: clamp(
+      var(--min-font-size),
+      var(--preferred-font-size),
+      var(--max-font-size)
+    );
+
+    @media (prefers-color-scheme: dark) {
+      padding: 1rem;
+      border-radius: 8px;
+      /* stylelint-disable declaration-property-value-no-unknown -- browsers support <system-color> here */
+      background: oklch(from Canvas calc(l + 0.1) c h);
+    }
+
+    --shadow-easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    --morph-states: 45;
+    --morph-easing: linear;
+  }
+
+  .animate-toggle {
+    position: absolute;
+    z-index: 1;
+    appearance: none;
+    cursor: pointer;
+    inset: 0;
+
+    &:not(:checked) ~ .welcome {
+      --global-state: paused;
+    }
+  }
+
+  .message {
+    /* resets */
+    margin: 0;
+
+    &.animating {
+      display: none;
+    }
+  }
+
+  &:has(.animate-toggle:checked) .message {
+    &.animating {
+      display: unset;
+    }
+
+    &.stopped {
+      display: none;
+    }
+  }
+
+  .settings {
+    display: grid;
+    font-family: system-ui;
+    gap: 1rem;
+    justify-items: center;
+  }
+
+  .settings-inputs {
+    display: grid;
+    max-width: max-content;
+    align-items: center;
+    column-gap: 0.5rem;
+    grid-template-columns: auto 1fr;
   }
 }
 
-.message {
-  /* resets */
-  margin: 0;
-
-  &.animating {
-    display: none;
-  }
-}
-
-.color-font-experiment:has(.animate-toggle:checked) .message {
-  &.animating {
-    display: unset;
-  }
-
-  &.stopped {
-    display: none;
-  }
-}
-
-.settings {
-  display: grid;
-  font-family: system-ui;
-  gap: 1rem;
-  justify-items: center;
-}
-
-.settings-inputs {
-  display: grid;
-  max-width: max-content;
-  align-items: center;
-  column-gap: 0.5rem;
-  grid-template-columns: auto 1fr;
-}
-
-@property --shadow {
+@property --cf-shadow {
   inherits: false;
   initial-value: 0;
   syntax: "<number>";
 }
 
-@property --morph {
+@property --cf-morph {
   inherits: false;
   initial-value: 15;
   syntax: "<integer>";
@@ -173,19 +173,19 @@
 
 @keyframes shadow-pulse {
   from {
-    --shadow: 0;
+    --cf-shadow: 0;
   }
   to {
-    --shadow: 100;
+    --cf-shadow: 100;
   }
 }
 
 @keyframes morph-pulse {
   from {
-    --morph: 0;
+    --cf-morph: 0;
   }
   to {
-    --morph: 45;
+    --cf-morph: 45;
   }
 }
 </style>

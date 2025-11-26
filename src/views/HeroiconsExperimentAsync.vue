@@ -54,79 +54,83 @@ const handleQuery = (event: Event) => {
 </script>
 
 <template>
-  <search class="icon-query">
-    <input
-      id="icon-query"
-      type="search"
-      name="iconQuery"
-      :value="iconQuery"
-      class="tw:form-input"
-      @input="handleQuery"
-    />
-    <label for="icon-query">Search</label>
-  </search>
+  <div class="heroicons-experiment">
+    <search class="icon-query">
+      <input
+        id="icon-query"
+        type="search"
+        name="iconQuery"
+        :value="iconQuery"
+        class="tw:form-input"
+        @input="handleQuery"
+      />
+      <label for="icon-query">Search</label>
+    </search>
 
-  <div class="icon-grid">
-    <template
-      v-for="{ name, solid, outline, compact } of filteredIcons"
-      :key="name"
-    >
-      <div class="name">{{ name.wordCase }}</div>
-      <Component
-        :is="solid"
-        class="icon solid"
-        :class="name.kebabCase"
-      ></Component>
-      <Component
-        :is="outline"
-        class="icon outline"
-        :class="name.kebabCase"
-      ></Component>
-      <Component
-        :is="compact"
-        class="icon compact"
-        :class="name.kebabCase"
-      ></Component>
-    </template>
+    <div class="icon-grid">
+      <template
+        v-for="{ name, solid, outline, compact } of filteredIcons"
+        :key="name"
+      >
+        <div class="name">{{ name.wordCase }}</div>
+        <Component
+          :is="solid"
+          class="icon solid"
+          :class="name.kebabCase"
+        ></Component>
+        <Component
+          :is="outline"
+          class="icon outline"
+          :class="name.kebabCase"
+        ></Component>
+        <Component
+          :is="compact"
+          class="icon compact"
+          :class="name.kebabCase"
+        ></Component>
+      </template>
+    </div>
   </div>
 </template>
 
-<style scoped>
-.icon-query {
-  display: flex;
-  justify-content: center;
-  gap: 0.5em;
-}
+<style>
+.heroicons-experiment {
+  .icon-query {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+  }
 
-.icon-grid {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  gap: 0.125em;
-  grid-template-columns: repeat(4, auto);
-}
+  .icon-grid {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 0.125em;
+    grid-template-columns: repeat(4, auto);
+  }
 
-.name {
-  text-align: end;
-}
+  .name {
+    text-align: end;
+  }
 
-.icon {
-  --length: 24px;
-  width: var(--length);
-  height: var(--length);
-}
+  .icon {
+    --length: 24px;
+    width: var(--length);
+    height: var(--length);
+  }
 
-.solid {
-  color: tomato;
-}
+  .solid {
+    color: tomato;
+  }
 
-.outline {
-  color: dodgerblue;
-}
+  .outline {
+    color: dodgerblue;
+  }
 
-.compact {
-  --length: 20px;
-  color: forestgreen;
+  .compact {
+    --length: 20px;
+    color: forestgreen;
+  }
 }
 </style>

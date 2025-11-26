@@ -29,14 +29,16 @@ const baseColor = computed(() => `hsl(from ${initialColor.value} h s 50%)`);
   </div>
 </template>
 
-<style scoped>
-.steps-input {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+<style>
+.color-wheel-generator {
+  .steps-input {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
 
-.color-steps {
-  accent-color: v-bind("baseColor");
+  .color-steps {
+    accent-color: v-bind("baseColor");
+  }
 }
 </style>

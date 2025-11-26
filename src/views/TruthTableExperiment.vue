@@ -50,98 +50,102 @@ onMounted(() => refreshTable());
 </script>
 
 <template>
-  <form class="truth-table-inputs" @submit.prevent>
-    <div class="code-input-wrapper">
-      <label for="headers">Headers</label>
-      <textarea
-        id="headers"
-        v-model="headersText"
-        name="headers"
-        cols="30"
-        rows="10"
-        class="tw:form-textarea"
-      ></textarea>
-    </div>
+  <div class="truth-table-experiment">
+    <form class="truth-table-inputs" @submit.prevent>
+      <div class="code-input-wrapper">
+        <label for="headers">Headers</label>
+        <textarea
+          id="headers"
+          v-model="headersText"
+          name="headers"
+          cols="30"
+          rows="10"
+          class="tw:form-textarea"
+        ></textarea>
+      </div>
 
-    <div class="code-input-wrapper">
-      <label for="truth-table-test">Test Expression</label>
-      <textarea
-        id="truth-table-test"
-        v-model="testExpressionsText"
-        name="truthTableTest"
-        cols="30"
-        rows="10"
-        placeholder="return args[0] || args[1];"
-        class="tw:form-textarea"
-      ></textarea>
-    </div>
+      <div class="code-input-wrapper">
+        <label for="truth-table-test">Test Expression</label>
+        <textarea
+          id="truth-table-test"
+          v-model="testExpressionsText"
+          name="truthTableTest"
+          cols="30"
+          rows="10"
+          placeholder="return args[0] || args[1];"
+          class="tw:form-textarea"
+        ></textarea>
+      </div>
 
-    <div class="allow-nulls">
-      <input
-        id="allow-nulls"
-        v-model="allowNulls"
-        name="allowNulls"
-        type="checkbox"
-        class="tw:form-checkbox"
-      />
-      <label for="allow-nulls"
-        >Arguments may have <code>null</code> values</label
-      >
-    </div>
+      <div class="allow-nulls">
+        <input
+          id="allow-nulls"
+          v-model="allowNulls"
+          name="allowNulls"
+          type="checkbox"
+          class="tw:form-checkbox"
+        />
+        <label for="allow-nulls"
+          >Arguments may have <code>null</code> values</label
+        >
+      </div>
 
-    <button type="submit" class="submit-button" @click="refreshTable">
-      Submit
-    </button>
-  </form>
+      <button type="submit" class="submit-button" @click="refreshTable">
+        Submit
+      </button>
+    </form>
 
-  <TruthTableWithNulls
-    v-if="testsHaveNulls(tests)"
-    :headers="headers"
-    :tests="tests"
-    class="truth-table"
-  ></TruthTableWithNulls>
-  <TruthTable
-    v-else
-    :headers="headers"
-    :tests="tests"
-    class="truth-table"
-  ></TruthTable>
+    <TruthTableWithNulls
+      v-if="testsHaveNulls(tests)"
+      :headers="headers"
+      :tests="tests"
+      class="truth-table"
+    ></TruthTableWithNulls>
+    <TruthTable
+      v-else
+      :headers="headers"
+      :tests="tests"
+      class="truth-table"
+    ></TruthTable>
+  </div>
 </template>
 
-<style scoped>
-.truth-table {
-  --true-text-color: var(--pv-base-color-emerald-700);
-  --false-text-color: var(--pv-base-color-red-700);
+<style>
+.truth-table-experiment {
+  .truth-table {
+    --true-text-color: var(--pv-base-color-emerald-700);
+    --false-text-color: var(--pv-base-color-red-700);
 
-  --true-background-color: light-dark(
-    var(--pv-base-color-emerald-200),
-    var(--pv-base-color-emerald-700)
-  );
-  --false-background-color: light-dark(
-    var(--pv-base-color-red-200),
-    var(--pv-base-color-red-700)
-  );
-}
+    --true-background-color: light-dark(
+      var(--pv-base-color-emerald-200),
+      var(--pv-base-color-emerald-700)
+    );
+    --false-background-color: light-dark(
+      var(--pv-base-color-red-200),
+      var(--pv-base-color-red-700)
+    );
+  }
 
-.truth-table-inputs {
-  display: grid;
-  max-width: max-content;
-  padding: 1rem;
-  gap: 1rem;
-  grid: auto-flow / 1fr 1fr;
-}
+  .truth-table-inputs {
+    display: grid;
+    max-width: max-content;
+    padding: 1rem;
+    gap: 1rem;
+    grid: auto-flow / 1fr 1fr;
+  }
 
-.code-input-wrapper {
-  display: grid;
-  gap: inherit;
-}
+  .code-input-wrapper {
+    display: grid;
+    gap: inherit;
+  }
 
-.allow-nulls {
-  display: flex;
-  gap: 0.5em;
-}
+  .allow-nulls {
+    display: flex;
+    gap: 0.5em;
+  }
 
-.submit-button {
-  max-width: max-content;
+  .submit-button {
+    max-width: max-content;
+  }
 }
 </style>

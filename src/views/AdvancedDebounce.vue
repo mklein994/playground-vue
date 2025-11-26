@@ -36,36 +36,40 @@ const handleSubmit = () => {
 </script>
 
 <template>
-  <form class="settings" @submit.prevent="handleSubmit">
-    <label for="wait">Wait (ms)</label>
-    <input id="wait" v-model="wait" type="number" />
+  <div class="advanced-debounce-experiment">
+    <form class="settings" @submit.prevent="handleSubmit">
+      <label for="wait">Wait (ms)</label>
+      <input id="wait" v-model="wait" type="number" />
 
-    <label for="leading">Leading</label>
-    <input id="leading" v-model="leading" type="checkbox" />
+      <label for="leading">Leading</label>
+      <input id="leading" v-model="leading" type="checkbox" />
 
-    <label for="trailing">Trailing</label>
-    <input id="trailing" v-model="trailing" type="checkbox" />
+      <label for="trailing">Trailing</label>
+      <input id="trailing" v-model="trailing" type="checkbox" />
 
-    <button type="submit" :disabled="!changed">Submit</button>
-  </form>
-  <label for="name">Name</label>
-  <input
-    id="name"
-    v-model="nameRef.name.value"
-    type="text"
-    :disabled="changed"
-  />
-  <pre>{{ nameRef.name }}</pre>
+      <button type="submit" :disabled="!changed">Submit</button>
+    </form>
+    <label for="name">Name</label>
+    <input
+      id="name"
+      v-model="nameRef.name.value"
+      type="text"
+      :disabled="changed"
+    />
+    <pre>{{ nameRef.name }}</pre>
+  </div>
 </template>
 
-<style scoped>
-.settings {
-  display: grid;
-  max-width: max-content;
-  justify-content: start;
-  margin: 1rem;
-  gap: 0.5rem;
-  grid-template-columns: auto auto;
-  justify-items: start;
+<style>
+.advanced-debounce-experiment {
+  .settings {
+    display: grid;
+    max-width: max-content;
+    justify-content: start;
+    margin: 1rem;
+    gap: 0.5rem;
+    grid-template-columns: auto auto;
+    justify-items: start;
+  }
 }
 </style>

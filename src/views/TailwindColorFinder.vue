@@ -73,22 +73,24 @@ const sortedColors = computed(() => {
   </div>
 </template>
 
-<style scoped>
-.colors {
-  display: grid;
-  max-width: max-content;
-  justify-content: start;
-  column-gap: 0.5rem;
-  grid-template-columns: 1fr auto auto auto;
-}
+<style>
+.tailwind-color-finder {
+  .colors {
+    display: grid;
+    max-width: max-content;
+    justify-content: start;
+    column-gap: 0.5rem;
+    grid-template-columns: 1fr auto auto auto;
+  }
 
-.color-name {
-  text-align: end;
-}
+  .color-name {
+    text-align: end;
+  }
 
-.swatch {
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
+  .swatch {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+  }
 }
 </style>

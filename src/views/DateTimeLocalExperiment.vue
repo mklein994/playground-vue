@@ -30,7 +30,7 @@ const step = ref("");
   </div>
 </template>
 
-<style scoped>
+<style>
 .date-time-local-experiment {
   display: grid;
   align-items: start;
@@ -38,12 +38,12 @@ const step = ref("");
   margin: 1rem;
   gap: 1rem;
   grid-template-columns: auto auto;
-}
 
-.date-input,
-.output {
-  display: grid;
-  justify-content: start;
-  row-gap: 0.5rem;
+  .date-input,
+  .output {
+    display: grid;
+    justify-content: start;
+    row-gap: 0.5rem;
+  }
 }
 </style>

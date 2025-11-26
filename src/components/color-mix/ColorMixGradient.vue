@@ -55,7 +55,7 @@ const computedColor = (index: number) => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .color-mix-gradient {
   --size: calc(
     v-bind("swatchSize") * 1% - (var(--gap) * v-bind("squareCount"))
@@ -64,9 +64,9 @@ const computedColor = (index: number) => {
   display: grid;
   gap: var(--gap);
   grid-template-columns: repeat(auto-fit, minmax(var(--size), 1fr));
-}
 
-.swatch {
-  aspect-ratio: var(--square);
+  .swatch {
+    aspect-ratio: var(--square);
+  }
 }
 </style>

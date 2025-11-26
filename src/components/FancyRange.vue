@@ -28,7 +28,7 @@ const hasLabels = computed(() => options.some((x) => x.label != null));
   </div>
 </template>
 
-<style scoped>
+<style>
 .fancy-range-list.has-labels {
   display: flex;
   justify-content: space-between;

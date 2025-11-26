@@ -37,22 +37,26 @@ const fruits = [
 </script>
 
 <template>
-  <ol class="fruit-list">
-    <li v-for="fruit of fruits" :key="fruit">{{ fruit }}</li>
-  </ol>
+  <div class="fruit-list-experiment">
+    <ol class="fruit-list">
+      <li v-for="fruit of fruits" :key="fruit">{{ fruit }}</li>
+    </ol>
+  </div>
 </template>
 
-<style scoped>
+<style>
+.fruit-list-experiment {
+  .fruit-list {
+    padding-left: 1rem;
+    margin-left: 1rem;
+    counter-reset: fruit-digits;
+    list-style: fruit-digits;
+  }
+}
+
 @counter-style fruit-digits {
   suffix: " ";
   symbols: 🥇 🥈 🥉;
   system: fixed;
-}
-
-.fruit-list {
-  padding-left: 1rem;
-  margin-left: 1rem;
-  counter-reset: fruit-digits;
-  list-style: fruit-digits;
 }
 </style>

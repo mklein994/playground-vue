@@ -135,7 +135,7 @@ const clearCanvas = () => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .multi-touch-experiment {
   position: relative;
   display: flex;
@@ -143,23 +143,23 @@ const clearCanvas = () => {
   flex-wrap: wrap;
   align-content: start;
   align-items: start;
-}
 
-.info {
-  position: fixed;
-  pointer-events: none;
-}
+  .info {
+    position: fixed;
+    pointer-events: none;
+  }
 
-#canvas {
-  width: 100svmin;
-  aspect-ratio: 1;
-  border-block-end: 1px solid hotpink;
-}
-
-@media (orientation: landscape) {
   #canvas {
-    border: none;
-    border-inline-end: 1px solid hotpink;
+    width: 100svmin;
+    aspect-ratio: 1;
+    border-block-end: 1px solid hotpink;
+  }
+
+  @media (orientation: landscape) {
+    #canvas {
+      border: none;
+      border-inline-end: 1px solid hotpink;
+    }
   }
 }
 </style>

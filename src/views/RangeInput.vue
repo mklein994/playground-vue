@@ -42,27 +42,27 @@ const ratingName = computed(() => ratingList[rating.value]);
   </div>
 </template>
 
-<style scoped>
+<style>
 .range-input {
   padding: 1em;
-}
 
-.rating {
-  width: 15rem;
-  border: 1px solid black;
-}
+  .rating {
+    width: 15rem;
+    border: 1px solid black;
+  }
 
-.rating-list {
-  display: flex;
-  width: 15em;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-top: 0.5em;
-  writing-mode: vertical-lr;
-}
+  .rating-list {
+    display: flex;
+    width: 15em;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 0.5em;
+    writing-mode: vertical-lr;
+  }
 
-.rating-list-option {
-  rotate: -60deg;
-  transform-origin: top center;
+  .rating-list-option {
+    rotate: -60deg;
+    transform-origin: top center;
+  }
 }
 </style>

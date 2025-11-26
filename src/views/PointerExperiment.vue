@@ -75,19 +75,19 @@ const handleClear = (e: PointerEvent) => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .pointer-experiment {
   display: flex;
   max-width: 100vw;
   max-height: 100svh;
   flex-wrap: wrap;
   user-select: none;
-}
 
-#canvas {
-  max-width: min(calc(100vw - 2px), 1024px);
-  max-height: min(calc(100svh - 2px), 1024px);
-  border: 1px solid hotpink;
-  aspect-ratio: 1;
+  #canvas {
+    max-width: min(calc(100vw - 2px), 1024px);
+    max-height: min(calc(100svh - 2px), 1024px);
+    border: 1px solid hotpink;
+    aspect-ratio: 1;
+  }
 }
 </style>

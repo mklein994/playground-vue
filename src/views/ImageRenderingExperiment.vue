@@ -73,18 +73,18 @@ const imageRendering = ref<string>(defaultImageRendering.value);
   </div>
 </template>
 
-<style scoped>
+<style>
 .image-rendering-experiment {
   padding: 1rem;
-}
 
-.settings {
-  display: grid;
-  gap: 0.25rem;
-  place-items: start;
-}
+  .settings {
+    display: grid;
+    gap: 0.25rem;
+    place-items: start;
+  }
 
-.image {
-  image-rendering: v-bind("imageRendering");
+  .image {
+    image-rendering: v-bind("imageRendering");
+  }
 }
 </style>

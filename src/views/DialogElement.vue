@@ -29,27 +29,31 @@ const closeDialog = () => {
 </script>
 
 <template>
-  <p>
-    The <code>&lt;dialog&gt;</code> element was added in Firefox 98. (<a
-      href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog"
-      target="_blank"
-      >Documentation</a
-    >)
-  </p>
+  <div class="dialog-experiment">
+    <p>
+      The <code>&lt;dialog&gt;</code> element was added in Firefox 98. (<a
+        href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog"
+        target="_blank"
+        >Documentation</a
+      >)
+    </p>
 
-  <button @click="openDialog">Open Dialog</button>
+    <button @click="openDialog">Open Dialog</button>
 
-  <dialog ref="dialog" class="dialog">
-    <form action="dialog">
-      Hey! You're seeing this in a <code>&lt;dialog&gt;</code> element.
+    <dialog ref="dialog" class="dialog">
+      <form action="dialog">
+        Hey! You're seeing this in a <code>&lt;dialog&gt;</code> element.
 
-      <button type="button" @click="closeDialog">Close</button>
-    </form>
-  </dialog>
+        <button type="button" @click="closeDialog">Close</button>
+      </form>
+    </dialog>
+  </div>
 </template>
 
-<style scoped>
-.dialog::backdrop {
-  background: #282828;
+<style>
+.dialog-experiment {
+  .dialog::backdrop {
+    background: #282828;
+  }
 }
 </style>

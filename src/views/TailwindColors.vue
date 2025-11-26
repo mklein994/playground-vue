@@ -89,7 +89,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="tailwindColors" class="tailwind-colors">
+  <div ref="tailwindColors" class="tailwind-colors-experiment">
     <p class="color-test">
       <code
         ref="testColorElement"
@@ -119,63 +119,65 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
-.color-test {
-  grid-column: 1 / -1;
-}
-
-.color-test-code {
-  &::before,
-  &::after {
-    content: "`";
+<style>
+.tailwind-colors-experiment {
+  .color-test {
+    grid-column: 1 / -1;
   }
-}
 
-.colors {
-  --grid: minmax(calc(v-bind("longestKeyLength") * 1ch), min-content)
-    minmax(calc(v-bind("longestColorLength") * 1ch), min-content)
-    minmax(5em, min-content);
-
-  display: grid;
-  align-items: start;
-  justify-content: space-around;
-  gap: clamp(0.5em, 1vh, 1em);
-  grid-template-columns: repeat(auto-fit, var(--grid));
-}
-
-.card {
-  display: grid;
-  column-gap: 1em;
-  grid-column-end: span 3;
-  white-space: nowrap;
-
-  &.other {
-    grid-template-columns:
-      auto minmax(calc(v-bind("longestColorLength") * 1ch), min-content)
-      1fr;
+  .color-test-code {
+    &::before,
+    &::after {
+      content: "`";
+    }
   }
-}
 
-.color-heading {
-  grid-column-end: -1;
-  padding-block-end: clamp(0.125em, 0.5vh, 0.5em);
-  text-align: center;
-  text-decoration: underline;
-}
+  .colors {
+    --grid: minmax(calc(v-bind("longestKeyLength") * 1ch), min-content)
+      minmax(calc(v-bind("longestColorLength") * 1ch), min-content)
+      minmax(5em, min-content);
 
-@supports (grid-template-columns: subgrid) {
+    display: grid;
+    align-items: start;
+    justify-content: space-around;
+    gap: clamp(0.5em, 1vh, 1em);
+    grid-template-columns: repeat(auto-fit, var(--grid));
+  }
+
   .card {
-    grid-template-columns: subgrid;
-  }
-}
+    display: grid;
+    column-gap: 1em;
+    grid-column-end: span 3;
+    white-space: nowrap;
 
-@supports not (grid-template-columns: subgrid) {
-  .card {
-    grid-template-columns: var(--grid);
+    &.other {
+      grid-template-columns:
+        auto minmax(calc(v-bind("longestColorLength") * 1ch), min-content)
+        1fr;
+    }
   }
-}
 
-.name {
-  text-align: end;
+  .color-heading {
+    grid-column-end: -1;
+    padding-block-end: clamp(0.125em, 0.5vh, 0.5em);
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  @supports (grid-template-columns: subgrid) {
+    .card {
+      grid-template-columns: subgrid;
+    }
+  }
+
+  @supports not (grid-template-columns: subgrid) {
+    .card {
+      grid-template-columns: var(--grid);
+    }
+  }
+
+  .name {
+    text-align: end;
+  }
 }
 </style>

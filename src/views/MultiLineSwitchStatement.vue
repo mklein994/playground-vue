@@ -49,23 +49,23 @@ const backgroundColor = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .multi-line-switch-statement {
   display: grid;
   width: max-content;
   margin: 1em;
   gap: 0.5em 1em;
   grid: repeat(2, 1fr) / auto-flow 1fr;
-}
 
-.fruit-color {
-  display: block;
-  width: 100%;
-  min-width: 1em;
-  height: 100%;
-  min-height: 1em;
-  align-self: center;
-  border: 1px solid black;
-  grid-row: 1 / -1;
+  .fruit-color {
+    display: block;
+    width: 100%;
+    min-width: 1em;
+    height: 100%;
+    min-height: 1em;
+    align-self: center;
+    border: 1px solid black;
+    grid-row: 1 / -1;
+  }
 }
 </style>

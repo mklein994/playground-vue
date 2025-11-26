@@ -77,17 +77,19 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style scoped>
-.error-message {
-  padding: 1rem;
+<style>
+.selfie-cam-experiment {
+  .error-message {
+    padding: 1rem;
 
-  & code {
-    font-size: 1rem;
+    & code {
+      font-size: 1rem;
+    }
   }
-}
 
-.selfie {
-  display: block;
-  width: 100vmin;
+  .selfie {
+    display: block;
+    width: 100vmin;
+  }
 }
 </style>

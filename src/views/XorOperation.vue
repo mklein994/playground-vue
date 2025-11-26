@@ -58,110 +58,116 @@ const testCode = tests.map((test) => test.toString());
 </script>
 
 <template>
-  <div class="table-wrapper">
-    <table class="xor-operation">
-      <thead class="header">
-        <tr class="row">
-          <th class="cell">key</th>
-          <th class="cell">P</th>
-          <th class="cell">Q</th>
-          <th class="cell">R</th>
-          <th class="cell">S</th>
-          <th v-for="name of headerNames" :key="name" class="cell">
-            {{ name }}
-          </th>
-          <th class="cell">result</th>
-        </tr>
-      </thead>
-      <tbody class="body">
-        <tr
-          v-for="{ key, p, q, r, s, results, result } of map"
-          :key="key.join('')"
-          class="row"
-        >
-          <td class="cell">
-            <span
-              v-for="i of key"
-              :key="i"
-              :style="{
-                color: i ? 'forestgreen' : 'light-dark(lightgray, gray)',
-              }"
-              >{{ i }}</span
-            >
-          </td>
-          <td class="cell">{{ p }}</td>
-          <td class="cell">{{ q }}</td>
-          <td class="cell">{{ r }}</td>
-          <td class="cell">{{ s }}</td>
-          <td
-            v-for="(res, i) of results"
-            :key="i"
-            class="cell"
-            :class="res ? 'true' : 'false'"
+  <div class="xor-operation-experiment">
+    <div class="table-wrapper">
+      <table class="xor-operation">
+        <thead class="header">
+          <tr class="row">
+            <th class="cell">key</th>
+            <th class="cell">P</th>
+            <th class="cell">Q</th>
+            <th class="cell">R</th>
+            <th class="cell">S</th>
+            <th v-for="name of headerNames" :key="name" class="cell">
+              {{ name }}
+            </th>
+            <th class="cell">result</th>
+          </tr>
+        </thead>
+        <tbody class="body">
+          <tr
+            v-for="{ key, p, q, r, s, results, result } of map"
+            :key="key.join('')"
+            class="row"
           >
-            {{ res }}
-          </td>
-          <td class="cell" :class="result ? 'true' : 'false'">{{ result }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            <td class="cell">
+              <span
+                v-for="i of key"
+                :key="i"
+                :style="{
+                  color: i ? 'forestgreen' : 'light-dark(lightgray, gray)',
+                }"
+                >{{ i }}</span
+              >
+            </td>
+            <td class="cell">{{ p }}</td>
+            <td class="cell">{{ q }}</td>
+            <td class="cell">{{ r }}</td>
+            <td class="cell">{{ s }}</td>
+            <td
+              v-for="(res, i) of results"
+              :key="i"
+              class="cell"
+              :class="res ? 'true' : 'false'"
+            >
+              {{ res }}
+            </td>
+            <td class="cell" :class="result ? 'true' : 'false'">
+              {{ result }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <Highlightjs
-    v-for="(code, i) of testCode"
-    :key="i"
-    language="ts"
-    :code="`// t${i}\n${code}`"
-    class="code"
-  ></Highlightjs>
+    <Highlightjs
+      v-for="(code, i) of testCode"
+      :key="i"
+      language="ts"
+      :code="`// t${i}\n${code}`"
+      class="code"
+    ></Highlightjs>
+  </div>
 </template>
 
-<style scoped>
-.table-wrapper {
-  overflow: auto;
-  margin: 1em;
-}
-
-.xor-operation {
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.cell {
-  border: 1px solid lightgray;
-  font-family: monospace;
-  font-size: 1rem;
-  padding-inline: 0.5em;
-
-  &.true {
-    color: forestgreen;
+<style>
+.xor-operation-experiment {
+  .table-wrapper {
+    overflow: auto;
+    margin: 1em;
   }
 
-  &.false {
-    color: tomato;
+  .xor-operation {
+    border-collapse: separate;
+    border-spacing: 0;
   }
-}
 
-.header .cell {
-  position: sticky;
-  background: Canvas;
-  border-block-end: 2px solid ButtonBorder;
-  inset-block-start: 0;
-}
+  .cell {
+    border: 1px solid lightgray;
+    font-family: monospace;
+    font-size: 1rem;
+    padding-inline: 0.5em;
 
-.cell:first-child {
-  position: sticky;
-  z-index: 1;
-  background: Canvas;
-  border-inline-end: 2px solid ButtonBorder;
-  inset-inline-start: 0;
-}
+    &.true {
+      color: forestgreen;
+    }
 
-.header .cell:first-child {
-  z-index: 2;
-}
+    &.false {
+      color: tomato;
+    }
+  }
 
-.code {
-  white-space: pre;
+  .header .cell {
+    position: sticky;
+    background: Canvas;
+    border-block-end: 2px solid ButtonBorder;
+    inset-block-start: 0;
+  }
+
+  .cell:first-child {
+    position: sticky;
+    z-index: 1;
+    background: Canvas;
+    border-inline-end: 2px solid ButtonBorder;
+    inset-inline-start: 0;
+  }
+
+  .header .cell:first-child {
+    z-index: 2;
+  }
+
+  .code {
+    white-space: pre;
+  }
 }
 </style>

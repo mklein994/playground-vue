@@ -11,19 +11,21 @@ const props = defineProps<{
     ><span
       v-for="(keyItem, keyIndex) of props.keyValue"
       :key="keyIndex"
-      class="key-item"
+      class="key-cell-with-null"
       :class="keyItem.class"
       >{{ keyItem.display === " " ? "&nbsp;" : keyItem.display }}</span
     ></code
   >
 </template>
 
-<style scoped>
-.key-item.true {
-  color: var(--true-text-color);
-}
+<style>
+.key-cell-with-null {
+  &.true {
+    color: var(--true-text-color);
+  }
 
-.key-item.false {
-  color: var(--false-text-color);
+  &.false {
+    color: var(--false-text-color);
+  }
 }
 </style>

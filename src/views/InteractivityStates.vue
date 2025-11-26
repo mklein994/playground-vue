@@ -104,124 +104,124 @@ const fruits = [
   </div>
 </template>
 
-<style scoped>
+<style>
 .interactivity-states {
   display: grid;
   padding: 1em;
   gap: 1em;
-}
 
-.button-groups {
-  display: grid;
-  gap: 1em;
-}
-
-.button-group {
-  display: flex;
-  gap: 1em;
-}
-
-.text-groups {
-  display: grid;
-  justify-content: start;
-  gap: 1em;
-}
-
-.text-group {
-  display: grid;
-  gap: 1em;
-  grid: auto-flow / repeat(2, 1fr);
-}
-
-.radio-groups {
-  display: grid;
-}
-
-.radio-group {
-  display: grid;
-  align-items: baseline;
-  justify-content: start;
-  column-gap: 1em;
-  grid: auto-flow / repeat(2, auto);
-}
-
-.custom {
-  appearance: none;
-}
-
-.radio.custom {
-  --size: 0.85rem;
-  --ratio: 0.5;
-
-  /*
-  These colors come from inspecting Firefox defaults with the color picker.
-  */
-  --default-color: #8f8f9d;
-  --hover-color: #676774;
-  --active-color: #484851;
-
-  --checked-default-color: #3584e4;
-  --checked-hover-color: #1e6fc5;
-  --checked-active-color: #0059a8;
-
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2px;
-  border: 2px solid var(--default-color);
-  border-radius: 50%;
-  margin: 3px 3px 0 5px;
-  block-size: var(--size);
-  inline-size: var(--size);
-
-  &::after {
-    block-size: calc(var(--size) * var(--ratio));
-    content: "";
-    inline-size: calc(var(--size) * var(--ratio));
+  .button-groups {
+    display: grid;
+    gap: 1em;
   }
 
-  &:hover {
-    border-color: var(--hover-color);
+  .button-group {
+    display: flex;
+    gap: 1em;
   }
 
-  &:active {
-    border-color: var(--active-color);
+  .text-groups {
+    display: grid;
+    justify-content: start;
+    gap: 1em;
   }
 
-  &:focus {
-    outline: 2px solid lightskyblue;
-    outline-offset: 1px;
+  .text-group {
+    display: grid;
+    gap: 1em;
+    grid: auto-flow / repeat(2, 1fr);
   }
 
-  &:checked {
-    border-color: var(--checked-default-color);
+  .radio-groups {
+    display: grid;
+  }
+
+  .radio-group {
+    display: grid;
+    align-items: baseline;
+    justify-content: start;
+    column-gap: 1em;
+    grid: auto-flow / repeat(2, auto);
+  }
+
+  .custom {
+    appearance: none;
+  }
+
+  .radio.custom {
+    --size: 0.85rem;
+    --ratio: 0.5;
+
+    /*
+    These colors come from inspecting Firefox defaults with the color picker.
+    */
+    --default-color: #8f8f9d;
+    --hover-color: #676774;
+    --active-color: #484851;
+
+    --checked-default-color: #3584e4;
+    --checked-hover-color: #1e6fc5;
+    --checked-active-color: #0059a8;
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2px;
+    border: 2px solid var(--default-color);
+    border-radius: 50%;
+    margin: 3px 3px 0 5px;
+    block-size: var(--size);
+    inline-size: var(--size);
 
     &::after {
-      border-radius: inherit;
-      background-color: var(--checked-default-color);
+      block-size: calc(var(--size) * var(--ratio));
+      content: "";
+      inline-size: calc(var(--size) * var(--ratio));
     }
 
     &:hover {
-      border-color: var(--checked-hover-color);
-
-      &::after {
-        background-color: var(--checked-hover-color);
-      }
+      border-color: var(--hover-color);
     }
 
     &:active {
-      border-color: var(--checked-active-color);
+      border-color: var(--active-color);
+    }
+
+    &:focus {
+      outline: 2px solid lightskyblue;
+      outline-offset: 1px;
+    }
+
+    &:checked {
+      border-color: var(--checked-default-color);
 
       &::after {
-        background-color: var(--checked-active-color);
+        border-radius: inherit;
+        background-color: var(--checked-default-color);
+      }
+
+      &:hover {
+        border-color: var(--checked-hover-color);
+
+        &::after {
+          background-color: var(--checked-hover-color);
+        }
+      }
+
+      &:active {
+        border-color: var(--checked-active-color);
+
+        &::after {
+          background-color: var(--checked-active-color);
+        }
       }
     }
-  }
 
-  /* Support browsers that don't support :focus-visible */
-  &:focus:not(:focus-visible) {
-    outline: unset;
-    outline-offset: unset;
+    /* Support browsers that don't support :focus-visible */
+    &:focus:not(:focus-visible) {
+      outline: unset;
+      outline-offset: unset;
+    }
   }
 }
 </style>

@@ -31,33 +31,37 @@ const itemStyle = ref("outline: 1px solid teal");
 </script>
 
 <template>
-  <div class="input-group">
-    <label for="grid-definition">Grid definition</label>
-    <textarea id="grid-definition" v-model="gridDefinition"></textarea>
+  <div class="grid-experiment">
+    <div class="input-group">
+      <label for="grid-definition">Grid definition</label>
+      <textarea id="grid-definition" v-model="gridDefinition"></textarea>
 
-    <label for="grid-style">Grid style</label>
-    <textarea id="grid-style" v-model="gridStyle"></textarea>
+      <label for="grid-style">Grid style</label>
+      <textarea id="grid-style" v-model="gridStyle"></textarea>
 
-    <label for="item-style">Item style</label>
-    <textarea id="item-style" v-model="itemStyle"></textarea>
-  </div>
+      <label for="item-style">Item style</label>
+      <textarea id="item-style" v-model="itemStyle"></textarea>
+    </div>
 
-  <div class="grid-component" :style="gridStyle">
-    <div v-for="fruit in fruits" :key="fruit" class="item" :style="itemStyle">
-      {{ fruit }}
+    <div class="grid-component" :style="gridStyle">
+      <div v-for="fruit in fruits" :key="fruit" class="item" :style="itemStyle">
+        {{ fruit }}
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-.input-group {
-  display: grid;
-  gap: 0.5em;
-  grid-template-columns: repeat(2, 1fr);
-}
+<style>
+.grid-experiment {
+  .input-group {
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.grid-component {
-  display: grid;
-  grid: v-bind("gridDefinition");
+  .grid-component {
+    display: grid;
+    grid: v-bind("gridDefinition");
+  }
 }
 </style>

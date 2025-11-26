@@ -46,7 +46,7 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <div class="enable-tailwind">
+  <div class="tailwind-toggle">
     <input
       id="tailwind"
       v-model="tailwindEnabled"
@@ -65,28 +65,28 @@ onBeforeMount(async () => {
   </div>
 </template>
 
-<style scoped>
-.enable-tailwind {
+<style>
+.tailwind-toggle {
   display: grid;
   align-items: center;
   justify-content: start;
   column-gap: 0.5em;
   grid-template-columns: repeat(2, auto);
-}
 
-.tailwind-checkbox:disabled {
-  color: GrayText;
-  outline-color: GrayText;
-}
+  .tailwind-checkbox:disabled {
+    color: GrayText;
+    outline-color: GrayText;
+  }
 
-.tailwind-checkbox:disabled ~ * {
-  color: GrayText;
-}
+  .tailwind-checkbox:disabled ~ * {
+    color: GrayText;
+  }
 
-.reset-message {
-  /* @apply tw:text-sm; */
-  font-size: 0.875rem;
-  grid-column-end: -1;
-  line-height: 1.25rem;
+  .reset-message {
+    /* @apply tw:text-sm; */
+    font-size: 0.875rem;
+    grid-column-end: -1;
+    line-height: 1.25rem;
+  }
 }
 </style>

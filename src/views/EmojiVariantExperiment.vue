@@ -54,8 +54,10 @@ const variant = ref("normal");
   </div>
 </template>
 
-<style scoped>
-.emoji {
-  font-variant-emoji: v-bind("variant");
+<style>
+.emoji-variant-experiment {
+  .emoji {
+    font-variant-emoji: v-bind("variant");
+  }
 }
 </style>

@@ -63,228 +63,232 @@ function handleItemStyleUpdate(
 </script>
 
 <template>
-  <div class="input-group">
-    <div style="grid-column: 1 / -1">
-      <label for="column-count">column count</label>
+  <div class="grid-borders-experiment">
+    <div class="input-group">
+      <div style="grid-column: 1 / -1">
+        <label for="column-count">column count</label>
+        <input
+          id="column-count"
+          v-model="columnCount"
+          type="range"
+          min="1"
+          :max="itemCount"
+          step="1"
+          class="column-count"
+        />
+        {{ columnCount }}
+      </div>
+
+      <label for="item-count">item count</label>
       <input
-        id="column-count"
-        v-model="columnCount"
-        type="range"
-        min="1"
-        :max="itemCount"
-        step="1"
-        class="column-count"
+        id="item-count"
+        v-model="itemCount"
+        type="number"
+        style="grid-column-end: span 2"
       />
-      {{ columnCount }}
+
+      <fieldset style="grid-column: 1 / -1">
+        <legend>content</legend>
+        <GridPicker
+          kind="content"
+          @update-style="handleContentStyleUpdate"
+        ></GridPicker>
+      </fieldset>
+
+      <fieldset style="grid-column: 1 / -1">
+        <legend>item</legend>
+        <GridPicker
+          kind="item"
+          @update-style="handleItemStyleUpdate"
+        ></GridPicker>
+      </fieldset>
     </div>
 
-    <label for="item-count">item count</label>
-    <input
-      id="item-count"
-      v-model="itemCount"
-      type="number"
-      style="grid-column-end: span 2"
-    />
-
-    <fieldset style="grid-column: 1 / -1">
-      <legend>content</legend>
-      <GridPicker
-        kind="content"
-        @update-style="handleContentStyleUpdate"
-      ></GridPicker>
-    </fieldset>
-
-    <fieldset style="grid-column: 1 / -1">
-      <legend>item</legend>
-      <GridPicker
-        kind="item"
-        @update-style="handleItemStyleUpdate"
-      ></GridPicker>
-    </fieldset>
-  </div>
-
-  <div class="wrapper">
-    <strong>Grid</strong>
-    <div class="grid" :style="contentStyleList">
-      <div
-        v-for="item of items"
-        :key="item.id"
-        class="grid-row"
-        :style="itemStyleList"
-      >
-        <div :class="item.class">
-          {{ item.text }}
-        </div>
-      </div>
-    </div>
-
-    <strong>Subgrid</strong>
-    <div class="subgrid" :style="contentStyleList">
-      <div
-        v-for="[i, { specialRow, items: listItems }] of list"
-        :key="i"
-        class="row"
-        :class="{ 'special-row': specialRow }"
-        :style="itemStyleList"
-      >
-        <div v-for="item of listItems" :key="item.id" :class="item.class">
-          {{ item.text }}
-        </div>
-      </div>
-    </div>
-
-    <strong>Display Contents</strong>
-    <div class="contents" :style="[contentStyleList, itemStyleList]">
-      <div
-        v-for="[i, { specialRow, items: listItems }] of list"
-        :key="i"
-        class="row"
-      >
+    <div class="wrapper">
+      <strong>Grid</strong>
+      <div class="grid" :style="contentStyleList">
         <div
-          v-for="item of listItems"
+          v-for="item of items"
           :key="item.id"
-          :class="[item.class, { 'special-row': specialRow }]"
+          class="grid-row"
+          :style="itemStyleList"
         >
-          {{ item.text }}
+          <div :class="item.class">
+            {{ item.text }}
+          </div>
         </div>
       </div>
-    </div>
 
-    <strong>List</strong>
-    <ul class="list">
-      <li
-        v-for="[i, { specialRow, items: listItems }] of list"
-        :key="i"
-        class="row"
-        :class="{ 'special-row': specialRow }"
-        :style="contentStyleList"
-      >
-        <span
-          v-for="item of listItems"
-          :key="item.id"
-          :class="item.class"
+      <strong>Subgrid</strong>
+      <div class="subgrid" :style="contentStyleList">
+        <div
+          v-for="[i, { specialRow, items: listItems }] of list"
+          :key="i"
+          class="row"
+          :class="{ 'special-row': specialRow }"
           :style="itemStyleList"
-          >{{ item.text }}</span
         >
-      </li>
-    </ul>
+          <div v-for="item of listItems" :key="item.id" :class="item.class">
+            {{ item.text }}
+          </div>
+        </div>
+      </div>
 
-    <strong>Table-Grid</strong>
-    <table class="table-grid">
-      <tbody>
-        <tr
+      <strong>Display Contents</strong>
+      <div class="contents" :style="[contentStyleList, itemStyleList]">
+        <div
+          v-for="[i, { specialRow, items: listItems }] of list"
+          :key="i"
+          class="row"
+        >
+          <div
+            v-for="item of listItems"
+            :key="item.id"
+            :class="[item.class, { 'special-row': specialRow }]"
+          >
+            {{ item.text }}
+          </div>
+        </div>
+      </div>
+
+      <strong>List</strong>
+      <ul class="list">
+        <li
           v-for="[i, { specialRow, items: listItems }] of list"
           :key="i"
           class="row"
           :class="{ 'special-row': specialRow }"
           :style="contentStyleList"
         >
-          <td
+          <span
             v-for="item of listItems"
             :key="item.id"
             :class="item.class"
             :style="itemStyleList"
+            >{{ item.text }}</span
           >
-            {{ item.text }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        </li>
+      </ul>
 
-    <strong>Table</strong>
-    <table class="table">
-      <tbody>
-        <tr
-          v-for="[i, { specialRow, items: listItems }] of list"
-          :key="i"
-          class="row"
-          :class="{ 'special-row': specialRow }"
-        >
-          <td v-for="item of listItems" :key="item.id" :class="item.class">
-            {{ item.text }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <strong>Table-Grid</strong>
+      <table class="table-grid">
+        <tbody>
+          <tr
+            v-for="[i, { specialRow, items: listItems }] of list"
+            :key="i"
+            class="row"
+            :class="{ 'special-row': specialRow }"
+            :style="contentStyleList"
+          >
+            <td
+              v-for="item of listItems"
+              :key="item.id"
+              :class="item.class"
+              :style="itemStyleList"
+            >
+              {{ item.text }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <strong>Table</strong>
+      <table class="table">
+        <tbody>
+          <tr
+            v-for="[i, { specialRow, items: listItems }] of list"
+            :key="i"
+            class="row"
+            :class="{ 'special-row': specialRow }"
+          >
+            <td v-for="item of listItems" :key="item.id" :class="item.class">
+              {{ item.text }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
-<style scoped>
-.input-group {
-  display: grid;
-  padding: 1em;
-  grid-template-columns: repeat(3, minmax(0, auto));
-}
-
-.wrapper {
-  --border-color: blue;
-  --border-width: 1px;
-
-  --column-count: v-bind("columnCount");
-
-  display: grid;
-  row-gap: 1em;
-}
-
-.column-count {
-  margin: 1em;
-}
-
-.special {
-  color: tomato;
-  font-size: 1.5em;
-  font-style: italic;
-  font-weight: bold;
-
-  &::before {
-    content: "*";
-  }
-}
-
-.grid {
-  display: grid;
-  background-color: var(--border-color);
-  grid-template-columns: repeat(var(--column-count), auto);
-  row-gap: var(--border-width);
-
-  .grid-row {
+<style>
+.grid-borders-experiment {
+  .input-group {
     display: grid;
-    background-color: Canvas;
+    padding: 1em;
+    grid-template-columns: repeat(3, minmax(0, auto));
   }
-}
 
-.subgrid {
-  display: grid;
-  grid-template-columns: repeat(var(--column-count), auto);
+  .wrapper {
+    --border-color: blue;
+    --border-width: 1px;
 
-  .row {
+    --column-count: v-bind("columnCount");
+
     display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: subgrid;
+    row-gap: 1em;
   }
-}
 
-.contents {
-  display: grid;
-  grid-template-columns: repeat(var(--column-count), auto);
-
-  .row {
-    display: contents;
+  .column-count {
+    margin: 1em;
   }
-}
 
-.list .row {
-  display: grid;
-  grid-auto-flow: column;
-}
+  .special {
+    color: tomato;
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: bold;
 
-.table-grid .row {
-  display: grid;
-  grid-template-columns: repeat(var(--column-count), auto);
-}
+    &::before {
+      content: "*";
+    }
+  }
 
-:where(.subgrid, .contents, .list, .table-grid, .table)
-  .special-row:nth-child(n + 2) {
-  border-top: 1px solid green;
+  .grid {
+    display: grid;
+    background-color: var(--border-color);
+    grid-template-columns: repeat(var(--column-count), auto);
+    row-gap: var(--border-width);
+
+    .grid-row {
+      display: grid;
+      background-color: Canvas;
+    }
+  }
+
+  .subgrid {
+    display: grid;
+    grid-template-columns: repeat(var(--column-count), auto);
+
+    .row {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-template-columns: subgrid;
+    }
+  }
+
+  .contents {
+    display: grid;
+    grid-template-columns: repeat(var(--column-count), auto);
+
+    .row {
+      display: contents;
+    }
+  }
+
+  .list .row {
+    display: grid;
+    grid-auto-flow: column;
+  }
+
+  .table-grid .row {
+    display: grid;
+    grid-template-columns: repeat(var(--column-count), auto);
+  }
+
+  :where(.subgrid, .contents, .list, .table-grid, .table)
+    .special-row:nth-child(n + 2) {
+    border-top: 1px solid green;
+  }
 }
 </style>

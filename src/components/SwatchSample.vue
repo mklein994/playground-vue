@@ -15,16 +15,16 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style>
 .swatch-sample {
   display: grid;
   min-width: 100px;
   grid-auto-flow: column;
   grid-auto-rows: 1fr;
-}
 
-.sample {
-  aspect-ratio: 1 / 1;
-  background-color: var(--color);
+  .sample {
+    aspect-ratio: 1 / 1;
+    background-color: var(--color);
+  }
 }
 </style>

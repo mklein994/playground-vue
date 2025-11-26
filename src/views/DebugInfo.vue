@@ -33,7 +33,7 @@ const meta = import.meta;
   </div>
 </template>
 
-<style scoped>
+<style>
 .debug-info pre {
   white-space: pre-wrap;
 }

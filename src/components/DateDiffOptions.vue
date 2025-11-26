@@ -28,7 +28,7 @@ const resetToPreset = () => {
 </script>
 
 <template>
-  <form class="settings" @submit.prevent>
+  <form class="date-diff-options" @submit.prevent>
     <div v-if="presets.length > 0" class="presets">
       <label for="preset">Presets</label>
       <select id="preset" v-model="presetId">
@@ -185,44 +185,44 @@ const resetToPreset = () => {
   </form>
 </template>
 
-<style scoped>
-.settings {
+<style>
+.date-diff-options {
   display: grid;
   gap: 1rem;
   grid-auto-flow: column;
-}
 
-.presets {
-  display: grid;
-  gap: 0.5rem;
-  place-content: start;
-}
+  .presets {
+    display: grid;
+    gap: 0.5rem;
+    place-content: start;
+  }
 
-.preset {
-  color: salmon;
-}
+  .preset {
+    color: salmon;
+  }
 
-.fieldset {
-  display: grid;
-  align-content: start;
-  align-items: baseline;
-  grid-template-columns: auto auto;
-  row-gap: 1rem;
-}
+  .fieldset {
+    display: grid;
+    align-content: start;
+    align-items: baseline;
+    grid-template-columns: auto auto;
+    row-gap: 1rem;
+  }
 
-.radio-group {
-  display: grid;
-  max-width: max-content;
-  column-gap: 0.5rem;
-  grid-column: 1 / -1;
-  grid-template-columns: subgrid;
-}
+  .radio-group {
+    display: grid;
+    max-width: max-content;
+    column-gap: 0.5rem;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
 
-.comma-checkbox,
-.hms-checkbox {
-  display: grid;
-  gap: 1rem 0.5rem;
-  grid-column: 1 / -1;
-  grid-template-columns: subgrid;
+  .comma-checkbox,
+  .hms-checkbox {
+    display: grid;
+    gap: 1rem 0.5rem;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
 }
 </style>

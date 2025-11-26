@@ -249,22 +249,22 @@ watchEffect(() => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .date-diff-experiment {
   display: grid;
   justify-content: start;
   margin: 1rem;
-}
 
-.form {
-  display: grid;
-  align-items: start;
-  justify-content: start;
-  gap: 1rem;
-  grid-template-columns: repeat(6, auto);
-}
+  .form {
+    display: grid;
+    align-items: start;
+    justify-content: start;
+    gap: 1rem;
+    grid-template-columns: repeat(6, auto);
+  }
 
-.date-add-output {
-  font-size: 1rem;
+  .date-add-output {
+    font-size: 1rem;
+  }
 }
 </style>

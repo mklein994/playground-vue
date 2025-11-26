@@ -101,7 +101,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="wasm">
+  <div class="wasm-experiment">
     <button @click="updateLocation">Update Location</button>
     <input
       id="high-accuracy"
@@ -146,8 +146,8 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped>
-.wasm {
+<style>
+.wasm-experiment {
   padding: 1rem;
 }
 </style>

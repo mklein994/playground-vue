@@ -19,7 +19,7 @@ const handleClick = throttle((amount: number) => bump(amount), 500);
   </div>
 </template>
 
-<style scoped>
+<style>
 .throttle-experiment {
   display: flex;
   align-items: baseline;

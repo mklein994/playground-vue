@@ -63,59 +63,59 @@ const squareAspectRatio = computed(() => (square.value ? "1 / 1" : "unset"));
   </div>
 </template>
 
-<style scoped>
+<style>
 .color-mix-experiment {
   width: 100vw;
   padding: 1em;
-}
 
-.color-mix-form {
-  display: grid;
-  align-items: start;
-  justify-content: start;
-  gap: 1em;
-  grid: auto-flow / repeat(3, minmax(0, auto));
-  justify-items: start;
+  .color-mix-form {
+    display: grid;
+    align-items: start;
+    justify-content: start;
+    gap: 1em;
+    grid: auto-flow / repeat(3, minmax(0, auto));
+    justify-items: start;
 
-  > [for] {
-    grid-column-start: 1;
+    > [for] {
+      grid-column-start: 1;
+    }
   }
-}
 
-[for="stops"] ~ [type="number"] {
-  max-width: 10ch;
-}
+  [for="stops"] ~ [type="number"] {
+    max-width: 10ch;
+  }
 
-.color-space-wrapper {
-  display: flex;
-  gap: 1em;
-  grid-column: 1 / -1;
-}
+  .color-space-wrapper {
+    display: flex;
+    gap: 1em;
+    grid-column: 1 / -1;
+  }
 
-.first-color,
-.last-color {
-  display: block;
-  height: 100%;
-  inline-size: 3em;
-}
+  .first-color,
+  .last-color {
+    display: block;
+    height: 100%;
+    inline-size: 3em;
+  }
 
-.gradients {
-  --gap: 1px;
-  display: grid;
-  gap: var(--gap);
-  grid-template-columns: auto 1fr;
-  --square: v-bind("squareAspectRatio");
-}
+  .gradients {
+    --gap: 1px;
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: auto 1fr;
+    --square: v-bind("squareAspectRatio");
+  }
 
-.gradient-content {
-  font-family: monospace;
-  font-size: 0.2rem;
-}
-
-/* @media (min-width: theme("screens.md")) { */
-@media (min-width: 768px) {
   .gradient-content {
-    font-size: 0.75rem;
+    font-family: monospace;
+    font-size: 0.2rem;
+  }
+
+  /* @media (min-width: theme("screens.md")) { */
+  @media (min-width: 768px) {
+    .gradient-content {
+      font-size: 0.75rem;
+    }
   }
 }
 </style>

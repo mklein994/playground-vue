@@ -16,17 +16,17 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 .select-styling {
   background-color: rgb(25 25 0 / 0.1);
-}
 
-.none {
-  padding: 0;
-  border: 0;
-  margin: 0;
-  appearance: none;
-  background: none;
-  outline: 0;
+  .none {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    appearance: none;
+    background: none;
+    outline: 0;
+  }
 }
 </style>

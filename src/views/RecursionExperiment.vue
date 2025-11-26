@@ -112,12 +112,12 @@ const split = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style>
 .recursion-experiment {
   display: grid;
-}
 
-.inputs {
-  display: grid;
+  .inputs {
+    display: grid;
+  }
 }
 </style>
