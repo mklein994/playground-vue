@@ -210,7 +210,7 @@ onBeforeUnmount(() => {
   <dialog
     ref="menu"
     closedby="any"
-    class="home"
+    class="navigation-fragment"
     :class="menuPositionClasses"
     @close="handleMenuClose"
   >
@@ -288,26 +288,21 @@ onBeforeUnmount(() => {
       </div>
     </div>
 
-    <button
-      type="button"
-      class="nav-button-wrapper"
-      :class="menuPositionClasses"
-      @click="toggleMenu"
-    >
+    <button type="button" class="nav-button-wrapper" @click="toggleMenu">
       <button v-if="menuOpen" @click.stop="toggleExpand">
-        <Component :is="getChevronIcon" class="icon"></Component>
+        <Component :is="getChevronIcon" class="nav-icon"></Component>
       </button>
 
       <RouteInfo v-if="expanded" class="route-info"></RouteInfo>
 
-      <XMarkIcon v-if="menuOpen" class="icon"></XMarkIcon>
-      <MenuIcon v-else class="icon"></MenuIcon>
+      <XMarkIcon v-if="menuOpen" class="nav-icon"></XMarkIcon>
+      <MenuIcon v-else class="nav-icon"></MenuIcon>
     </button>
   </dialog>
 </template>
 
-<style scoped>
-.home {
+<style>
+.navigation-fragment {
   position: fixed;
   z-index: 1;
   display: flex;
@@ -337,172 +332,172 @@ onBeforeUnmount(() => {
   &::backdrop {
     background-color: rgb(0 0 0 / 0.25);
   }
-}
 
-.links,
-.menu-bottom {
-  display: none;
-}
-
-.menu-bottom {
-  gap: 1rem;
-}
-
-/**
- * Reminder: In a language like English:
- *
- * block-start:  top
- * block-end:    bottom
- *
- * inline-start: left
- * inline-end:   right
- */
-
-.top {
-  inset-block-start: 0;
-}
-
-.bottom {
-  inset-block-end: 0;
-}
-
-.left {
-  inset-inline-start: 0;
-}
-
-.right {
-  inset-inline-end: 0;
-}
-
-.top.left {
-  border-block-start: none;
-  border-end-end-radius: var(--border-radius);
-  border-inline-start: none;
-}
-
-.top.right {
-  border-block-start: none;
-  border-end-start-radius: var(--border-radius);
-  border-inline-end: none;
-}
-
-.bottom.left {
-  border-block-end: none;
-  border-inline-start: none;
-  border-start-end-radius: var(--border-radius);
-}
-
-.bottom.right {
-  border-block-end: none;
-  border-inline-end: none;
-  border-start-start-radius: var(--border-radius);
-}
-
-.links {
-  min-height: 5rem;
-  /* scroll the links when there's not enough space */
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  /* TODO: figure out how to make this less janky on
-   * browsers that can hide the toolbar on scroll (i.e.
-   * Firefox Android)
-   */
-}
-
-.home[open] {
-  box-shadow: var(--shadow-x) var(--shadow-y) 20px rgb(0 0 0 / 10%);
-
-  &.bottom {
-    --shadow-y: 10px;
-  }
-
-  &.right {
-    --shadow-x: 10px;
-  }
-
-  &.left {
-    --shadow-x: -10px;
-  }
-
-  &.top {
-    --shadow-y: -10px;
-    flex-flow: column-reverse;
-  }
-
-  .links {
-    display: unset;
+  .links,
+  .menu-bottom {
+    display: none;
   }
 
   .menu-bottom {
-    display: grid;
+    gap: 1rem;
   }
-}
 
-.menu-positions {
-  display: grid;
-  gap: 0.5em;
-  grid-template-columns: repeat(v-bind("expanded ? 2 : 1"), 1fr);
-}
+  /**
+   * Reminder: In a language like English:
+   *
+   * block-start:  top
+   * block-end:    bottom
+   *
+   * inline-start: left
+   * inline-end:   right
+   */
 
-.menu-position {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  column-gap: 0.5em;
-}
+  &.top {
+    inset-block-start: 0;
+  }
 
-.nav-button-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  &.bottom {
+    inset-block-end: 0;
+  }
 
-  cursor: pointer;
-  gap: 1em;
-}
+  &.left {
+    inset-inline-start: 0;
+  }
 
-.left .nav-button-wrapper {
-  flex-direction: row-reverse;
-}
+  &.right {
+    inset-inline-end: 0;
+  }
 
-.route-info {
-  flex: 1;
-  margin-block: -0.25em;
-  text-align: center;
-}
+  &.top.left {
+    border-block-start: none;
+    border-end-end-radius: var(--border-radius);
+    border-inline-start: none;
+  }
 
-.site-search {
-  position: sticky;
-  inset-block-start: 0;
-}
+  &.top.right {
+    border-block-start: none;
+    border-end-start-radius: var(--border-radius);
+    border-inline-end: none;
+  }
 
-.links-list {
-  padding: 0;
-  margin: 0 0 0 1em;
-  list-style-type: circle;
-}
+  &.bottom.left {
+    border-block-end: none;
+    border-inline-start: none;
+    border-start-end-radius: var(--border-radius);
+  }
 
-.link {
-  text-transform: capitalize;
-}
+  &.bottom.right {
+    border-block-end: none;
+    border-inline-end: none;
+    border-start-start-radius: var(--border-radius);
+  }
 
-.active {
-  color: light-dark(
-    var(--pv-base-color-green-700),
-    var(--pv-base-color-green-500)
-  );
-  list-style-type: disc;
-}
+  .links {
+    min-height: 5rem;
+    /* scroll the links when there's not enough space */
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    /* TODO: figure out how to make this less janky on
+     * browsers that can hide the toolbar on scroll (i.e.
+     * Firefox Android)
+     */
+  }
 
-.icon {
-  width: 1.5rem;
-  height: 1.5rem;
-}
+  &[open] {
+    box-shadow: var(--shadow-x) var(--shadow-y) 20px rgb(0 0 0 / 10%);
 
-.commit-hash {
-  font-size: 1rem;
-}
+    &.bottom {
+      --shadow-y: 10px;
+    }
 
-.build-date {
-  font-size: 0.8em;
+    &.right {
+      --shadow-x: 10px;
+    }
+
+    &.left {
+      --shadow-x: -10px;
+    }
+
+    &.top {
+      --shadow-y: -10px;
+      flex-flow: column-reverse;
+    }
+
+    .links {
+      display: unset;
+    }
+
+    .menu-bottom {
+      display: grid;
+    }
+  }
+
+  .menu-positions {
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: repeat(v-bind("expanded ? 2 : 1"), 1fr);
+  }
+
+  .menu-position {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    column-gap: 0.5em;
+  }
+
+  .nav-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: pointer;
+    gap: 1em;
+  }
+
+  .left .nav-button-wrapper {
+    flex-direction: row-reverse;
+  }
+
+  .route-info {
+    flex: 1;
+    margin-block: -0.25em;
+    text-align: center;
+  }
+
+  .site-search {
+    position: sticky;
+    inset-block-start: 0;
+  }
+
+  .links-list {
+    padding: 0;
+    margin: 0 0 0 1em;
+    list-style-type: circle;
+  }
+
+  .link {
+    text-transform: capitalize;
+  }
+
+  .active {
+    color: light-dark(
+      var(--pv-base-color-green-700),
+      var(--pv-base-color-green-500)
+    );
+    list-style-type: disc;
+  }
+
+  .nav-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .commit-hash {
+    font-size: 1rem;
+  }
+
+  .build-date {
+    font-size: 0.8em;
+  }
 }
 </style>

@@ -32,14 +32,14 @@ const cycleScheme = () => {
   </button>
 </template>
 
-<style scoped>
+<style>
 .switcher-button {
   display: flex;
   gap: 0.5rem;
   place-items: center;
-}
 
-.icon {
-  width: 1rem;
+  .icon {
+    width: 1rem;
+  }
 }
 </style>
