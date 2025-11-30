@@ -105,7 +105,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="device-orientation-experiment">
+  <div class="compass-experiment">
     <div class="settings">
       <input id="listening" v-model="listening" type="checkbox" />
       <label for="listening">Listening</label>
@@ -172,7 +172,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
-.device-orientation-experiment {
+.compass-experiment {
   position: relative;
   overflow: hidden;
   width: 100svw;
