@@ -22,7 +22,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="accent-color-experiment">
+  <form class="accent-color-experiment" @submit.prevent>
     <div class="text">
       <label for="color">Accent Color</label>
       <input id="color" v-model="color" type="text" />
@@ -140,7 +140,7 @@ onMounted(() => {
       <label for="file">file</label>
       <input id="file" type="file" />
     </div>
-  </div>
+  </form>
 </template>
 
 <style>
