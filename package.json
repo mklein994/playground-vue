@@ -2,11 +2,12 @@
   "name": "playground-vue",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently --kill-others --passthrough-arguments 'pnpm run build:tokens:watch' 'vite {@}' --",
     "build": "vite build",
     "build:all": "pnpm build:tokens && pnpm build:tailwind && vite build",
     "build:all-no-tailwind": "pnpm build:tokens && vite build",
     "build:tokens": "style-dictionary build --config ./sd.config.ts",
+    "build:tokens:watch": "chokidar 'sd.config.ts' 'src/tokens/**/*.ts' --initial --command 'pnpm run build:tokens'",
     "build:tailwind": "tailwindcss --minify --input ./src/tailwind.css --output ./public/tailwind.min.css",
     "preview": "vite preview",
     "typecheck:config": "vue-tsc --composite false -p tsconfig.vite-config.json",
