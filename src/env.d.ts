@@ -82,7 +82,13 @@ interface ImportMeta {
 // HACK: TypeScript types don't support the `window.screen.orientation.lock`
 // method:
 // https://github.com/microsoft/TypeScript-DOM-lib-generator/issues/1615
+type OrientationLockType =
+  | "any"
+  | "landscape"
+  | "natural"
+  | "portrait"
+  | OrientationType;
 interface ScreenOrientation extends EventTarget {
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation/lock) */
-  lock(orientation: OrientationType): Promise<void>;
+  lock(orientation: OrientationLockType): Promise<void>;
 }
