@@ -49,11 +49,11 @@
     "@tailwindcss/vite": "^4.1.17",
     "@types/chroma-js": "^3.1.2",
     "@types/d3": "^7.4.3",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.0.0",
     "@vitejs/plugin-vue": "^6.0.2",
     "@vitest/coverage-v8": "^4.0.15",
     "@vue/test-utils": "^2.4.6",
-    "@vue/typescript-plugin": "^3.1.7",
+    "@vue/typescript-plugin": "^3.1.8",
     "change-case": "^5.4.4",
     "chokidar-cli": "^3.0.0",
     "chroma-js": "^3.2.0",
@@ -73,7 +73,7 @@
     "postcss": "^8.5.6",
     "postcss-html": "^1.8.0",
     "prettier": "^3.7.4",
-    "sass": "^1.95.0",
+    "sass": "^1.96.0",
     "style-dictionary": "^5.1.1",
     "stylelint": "^16.26.1",
     "stylelint-config-idiomatic-order": "^10.0.0",
@@ -86,6 +86,6 @@
     "vite": "^7.2.7",
     "vitest": "4.0.15",
     "vue-eslint-parser": "^10.2.0",
-    "vue-tsc": "~3.1.7"
+    "vue-tsc": "~3.1.8"
   }
 }
