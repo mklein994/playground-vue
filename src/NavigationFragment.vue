@@ -221,7 +221,7 @@ onBeforeUnmount(() => {
           type="search"
           placeholder="Search&hellip;"
           autofocus
-          class="search-query"
+          class="search-query tw:form-input"
         />
 
         <div v-if="filteredLinks.length === 0">No Results</div>
@@ -255,6 +255,7 @@ onBeforeUnmount(() => {
       <div>
         <select
           :value="selectedInteractiveWidget"
+          class="tw:form-select"
           @change="handleInteractiveWidgetChange"
         >
           <option value="">Resizes Visual (default)</option>
