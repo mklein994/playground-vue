@@ -7,3 +7,4 @@ coverage/
 .eslintcache
 tsconfig.*-temp.json
 src/tokens/vendor/
+src/assets/generated/
