@@ -61,3 +61,30 @@
     }
   }
 }
+
+/*
+* Smoothly transition a value from a high length to a low length between two breakpoints
+*
+* Parameters:
+*   --pv-value-start <number>: The starting value, e.g. 0.75
+*   --pv-value-end <number>: The ending value, e.g. 0
+*   --pv-width-start <number>: The width the transition starts at, e.g. 64
+*   --pv-width-end <number>: The width the transition ends at, e.g. 80
+*   --pv-unit <length>: A length that represents the unit for --pv-value-* and --pv-width-* parameters
+*   --pv-slope-factor <length>: A length representing the conversion from --pv-unit to some relative size, e.g. 100vw or 100cqi
+*
+* Result:
+*   --pv-value <length>: A clamp function that scales linearly between --pv-value-start to --pv-value-end when the container expands from --pv-width-start to --pv-width-end
+*/
+.pv-inverse-clamp {
+  --_slope: calc(
+    (var(--pv-value-end) - var(--pv-value-start)) /
+      (var(--pv-width-end) - var(--pv-width-start))
+  );
+  --pv-value: clamp(
+    var(--pv-value-end) * var(--pv-unit),
+    var(--pv-value-start) * var(--pv-unit) - var(--_slope) * var(--pv-unit) *
+      var(--pv-width-start) + var(--_slope) * var(--pv-slope-factor),
+    var(--pv-value-start) * var(--pv-unit)
+  );
+}
