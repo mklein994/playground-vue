@@ -103,6 +103,8 @@ onMounted(() => {
   .settings {
     display: grid;
     gap: 0.5rem;
+    inline-size: var(--pv-b-container-xs);
+    margin-inline: auto;
 
     .input-wrapper {
       display: flex;
