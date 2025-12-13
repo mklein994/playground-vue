@@ -23,7 +23,7 @@ const configTransforms = [
 ];
 
 export default {
-  source: [resolve("./src/tokens/base.ts")],
+  include: [resolve("./src/tokens/base.ts")],
 
   hooks: {
     transforms: {
