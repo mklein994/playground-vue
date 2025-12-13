@@ -37,8 +37,6 @@ onMounted(() => {
           min="3"
           max="15"
           step="any"
-          :data-in-transition="!['0px', '12px'].includes(marginInlineEnd)"
-          class="width-input"
         />
       </div>
 
@@ -110,10 +108,6 @@ onMounted(() => {
       display: flex;
       align-items: center;
       gap: 0.25rem;
-    }
-
-    .width-input[data-in-transition="true"] {
-      accent-color: var(--pv-b-color-green-500);
     }
   }
 }
