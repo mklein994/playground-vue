@@ -46,7 +46,7 @@ export default {
     },
 
     json: {
-      transforms: [transforms.nameKebab],
+      transforms: configTransforms,
       prefix: "pv",
       buildPath: resolve("./src/assets/generated/"),
 
