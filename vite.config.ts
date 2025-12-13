@@ -100,7 +100,6 @@ export default defineConfig(({ mode, command }) => {
     },
 
     build: {
-      // The default, "modules", doesn't include top-level await, necessary for wasm support
       sourcemap: !lowMemory && !isReproducible, // sourcemaps change on every build
       rollupOptions: {
         output: {
