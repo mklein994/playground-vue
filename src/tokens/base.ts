@@ -14,7 +14,7 @@ const baseColors = Object.fromEntries(
 );
 
 /** How large in pixels the base font is */
-const rootFontSizePx = 16;
+const rootFontSizePx: number = 16;
 
 /** Factor that spacing units increases by */
 const spacingFactor = 0.25;
@@ -112,6 +112,9 @@ export default {
           },
         ]),
       ),
+      basePx: {
+        $value: rootFontSizePx === 16 ? "initial" : `${rootFontSizePx}px`,
+      },
     },
 
     lineHeight: {
