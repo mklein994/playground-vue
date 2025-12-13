@@ -36,6 +36,18 @@ export default defineConfig(({ mode, command }) => {
   const lowMemory = (env.BUILDTIME_LOW_MEMORY ?? "false") === "true";
   const tailwindSupported =
     (env.BUILDTIME_TAILWIND_SUPPORTED ?? "true") === "true";
+  const resolveStaticVariables =
+    (env.BUILDTIME_RESOLVE_STATIC_VARIABLES ?? "false") === "true";
+
+  const staticVariables = (
+    resolveStaticVariables
+      ? JSON.parse(
+          fs.readFileSync(resolve("./src/assets/generated/variables.json"), {
+            encoding: "utf-8",
+          }),
+        )
+      : {}
+  ) as Record<string, string>;
 
   const tailwindPlugin = () => {
     if (command === "serve") {
@@ -58,6 +70,33 @@ export default defineConfig(({ mode, command }) => {
       transformer: "lightningcss",
       lightningcss: {
         exclude: Features.OklabColors | Features.LightDark,
+        visitor: resolveStaticVariables
+          ? {
+              Variable(variable) {
+                const ident = variable.name.ident;
+                const key = ident.replace(/^--/, "");
+                if (!ident.startsWith("--pv-base-")) {
+                  return;
+                }
+
+                if (ident.startsWith("--pv-base-color-")) {
+                  return {
+                    type: "unresolved-color",
+                    raw: staticVariables[key],
+                  };
+                }
+
+                if (
+                  /^--pv-base-(?:spacing|container|radius|blur)-/.test(ident)
+                ) {
+                  return {
+                    type: "length",
+                    raw: staticVariables[key],
+                  };
+                }
+              },
+            }
+          : undefined,
       },
     },
 
