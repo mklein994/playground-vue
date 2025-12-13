@@ -14,7 +14,13 @@ export default {
         "function-no-unknown": [
           true,
           {
-            ignoreFunctions: ["v-bind", "theme"],
+            ignoreFunctions: [
+              // Vue
+              "v-bind",
+
+              // Tailwind
+              "theme",
+            ],
           },
         ],
         "declaration-property-value-no-unknown": [
