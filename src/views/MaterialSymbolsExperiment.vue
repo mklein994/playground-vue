@@ -169,7 +169,7 @@ const handleFillCheckToggle = (e: InputEvent) => {
     display: grid;
     max-width: max-content;
     justify-content: start;
-    gap: var(--pv-spacing-2);
+    gap: var(--pv-base-spacing-2);
     grid-template-columns: auto auto auto;
   }
 
