@@ -1,14 +1,15 @@
 <template>
   <div class="sass">
     This is highlighted in
-    <code class="code">#{var(--pv-b-color-red-500)}</code>.
+    <code class="code">#{var(--sass-color)}</code>.
   </div>
 </template>
 
 <style lang="scss" scoped>
-$primary-color: #{var(--pv-b-color-red-500)};
-
 .sass {
+  --sass-color: red;
+  $primary-color: #{var(--sass-color)};
+
   color: $primary-color;
 }
 
