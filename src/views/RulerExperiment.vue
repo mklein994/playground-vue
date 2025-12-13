@@ -322,16 +322,16 @@ const handleToggleFullscreenClick = async () => {
   --tick-marker-padding: 0.5rem;
   --ruler-transform: initial;
   --default-tick-color: light-dark(
-    var(--pv-base-color-slate-400),
-    var(--pv-base-color-slate-600)
+    var(--pv-b-color-slate-400),
+    var(--pv-b-color-slate-600)
   );
   --medium-tick-color: light-dark(
-    var(--pv-base-color-slate-600),
-    var(--pv-base-color-slate-400)
+    var(--pv-b-color-slate-600),
+    var(--pv-b-color-slate-400)
   );
   --heavy-tick-color: light-dark(
-    var(--pv-base-color-slate-950),
-    var(--pv-base-color-slate-50)
+    var(--pv-b-color-slate-950),
+    var(--pv-b-color-slate-50)
   );
   --tick-color: var(--default-tick-color);
 
@@ -345,7 +345,7 @@ const handleToggleFullscreenClick = async () => {
 
   .options-is-large-group {
     input.default + label::after {
-      color: var(--pv-base-color-neutral-500);
+      color: var(--pv-b-color-neutral-500);
       content: " (auto default)";
       font-size: 0.8em;
     }

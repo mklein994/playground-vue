@@ -198,7 +198,7 @@ onBeforeUnmount(() => {
     text-align: center;
 
     &.is-cardinal {
-      color: var(--pv-base-color-orange-500);
+      color: var(--pv-b-color-orange-500);
     }
   }
 
@@ -213,28 +213,28 @@ onBeforeUnmount(() => {
 
       .circle {
         stroke: light-dark(
-          var(--pv-base-color-neutral-950),
-          var(--pv-base-color-neutral-200)
+          var(--pv-b-color-neutral-950),
+          var(--pv-b-color-neutral-200)
         );
       }
 
       .point {
         fill: light-dark(
-          var(--pv-base-color-neutral-100),
-          var(--pv-base-color-neutral-600)
+          var(--pv-b-color-neutral-100),
+          var(--pv-b-color-neutral-600)
         );
 
         rotate: var(--angle);
         stroke: light-dark(
-          var(--pv-base-color-neutral-950),
-          var(--pv-base-color-neutral-200)
+          var(--pv-b-color-neutral-950),
+          var(--pv-b-color-neutral-200)
         );
         transform-origin: center;
 
         &.north {
           fill: light-dark(
-            var(--pv-base-color-orange-300),
-            var(--pv-base-color-orange-600)
+            var(--pv-b-color-orange-300),
+            var(--pv-b-color-orange-600)
           );
         }
 
@@ -255,8 +255,8 @@ onBeforeUnmount(() => {
     .cardinal {
       dominant-baseline: central;
       fill: light-dark(
-        var(--pv-base-color-neutral-950),
-        var(--pv-base-color-neutral-50)
+        var(--pv-b-color-neutral-950),
+        var(--pv-b-color-neutral-50)
       );
       font-family: serif;
       rotate: calc(-1 * var(--rotation));
@@ -272,16 +272,16 @@ onBeforeUnmount(() => {
     }
 
     .level {
-      stroke: var(--pv-base-color-neutral-100);
+      stroke: var(--pv-b-color-neutral-100);
       stroke-width: 1px;
 
       &.is-level {
-        --color: var(--pv-base-color-orange-500);
+        --color: var(--pv-b-color-orange-500);
       }
 
       .line {
         &.live {
-          stroke: var(--color, var(--pv-base-color-neutral-300));
+          stroke: var(--color, var(--pv-b-color-neutral-300));
 
           --factor: 50px;
           --x: calc(v-bind("levelX") * var(--factor));

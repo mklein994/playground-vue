@@ -75,7 +75,7 @@ const levelY = computed(() => getLevel(orientation.value?.beta ?? 0));
   --factor: calc(var(--container) / 2 - var(--ref) / 2);
   .circle {
     position: absolute;
-    border: 1px solid var(--pv-base-color-neutral-500);
+    border: 1px solid var(--pv-b-color-neutral-500);
     border-radius: 50%;
     margin: auto;
     aspect-ratio: 1;
@@ -93,7 +93,7 @@ const levelY = computed(() => getLevel(orientation.value?.beta ?? 0));
 
   .live {
     width: var(--ref);
-    border-color: var(--pv-base-color-blue-500);
+    border-color: var(--pv-b-color-blue-500);
     --x: calc(v-bind("levelX") * var(--factor) * -1vmin);
     --y: calc(v-bind("levelY") * var(--factor) * -1vmin);
     transform: translate(var(--x), var(--y));

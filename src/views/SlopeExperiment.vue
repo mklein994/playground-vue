@@ -67,7 +67,7 @@ onMounted(() => {
 
   .container {
     border: 1px solid
-      light-dark(var(--pv-base-color-pink-500), var(--pv-base-color-pink-400));
+      light-dark(var(--pv-b-color-pink-500), var(--pv-b-color-pink-400));
     container: wrapper / inline-size;
     inline-size: calc(v-bind("width") * 1rem);
     margin-inline: auto;
@@ -82,10 +82,7 @@ onMounted(() => {
 
       box-sizing: content-box;
       border: 1px solid
-        light-dark(
-          var(--pv-base-color-neutral-800),
-          var(--pv-base-color-neutral-200)
-        );
+        light-dark(var(--pv-b-color-neutral-800), var(--pv-b-color-neutral-200));
       block-size: 5rem;
       container: box / inline-size;
       inline-size: clamp(
@@ -96,7 +93,7 @@ onMounted(() => {
       margin-inline: auto;
 
       .box {
-        background-color: var(--pv-base-color-green-500);
+        background-color: var(--pv-b-color-green-500);
         block-size: 1rem;
         inline-size: 1rem;
 
@@ -116,7 +113,7 @@ onMounted(() => {
     }
 
     .width-input[data-in-transition="true"] {
-      accent-color: var(--pv-base-color-green-500);
+      accent-color: var(--pv-b-color-green-500);
     }
   }
 }

@@ -74,21 +74,20 @@ export default defineConfig(({ mode, command }) => {
           ? {
               Variable(variable) {
                 const ident = variable.name.ident;
-                const key = ident.replace(/^--/, "");
-                if (!ident.startsWith("--pv-base-")) {
+                if (!ident.startsWith("--pv-b-")) {
                   return;
                 }
 
-                if (ident.startsWith("--pv-base-color-")) {
+                const key = ident.replace(/^--/, "");
+
+                if (ident.startsWith("--pv-b-color-")) {
                   return {
                     type: "unresolved-color",
                     raw: staticVariables[key],
                   };
                 }
 
-                if (
-                  /^--pv-base-(?:spacing|container|radius|blur)-/.test(ident)
-                ) {
+                if (/^--pv-b-(?:spacing|container|radius|blur)-/.test(ident)) {
                   return {
                     type: "length",
                     raw: staticVariables[key],

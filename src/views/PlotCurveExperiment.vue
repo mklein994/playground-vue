@@ -116,15 +116,15 @@ const options = computed<PlotOptions>(() => ({
 
     &.active .curve-item-label {
       --color: light-dark(
-        var(--pv-base-color-blue-600),
-        var(--pv-base-color-blue-400)
+        var(--pv-b-color-blue-600),
+        var(--pv-b-color-blue-400)
       );
       color: var(--color);
 
       &:hover {
         color: light-dark(
-          var(--pv-base-color-blue-800),
-          var(--pv-base-color-blue-300)
+          var(--pv-b-color-blue-800),
+          var(--pv-b-color-blue-300)
         );
       }
     }
@@ -133,13 +133,10 @@ const options = computed<PlotOptions>(() => ({
       display: inline-block;
       border-radius: 1em;
       background-color: light-dark(
-        var(--pv-base-color-teal-100),
-        var(--pv-base-color-teal-950)
+        var(--pv-b-color-teal-100),
+        var(--pv-b-color-teal-950)
       );
-      color: light-dark(
-        var(--pv-base-color-teal-700),
-        var(--pv-base-color-teal-400)
-      );
+      color: light-dark(var(--pv-b-color-teal-700), var(--pv-b-color-teal-400));
       content: attr(data-version);
       font-family: sans-serif;
       font-size: 0.75em;

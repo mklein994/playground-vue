@@ -113,16 +113,16 @@ onMounted(() => refreshTable());
 <style>
 .truth-table-experiment {
   .truth-table {
-    --true-text-color: var(--pv-base-color-emerald-700);
-    --false-text-color: var(--pv-base-color-red-700);
+    --true-text-color: var(--pv-b-color-emerald-700);
+    --false-text-color: var(--pv-b-color-red-700);
 
     --true-background-color: light-dark(
-      var(--pv-base-color-emerald-200),
-      var(--pv-base-color-emerald-700)
+      var(--pv-b-color-emerald-200),
+      var(--pv-b-color-emerald-700)
     );
     --false-background-color: light-dark(
-      var(--pv-base-color-red-200),
-      var(--pv-base-color-red-700)
+      var(--pv-b-color-red-200),
+      var(--pv-b-color-red-700)
     );
   }
 

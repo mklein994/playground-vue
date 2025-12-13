@@ -116,8 +116,8 @@ const verticalDisplay = computed(() =>
   display: grid;
   height: 100svh;
   background: light-dark(
-    var(--pv-base-color-neutral-50),
-    var(--pv-base-color-neutral-950)
+    var(--pv-b-color-neutral-50),
+    var(--pv-b-color-neutral-950)
   );
   gap: 10vmin;
   place-content: center;
@@ -156,8 +156,8 @@ const verticalDisplay = computed(() =>
 
     .label {
       color: light-dark(
-        var(--pv-base-color-neutral-400),
-        var(--pv-base-color-neutral-500)
+        var(--pv-b-color-neutral-400),
+        var(--pv-b-color-neutral-500)
       );
       font-family: sans-serif;
       font-size: 1.5rem;
@@ -176,19 +176,19 @@ const verticalDisplay = computed(() =>
     transition-duration: var(--exit-duration);
     transition-property: box-shadow, border-color;
     --border: light-dark(
-      var(--pv-base-color-neutral-200),
-      var(--pv-base-color-neutral-800)
+      var(--pv-b-color-neutral-200),
+      var(--pv-b-color-neutral-800)
     );
     --ref-radius: calc(100% / 2 / 3);
     --ring-count: 10;
     --default-fg: light-dark(
-      var(--pv-base-color-neutral-200),
-      var(--pv-base-color-neutral-700)
+      var(--pv-b-color-neutral-200),
+      var(--pv-b-color-neutral-700)
     );
     --fg: var(--default-fg);
     --accent: light-dark(
-      var(--pv-base-color-orange-600),
-      var(--pv-base-color-orange-500)
+      var(--pv-b-color-orange-600),
+      var(--pv-b-color-orange-500)
     );
 
     --exit-duration: 0.25s;
@@ -256,20 +256,16 @@ const verticalDisplay = computed(() =>
 
     &.is-level {
       --accent: light-dark(
-        var(--pv-base-color-lime-500),
-        var(--pv-base-color-lime-700)
+        var(--pv-b-color-lime-500),
+        var(--pv-b-color-lime-700)
       );
 
       --border: light-dark(
-        var(--pv-base-color-lime-600),
-        var(--pv-base-color-lime-800)
+        var(--pv-b-color-lime-600),
+        var(--pv-b-color-lime-800)
       );
       --svg-level-shadow-color: oklab(
-        from
-          light-dark(
-            var(--pv-base-color-lime-800),
-            var(--pv-base-color-lime-500)
-          )
+        from light-dark(var(--pv-b-color-lime-800), var(--pv-b-color-lime-500))
           l a b / 0.25
       );
 
@@ -293,8 +289,8 @@ const verticalDisplay = computed(() =>
 
       .live {
         stroke: light-dark(
-          var(--pv-base-color-lime-700),
-          var(--pv-base-color-lime-500)
+          var(--pv-b-color-lime-700),
+          var(--pv-b-color-lime-500)
         );
         transition-duration: var(--starting-duration);
         transition-timing-function: ease-out;

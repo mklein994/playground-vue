@@ -34,7 +34,7 @@ export default {
   platforms: {
     css: {
       transforms: configTransforms,
-      prefix: "pv",
+      prefix: "pv-b",
       buildPath: resolve("./src/assets/generated/"),
 
       files: [
@@ -47,7 +47,7 @@ export default {
 
     json: {
       transforms: configTransforms,
-      prefix: "pv",
+      prefix: "pv-b",
       buildPath: resolve("./src/assets/generated/"),
 
       files: [

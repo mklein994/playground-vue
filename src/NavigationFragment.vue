@@ -312,10 +312,10 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   padding: 1rem 1.5rem;
   border: 1px solid
-    light-dark(var(--pv-base-color-gray-300), var(--pv-base-color-gray-700));
+    light-dark(var(--pv-b-color-gray-300), var(--pv-b-color-gray-700));
   background-color: light-dark(
-    var(--pv-base-color-gray-50),
-    var(--pv-base-color-gray-950)
+    var(--pv-b-color-gray-50),
+    var(--pv-b-color-gray-950)
   );
   gap: 1rem;
   /** Allow us to position the menu button (which is inside the dialog) */
@@ -480,10 +480,7 @@ onBeforeUnmount(() => {
   }
 
   .active {
-    color: light-dark(
-      var(--pv-base-color-green-700),
-      var(--pv-base-color-green-500)
-    );
+    color: light-dark(var(--pv-b-color-green-700), var(--pv-b-color-green-500));
     list-style-type: disc;
   }
 

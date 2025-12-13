@@ -30,22 +30,16 @@ Tailwind stylesheet is enabled.
 
   :root {
     --pv-selection-color: light-dark(
-      var(--pv-base-color-sky-200),
-      var(--pv-base-color-sky-800)
+      var(--pv-b-color-sky-200),
+      var(--pv-b-color-sky-800)
     );
 
     --pv-yes: light-dark(
-      var(--pv-base-color-green-600),
-      var(--pv-base-color-green-400)
+      var(--pv-b-color-green-600),
+      var(--pv-b-color-green-400)
     );
-    --pv-no: light-dark(
-      var(--pv-base-color-red-600),
-      var(--pv-base-color-red-400)
-    );
-    --pv-na: light-dark(
-      var(--pv-base-color-gray-500),
-      var(--pv-base-color-gray-400)
-    );
+    --pv-no: light-dark(var(--pv-b-color-red-600), var(--pv-b-color-red-400));
+    --pv-na: light-dark(var(--pv-b-color-gray-500), var(--pv-b-color-gray-400));
   }
 
   ::selection {
