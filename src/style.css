@@ -41,7 +41,7 @@ Tailwind stylesheet is enabled.
     --pv-no: light-dark(var(--pv-b-color-red-600), var(--pv-b-color-red-400));
     --pv-na: light-dark(var(--pv-b-color-gray-500), var(--pv-b-color-gray-400));
 
-    font-size: var(--pv-b-font-size-base-px, 1rem);
+    font-size: var(--pv-b-font-size-base-px, initial);
   }
 
   ::selection {
