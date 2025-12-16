@@ -1,4 +1,4 @@
-import { onBeforeMount, onBeforeUnmount, ref } from "vue";
+import { computed, onBeforeMount, onBeforeUnmount, ref } from "vue";
 
 export const resetActive = ref(false);
 
@@ -17,12 +17,27 @@ export const disableReset = () => {
   resetActive.value = false;
 };
 
-export const useResetCss = () => {
-  onBeforeMount(() => {
-    enableReset();
-  });
+export const useResetCss = (startEnabled = true) => {
+  if (startEnabled) {
+    onBeforeMount(() => {
+      enableReset();
+    });
+  }
 
   onBeforeUnmount(() => {
     disableReset();
   });
+
+  const toggleReset = () => {
+    if (resetActive.value) {
+      disableReset();
+    } else {
+      enableReset();
+    }
+  };
+
+  return {
+    resetActive: computed(() => resetActive.value),
+    toggleReset,
+  };
 };
