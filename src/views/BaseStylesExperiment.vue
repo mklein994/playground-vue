@@ -18,53 +18,67 @@ const resetButtonText = computed(() =>
     <fieldset class="button-group">
       <legend>Buttons</legend>
 
-      <div class="button-wrapper">
-        <span>Normal</span>
-        <button type="button" class="default">Button</button>
-      </div>
+      <button type="button" class="default">Normal Button</button>
 
-      <div class="button-wrapper">
-        <span>Disabled</span>
-        <button type="button" disabled class="default">Button</button>
-      </div>
+      <button type="button" disabled class="default">Disabled Button</button>
 
-      <div class="button-wrapper">
-        <span>Normal Styled</span>
-        <button type="button" class="pv-button">Button</button>
-      </div>
+      <button type="button" class="pv-button">Normal Styled Button</button>
 
-      <div class="button-wrapper">
-        <span>Disabled Styled</span>
-        <button type="button" disabled class="pv-button">Button</button>
-      </div>
+      <button type="button" disabled class="pv-button">
+        Disabled Styled Button
+      </button>
     </fieldset>
 
     <fieldset class="input-group">
       <legend>Inputs</legend>
 
-      <label for="input-normal">Input</label>
-      <input id="input-normal" value="test" type="text" class="default" />
+      <div class="pv-input-wrapper">
+        <label for="input-normal">Input</label>
+        <input id="input-normal" value="test" type="text" class="default" />
+      </div>
 
-      <label for="input-normal-disabled">Input Disabled</label>
-      <input
-        id="input-normal-disabled"
-        value="test"
-        type="text"
-        disabled
-        class="default"
-      />
+      <div class="pv-input-wrapper">
+        <label for="input-normal-disabled">Input Disabled</label>
+        <input
+          id="input-normal-disabled"
+          value="test"
+          type="text"
+          disabled
+          class="default"
+        />
+      </div>
 
-      <label for="input-styled">Input Styled</label>
-      <input id="input-styled" value="test" type="text" class="pv-input" />
+      <div class="pv-input-wrapper">
+        <label for="input-tw">Tailwind</label>
+        <input id="input-tw" value="test" type="text" class="tw:form-input" />
+      </div>
 
-      <label for="input-styled-disabled">Input Styled Disabled</label>
-      <input
-        id="input-styled-disabled"
-        value="test"
-        type="text"
-        disabled
-        class="pv-input"
-      />
+      <div class="pv-input-wrapper">
+        <label for="input-tw-disabled">Tailwind Disabled</label>
+        <input
+          id="input-tw-disabled"
+          value="test"
+          type="text"
+          disabled
+          class="tw:form-input"
+        />
+      </div>
+
+      <div class="pv-input-wrapper">
+        <label for="input-styled">Input Styled</label>
+        <input id="input-styled" value="test" type="text" class="pv-input" />
+      </div>
+
+      <div class="pv-input-wrapper">
+        <label for="input-styled-disabled">Input Styled Disabled</label>
+        <input
+          id="input-styled-disabled"
+          value="test"
+          type="text"
+          disabled
+          class="pv-input"
+        />
+      </div>
     </fieldset>
   </div>
 </template>
@@ -79,18 +93,12 @@ const resetButtonText = computed(() =>
   .button-group {
     display: grid;
     gap: 1rem;
-
-    .button-wrapper {
-      display: inline-block;
-      button {
-        margin-inline-start: 0.5rem;
-      }
-    }
+    justify-items: start;
   }
 
   .input-group {
     display: grid;
-    gap: 0.5rem 0.25rem;
+    gap: 0.5rem 1rem;
     grid-template-columns: auto auto;
   }
 
