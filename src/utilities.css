@@ -11,6 +11,11 @@
   }
 }
 
+.pv-list {
+  list-style: unset;
+  list-style-position: inside;
+}
+
 .pv-button {
   padding: var(--pv-b-spacing-0-5) var(--pv-b-spacing-1-5);
   border: 1px solid
