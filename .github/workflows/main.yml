@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: "mklein994/date-diff"
-          ref: 0.4.3
+          ref: 0.4.4
           path: date-diff
 
       - uses: dtolnay/rust-toolchain@master
