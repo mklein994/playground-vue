@@ -66,8 +66,8 @@
 }
 
 .pv-input {
-  --fg: var(--pv-b-color-neutral-950);
-  --bg: light-dark(var(--b-pv-white), var(--pv-b-color-neutral-800));
+  --fg: light-dark(var(--pv-b-color-neutral-950), var(--pv-b-color-neutral-50));
+  --bg: light-dark(white, var(--pv-b-color-zinc-800));
   --border-color: var(--pv-b-color-neutral-400);
 
   padding: 1px 3px;
@@ -83,7 +83,10 @@
 
   &:where(:enabled) {
     &:hover {
-      --border-color: var(--pv-b-color-neutral-500);
+      --border-color: light-dark(
+        var(--pv-b-color-neutral-500),
+        var(--pv-b-color-neutral-300)
+      );
     }
 
     &:focus {
@@ -94,7 +97,10 @@
   }
 
   &:disabled {
-    --border-color: var(--pv-b-color-neutral-300);
+    --border-color: light-dark(
+      var(--pv-b-color-neutral-300),
+      var(--pv-b-color-zinc-400)
+    );
     --fg: var(--pv-b-color-neutral-500);
   }
 }
