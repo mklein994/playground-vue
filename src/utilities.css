@@ -19,31 +19,49 @@
 .pv-button {
   padding: var(--pv-b-spacing-0-5) var(--pv-b-spacing-1-5);
   border: 1px solid
-    light-dark(var(--pv-b-color-neutral-500), var(--pv-b-color-neutral-500));
+    light-dark(var(--pv-b-color-neutral-500), var(--pv-b-color-zinc-400));
   border-radius: var(--pv-b-radius-xs);
   appearance: none;
-  background: var(--pv-b-color-neutral-200);
-  color: var(--pv-b-color-neutral-700);
+  background: light-dark(
+    var(--pv-b-color-neutral-200),
+    var(--pv-b-color-zinc-800)
+  );
+  color: light-dark(var(--pv-b-color-neutral-700), var(--pv-b-color-gray-50));
   font-family: system-ui, sans-serif;
   font-size: var(--pv-b-font-size-sm);
   line-height: var(--pv-b-font-line-height-sm);
 
-  &:where(:enabled) {
-    &:hover {
-      background-color: var(--pv-b-color-neutral-300);
-    }
-
-    &:active {
-      border-color: var(--pv-b-color-neutral-600);
-      background-color: var(--pv-b-color-neutral-400);
-      color: var(--pv-b-color-neutral-800);
-    }
+  &:disabled {
+    border-color: var(--pv-b-color-zinc-400);
+    background-color: light-dark(
+      var(--pv-b-color-neutral-100),
+      var(--pv-b-color-zinc-800)
+    );
+    color: var(--pv-b-color-neutral-500);
   }
 
-  &:disabled {
-    border-color: var(--pv-b-color-neutral-300);
-    background-color: var(--pv-b-color-neutral-100);
-    color: var(--pv-b-color-neutral-500);
+  &:where(:enabled) {
+    &:hover {
+      background-color: light-dark(
+        var(--pv-b-color-neutral-300),
+        var(--pv-b-color-zinc-600)
+      );
+
+      &:active {
+        border-color: light-dark(
+          var(--pv-b-color-neutral-600),
+          var(--pv-b-color-zinc-300)
+        );
+        background-color: light-dark(
+          var(--pv-b-color-neutral-400),
+          var(--pv-b-color-zinc-500)
+        );
+        color: light-dark(
+          var(--pv-b-color-neutral-800),
+          var(--pv-b-color-gray-50)
+        );
+      }
+    }
   }
 }
 
