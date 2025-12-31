@@ -9,3 +9,13 @@
   font-family: "Recursive";
   src: url("@/assets/Recursive.woff2") format("woff2");
 }
+
+@font-face {
+  font-family: "DSEG7 Modern Mini";
+  src: url("@/assets/dseg-font/DSEG7ModernMini-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "DSEG14 Modern Mini";
+  src: url("@/assets/dseg-font/DSEG14ModernMini-Regular.woff2") format("woff2");
+}
