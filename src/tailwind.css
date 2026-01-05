@@ -17,15 +17,15 @@
 
       &:focus {
         --tw-ring-offset-color: black;
-        --tw-ring-color: var(--pv-b-color-indigo-500);
-        border-color: var(--pv-b-color-indigo-500);
+        --tw-ring-color: var(--tw-color-indigo-500);
+        border-color: var(--tw-color-indigo-500);
       }
     }
 
     /* stylelint-disable no-descending-specificity -- Overriding it like this keeps the grouping smaller */
     .tw\:form-checkbox,
     .tw\:form-radio {
-      color: var(--pv-b-color-indigo-500);
+      color: var(--tw-color-indigo-500);
     }
   }
 }
