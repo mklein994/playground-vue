@@ -11,3 +11,5 @@ coverage/
 .eslintcache
 .eslint-config-inspector/
 tsconfig.*-temp.json
+
+util/unused-variables.txt
