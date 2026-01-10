@@ -6,12 +6,13 @@ import ChromaticTuner from "@/components/chromatic-tuner/ChromaticTuner.vue";
 import { useTuner } from "@/use/use-tuner";
 
 const referenceHz = ref(440);
-const { pitchCents, pitchName } = useTuner(referenceHz);
+const { power, pitchCents, pitchName } = useTuner(referenceHz);
 </script>
 
 <template>
   <div class="tuner-experiment">
     <ChromaticTuner
+      v-model:is-on="power"
       v-model:reference-hz="referenceHz"
       :pitch-cents="pitchCents"
       :pitch-name="pitchName"

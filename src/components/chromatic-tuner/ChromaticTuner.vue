@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import LedLight from "./LedLight.vue";
+import LedLight from "@/components/chromatic-tuner/LedLight.vue";
 
+import { toFixed } from "@/helpers/toFixed";
 import { useResetCss } from "@/use/use-reset-css";
 import type { PitchName } from "@/use/use-tuner";
 
@@ -30,21 +31,16 @@ const handleCalibrationDownClick = () => {
   }
 };
 
-const noteDisplay = computed(() => pitchName?.replace("#", "♮"));
-
 const handlePowerClick = () => {
   isOn.value = !isOn.value;
 };
 
-const flatPower = computed(() =>
-  isOn.value && pitchCents != null ? Math.abs(Math.min(0, pitchCents)) : 0,
+const pitch = computed(() =>
+  isOn.value && pitchCents != null ? toFixed(pitchCents, 0.1) : null,
 );
-const tunePower = computed(() =>
-  isOn.value && pitchCents != null ? 1 - Math.abs(pitchCents) : 0,
-);
-const sharpPower = computed(() =>
-  isOn.value && pitchCents != null ? Math.max(0, pitchCents) : 0,
-);
+const flatPower = computed(() => Math.abs(Math.min(0, pitch.value ?? 0)));
+const tunePower = computed(() => 1 - Math.abs(pitch.value ?? 1));
+const sharpPower = computed(() => Math.max(0, pitch.value ?? 0));
 </script>
 
 <template>
@@ -81,7 +77,9 @@ const sharpPower = computed(() =>
         {{ referenceHzDisplay }}<span class="hz-unit">Hz</span>
       </div>
 
-      <div class="note">{{ noteDisplay }}</div>
+      <div class="note">{{ pitchName }}</div>
+
+      <div class="cents">{{ pitchCents }}</div>
     </div>
 
     <div class="speaker-grill">
@@ -168,6 +166,7 @@ const sharpPower = computed(() =>
   .screen {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: var(--pv-b-spacing-2);
     border: 1px solid var(--pv-b-color-gray-700);
@@ -181,13 +180,6 @@ const sharpPower = computed(() =>
     grid-area: screen;
     text-shadow: 2px 2px color-mix(in oklch, var(--fg), var(--bg) 90%);
 
-    &.off::after {
-      position: absolute;
-      background: inherit;
-      content: "";
-      inset: 0;
-    }
-
     --font-size-md: clamp(
       var(--pv-b-font-size-sm),
       5cqw,
@@ -198,6 +190,18 @@ const sharpPower = computed(() =>
       5cqw,
       var(--pv-b-font-line-height-3xl)
     );
+
+    &.off::after {
+      position: absolute;
+      background: inherit;
+      content: "";
+      inset: 0;
+    }
+
+    .cents {
+      width: 100%;
+      font-size: 3rem;
+    }
 
     .reference-hz {
       font-family: "DSEG7 Modern Mini", monospace;
