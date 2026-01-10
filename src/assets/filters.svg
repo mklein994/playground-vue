@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <filter id="light" primitiveUnits="objectBoundingBox">
+    <feDiffuseLighting in="SourceGraphic" result="light" lighting-color="white">
+      <fePointLight x="0.5" y="0.5" z="0.25" />
+    </feDiffuseLighting>
+
+    <feSpecularLighting
+      in="SourceGraphic"
+      result="specular"
+      specularExponent="100"
+      lighting-color="white"
+    >
+      <fePointLight x="0.3" y="0.3" z="0.15" />
+    </feSpecularLighting>
+
+    <feComposite in="SourceGraphic" in2="light" operator="arithmetic" k1="1" />
+
+    <feComposite in2="specular" operator="arithmetic" k2="1" k3="1" />
+  </filter>
+</svg>
