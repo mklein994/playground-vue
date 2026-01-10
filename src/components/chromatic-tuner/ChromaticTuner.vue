@@ -1,0 +1,289 @@
+<script setup lang="ts">
+import { computed } from "vue";
+
+import LedLight from "./LedLight.vue";
+
+import { useResetCss } from "@/use/use-reset-css";
+import type { PitchName } from "@/use/use-tuner";
+
+const { pitchCents, pitchName } = defineProps<{
+  pitchCents: number | undefined;
+  pitchName: PitchName | undefined;
+}>();
+
+const isOn = defineModel<boolean>("isOn", { default: true });
+const referenceHz = defineModel<number>("referenceHz", { default: 440 });
+
+useResetCss();
+
+const referenceHzDisplay = computed(() => referenceHz.value);
+
+const handleCalibrationUpClick = () => {
+  if (referenceHz.value < 480) {
+    referenceHz.value += 1;
+  }
+};
+
+const handleCalibrationDownClick = () => {
+  if (referenceHz.value > 410) {
+    referenceHz.value -= 1;
+  }
+};
+
+const noteDisplay = computed(() => pitchName?.replace("#", "♮"));
+
+const handlePowerClick = () => {
+  isOn.value = !isOn.value;
+};
+
+const flatPower = computed(() =>
+  isOn.value && pitchCents != null ? Math.abs(Math.min(0, pitchCents)) : 0,
+);
+const tunePower = computed(() =>
+  isOn.value && pitchCents != null ? 1 - Math.abs(pitchCents) : 0,
+);
+const sharpPower = computed(() =>
+  isOn.value && pitchCents != null ? Math.max(0, pitchCents) : 0,
+);
+</script>
+
+<template>
+  <div class="chromatic-tuner">
+    <div class="lights">
+      <div class="light-group flat">
+        <div class="light-label">♭</div>
+        <LedLight
+          light-color="red"
+          :power-percentage="flatPower"
+          class="light"
+        ></LedLight>
+      </div>
+      <div class="light-group tuned">
+        <div class="light-label">▽</div>
+        <LedLight
+          light-color="green"
+          :power-percentage="tunePower"
+          class="light"
+        ></LedLight>
+      </div>
+      <div class="light-group sharp">
+        <div class="light-label">♯</div>
+        <LedLight
+          light-color="red"
+          :power-percentage="sharpPower"
+          class="light"
+        ></LedLight>
+      </div>
+    </div>
+
+    <div class="screen" :class="{ off: !isOn }">
+      <div class="reference-hz">
+        {{ referenceHzDisplay }}<span class="hz-unit">Hz</span>
+      </div>
+
+      <div class="note">{{ noteDisplay }}</div>
+    </div>
+
+    <div class="speaker-grill">
+      <span v-for="i of 8 * 4" :key="i" class="speaker-hole"></span>
+    </div>
+
+    <div class="controls">
+      <button type="button" :disabled="!isOn" class="control sound-button">
+        SOUND
+      </button>
+      <button
+        type="button"
+        :disabled="!isOn"
+        class="control calib-down-button"
+        @click="handleCalibrationDownClick"
+      >
+        ▼
+      </button>
+      <button
+        type="button"
+        :disabled="!isOn"
+        class="control calib-up-button"
+        @click="handleCalibrationUpClick"
+      >
+        ▲
+      </button>
+      <button
+        type="button"
+        class="power-button"
+        @click="handlePowerClick"
+      ></button>
+    </div>
+
+    <div class="product-label">
+      <span class="model-top">CA-1</span>
+      <span class="model-bottom">CHROMATIC</span>
+      <span class="logo">KORG</span>
+    </div>
+  </div>
+</template>
+
+<style>
+.chromatic-tuner {
+  display: grid;
+  align-items: center;
+  padding: var(--pv-b-spacing-5);
+  border-radius: 2% / 50%;
+  aspect-ratio: 16 / 9;
+  background-color: var(--pv-b-color-amber-100);
+  color: var(--pv-b-color-gray-700);
+  container: tuner / inline-size;
+  gap: var(--pv-b-spacing-3);
+  grid-template-areas:
+    "lights ."
+    "screen speaker"
+    "controls label";
+  grid-template-columns: 3fr 2fr;
+  outline: 2px solid var(--pv-b-color-gray-900);
+  outline-offset: -5px;
+
+  .lights {
+    display: grid;
+    width: 100%;
+    align-self: end;
+    justify-content: space-evenly;
+    color: black;
+    grid-area: lights;
+    grid-template-columns: repeat(3, 1fr);
+    padding-inline: var(--pv-b-spacing-9);
+    row-gap: var(--pv-b-spacing-2);
+
+    .light-group {
+      display: grid;
+      grid-row-end: span 2;
+      grid-template-rows: subgrid;
+      justify-items: center;
+    }
+
+    .light {
+      width: var(--pv-b-spacing-4);
+    }
+  }
+
+  .screen {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: var(--pv-b-spacing-2);
+    border: 1px solid var(--pv-b-color-gray-700);
+    border-radius: var(--pv-b-radius-xs);
+    --bg: #3b505d;
+    --fg: oklch(from black l c h / 0.8);
+    aspect-ratio: 9 / 4;
+    background-color: var(--bg);
+    box-shadow: var(--pv-b-inset-shadow-sm);
+    color: var(--fg);
+    grid-area: screen;
+    text-shadow: 2px 2px color-mix(in oklch, var(--fg), var(--bg) 90%);
+
+    &.off::after {
+      position: absolute;
+      background: inherit;
+      content: "";
+      inset: 0;
+    }
+
+    --font-size-md: clamp(
+      var(--pv-b-font-size-sm),
+      5cqw,
+      var(--pv-b-font-size-3xl)
+    );
+    --font-line-height-md: clamp(
+      var(--pv-b-font-line-height-sm),
+      5cqw,
+      var(--pv-b-font-line-height-3xl)
+    );
+
+    .reference-hz {
+      font-family: "DSEG7 Modern Mini", monospace;
+      font-size: var(--font-size-md);
+      line-height: var(--font-line-height-md);
+
+      .hz-unit {
+        font-family: var(--pv-b-font-family-sans);
+        font-size: 0.5em;
+        font-style: normal;
+        line-height: normal;
+      }
+    }
+
+    .note {
+      width: 2ch;
+      font-family: "DSEG14 Modern Mini", monospace;
+      font-size: var(--font-size-md);
+      line-height: var(--font-line-height-md);
+    }
+  }
+
+  .speaker-grill {
+    display: grid;
+    aspect-ratio: 8 / 4;
+    grid-area: speaker;
+    grid-template-columns: repeat(8, 1fr);
+    place-content: space-evenly;
+    place-items: center;
+
+    .speaker-hole {
+      width: 1cqw;
+      height: 1cqw;
+      border-radius: 50%;
+      background: var(--pv-b-color-gray-500);
+    }
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: var(--pv-b-spacing-4);
+    grid-area: controls;
+
+    .control {
+      width: 2rem;
+      height: 1rem;
+      border: 1px solid var(--pv-b-color-gray-700);
+      border-radius: var(--pv-b-radius-full);
+      font: var(--pv-b-font-2xs);
+    }
+
+    .power-button {
+      width: 2rem;
+      height: 1rem;
+      border: 1px solid var(--pv-b-color-red-900);
+      border-radius: var(--pv-b-radius-full);
+      margin-left: auto;
+      background-color: var(--pv-b-color-red-700);
+
+      &:hover {
+        background-color: var(--pv-b-color-red-600);
+      }
+
+      &:active {
+        background-color: var(--pv-b-color-red-800);
+      }
+    }
+  }
+
+  .product-label {
+    display: grid;
+    align-self: end;
+    margin-top: -2rem;
+    grid-area: label;
+    justify-items: end;
+
+    .model-top,
+    .model-bottom {
+      font-size: 1rem;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+}
+</style>
