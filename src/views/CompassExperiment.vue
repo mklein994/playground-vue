@@ -2,6 +2,7 @@
 import { computed, onBeforeUnmount, ref, watch } from "vue";
 
 import { scale } from "@/helpers/scale";
+import { toFixed } from "@/helpers/toFixed";
 
 interface Orientation {
   alpha: number;
@@ -85,11 +86,6 @@ const heading = computed(() => {
 const isCardinal = computed(
   () => rawRotation.value != null && Math.round(rawRotation.value) % 90 === 0,
 );
-
-const toFixed = (n: number, places: number) => {
-  const factor = 10 ** places;
-  return Math.round(n * factor) / factor;
-};
 
 const isLevel = computed(
   () =>
