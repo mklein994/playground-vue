@@ -144,6 +144,7 @@ const sharpPowerDisplay = computed(() => formatter.format(sharpPower.value));
 <style>
 .chromatic-tuner {
   display: grid;
+  width: 100%;
   align-items: center;
   padding: var(--pv-b-spacing-5);
   border-radius: 2% / 50%;

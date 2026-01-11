@@ -34,23 +34,6 @@ useEventListener("visibilitychange", () => {
 
 <template>
   <div class="tuner-experiment">
-    <div class="pv-input-wrapper">
-      <label for="detection-method" class="pv-label">Detection Method</label>
-      <select
-        id="detection-method"
-        v-model="detectionMethod"
-        class="pv-select tw:form-select"
-      >
-        <option
-          v-for="method of pitchDetectionMethods"
-          :key="method"
-          :value="method"
-        >
-          {{ method }}
-        </option>
-      </select>
-    </div>
-
     <ChromaticTuner
       v-model:is-on="power"
       v-model:reference-hz="referenceHz"
@@ -58,19 +41,48 @@ useEventListener("visibilitychange", () => {
       :pitch-name="name"
       class="chromatic-tuner"
     ></ChromaticTuner>
+
+    <form class="settings" @submit.prevent>
+      <div class="pv-input-wrapper">
+        <label for="detection-method" class="pv-label">Detection Method</label>
+        <select
+          id="detection-method"
+          v-model="detectionMethod"
+          class="pv-select tw:form-select"
+        >
+          <option
+            v-for="method of pitchDetectionMethods"
+            :key="method"
+            :value="method"
+          >
+            {{ method }}
+          </option>
+        </select>
+      </div>
+    </form>
   </div>
 </template>
 
 <style>
 .tuner-experiment {
+  display: grid;
   height: 100dvh;
   align-content: center;
-  padding: 1rem;
+  padding: var(--pv-b-spacing-4);
+  gap: var(--pv-b-spacing-4);
+  justify-items: stretch;
 
   .chromatic-tuner {
     max-width: var(--pv-b-container-3xl);
-    max-height: calc(100dvh - 2rem);
+    max-height: calc(100dvh - 2 * var(--pv-b-spacing-4));
     margin-inline: auto;
+  }
+
+  .settings {
+    display: grid;
+    inline-size: 100%;
+    margin-inline: auto;
+    max-inline-size: var(--pv-b-container-3xl);
   }
 }
 </style>
