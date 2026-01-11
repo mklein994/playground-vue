@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { onBeforeMount, onBeforeUnmount, ref } from "vue";
+import { ref } from "vue";
+
+import { useEventListener } from "@/use/use-event-listener";
 
 interface LogItem {
   dt: Date;
@@ -10,7 +12,7 @@ interface LogItem {
 
 const log = ref<LogItem[]>([]);
 
-const handleVisibilityChange = (_e: Event) => {
+useEventListener("visibilitychange", () => {
   const dt = new Date();
   log.value.push({
     dt,
@@ -18,14 +20,6 @@ const handleVisibilityChange = (_e: Event) => {
     dtDisplay: dt.toLocaleString(),
     state: document.visibilityState,
   });
-};
-
-onBeforeMount(() => {
-  document.addEventListener("visibilitychange", handleVisibilityChange);
-});
-
-onBeforeUnmount(() => {
-  document.removeEventListener("visibilitychange", handleVisibilityChange);
 });
 </script>
 
