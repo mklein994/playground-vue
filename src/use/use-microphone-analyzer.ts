@@ -8,7 +8,7 @@ export const useMicrophoneAnalyzer = async () => {
   source.connect(analyzer);
 
   return {
-    context,
+    source,
     analyzer,
     stopMicrophone: () => {
       stream.getTracks().forEach((track) => {

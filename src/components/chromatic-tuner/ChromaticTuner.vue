@@ -3,13 +3,12 @@ import { computed } from "vue";
 
 import LedLight from "@/components/chromatic-tuner/LedLight.vue";
 
-import { toFixed } from "@/helpers/toFixed";
+import type { NoteName } from "@/use/use-pitch";
 import { useResetCss } from "@/use/use-reset-css";
-import type { PitchName } from "@/use/use-tuner";
 
 const { pitchCents, pitchName } = defineProps<{
   pitchCents: number | undefined;
-  pitchName: PitchName | undefined;
+  pitchName: NoteName | undefined;
 }>();
 
 const isOn = defineModel<boolean>("isOn", { default: true });
@@ -18,6 +17,21 @@ const referenceHz = defineModel<number>("referenceHz", { default: 440 });
 useResetCss();
 
 const referenceHzDisplay = computed(() => referenceHz.value);
+const cents = computed(() => {
+  if (!isOn.value || pitchCents == null || Number.isNaN(pitchCents)) {
+    return null;
+  }
+
+  return pitchCents;
+});
+
+const formatter = new Intl.NumberFormat(undefined, {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+  signDisplay: "always",
+});
+
+const pitchCentsDisplay = computed(() => formatter.format(cents.value ?? 0));
 
 const handleCalibrationUpClick = () => {
   if (referenceHz.value < 480) {
@@ -35,12 +49,15 @@ const handlePowerClick = () => {
   isOn.value = !isOn.value;
 };
 
-const pitch = computed(() =>
-  isOn.value && pitchCents != null ? toFixed(pitchCents, 0.1) : null,
+const flatPower = computed<number>(() =>
+  Math.abs(Math.min(0, cents.value ?? 0)),
 );
-const flatPower = computed(() => Math.abs(Math.min(0, pitch.value ?? 0)));
-const tunePower = computed(() => 1 - Math.abs(pitch.value ?? 1));
-const sharpPower = computed(() => Math.max(0, pitch.value ?? 0));
+const tunePower = computed<number>(() => 1 - Math.abs(cents.value ?? 1));
+const sharpPower = computed<number>(() => Math.max(0, cents.value ?? 0));
+
+const flatPowerDisplay = computed(() => formatter.format(flatPower.value));
+const tunePowerDisplay = computed(() => formatter.format(tunePower.value));
+const sharpPowerDisplay = computed(() => formatter.format(sharpPower.value));
 </script>
 
 <template>
@@ -53,6 +70,7 @@ const sharpPower = computed(() => Math.max(0, pitch.value ?? 0));
           :power-percentage="flatPower"
           class="light"
         ></LedLight>
+        <pre>{{ flatPowerDisplay }}</pre>
       </div>
       <div class="light-group tuned">
         <div class="light-label">▽</div>
@@ -61,6 +79,7 @@ const sharpPower = computed(() => Math.max(0, pitch.value ?? 0));
           :power-percentage="tunePower"
           class="light"
         ></LedLight>
+        <pre>{{ tunePowerDisplay }}</pre>
       </div>
       <div class="light-group sharp">
         <div class="light-label">♯</div>
@@ -69,6 +88,7 @@ const sharpPower = computed(() => Math.max(0, pitch.value ?? 0));
           :power-percentage="sharpPower"
           class="light"
         ></LedLight>
+        <pre>{{ sharpPowerDisplay }}</pre>
       </div>
     </div>
 
@@ -79,7 +99,7 @@ const sharpPower = computed(() => Math.max(0, pitch.value ?? 0));
 
       <div class="note">{{ pitchName }}</div>
 
-      <div class="cents">{{ pitchCents }}</div>
+      <div class="cents">{{ pitchCentsDisplay }}</div>
     </div>
 
     <div class="speaker-grill">
@@ -153,7 +173,8 @@ const sharpPower = computed(() => Math.max(0, pitch.value ?? 0));
 
     .light-group {
       display: grid;
-      grid-row-end: span 2;
+      /* grid-row-end: span 2; */
+      grid-row-end: span 3;
       grid-template-rows: subgrid;
       justify-items: center;
     }
@@ -201,6 +222,7 @@ const sharpPower = computed(() => Math.max(0, pitch.value ?? 0));
     .cents {
       width: 100%;
       font-size: 3rem;
+      font-variant-numeric: tabular-nums;
     }
 
     .reference-hz {

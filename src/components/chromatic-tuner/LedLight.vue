@@ -10,9 +10,7 @@ const power = computed(() => `${powerPercentage * 100}%`);
 </script>
 
 <template>
-  <div class="led-light" :class="lightColor">
-    <slot></slot>
-  </div>
+  <div class="led-light" :class="lightColor"></div>
 </template>
 
 <style>
@@ -36,8 +34,8 @@ const power = computed(() => `${powerPercentage * 100}%`);
     var(--circle-end-color)
   );
   filter: url("@/assets/filters.svg#light");
-  transition-duration: 100ms;
-  transition-property: --circle-start-color, --circle-end-color;
+  /* transition-duration: 100ms; */
+  /* transition-property: --circle-start-color, --circle-end-color; */
 
   --power: v-bind("power");
 
