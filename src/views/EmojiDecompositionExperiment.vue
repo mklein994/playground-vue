@@ -14,13 +14,13 @@ const vFocus = {
 
 const examples = computed(() => [
   {
-    name: "Canadian Flag",
-    emoji: "\u{1f1e8}\u{1f1e6}",
-  },
-  {
     name: "Couple with Heart: Woman, Man, Light Skin Tone, Medium Skin Tone",
     emoji:
       "\u{1f469}\u{1f3fb}\u{200d}\u{2764}\u{fe0f}\u{200d}\u{1f468}\u{1f3fd}",
+  },
+  {
+    name: "Canadian Flag",
+    emoji: "\u{1f1e8}\u{1f1e6}",
   },
 ]);
 
