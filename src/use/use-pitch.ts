@@ -3,16 +3,16 @@ import { computed, toValue } from "vue";
 
 export const notes = [
   "C",
-  "C♮",
+  "C♯",
   "D",
-  "D♮",
+  "D♯",
   "E",
   "F",
-  "F♮",
+  "F♯",
   "G",
-  "G♮",
+  "G♯",
   "A",
-  "A♮",
+  "A♯",
   "B",
 ] as const;
 
