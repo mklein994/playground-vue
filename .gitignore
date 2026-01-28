@@ -13,3 +13,4 @@ coverage/
 tsconfig.*-temp.json
 
 util/unused-variables.txt
+util/used-variables.txt
