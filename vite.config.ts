@@ -49,6 +49,11 @@ export default defineConfig(({ mode, command }) => {
       : {}
   ) as Record<string, string>;
 
+  const unusedVariablesPath = resolve("./util/unused-variables.txt");
+  const unusedSymbols = fs.existsSync(unusedVariablesPath)
+    ? fs.readFileSync(unusedVariablesPath, { encoding: "utf8" }).split("\n")
+    : [];
+
   const tailwindPlugin = () => {
     if (command === "serve") {
       return mode === "production" ? false : tailwindcss();
@@ -86,6 +91,7 @@ export default defineConfig(({ mode, command }) => {
               },
             }
           : undefined,
+        unusedSymbols,
       },
     },
 
