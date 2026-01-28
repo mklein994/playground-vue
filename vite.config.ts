@@ -80,19 +80,9 @@ export default defineConfig(({ mode, command }) => {
 
                 const key = ident.replace(/^--/, "");
 
-                if (ident.startsWith("--pv-b-color-")) {
-                  return {
-                    type: "unresolved-color",
-                    raw: staticVariables[key],
-                  };
-                }
-
-                if (/^--pv-b-(?:spacing|container|radius|blur)-/.test(ident)) {
-                  return {
-                    type: "length",
-                    raw: staticVariables[key],
-                  };
-                }
+                return {
+                  raw: `${staticVariables[key]}`,
+                };
               },
             }
           : undefined,
