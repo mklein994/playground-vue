@@ -3,7 +3,7 @@ export default {
   extends: [
     "stylelint-config-recommended",
     "stylelint-config-tailwindcss",
-    "stylelint-config-idiomatic-order",
+    "stylelint-config-clean-order",
     "stylelint-config-recommended-vue",
   ],
   overrides: [

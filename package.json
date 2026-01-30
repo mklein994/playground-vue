@@ -79,7 +79,7 @@
     "sass": "^1.97.3",
     "style-dictionary": "^5.2.0",
     "stylelint": "^17.1.0",
-    "stylelint-config-idiomatic-order": "^10.0.0",
+    "stylelint-config-clean-order": "^8.0.0",
     "stylelint-config-recommended": "^18.0.0",
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-tailwindcss": "^1.0.1",

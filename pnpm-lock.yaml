@@ -153,9 +153,9 @@ importers:
       stylelint:
         specifier: ^17.1.0
         version: 17.1.0(typescript@5.9.3)
-      stylelint-config-idiomatic-order:
-        specifier: ^10.0.0
-        version: 10.0.0(stylelint@17.1.0(typescript@5.9.3))
+      stylelint-config-clean-order:
+        specifier: ^8.0.0
+        version: 8.0.0(stylelint-order@6.0.4(stylelint@17.1.0(typescript@5.9.3)))(stylelint@17.1.0(typescript@5.9.3))
       stylelint-config-recommended:
         specifier: ^18.0.0
         version: 18.0.0(stylelint@17.1.0(typescript@5.9.3))
@@ -3350,18 +3350,18 @@ packages:
     engines: {node: '>=22.0.0'}
     hasBin: true
 
+  stylelint-config-clean-order@8.0.0:
+    resolution: {integrity: sha512-Ub+1k1OQvJPf6HKMRyku6DgOmdhD5ZTrevcbfyHP21Zf7pbs5ds4a8HbKY8iadA5RFlwiXwkzqLDytxQOqfDnA==}
+    peerDependencies:
+      stylelint: '>=16'
+      stylelint-order: '>=6'
+
   stylelint-config-html@1.1.0:
     resolution: {integrity: sha512-IZv4IVESjKLumUGi+HWeb7skgO6/g4VMuAYrJdlqQFndgbj6WJAXPhaysvBiXefX79upBdQVumgYcdd17gCpjQ==}
     engines: {node: ^12 || >=14}
     peerDependencies:
       postcss-html: ^1.0.0
       stylelint: '>=14.0.0'
-
-  stylelint-config-idiomatic-order@10.0.0:
-    resolution: {integrity: sha512-gJjT1nwhgnHS52+mRn+5Iw6keZIPRN4W+vbzct9Elb+tWOo61jC/CzXzAJHvvOYQZqUYItfs2aQ8fU5hnCvuGg==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      stylelint: '>=11'
 
   stylelint-config-recommended-vue@1.6.1:
     resolution: {integrity: sha512-lLW7hTIMBiTfjenGuDq2kyHA6fBWd/+Df7MO4/AWOxiFeXP9clbpKgg27kHfwA3H7UNMGC7aeP3mNlZB5LMmEQ==}
@@ -6909,15 +6909,15 @@ snapshots:
     transitivePeerDependencies:
       - tslib
 
+  stylelint-config-clean-order@8.0.0(stylelint-order@6.0.4(stylelint@17.1.0(typescript@5.9.3)))(stylelint@17.1.0(typescript@5.9.3)):
+    dependencies:
+      stylelint: 17.1.0(typescript@5.9.3)
+      stylelint-order: 6.0.4(stylelint@17.1.0(typescript@5.9.3))
+
   stylelint-config-html@1.1.0(postcss-html@1.8.1)(stylelint@17.1.0(typescript@5.9.3)):
     dependencies:
       postcss-html: 1.8.1
       stylelint: 17.1.0(typescript@5.9.3)
-
-  stylelint-config-idiomatic-order@10.0.0(stylelint@17.1.0(typescript@5.9.3)):
-    dependencies:
-      stylelint: 17.1.0(typescript@5.9.3)
-      stylelint-order: 6.0.4(stylelint@17.1.0(typescript@5.9.3))
 
   stylelint-config-recommended-vue@1.6.1(postcss-html@1.8.1)(stylelint@17.1.0(typescript@5.9.3)):
     dependencies:
