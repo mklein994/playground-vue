@@ -75,6 +75,9 @@ export default defineConfig(({ mode, command }) => {
       transformer: "lightningcss",
       lightningcss: {
         exclude: Features.OklabColors | Features.LightDark,
+        drafts: {
+          customMedia: true,
+        },
         visitor: resolveStaticVariables
           ? {
               Variable(variable) {

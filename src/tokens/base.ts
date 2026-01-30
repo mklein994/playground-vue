@@ -193,6 +193,23 @@ export default {
     ),
   },
 
+  breakpoint: {
+    ...Object.fromEntries(
+      (
+        [
+          ["sm", 40],
+          ["md", 48],
+          ["lg", 64],
+          ["xl", 80],
+          ["2xl", 96],
+        ] satisfies [string, number][]
+      ).map(([key, value]) => [
+        key,
+        { $value: `${value}rem`, $description: `${value * rootFontSizePx}px` },
+      ]),
+    ),
+  },
+
   shadow: {
     "2xs": { $value: "0 1px rgb(0 0 0 / 0.05)" },
     xs: { $value: "0 1px 2px 0 rgb(0 0 0 / 0.05)" },

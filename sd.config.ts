@@ -31,9 +31,34 @@ export default {
     transforms: {
       kebabStripValueGroupSuffix,
     },
+    formats: {
+      customMediaBreakpointFormat({ dictionary }) {
+        return dictionary.allTokens
+          .map((token) => {
+            const comment =
+              token.$description == null ? "" : ` /* ${token.$description} */`;
+            return `@custom-media --${token.name} (width >= ${token.$value});${comment}\n`;
+          })
+          .join("");
+      },
+    },
   },
 
   platforms: {
+    breakpoints: {
+      transforms: configTransforms,
+      prefix,
+      buildPath: resolve("./src/assets/generated/"),
+
+      files: [
+        {
+          format: "customMediaBreakpointFormat",
+          destination: "breakpoints.css",
+          filter: (token) => token.path[0] === "breakpoint",
+        },
+      ],
+    },
+
     css: {
       transforms: configTransforms,
       prefix,
