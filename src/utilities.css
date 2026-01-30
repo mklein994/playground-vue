@@ -120,6 +120,11 @@
     line-height: var(--pv-b-font-line-height-sm);
     white-space: nowrap;
   }
+
+  &.pv-inline {
+    align-items: stretch;
+    grid-auto-flow: column;
+  }
 }
 
 /**
