@@ -1,36 +1,10 @@
 <script setup lang="ts">
-import { computed, inject, onBeforeMount } from "vue";
+import { onBeforeMount } from "vue";
 
-import { tailwindEnabledKey } from "@/injectionKeys";
+import { useTailwindToggle } from "@/use/use-tailwind-toggle";
 
-const tailwindSupported = __PLAYGROUND_VUE_TAILWIND_SUPPORTED__;
-
-const tailwindEnabled = inject(tailwindEnabledKey)!;
-const tailwindLocked = computed(
-  () => !tailwindSupported || (import.meta.env.DEV && tailwindEnabled.value),
-);
-
-const toggleTailwind = async (enable: boolean) => {
-  if (import.meta.env.DEV) {
-    await import("@/tailwind.css");
-    tailwindEnabled.value = enable;
-    return;
-  }
-
-  tailwindEnabled.value = enable;
-
-  const link = document.head.querySelector<HTMLLinkElement>(
-    "link[title='tailwind']",
-  );
-
-  if (link == null) {
-    throw new Error(
-      "tailwind style <link title='tailwind'> not found. This is only available on production builds.",
-    );
-  }
-
-  link.disabled = !tailwindEnabled.value;
-};
+const { tailwindSupported, tailwindEnabled, tailwindLocked, toggleTailwind } =
+  useTailwindToggle();
 
 const handleToggleTailwindClick = async (event: Event) => {
   const value = (event.target as HTMLInputElement).checked;
