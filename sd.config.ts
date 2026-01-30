@@ -5,6 +5,8 @@ import type { Config } from "style-dictionary";
 import { formats, transforms, transformTypes } from "style-dictionary/enums";
 import type { Transform } from "style-dictionary/types";
 
+const prefix = "pv-b";
+
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 const kebabStripValueGroupSuffix: Omit<Transform, "name"> = {
@@ -34,7 +36,7 @@ export default {
   platforms: {
     css: {
       transforms: configTransforms,
-      prefix: "pv-b",
+      prefix,
       buildPath: resolve("./src/assets/generated/"),
 
       files: [
@@ -47,7 +49,7 @@ export default {
 
     json: {
       transforms: configTransforms,
-      prefix: "pv-b",
+      prefix,
       buildPath: resolve("./src/assets/generated/"),
 
       files: [
