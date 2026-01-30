@@ -3,6 +3,7 @@
 @plugin "@tailwindcss/forms" {
   strategy: "class";
 }
+@plugin "@tailwindcss/typography";
 
 @layer utilities {
   :where(.tw-dark) {
