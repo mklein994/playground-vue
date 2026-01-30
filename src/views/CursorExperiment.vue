@@ -59,8 +59,8 @@ const cursors = [
 <style>
 .cursor-experiment {
   display: grid;
-  padding: 1rem;
   gap: 1em;
+  padding: 1rem;
 
   .cursors {
     display: grid;

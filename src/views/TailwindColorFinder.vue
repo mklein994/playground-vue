@@ -77,10 +77,11 @@ const sortedColors = computed(() => {
 .tailwind-color-finder {
   .colors {
     display: grid;
-    max-width: max-content;
-    justify-content: start;
-    column-gap: 0.5rem;
     grid-template-columns: 1fr auto auto auto;
+    column-gap: 0.5rem;
+    justify-content: start;
+
+    max-width: max-content;
   }
 
   .color-name {

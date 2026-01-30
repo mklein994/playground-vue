@@ -98,19 +98,20 @@ const handleToggleFullscreen = async () => {
 <style>
 .about-browser-experiment {
   display: grid;
-  width: 100%;
+  grid: auto-flow / auto auto;
+  gap: 0.5em 2em;
   align-content: start;
   justify-content: center;
 
+  width: 100%;
+
   font-family: monospace;
-  gap: 0.5em 2em;
-  grid: auto-flow / auto auto;
 
   &:fullscreen {
     overflow: auto;
     height: 100vh;
-    background-color: Canvas;
     color: CanvasText;
+    background-color: Canvas;
   }
 
   .media-queries {

@@ -20,8 +20,9 @@ const color = ref("red");
 .contrast-color-experiment {
   .sample-text {
     --pv-color: v-bind("color");
-    background-color: var(--pv-color);
+
     color: var(--pv-contrast-color);
+    background-color: var(--pv-color);
   }
 }
 </style>

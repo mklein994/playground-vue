@@ -44,6 +44,7 @@ const code = `
 .relative-color-syntax {
   .demo {
     --color: forestgreen;
+
     color: var(--color);
   }
 

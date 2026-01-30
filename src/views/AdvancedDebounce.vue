@@ -64,12 +64,13 @@ const handleSubmit = () => {
 .advanced-debounce-experiment {
   .settings {
     display: grid;
-    max-width: max-content;
-    justify-content: start;
-    margin: 1rem;
-    gap: 0.5rem;
     grid-template-columns: auto auto;
+    gap: 0.5rem;
+    justify-content: start;
     justify-items: start;
+
+    max-width: max-content;
+    margin: 1rem;
   }
 }
 </style>

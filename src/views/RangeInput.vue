@@ -53,16 +53,18 @@ const ratingName = computed(() => ratingList[rating.value]);
 
   .rating-list {
     display: flex;
-    width: 15em;
     flex-direction: column;
     justify-content: space-between;
+
+    width: 15em;
     padding-top: 0.5em;
+
     writing-mode: vertical-lr;
   }
 
   .rating-list-option {
-    rotate: -60deg;
     transform-origin: top center;
+    rotate: -60deg;
   }
 }
 </style>

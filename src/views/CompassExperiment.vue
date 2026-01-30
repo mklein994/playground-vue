@@ -169,12 +169,15 @@ onBeforeUnmount(() => {
 
 <style>
 .compass-experiment {
+  --rotation: calc(v-bind("rotation") * 1deg);
+
   position: relative;
+
   overflow: hidden;
+  align-content: center;
+
   width: 100svw;
   height: 100svh;
-  align-content: center;
-  --rotation: calc(v-bind("rotation") * 1deg);
 
   .settings {
     position: absolute;
@@ -184,8 +187,8 @@ onBeforeUnmount(() => {
 
   .static-container {
     display: grid;
-    justify-content: center;
     gap: 1rem;
+    justify-content: center;
   }
 
   .coord {
@@ -199,9 +202,9 @@ onBeforeUnmount(() => {
   }
 
   .svg-compass-container {
+    rotate: var(--rotation);
     width: 75vmin;
     height: 75vmin;
-    rotate: var(--rotation);
 
     .svg-compass {
       fill: none;
@@ -215,17 +218,16 @@ onBeforeUnmount(() => {
       }
 
       .point {
+        transform-origin: center;
+        rotate: var(--angle);
         fill: light-dark(
           var(--pv-b-color-neutral-100),
           var(--pv-b-color-neutral-600)
         );
-
-        rotate: var(--angle);
         stroke: light-dark(
           var(--pv-b-color-neutral-950),
           var(--pv-b-color-neutral-200)
         );
-        transform-origin: center;
 
         &.north {
           fill: light-dark(
@@ -249,22 +251,24 @@ onBeforeUnmount(() => {
     }
 
     .cardinal {
+      transform-origin: center;
+      transform-box: fill-box;
+      rotate: calc(-1 * var(--rotation));
+
+      font-family: serif;
+
       dominant-baseline: central;
+      text-anchor: middle;
       fill: light-dark(
         var(--pv-b-color-neutral-950),
         var(--pv-b-color-neutral-50)
       );
-      font-family: serif;
-      rotate: calc(-1 * var(--rotation));
-      text-anchor: middle;
-      transform-box: fill-box;
-      transform-origin: center;
     }
 
     .cardinal,
     .level {
-      rotate: calc(-1 * var(--rotation));
       transform-origin: center;
+      rotate: calc(-1 * var(--rotation));
     }
 
     .level {
@@ -277,14 +281,14 @@ onBeforeUnmount(() => {
 
       .line {
         &.live {
-          stroke: var(--color, var(--pv-b-color-neutral-300));
-
           --factor: 50px;
           --x: calc(v-bind("levelX") * var(--factor));
           --y: calc(v-bind("levelY") * var(--factor));
-          transform: translate(var(--x), var(--y));
-          transform-box: view-box;
+
           transform-origin: center;
+          transform-box: view-box;
+          transform: translate(var(--x), var(--y));
+          stroke: var(--color, var(--pv-b-color-neutral-300));
         }
       }
     }

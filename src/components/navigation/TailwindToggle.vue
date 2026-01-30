@@ -42,10 +42,10 @@ onBeforeMount(async () => {
 <style>
 .tailwind-toggle {
   display: grid;
+  grid-template-columns: repeat(2, auto);
+  column-gap: 0.5em;
   align-items: center;
   justify-content: start;
-  column-gap: 0.5em;
-  grid-template-columns: repeat(2, auto);
 
   .tailwind-checkbox:disabled {
     color: GrayText;
@@ -57,9 +57,9 @@ onBeforeMount(async () => {
   }
 
   .reset-message {
+    grid-column-end: -1;
     /* @apply tw:text-sm; */
     font-size: 0.875rem;
-    grid-column-end: -1;
     line-height: 1.25rem;
   }
 }

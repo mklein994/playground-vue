@@ -339,24 +339,24 @@ const handleToggleFullscreenClick = async () => {
   width: 100dvw;
   height: 100dvh;
 
+  &::backdrop {
+    background: Canvas;
+  }
+
   .fullscreen-button {
     max-width: max-content;
   }
 
   .options-is-large-group {
     input.default + label::after {
-      color: var(--pv-b-color-neutral-500);
       content: " (auto default)";
       font-size: 0.8em;
+      color: var(--pv-b-color-neutral-500);
     }
   }
 
   #orientation-lock:disabled + label::after {
     content: " (Tried; not supported)";
-  }
-
-  &::backdrop {
-    background: Canvas;
   }
 
   .orientation-lock-wrapper {
@@ -379,12 +379,13 @@ const handleToggleFullscreenClick = async () => {
     position: fixed;
     z-index: 1;
 
-    display: grid;
     overflow: auto;
-    max-width: max-content;
-    padding: 1rem;
+    display: grid;
     gap: 1rem;
     justify-items: start;
+
+    max-width: max-content;
+    padding: 1rem;
 
     #screen-size {
       max-width: 7rem;
@@ -392,9 +393,9 @@ const handleToggleFullscreenClick = async () => {
 
     .options-fieldset {
       display: grid;
-      margin: 0.5rem;
       gap: 0.5rem;
       place-items: start;
+      margin: 0.5rem;
 
       .input-wrapper {
         display: flex;
@@ -404,10 +405,11 @@ const handleToggleFullscreenClick = async () => {
 
     .options-is-large-group {
       display: grid;
-      align-items: baseline;
-      margin: 0.5rem;
-      gap: 0.5rem;
       grid-template-columns: auto auto;
+      gap: 0.5rem;
+      align-items: baseline;
+
+      margin: 0.5rem;
     }
 
     .reset-button {
@@ -418,36 +420,34 @@ const handleToggleFullscreenClick = async () => {
   &.portrait .options {
     top: env(safe-area-inset-top, 0px);
     right: env(safe-area-inset-right, 0px);
-    max-height: calc(100dvh - 4rem);
     align-content: start;
+    max-height: calc(100dvh - 4rem);
   }
 
   &.landscape .options {
     --top-offset: calc(
       var(--ruler-block-size) * 2 + env(safe-area-inset-top, 0px)
     );
+
     top: var(--top-offset);
     left: env(safe-area-inset-left, 0px);
     max-height: calc(100dvh - var(--top-offset));
   }
 
   .ruler {
+    counter-reset: var(--reset, ticks -1);
+
     position: absolute;
-    display: flex;
+    transform: var(--ruler-transform);
+
     overflow: auto;
+    display: flex;
+
     max-width: 100dvw;
     max-height: 100dvh;
-
-    counter-reset: var(--reset, ticks -1);
-    transform: var(--ruler-transform);
   }
 
   .tick {
-    position: absolute;
-    border: none;
-    background: var(--tick-color);
-    text-wrap: nowrap;
-
     --offset: calc(
       var(--major-tick) * var(--base) + var(--minor-tick) * var(--minor-base)
     );
@@ -457,9 +457,14 @@ const handleToggleFullscreenClick = async () => {
 
     --tick-content: counter(ticks);
 
+    position: absolute;
+    border: none;
+    text-wrap: nowrap;
+    background: var(--tick-color);
+
     &::after {
-      position: absolute;
       content: "";
+      position: absolute;
       font-family: monospace;
       font-size: 0.8rem;
     }
@@ -478,12 +483,12 @@ const handleToggleFullscreenClick = async () => {
 
     .ruler {
       bottom: 0;
+      flex-direction: column-reverse;
       width: 100dvw;
       height: calc(
         2 * var(--tick-marker-padding) + (v-bind("majorTickCount") + 1) *
           var(--base)
       );
-      flex-direction: column-reverse;
     }
 
     .tick {
@@ -509,12 +514,12 @@ const handleToggleFullscreenClick = async () => {
     }
 
     .ruler {
+      grid-auto-flow: column;
       width: calc(
         2 * var(--tick-marker-padding) + (v-bind("majorTickCount") + 1) *
           var(--base)
       );
       height: 100dvh;
-      grid-auto-flow: column;
     }
 
     .tick {
@@ -555,8 +560,9 @@ const handleToggleFullscreenClick = async () => {
 
     &:nth-child(32n + 1) {
       --len: 1;
-      counter-increment: var(--inc, ticks);
       --tick-color: var(--heavy-tick-color);
+
+      counter-increment: var(--inc, ticks);
 
       &::after {
         content: var(--tick-content) "\2033";
@@ -573,6 +579,7 @@ const handleToggleFullscreenClick = async () => {
       &:nth-child(10n + 1) {
         --len: 1;
         --tick-color: var(--heavy-tick-color);
+
         counter-increment: var(--inc, ticks);
 
         &::after {

@@ -70,10 +70,10 @@ const squareAspectRatio = computed(() => (square.value ? "1 / 1" : "unset"));
 
   .color-mix-form {
     display: grid;
+    grid: auto-flow / repeat(3, minmax(0, auto));
+    gap: 1em;
     align-items: start;
     justify-content: start;
-    gap: 1em;
-    grid: auto-flow / repeat(3, minmax(0, auto));
     justify-items: start;
 
     > [for] {
@@ -87,23 +87,24 @@ const squareAspectRatio = computed(() => (square.value ? "1 / 1" : "unset"));
 
   .color-space-wrapper {
     display: flex;
-    gap: 1em;
     grid-column: 1 / -1;
+    gap: 1em;
   }
 
   .first-color,
   .last-color {
     display: block;
-    height: 100%;
     inline-size: 3em;
+    height: 100%;
   }
 
   .gradients {
     --gap: 1px;
-    display: grid;
-    gap: var(--gap);
-    grid-template-columns: auto 1fr;
     --square: v-bind("squareAspectRatio");
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--gap);
   }
 
   .gradient-content {

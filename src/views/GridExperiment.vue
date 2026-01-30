@@ -55,8 +55,8 @@ const itemStyle = ref("outline: 1px solid teal");
 .grid-experiment {
   .input-group {
     display: grid;
-    gap: 0.5em;
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.5em;
   }
 
   .grid-component {

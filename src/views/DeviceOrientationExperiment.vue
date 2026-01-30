@@ -61,25 +61,26 @@ const levelY = computed(() => getLevel(orientation.value?.beta ?? 0));
 
 <style>
 .device-orientation-experiment {
-  height: 100svh;
+  --container: 80vmin;
+  --ref: 10vmin;
+  --factor: calc(var(--container) / 2 - var(--ref) / 2);
+
   align-content: center;
+  height: 100svh;
 
   .settings {
     position: absolute;
     inset-block-start: 1rem;
     inset-inline-start: 1rem;
   }
-
-  --container: 80vmin;
-  --ref: 10vmin;
-  --factor: calc(var(--container) / 2 - var(--ref) / 2);
   .circle {
     position: absolute;
+    inset: 0;
+
+    aspect-ratio: 1;
+    margin: auto;
     border: 1px solid var(--pv-b-color-neutral-500);
     border-radius: 50%;
-    margin: auto;
-    aspect-ratio: 1;
-    inset: 0;
   }
 
   .border {
@@ -92,11 +93,12 @@ const levelY = computed(() => getLevel(orientation.value?.beta ?? 0));
   }
 
   .live {
-    width: var(--ref);
-    border-color: var(--pv-b-color-blue-500);
     --x: calc(v-bind("levelX") * var(--factor) * -1vmin);
     --y: calc(v-bind("levelY") * var(--factor) * -1vmin);
+
     transform: translate(var(--x), var(--y));
+    width: var(--ref);
+    border-color: var(--pv-b-color-blue-500);
   }
 }
 </style>

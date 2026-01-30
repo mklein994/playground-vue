@@ -108,8 +108,8 @@ const rows = computed(() => {
 
 <style>
 .truth-table {
-  border: 1px solid ButtonBorder;
   border-collapse: collapse;
+  border: 1px solid ButtonBorder;
 
   /* --true-text-color: green; */
   /* --true-background-color: ; */

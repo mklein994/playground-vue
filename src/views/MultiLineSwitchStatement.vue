@@ -52,20 +52,22 @@ const backgroundColor = computed(() => {
 <style>
 .multi-line-switch-statement {
   display: grid;
+  grid: repeat(2, 1fr) / auto-flow 1fr;
+  gap: 0.5em 1em;
+
   width: max-content;
   margin: 1em;
-  gap: 0.5em 1em;
-  grid: repeat(2, 1fr) / auto-flow 1fr;
 
   .fruit-color {
     display: block;
+    grid-row: 1 / -1;
+    align-self: center;
+
     width: 100%;
     min-width: 1em;
     height: 100%;
     min-height: 1em;
-    align-self: center;
     border: 1px solid black;
-    grid-row: 1 / -1;
   }
 }
 </style>

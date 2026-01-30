@@ -123,8 +123,8 @@ const fruits = [
 <style module>
 .interactivityStates {
   display: grid;
-  padding: 1em;
   gap: 1em;
+  padding: 1em;
 }
 
 .buttonGroups {
@@ -139,14 +139,14 @@ const fruits = [
 
 .textGroups {
   display: grid;
-  justify-content: start;
   gap: 1em;
+  justify-content: start;
 }
 
 .textGroup {
   display: grid;
-  gap: 1em;
   grid: auto-flow / repeat(2, 1fr);
+  gap: 1em;
 }
 
 .radioGroups {
@@ -155,10 +155,10 @@ const fruits = [
 
 .radioGroup {
   display: grid;
+  grid: auto-flow / repeat(2, auto);
+  column-gap: 1em;
   align-items: baseline;
   justify-content: start;
-  column-gap: 1em;
-  grid: auto-flow / repeat(2, auto);
 }
 
 .custom {
@@ -183,17 +183,18 @@ const fruits = [
   display: grid;
   align-items: center;
   justify-content: center;
+
+  inline-size: var(--size);
+  block-size: var(--size);
+  margin: 3px 3px 0 5px;
   padding: 0 2px;
   border: 2px solid var(--default-color);
   border-radius: 50%;
-  margin: 3px 3px 0 5px;
-  block-size: var(--size);
-  inline-size: var(--size);
 
   &::after {
-    block-size: calc(var(--size) * var(--ratio));
     content: "";
     inline-size: calc(var(--size) * var(--ratio));
+    block-size: calc(var(--size) * var(--ratio));
   }
 
   &:hover {

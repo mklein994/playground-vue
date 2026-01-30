@@ -86,9 +86,9 @@ const resetButtonText = computed(() =>
 <style>
 .base-styles-experiment {
   display: grid;
-  padding: 1rem;
   gap: 2rem;
   justify-items: start;
+  padding: 1rem;
 
   .button-group {
     display: grid;
@@ -98,8 +98,8 @@ const resetButtonText = computed(() =>
 
   .input-group {
     display: grid;
-    gap: 0.5rem 1rem;
     grid-template-columns: auto auto;
+    gap: 0.5rem 1rem;
   }
 
   .default {

@@ -1,8 +1,11 @@
 @import "tailwindcss" prefix(tw);
+
 @custom-variant dark (&:where(.tw-dark, .tw-dark *));
+
 @plugin "@tailwindcss/forms" {
   strategy: "class";
 }
+
 @plugin "@tailwindcss/typography";
 
 @layer utilities {
@@ -13,12 +16,13 @@
     .tw\:form-multiselect,
     .tw\:form-checkbox,
     .tw\:form-radio {
-      background-color: Field;
       color: FieldText;
+      background-color: Field;
 
       &:focus {
         --tw-ring-offset-color: black;
         --tw-ring-color: var(--tw-color-indigo-500);
+
         border-color: var(--tw-color-indigo-500);
       }
     }

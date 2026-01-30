@@ -167,17 +167,18 @@ const handleFillCheckToggle = (e: InputEvent) => {
 .material-symbols-experiment {
   .settings {
     display: grid;
-    max-width: max-content;
-    justify-content: start;
-    gap: var(--pv-b-spacing-2);
     grid-template-columns: auto auto auto;
+    gap: var(--pv-b-spacing-2);
+    justify-content: start;
+
+    max-width: max-content;
   }
 
   .wrapper {
     display: grid;
-    gap: inherit;
     grid-column: 2 / -1;
     grid-template-columns: subgrid;
+    gap: inherit;
   }
 
   .fill-input-wrapper {

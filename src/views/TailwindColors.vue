@@ -138,16 +138,16 @@ onMounted(() => {
       minmax(5em, min-content);
 
     display: grid;
+    grid-template-columns: repeat(auto-fit, var(--grid));
+    gap: clamp(0.5em, 1vh, 1em);
     align-items: start;
     justify-content: space-around;
-    gap: clamp(0.5em, 1vh, 1em);
-    grid-template-columns: repeat(auto-fit, var(--grid));
   }
 
   .card {
     display: grid;
-    column-gap: 1em;
     grid-column-end: span 3;
+    column-gap: 1em;
     white-space: nowrap;
 
     &.other {

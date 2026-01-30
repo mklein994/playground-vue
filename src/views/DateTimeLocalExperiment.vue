@@ -33,17 +33,18 @@ const step = ref("");
 <style>
 .date-time-local-experiment {
   display: grid;
+  grid-template-columns: auto auto;
+  gap: 1rem;
   align-items: start;
   justify-content: start;
+
   margin: 1rem;
-  gap: 1rem;
-  grid-template-columns: auto auto;
 
   .date-input,
   .output {
     display: grid;
-    justify-content: start;
     row-gap: 0.5rem;
+    justify-content: start;
   }
 }
 </style>

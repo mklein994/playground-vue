@@ -95,8 +95,8 @@ const options = computed<PlotOptions>(() => ({
 
   .form {
     display: grid;
-    justify-content: start;
     gap: 1em 0.5em;
+    justify-content: start;
     justify-items: start;
   }
 
@@ -119,6 +119,7 @@ const options = computed<PlotOptions>(() => ({
         var(--pv-b-color-blue-600),
         var(--pv-b-color-blue-400)
       );
+
       color: var(--color);
 
       &:hover {
@@ -130,21 +131,25 @@ const options = computed<PlotOptions>(() => ({
     }
 
     &[data-version]::after {
+      content: attr(data-version);
+
       display: inline-block;
+
+      margin-inline-start: 1ch;
+      padding-inline: calc(5 / 8 * 1em);
       border-radius: 1em;
+
+      font-family: sans-serif;
+      font-size: 0.75em;
+      font-weight: 500;
+      color: light-dark(var(--pv-b-color-teal-700), var(--pv-b-color-teal-400));
+      text-decoration: underline;
+      text-underline-offset: 2px;
+
       background-color: light-dark(
         var(--pv-b-color-teal-100),
         var(--pv-b-color-teal-950)
       );
-      color: light-dark(var(--pv-b-color-teal-700), var(--pv-b-color-teal-400));
-      content: attr(data-version);
-      font-family: sans-serif;
-      font-size: 0.75em;
-      font-weight: 500;
-      margin-inline-start: 1ch;
-      padding-inline: calc(5 / 8 * 1em);
-      text-decoration: underline;
-      text-underline-offset: 2px;
     }
   }
 }

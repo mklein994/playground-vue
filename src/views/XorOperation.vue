@@ -128,15 +128,15 @@ const testCode = tests.map((test) => test.toString());
   }
 
   .xor-operation {
-    border-collapse: separate;
     border-spacing: 0;
+    border-collapse: separate;
   }
 
   .cell {
+    padding-inline: 0.5em;
     border: 1px solid lightgray;
     font-family: monospace;
     font-size: 1rem;
-    padding-inline: 0.5em;
 
     &.true {
       color: forestgreen;
@@ -149,17 +149,19 @@ const testCode = tests.map((test) => test.toString());
 
   .header .cell {
     position: sticky;
-    background: Canvas;
-    border-block-end: 2px solid ButtonBorder;
     inset-block-start: 0;
+    border-block-end: 2px solid ButtonBorder;
+    background: Canvas;
   }
 
   .cell:first-child {
     position: sticky;
     z-index: 1;
-    background: Canvas;
-    border-inline-end: 2px solid ButtonBorder;
     inset-inline-start: 0;
+
+    border-inline-end: 2px solid ButtonBorder;
+
+    background: Canvas;
   }
 
   .header .cell:first-child {

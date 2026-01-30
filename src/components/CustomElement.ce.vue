@@ -7,9 +7,9 @@
 <style>
 .custom-element {
   display: grid;
-  margin: 1em;
-  gap: 1em;
   grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  margin: 1em;
 }
 
 .item {

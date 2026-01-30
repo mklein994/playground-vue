@@ -143,34 +143,39 @@ const sharpPowerDisplay = computed(() => formatter.format(sharpPower.value));
 
 <style>
 .chromatic-tuner {
-  display: grid;
-  width: 100%;
-  align-items: center;
-  padding: var(--pv-b-spacing-5);
-  border-radius: 2% / 50%;
-  aspect-ratio: 16 / 9;
-  background-color: var(--pv-b-color-amber-100);
-  color: var(--pv-b-color-gray-700);
   container: tuner / inline-size;
-  gap: var(--pv-b-spacing-3);
+  display: grid;
   grid-template-areas:
     "lights ."
     "screen speaker"
     "controls label";
   grid-template-columns: 3fr 2fr;
+  gap: var(--pv-b-spacing-3);
+  align-items: center;
+
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  padding: var(--pv-b-spacing-5);
+  border-radius: 2% / 50%;
+
+  color: var(--pv-b-color-gray-700);
+
+  background-color: var(--pv-b-color-amber-100);
   outline: 2px solid var(--pv-b-color-gray-900);
   outline-offset: -5px;
 
   .lights {
     display: grid;
-    width: 100%;
-    align-self: end;
-    justify-content: space-evenly;
-    color: black;
     grid-area: lights;
     grid-template-columns: repeat(3, 1fr);
-    padding-inline: var(--pv-b-spacing-9);
     row-gap: var(--pv-b-spacing-2);
+    align-self: end;
+    justify-content: space-evenly;
+
+    width: 100%;
+    padding-inline: var(--pv-b-spacing-9);
+
+    color: black;
 
     .light-group {
       display: grid;
@@ -186,21 +191,8 @@ const sharpPowerDisplay = computed(() => formatter.format(sharpPower.value));
   }
 
   .screen {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: var(--pv-b-spacing-2);
-    border: 1px solid var(--pv-b-color-gray-700);
-    border-radius: var(--pv-b-radius-xs);
     --bg: #3b505d;
     --fg: oklch(from black l c h / 0.8);
-    aspect-ratio: 9 / 4;
-    background-color: var(--bg);
-    box-shadow: var(--pv-b-inset-shadow-sm);
-    color: var(--fg);
-    grid-area: screen;
-    text-shadow: 2px 2px color-mix(in oklch, var(--fg), var(--bg) 90%);
 
     --font-size-md: clamp(
       var(--pv-b-font-size-sm),
@@ -213,11 +205,29 @@ const sharpPowerDisplay = computed(() => formatter.format(sharpPower.value));
       var(--pv-b-font-line-height-3xl)
     );
 
+    position: relative;
+
+    display: flex;
+    grid-area: screen;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    aspect-ratio: 9 / 4;
+    padding: var(--pv-b-spacing-2);
+    border: 1px solid var(--pv-b-color-gray-700);
+    border-radius: var(--pv-b-radius-xs);
+
+    color: var(--fg);
+    text-shadow: 2px 2px color-mix(in oklch, var(--fg), var(--bg) 90%);
+
+    background-color: var(--bg);
+    box-shadow: var(--pv-b-inset-shadow-sm);
+
     &.off::after {
-      position: absolute;
-      background: inherit;
       content: "";
+      position: absolute;
       inset: 0;
+      background: inherit;
     }
 
     .cents {
@@ -249,11 +259,12 @@ const sharpPowerDisplay = computed(() => formatter.format(sharpPower.value));
 
   .speaker-grill {
     display: grid;
-    aspect-ratio: 8 / 4;
     grid-area: speaker;
     grid-template-columns: repeat(8, 1fr);
     place-content: space-evenly;
     place-items: center;
+
+    aspect-ratio: 8 / 4;
 
     .speaker-hole {
       width: 1cqw;
@@ -265,24 +276,26 @@ const sharpPowerDisplay = computed(() => formatter.format(sharpPower.value));
 
   .controls {
     display: flex;
-    align-items: center;
-    gap: var(--pv-b-spacing-4);
     grid-area: controls;
+    gap: var(--pv-b-spacing-4);
+    align-items: center;
 
     .control {
       width: 2rem;
       height: 1rem;
       border: 1px solid var(--pv-b-color-gray-700);
       border-radius: var(--pv-b-radius-full);
+
       font: var(--pv-b-font-2xs);
     }
 
     .power-button {
       width: 2rem;
       height: 1rem;
+      margin-left: auto;
       border: 1px solid var(--pv-b-color-red-900);
       border-radius: var(--pv-b-radius-full);
-      margin-left: auto;
+
       background-color: var(--pv-b-color-red-700);
 
       &:hover {
@@ -297,10 +310,11 @@ const sharpPowerDisplay = computed(() => formatter.format(sharpPower.value));
 
   .product-label {
     display: grid;
-    align-self: end;
-    margin-top: -2rem;
     grid-area: label;
+    align-self: end;
     justify-items: end;
+
+    margin-top: -2rem;
 
     .model-top,
     .model-bottom {

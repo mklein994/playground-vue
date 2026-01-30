@@ -41,10 +41,11 @@
 <style>
 .color-font-experiment {
   display: grid;
-  height: 100vh;
-  box-sizing: border-box; /* For when no resets are used */
-  padding-bottom: 3.5rem;
   place-items: center;
+
+  box-sizing: border-box; /* For when no resets are used */
+  height: 100vh;
+  padding-bottom: 3.5rem;
 
   &:has(#animate-morph:checked) {
     --morph-state: running;
@@ -60,30 +61,6 @@
   }
 
   .welcome {
-    position: relative;
-    padding: 0;
-
-    animation:
-      morph-pulse calc(var(--morph-states) * 1s) var(--morph-easing) infinite
-        alternate,
-      shadow-pulse 5s var(--shadow-easing) infinite alternate;
-    animation-play-state:
-      var(--global-state, var(--morph-state, paused)),
-      var(--global-state, var(--shadow-state, paused));
-
-    font-family: "Honk", fantasy;
-    font-size: var(--font-size);
-
-    font-variation-settings:
-      "MORF" var(--cf-morph),
-      "SHLN" var(--cf-shadow);
-    line-height: normal;
-
-    /* reset default h1 CSS styles here */
-    margin-block: 0;
-
-    text-align: center;
-
     /* Don't let this go below a comfortable font size. */
     --min-font-size: 1rem;
 
@@ -99,25 +76,49 @@
       var(--max-font-size)
     );
 
+    --shadow-easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    --morph-states: 45;
+    --morph-easing: linear;
+
+    position: relative;
+
+    /* reset default h1 CSS styles here */
+    margin-block: 0;
+    padding: 0;
+
+    font-family: "Honk", fantasy;
+    font-size: var(--font-size);
+    font-variation-settings:
+      "MORF" var(--cf-morph),
+      "SHLN" var(--cf-shadow);
+    line-height: normal;
+    text-align: center;
+
+    animation:
+      morph-pulse calc(var(--morph-states) * 1s) var(--morph-easing) infinite
+        alternate,
+      shadow-pulse 5s var(--shadow-easing) infinite alternate;
+    animation-play-state:
+      var(--global-state, var(--morph-state, paused)),
+      var(--global-state, var(--shadow-state, paused));
+
     @media (prefers-color-scheme: dark) {
       padding: 1rem;
       border-radius: 8px;
       /* stylelint-disable declaration-property-value-no-unknown -- browsers support <system-color> here */
       background: oklch(from Canvas calc(l + 0.1) c h);
     }
-
-    --shadow-easing: cubic-bezier(0.645, 0.045, 0.355, 1);
-
-    --morph-states: 45;
-    --morph-easing: linear;
   }
 
   .animate-toggle {
+    cursor: pointer;
+
     position: absolute;
     z-index: 1;
-    appearance: none;
-    cursor: pointer;
     inset: 0;
+
+    appearance: none;
 
     &:not(:checked) ~ .welcome {
       --global-state: paused;
@@ -145,17 +146,18 @@
 
   .settings {
     display: grid;
-    font-family: system-ui;
     gap: 1rem;
     justify-items: center;
+    font-family: system-ui;
   }
 
   .settings-inputs {
     display: grid;
-    max-width: max-content;
-    align-items: center;
-    column-gap: 0.5rem;
     grid-template-columns: auto 1fr;
+    column-gap: 0.5rem;
+    align-items: center;
+
+    max-width: max-content;
   }
 }
 

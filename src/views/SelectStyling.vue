@@ -21,9 +21,10 @@
   background-color: rgb(25 25 0 / 0.1);
 
   .none {
+    margin: 0;
     padding: 0;
     border: 0;
-    margin: 0;
+
     appearance: none;
     background: none;
     outline: 0;

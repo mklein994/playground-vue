@@ -22,8 +22,8 @@ const handleClick = debounce((amount: number) => bump(amount), 500);
 <style>
 .debounce-experiment {
   display: flex;
+  gap: 1rem;
   align-items: baseline;
   padding: 1rem;
-  gap: 1rem;
 }
 </style>

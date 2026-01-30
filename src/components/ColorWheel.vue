@@ -45,31 +45,38 @@ const gradient = computed(() => {
     rgba(0, 0, 0, 0.1) 0 4px 6px -4px;
 
   display: grid;
-  width: 10rem;
-  border-radius: 50%;
-  aspect-ratio: 1;
-  background: v-bind("gradient");
   place-items: center;
 
+  aspect-ratio: 1;
+  width: 10rem;
+  border-radius: 50%;
+
+  background: v-bind("gradient");
+
   &::before {
+    content: "";
+
+    grid-area: 1 / 1 / 1 / 1;
+
+    aspect-ratio: 1;
     width: 70%;
     border: 1px solid transparent;
     border-radius: 50%;
-    aspect-ratio: 1;
+
     background: white;
     box-shadow: var(--box-shadow-lg);
-    content: "";
-    grid-area: 1 / 1 / 1 / 1;
   }
 
   .color-input {
+    grid-area: 1 / 1 / 1 / 1;
+
     width: 65%;
     height: 65%;
     padding: 0;
     border: none;
     border-radius: 50%;
+
     box-shadow: var(--box-shadow);
-    grid-area: 1 / 1 / 1 / 1;
 
     /* Hacks for <input type="color"> */
     &::-moz-color-swatch {

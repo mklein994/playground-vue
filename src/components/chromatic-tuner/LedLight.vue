@@ -27,17 +27,18 @@ const power = computed(() => `${powerPercentage * 100}%`);
 }
 
 .led-light {
-  border-radius: 50%;
+  /* transition-duration: 100ms; */
+  /* transition-property: --circle-start-color, --circle-end-color; */
+
+  --power: v-bind("power");
+
   aspect-ratio: 1;
+  border-radius: 50%;
   background: radial-gradient(
     var(--circle-start-color),
     var(--circle-end-color)
   );
   filter: url("@/assets/filters.svg#light");
-  /* transition-duration: 100ms; */
-  /* transition-property: --circle-start-color, --circle-end-color; */
-
-  --power: v-bind("power");
 
   &.green {
     --circle-start-color: color-mix(

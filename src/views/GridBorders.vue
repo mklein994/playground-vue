@@ -215,8 +215,8 @@ function handleItemStyleUpdate(
 .grid-borders-experiment {
   .input-group {
     display: grid;
-    padding: 1em;
     grid-template-columns: repeat(3, minmax(0, auto));
+    padding: 1em;
   }
 
   .wrapper {
@@ -234,10 +234,10 @@ function handleItemStyleUpdate(
   }
 
   .special {
-    color: tomato;
     font-size: 1.5em;
-    font-style: italic;
     font-weight: bold;
+    font-style: italic;
+    color: tomato;
 
     &::before {
       content: "*";
@@ -246,9 +246,9 @@ function handleItemStyleUpdate(
 
   .grid {
     display: grid;
-    background-color: var(--border-color);
     grid-template-columns: repeat(var(--column-count), auto);
     row-gap: var(--border-width);
+    background-color: var(--border-color);
 
     .grid-row {
       display: grid;

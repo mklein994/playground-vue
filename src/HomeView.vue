@@ -7,19 +7,13 @@
 <style>
 .welcome-container {
   display: grid;
-  height: 100vh; /* assumes <body> has no margin */
-  box-sizing: border-box; /* For when no resets are used */
-  padding-bottom: 3.5rem;
   place-items: center;
 
+  box-sizing: border-box; /* For when no resets are used */
+  height: 100vh; /* assumes <body> has no margin */
+  padding-bottom: 3.5rem;
+
   .welcome {
-    font:
-      700 var(--font-size) "Andada Pro",
-      serif;
-
-    margin-block: 0;
-    text-align: center;
-
     /* Don't let this go below a comfortable font size. */
     --min-font-size: 1rem;
 
@@ -34,6 +28,12 @@
       var(--preferred-font-size),
       var(--max-font-size)
     );
+
+    margin-block: 0;
+    font:
+      700 var(--font-size) "Andada Pro",
+      serif;
+    text-align: center;
   }
 }
 </style>

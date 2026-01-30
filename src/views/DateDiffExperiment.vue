@@ -257,10 +257,10 @@ watchEffect(() => {
 
   .form {
     display: grid;
+    grid-template-columns: repeat(6, auto);
+    gap: 1rem;
     align-items: start;
     justify-content: start;
-    gap: 1rem;
-    grid-template-columns: repeat(6, auto);
   }
 
   .date-add-output {

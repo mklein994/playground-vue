@@ -2,8 +2,8 @@
   border: 1px solid
     light-dark(var(--pv-b-color-lime-100), var(--pv-b-color-lime-900));
   border-radius: 0.125em;
-  background: light-dark(var(--pv-b-color-lime-50), var(--pv-b-color-lime-950));
   color: light-dark(var(--pv-b-color-lime-950), var(--pv-b-color-lime-50));
+  background: light-dark(var(--pv-b-color-lime-50), var(--pv-b-color-lime-950));
 
   &::before,
   &::after {
@@ -21,23 +21,25 @@
   border: 1px solid
     light-dark(var(--pv-b-color-neutral-500), var(--pv-b-color-zinc-400));
   border-radius: var(--pv-b-radius-xs);
+
+  font-family: system-ui, sans-serif;
+  font-size: var(--pv-b-font-size-sm);
+  line-height: var(--pv-b-font-line-height-sm);
+  color: light-dark(var(--pv-b-color-neutral-700), var(--pv-b-color-gray-50));
+
   appearance: none;
   background: light-dark(
     var(--pv-b-color-neutral-200),
     var(--pv-b-color-zinc-800)
   );
-  color: light-dark(var(--pv-b-color-neutral-700), var(--pv-b-color-gray-50));
-  font-family: system-ui, sans-serif;
-  font-size: var(--pv-b-font-size-sm);
-  line-height: var(--pv-b-font-line-height-sm);
 
   &:disabled {
     border-color: var(--pv-b-color-zinc-400);
+    color: var(--pv-b-color-neutral-500);
     background-color: light-dark(
       var(--pv-b-color-neutral-100),
       var(--pv-b-color-zinc-800)
     );
-    color: var(--pv-b-color-neutral-500);
   }
 
   &:where(:enabled) {
@@ -52,13 +54,13 @@
           var(--pv-b-color-neutral-600),
           var(--pv-b-color-zinc-300)
         );
-        background-color: light-dark(
-          var(--pv-b-color-neutral-400),
-          var(--pv-b-color-zinc-500)
-        );
         color: light-dark(
           var(--pv-b-color-neutral-800),
           var(--pv-b-color-gray-50)
+        );
+        background-color: light-dark(
+          var(--pv-b-color-neutral-400),
+          var(--pv-b-color-zinc-500)
         );
       }
     }
@@ -71,15 +73,17 @@
   --bg: light-dark(white, var(--pv-b-color-zinc-800));
   --border-color: var(--pv-b-color-neutral-400);
 
+  inline-size: 100%;
   padding: 1px 3px;
   border: 1px solid var(--border-color);
   border-radius: 2px;
-  background-color: var(--bg);
-  color: var(--fg);
+
   font-family: sans-serif;
   font-size: var(--pv-b-font-size-sm);
-  inline-size: 100%;
   line-height: var(--pv-b-font-line-height-sm);
+  color: var(--fg);
+
+  background-color: var(--bg);
 
   &:where(.pv-input) {
     appearance: none;
@@ -95,6 +99,7 @@
 
     &:focus {
       --border-color: var(--pv-b-color-blue-700);
+
       border-radius: 2px;
       outline: 1px solid var(--border-color);
     }
@@ -111,8 +116,8 @@
 
 .pv-input-wrapper {
   display: grid;
-  align-items: baseline;
   gap: var(--pv-b-spacing-0-5) var(--pv-b-spacing-1);
+  align-items: baseline;
   max-inline-size: max-content;
 
   label {
@@ -122,8 +127,8 @@
   }
 
   &.pv-inline {
-    align-items: stretch;
     grid-auto-flow: column;
+    align-items: stretch;
   }
 }
 
@@ -157,17 +162,21 @@
     position: relative;
 
     &::after {
+      content: attr(title);
+
       position: absolute;
+      inset-block-end: 0;
+      inset-inline-start: 0;
+      transform: translateY(100%);
+
       width: max-content;
       padding: 0.25em 0.5em;
       border: 1px solid ButtonBorder;
       border-radius: 6px;
-      background-color: Canvas;
+
       color: CanvasText;
-      content: attr(title);
-      inset-block-end: 0;
-      inset-inline-start: 0;
-      transform: translateY(100%);
+
+      background-color: Canvas;
     }
   }
 }

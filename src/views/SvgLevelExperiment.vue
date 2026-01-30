@@ -114,18 +114,16 @@ const verticalDisplay = computed(() =>
 <style>
 .svg-level-experiment {
   display: grid;
-  height: 100svh;
-  background: light-dark(
-    var(--pv-b-color-neutral-50),
-    var(--pv-b-color-neutral-950)
-  );
   gap: 10vmin;
   place-content: center;
   place-items: center;
 
-  @media (orientation: landscape) {
-    grid-auto-flow: column;
-  }
+  height: 100svh;
+
+  background: light-dark(
+    var(--pv-b-color-neutral-50),
+    var(--pv-b-color-neutral-950)
+  );
 
   .settings {
     position: fixed;
@@ -134,8 +132,8 @@ const verticalDisplay = computed(() =>
 
     .input-wrapper {
       display: flex;
-      align-items: center;
       gap: 0.25rem;
+      align-items: center;
     }
 
     button {
@@ -149,32 +147,25 @@ const verticalDisplay = computed(() =>
     .angle {
       font-family: sans-serif;
       font-size: 1.875rem;
-      font-variant-numeric: tabular-nums;
       font-weight: bold;
+      font-variant-numeric: tabular-nums;
       line-height: calc(2.25 / 1.875);
     }
 
     .label {
-      color: light-dark(
-        var(--pv-b-color-neutral-400),
-        var(--pv-b-color-neutral-500)
-      );
       font-family: sans-serif;
       font-size: 1.5rem;
       font-weight: bolder;
       line-height: calc(2 / 1.5);
+      color: light-dark(
+        var(--pv-b-color-neutral-400),
+        var(--pv-b-color-neutral-500)
+      );
     }
   }
 
   .level {
-    border: 1vmin solid var(--border);
-    border-radius: 50%;
     --svg-level-shadow-color: rgb(from var(--border) r g b / 0.25);
-    box-shadow: var(--svg-level-shadow-color) 0px 25px 50px -12px;
-    fill: none;
-    stroke-width: 1px;
-    transition-duration: var(--exit-duration);
-    transition-property: box-shadow, border-color;
     --border: light-dark(
       var(--pv-b-color-neutral-200),
       var(--pv-b-color-neutral-800)
@@ -196,6 +187,17 @@ const verticalDisplay = computed(() =>
     --duration: var(--exit-duration);
     --highlight-ring-count: var(--ring-count);
 
+    border: 1vmin solid var(--border);
+    border-radius: 50%;
+
+    box-shadow: var(--svg-level-shadow-color) 0px 25px 50px -12px;
+
+    fill: none;
+    stroke-width: 1px;
+
+    transition-duration: var(--exit-duration);
+    transition-property: box-shadow, border-color;
+
     .reference {
       cx: 50%;
       cy: 50%;
@@ -204,19 +206,21 @@ const verticalDisplay = computed(() =>
     }
 
     .ring {
-      cx: 50%;
-      cy: 50%;
       --delta: calc(99% / 3 / var(--ring-count) - 0.5px / var(--ring-count));
-      r: calc(var(--ref-radius) + var(--r) * var(--delta));
 
       --delay: calc(
         var(--exit-duration) - var(--r) * var(--exit-duration) /
           var(--highlight-ring-count)
       );
+
+      cx: 50%;
+      cy: 50%;
+      r: calc(var(--ref-radius) + var(--r) * var(--delta));
+
       transition-delay: var(--delay);
+      transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
       transition-duration: var(--exit-duration);
       transition-property: stroke;
-      transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
     }
 
     .ref-line,
@@ -226,32 +230,32 @@ const verticalDisplay = computed(() =>
     }
 
     .live {
-      cx: 50%;
-      cy: 50%;
-
       --max: max(abs(var(--x)), abs(var(--y)));
+
+      --x: calc(-1 * v-bind("levelX"));
+      --y: calc(-1 * v-bind("levelY"));
+      --factor: calc(var(--ref-radius) * 2 - 5px);
+
+      transform-origin: center;
+      transform: translate(
+        calc(var(--x) * var(--factor)),
+        calc(var(--y) * var(--factor))
+      );
 
       filter: drop-shadow(
         var(--accent) calc(var(--x) * 2px) calc(var(--y) * 2px)
           calc((1 - var(--max)) * 8px + 1px)
       );
 
+      cx: 50%;
+      cy: 50%;
       r: var(--ref-radius);
       stroke: var(--accent);
       stroke-width: 3px;
 
-      --x: calc(-1 * v-bind("levelX"));
-      --y: calc(-1 * v-bind("levelY"));
-      --factor: calc(var(--ref-radius) * 2 - 5px);
-      transform: translate(
-        calc(var(--x) * var(--factor)),
-        calc(var(--y) * var(--factor))
-      );
-      transform-origin: center;
-
+      transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
       transition-duration: var(--exit-duration);
       transition-property: stroke;
-      transition-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
     }
 
     &.is-level {
@@ -269,9 +273,9 @@ const verticalDisplay = computed(() =>
           l a b / 0.25
       );
 
+      transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
       transition-duration: var(--starting-duration);
       transition-property: box-shadow, border-color;
-      transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
 
       .ring {
         stroke: color-mix(
@@ -292,10 +296,14 @@ const verticalDisplay = computed(() =>
           var(--pv-b-color-lime-700),
           var(--pv-b-color-lime-500)
         );
-        transition-duration: var(--starting-duration);
         transition-timing-function: ease-out;
+        transition-duration: var(--starting-duration);
       }
     }
+  }
+
+  @media (orientation: landscape) {
+    grid-auto-flow: column;
   }
 }
 

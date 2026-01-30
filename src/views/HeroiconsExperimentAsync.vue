@@ -97,17 +97,18 @@ const handleQuery = (event: Event) => {
 .heroicons-experiment {
   .icon-query {
     display: flex;
-    justify-content: center;
     gap: 0.5em;
+    justify-content: center;
   }
 
   .icon-grid {
     display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 0.125em;
     align-items: center;
     justify-content: center;
+
     padding: 1rem;
-    gap: 0.125em;
-    grid-template-columns: repeat(4, auto);
   }
 
   .name {
@@ -116,6 +117,7 @@ const handleQuery = (event: Event) => {
 
   .icon {
     --length: 24px;
+
     width: var(--length);
     height: var(--length);
   }
@@ -130,6 +132,7 @@ const handleQuery = (event: Event) => {
 
   .compact {
     --length: 20px;
+
     color: forestgreen;
   }
 }

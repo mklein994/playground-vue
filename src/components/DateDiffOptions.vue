@@ -188,8 +188,8 @@ const resetToPreset = () => {
 <style>
 .date-diff-options {
   display: grid;
-  gap: 1rem;
   grid-auto-flow: column;
+  gap: 1rem;
 
   .presets {
     display: grid;
@@ -203,26 +203,27 @@ const resetToPreset = () => {
 
   .fieldset {
     display: grid;
-    align-content: start;
-    align-items: baseline;
     grid-template-columns: auto auto;
     row-gap: 1rem;
+    align-content: start;
+    align-items: baseline;
   }
 
   .radio-group {
     display: grid;
-    max-width: max-content;
-    column-gap: 0.5rem;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
+    column-gap: 0.5rem;
+
+    max-width: max-content;
   }
 
   .comma-checkbox,
   .hms-checkbox {
     display: grid;
-    gap: 1rem 0.5rem;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
+    gap: 1rem 0.5rem;
   }
 }
 </style>

@@ -14,15 +14,15 @@
 <style>
 .nth-child-component {
   display: grid;
+  gap: 1rem;
   justify-content: start;
   padding: 1rem;
-  gap: 1rem;
 
   .item-list {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid lightblue;
     gap: 1rem;
+    border: 1px solid lightblue;
 
     &.nth-child > .item:nth-child(n + 2) {
       color: tomato;

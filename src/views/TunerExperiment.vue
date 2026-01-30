@@ -66,11 +66,12 @@ useEventListener("visibilitychange", () => {
 <style>
 .tuner-experiment {
   display: grid;
-  height: 100dvh;
-  align-content: center;
-  padding: var(--pv-b-spacing-4);
   gap: var(--pv-b-spacing-4);
+  align-content: center;
   justify-items: stretch;
+
+  height: 100dvh;
+  padding: var(--pv-b-spacing-4);
 
   .chromatic-tuner {
     max-width: var(--pv-b-container-3xl);
@@ -81,8 +82,8 @@ useEventListener("visibilitychange", () => {
   .settings {
     display: grid;
     inline-size: 100%;
-    margin-inline: auto;
     max-inline-size: var(--pv-b-container-3xl);
+    margin-inline: auto;
   }
 }
 </style>

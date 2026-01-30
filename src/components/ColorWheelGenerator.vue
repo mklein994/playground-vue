@@ -33,8 +33,8 @@ const baseColor = computed(() => `hsl(from ${initialColor.value} h s 50%)`);
 .color-wheel-generator {
   .steps-input {
     display: flex;
-    align-items: center;
     gap: 1rem;
+    align-items: center;
   }
 
   .color-steps {

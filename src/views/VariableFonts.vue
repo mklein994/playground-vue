@@ -172,9 +172,9 @@ const mono = ref(monoOpts.default);
 .variable-fonts-experiment {
   .input-group {
     display: grid;
-    margin: 1rem;
-    gap: 1rem 0.5rem;
     grid: auto-flow / repeat(3, minmax(auto, 1fr)) repeat(3, auto);
+    gap: 1rem 0.5rem;
+    margin: 1rem;
 
     :where(button) {
       padding: 0.25em 1em;
@@ -182,25 +182,26 @@ const mono = ref(monoOpts.default);
       border-radius: 0.5em;
 
       &:disabled {
-        background: rgb(0 0 0 / 0.125);
         cursor: auto;
         opacity: 0.5;
+        background: rgb(0 0 0 / 0.125);
       }
     }
   }
 
   .crsv-group {
     display: grid;
-    max-width: max-content;
-    align-items: center;
-    column-gap: 1rem;
     grid-column: 1 / -1;
     grid-template-columns: 1fr repeat(3, minmax(0, 1fr));
+    column-gap: 1rem;
+    align-items: center;
+
+    max-width: max-content;
 
     & > * {
       display: flex;
-      align-items: center;
       column-gap: 0.25rem;
+      align-items: center;
     }
   }
 
@@ -214,7 +215,6 @@ const mono = ref(monoOpts.default);
       "CRSV" v-bind("crsv"),
       "MONO" v-bind("mono");
     hyphens: auto;
-
     overflow-wrap: break-word;
 
     :first-child {

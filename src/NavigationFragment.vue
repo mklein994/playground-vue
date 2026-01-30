@@ -304,31 +304,28 @@ onBeforeUnmount(() => {
 
 <style>
 .navigation-fragment {
+  --border-radius: 0.5rem;
+
   position: fixed;
   z-index: 1;
+  /** Allow us to position the menu button (which is inside the dialog) */
+  inset: auto;
+
   display: flex;
-  max-height: 100dvh;
-  box-sizing: border-box; /* Make max-height work without Tailwind */
   flex-flow: column;
+  gap: 1rem;
   justify-content: space-between;
+
+  box-sizing: border-box; /* Make max-height work without Tailwind */
+  max-height: 100dvh;
   padding: 1rem 1.5rem;
   border: 1px solid
     light-dark(var(--pv-b-color-gray-300), var(--pv-b-color-gray-700));
+
   background-color: light-dark(
     var(--pv-b-color-gray-50),
     var(--pv-b-color-gray-950)
   );
-  gap: 1rem;
-  /** Allow us to position the menu button (which is inside the dialog) */
-  inset: auto;
-  --border-radius: 0.5rem;
-
-  @supports not (inset: 0) {
-    &.bottom.right {
-      right: 0;
-      bottom: 0;
-    }
-  }
 
   &::backdrop {
     background-color: rgb(0 0 0 / 0.25);
@@ -371,14 +368,14 @@ onBeforeUnmount(() => {
 
   &.top.left {
     border-block-start: none;
-    border-end-end-radius: var(--border-radius);
     border-inline-start: none;
+    border-end-end-radius: var(--border-radius);
   }
 
   &.top.right {
     border-block-start: none;
-    border-end-start-radius: var(--border-radius);
     border-inline-end: none;
+    border-end-start-radius: var(--border-radius);
   }
 
   &.bottom.left {
@@ -394,10 +391,10 @@ onBeforeUnmount(() => {
   }
 
   .links {
-    min-height: 5rem;
     /* scroll the links when there's not enough space */
     overflow-y: auto;
     overscroll-behavior: contain;
+    min-height: 5rem;
     /* TODO: figure out how to make this less janky on
      * browsers that can hide the toolbar on scroll (i.e.
      * Firefox Android)
@@ -421,6 +418,7 @@ onBeforeUnmount(() => {
 
     &.top {
       --shadow-y: -10px;
+
       flex-flow: column-reverse;
     }
 
@@ -435,24 +433,24 @@ onBeforeUnmount(() => {
 
   .menu-positions {
     display: grid;
-    gap: 0.5em;
     grid-template-columns: repeat(v-bind("expanded ? 2 : 1"), 1fr);
+    gap: 0.5em;
   }
 
   .menu-position {
     display: flex;
     flex: 1;
-    align-items: center;
     column-gap: 0.5em;
+    align-items: center;
   }
 
   .nav-button-wrapper {
+    cursor: pointer;
+
     display: flex;
+    gap: 1em;
     align-items: center;
     justify-content: space-between;
-
-    cursor: pointer;
-    gap: 1em;
   }
 
   .left .nav-button-wrapper {
@@ -471,8 +469,8 @@ onBeforeUnmount(() => {
   }
 
   .links-list {
-    padding: 0;
     margin: 0 0 0 1em;
+    padding: 0;
     list-style-type: circle;
   }
 
@@ -496,6 +494,13 @@ onBeforeUnmount(() => {
 
   .build-date {
     font-size: 0.8em;
+  }
+
+  @supports not (inset: 0) {
+    &.bottom.right {
+      right: 0;
+      bottom: 0;
+    }
   }
 }
 </style>

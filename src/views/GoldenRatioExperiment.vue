@@ -347,12 +347,13 @@ watchEffect(() => {
 
   .form {
     display: grid;
-    align-items: center;
-    justify-content: start;
-    padding: 1rem;
-    gap: 0.5rem 1rem;
     grid-auto-columns: auto;
     grid-auto-flow: column;
+    gap: 0.5rem 1rem;
+    align-items: center;
+    justify-content: start;
+
+    padding: 1rem;
   }
 
   .current-petal-count {

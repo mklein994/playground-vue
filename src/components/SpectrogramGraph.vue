@@ -130,8 +130,8 @@ watch(
   > * {
     display: grid;
     height: min-content;
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 
   .spectrogram {

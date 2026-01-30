@@ -14,9 +14,11 @@ const routeName = computed(() => route.name ?? "(unknown)");
 <style>
 .route-name {
   display: inline-block;
+
+  margin: 0;
   padding: 0.125rem 0.25rem;
   border: 1px solid black;
-  margin: 0;
+
   text-transform: capitalize;
 }
 </style>

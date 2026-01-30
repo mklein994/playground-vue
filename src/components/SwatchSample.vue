@@ -18,9 +18,9 @@ defineProps<{
 <style>
 .swatch-sample {
   display: grid;
-  min-width: 100px;
   grid-auto-flow: column;
   grid-auto-rows: 1fr;
+  min-width: 100px;
 
   .sample {
     aspect-ratio: 1 / 1;

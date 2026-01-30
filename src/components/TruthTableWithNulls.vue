@@ -110,8 +110,8 @@ const rows = computed(() => {
 
 <style>
 .truth-table-with-nulls {
-  border: 1px solid ButtonBorder;
   border-collapse: collapse;
+  border: 1px solid ButtonBorder;
 
   .cell {
     padding: 0 0.5em;

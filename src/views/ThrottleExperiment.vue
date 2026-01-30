@@ -22,8 +22,8 @@ const handleClick = throttle((amount: number) => bump(amount), 500);
 <style>
 .throttle-experiment {
   display: flex;
+  gap: 1rem;
   align-items: baseline;
   padding: 1rem;
-  gap: 1rem;
 }
 </style>

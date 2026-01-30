@@ -138,20 +138,22 @@ const clearCanvas = () => {
 <style>
 .multi-touch-experiment {
   position: relative;
+
   display: flex;
-  height: 100svh;
   flex-wrap: wrap;
   align-content: start;
   align-items: start;
 
+  height: 100svh;
+
   .info {
-    position: fixed;
     pointer-events: none;
+    position: fixed;
   }
 
   #canvas {
-    width: 100svmin;
     aspect-ratio: 1;
+    width: 100svmin;
     border-block-end: 1px solid hotpink;
   }
 

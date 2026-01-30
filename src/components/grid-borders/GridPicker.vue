@@ -92,7 +92,7 @@ const kindValues = computed(() =>
 <style>
 .grid-picker {
   display: grid;
-  gap: 0.5em;
   grid-template-columns: auto 1fr;
+  gap: 0.5em;
 }
 </style>

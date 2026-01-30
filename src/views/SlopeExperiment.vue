@@ -58,17 +58,18 @@ onMounted(() => {
 <style>
 .slope-experiment {
   display: grid;
-  padding: 1rem;
   gap: 1rem;
   place-content: center;
   place-items: center;
 
+  padding: 1rem;
+
   .container {
-    border: 1px solid
-      light-dark(var(--pv-b-color-pink-500), var(--pv-b-color-pink-400));
     container: wrapper / inline-size;
     inline-size: calc(v-bind("width") * 1rem);
     margin-inline: auto;
+    border: 1px solid
+      light-dark(var(--pv-b-color-pink-500), var(--pv-b-color-pink-400));
 
     .box-wrapper {
       --pv-value-start: 0.75;
@@ -78,24 +79,24 @@ onMounted(() => {
       --pv-unit: 1rem;
       --pv-slope-factor: 100cqi;
 
-      box-sizing: content-box;
-      border: 1px solid
-        light-dark(var(--pv-b-color-neutral-800), var(--pv-b-color-neutral-200));
-      block-size: 5rem;
       container: box / inline-size;
+
+      box-sizing: content-box;
       inline-size: clamp(
         min(100cqi, var(--pv-width-start) * var(--pv-unit)),
         80cqi,
         var(--pv-width-end) * var(--pv-unit)
       );
+      block-size: 5rem;
       margin-inline: auto;
+      border: 1px solid
+        light-dark(var(--pv-b-color-neutral-800), var(--pv-b-color-neutral-200));
 
       .box {
-        background-color: var(--pv-b-color-green-500);
-        block-size: 1rem;
         inline-size: 1rem;
-
+        block-size: 1rem;
         margin-inline: auto var(--pv-value);
+        background-color: var(--pv-b-color-green-500);
       }
     }
   }
@@ -108,8 +109,8 @@ onMounted(() => {
 
     .input-wrapper {
       display: flex;
-      align-items: center;
       gap: 0.25rem;
+      align-items: center;
     }
   }
 }

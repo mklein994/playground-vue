@@ -106,10 +106,11 @@ function handlePictureUpload(event: Event) {
 .image-file-capture-experiment {
   .grid {
     display: grid;
-    justify-content: start;
-    margin: 1em;
-    gap: 1em;
     grid: auto-flow / repeat(4, auto);
+    gap: 1em;
+    justify-content: start;
+
+    margin: 1em;
   }
 }
 </style>

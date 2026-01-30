@@ -34,20 +34,22 @@ const toggleOn = (e: Event) => {
 .circle-experiment {
   .circle-group {
     display: flex;
+    aspect-ratio: 4;
     min-width: 100dvmin;
     min-height: 100dvmin;
-    aspect-ratio: 4;
   }
 
   .circle {
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
+
     background: radial-gradient(
       var(--circle-start-color),
       var(--circle-end-color)
     );
     filter: url("@/assets/filters.svg#light");
+
     transition-duration: 1s;
     transition-property: --circle-start-color, --circle-end-color;
 

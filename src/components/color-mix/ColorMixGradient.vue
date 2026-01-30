@@ -62,8 +62,8 @@ const computedColor = (index: number) => {
   );
 
   display: grid;
-  gap: var(--gap);
   grid-template-columns: repeat(auto-fit, minmax(var(--size), 1fr));
+  gap: var(--gap);
 
   .swatch {
     aspect-ratio: var(--square);

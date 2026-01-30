@@ -189,17 +189,18 @@ onMounted(() => {
 .accent-color-experiment {
   display: flex;
   flex-wrap: wrap;
+  gap: 1em;
+
   margin: 1em;
 
   font-family: system-ui;
-  gap: 1em;
 
   .text,
   .checkbox,
   .radio {
     display: flex;
-    align-items: baseline;
     column-gap: 0.5em;
+    align-items: baseline;
   }
 
   .text,
@@ -209,8 +210,8 @@ onMounted(() => {
 
   .regular-fields {
     display: grid;
-    gap: 0.5em;
     grid: auto-flow / repeat(2, auto);
+    gap: 0.5em;
     justify-items: start;
   }
 

@@ -47,9 +47,9 @@ const fruits = [
 <style>
 .fruit-list-experiment {
   .fruit-list {
-    padding-left: 1rem;
-    margin-left: 1rem;
     counter-reset: fruit-digits;
+    margin-left: 1rem;
+    padding-left: 1rem;
     list-style: fruit-digits;
   }
 }
