@@ -10,7 +10,7 @@ const fruits = [
 const selectedFruitId = ref<string>();
 
 const backgroundColor = computed(() => {
-  let color = null;
+  let color;
 
   switch (selectedFruitId.value) {
     case "apple":
