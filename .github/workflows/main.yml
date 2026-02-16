@@ -7,17 +7,17 @@ jobs:
       contents: read
       deployments: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           path: playground-vue
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: "mklein994/sunrise-cli"
           ref: 0.4.2
           path: sunrise-cli
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: "mklein994/date-diff"
           ref: 0.4.4
@@ -30,7 +30,7 @@ jobs:
 
       - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: |
             ~/.cargo/bin/
@@ -50,7 +50,7 @@ jobs:
           package_json_file: "playground-vue/package.json"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: latest
           cache: "pnpm"
@@ -61,7 +61,7 @@ jobs:
         run: pnpm install
 
       - name: Cache ESLint
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: playground-vue/.eslintcache
           key: eslint-src-${{ hashFiles('playground-vue/package.json', 'playground-vue/eslint.config.js', 'playground-vue/pnpm-lock.yml') }}-${{ hashFiles('src/**') }}
