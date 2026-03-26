@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import { describe, expect, it } from "vitest";
+import { describe, it } from "vitest";
 
 import CustomElement from "@/components/CustomElement.ce.vue";
 import HomeView from "@/HomeView.vue";
@@ -16,7 +16,7 @@ describe.each([
     Array.from({ length: 10 }, (_, i) => `Item ${i + 1}`).join(""),
   ],
 ])("%s", (_name, component, text) => {
-  it("renders correctly", () => {
+  it("renders correctly", ({ expect }) => {
     expect(component).toBeTruthy();
     const wrapper = mount(component);
     expect(wrapper.text()).toContain(text);

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`GeneratorExperiment > max > updates when changed 1`] = `
+exports[`GeneratorExperiment > matches snapshot 1`] = `
 "<div class="generator-list"><label for="max">Max:</label><input id="max" type="number" name="max" min="1" class="tw:form-input">
   <ol>
     <li><span class="is-number">1</span></li>

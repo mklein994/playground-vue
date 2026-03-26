@@ -40,7 +40,7 @@ describe.concurrent("GeneratorExperiment", () => {
     });
   });
 
-  it("matches snapshot", async () => {
+  it("matches snapshot", async ({ expect }) => {
     const wrapper = mount(testComponentBuilder());
 
     await flushPromises();

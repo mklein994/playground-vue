@@ -6,7 +6,7 @@ import RecursionComponent from "@/components/RecursionComponent.vue";
 describe("RecursionComponent", () => {
   // This test can't be run concurrently, since it sometimes causes the
   // snapshot to be discarded, marking it as "obsolete". I'm not sure why.
-  it("renders correctly (map)", async () => {
+  it("renders correctly (map)", async ({ expect }) => {
     const wrapper = mount(RecursionComponent, {
       props: {
         source: [
@@ -27,7 +27,7 @@ describe("RecursionComponent", () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
 
-  it("renders correctly (object)", async () => {
+  it("renders correctly (object)", async ({ expect }) => {
     const wrapper = mount(RecursionComponent, {
       props: {
         source: [
