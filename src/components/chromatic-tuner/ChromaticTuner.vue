@@ -286,7 +286,8 @@ const sharpPowerDisplay = computed(() => formatter.format(sharpPower.value));
       border: 1px solid var(--pv-b-color-gray-700);
       border-radius: var(--pv-b-radius-full);
 
-      font: var(--pv-b-font-2xs);
+      font-size: var(--pv-b-font-size-2xs);
+      line-height: var(--pv-b-font-line-height-2xs);
     }
 
     .power-button {

@@ -59,20 +59,6 @@ export default {
   },
 
   font: {
-    $type: "typography",
-    ...Object.fromEntries(
-      fontSizeRems.map(([key, _]) => [
-        key,
-        {
-          $value: {
-            fontFamily: "var(--pv-b-font-family-sans)",
-            fontSize: `{font.size.${key}}`,
-            lineHeight: `{font.lineHeight.${key}}`,
-          },
-        },
-      ]),
-    ),
-
     family: {
       $type: "fontFamily",
       sans: {
