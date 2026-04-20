@@ -34,7 +34,7 @@ const source = computed(() => {
   if (hasValues.value) {
     return text
       .map((line) => line.split(/: /))
-      .map(([key, value]) => [mapKey(key), value]) as [
+      .map(([key, value]) => [mapKey(key), value]) satisfies [
       key: string,
       value: string,
     ][];
