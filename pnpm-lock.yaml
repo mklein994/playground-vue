@@ -33,6 +33,9 @@ importers:
         specifier: 7.12.6
         version: 7.12.6
     devDependencies:
+      '@dreamsicle.io/stylelint-config-tailwindcss':
+        specifier: ^1.2.2
+        version: 1.2.2(stylelint@17.11.0(typescript@6.0.3))
       '@eslint/js':
         specifier: ^10.0.1
         version: 10.0.1(eslint@10.3.0(jiti@2.7.0))
@@ -162,9 +165,6 @@ importers:
       stylelint-config-recommended-vue:
         specifier: ^1.6.1
         version: 1.6.1(postcss-html@1.8.1)(stylelint@17.11.0(typescript@6.0.3))
-      stylelint-config-tailwindcss:
-        specifier: ^1.0.1
-        version: 1.0.1(stylelint@17.11.0(typescript@6.0.3))(tailwindcss@4.3.0)
       tailwindcss:
         specifier: ^4.3.0
         version: 4.3.0
@@ -318,6 +318,11 @@ packages:
     engines: {node: '>=20.19.0'}
     peerDependencies:
       postcss-selector-parser: ^7.1.1
+
+  '@dreamsicle.io/stylelint-config-tailwindcss@1.2.2':
+    resolution: {integrity: sha512-MFwpR3adGHftLjFVYNd6NXepiJMXcVLhY00znLZN7rv/zhbYyOLSPzfotNOvBw647Zb9Wm/lMsMk08i4VkZI/g==}
+    peerDependencies:
+      stylelint: ^16.17.0 || ^17.0.0
 
   '@emnapi/core@1.10.0':
     resolution: {integrity: sha512-yq6OkJ4p82CAfPl0u9mQebQHKPJkY7WrIuk205cTYnYe+k2Z8YBh11FrbRG/H6ihirqcacOgl2BIO8oyMQLeXw==}
@@ -3034,12 +3039,6 @@ packages:
     peerDependencies:
       stylelint: ^17.0.0
 
-  stylelint-config-tailwindcss@1.0.1:
-    resolution: {integrity: sha512-IeIMivgaB1kxPBgllMzBqyv0g61IwFxxZKo/fDDelfZ/JtPPlSBT04VuOCslk6PIaq5GQvdRnHOP1K3HpxSkeg==}
-    peerDependencies:
-      stylelint: '>=13.13.1'
-      tailwindcss: '>=2.2.16'
-
   stylelint-order@6.0.4:
     resolution: {integrity: sha512-0UuKo4+s1hgQ/uAxlYU4h0o0HS4NiQDud0NAUNI0aa8FJdmYHA5ZZTFHiV5FpmE3071e9pZx5j0QpVJW5zOCUA==}
     peerDependencies:
@@ -3609,6 +3608,10 @@ snapshots:
   '@csstools/selector-specificity@6.0.0(postcss-selector-parser@7.1.1)':
     dependencies:
       postcss-selector-parser: 7.1.1
+
+  '@dreamsicle.io/stylelint-config-tailwindcss@1.2.2(stylelint@17.11.0(typescript@6.0.3))':
+    dependencies:
+      stylelint: 17.11.0(typescript@6.0.3)
 
   '@emnapi/core@1.10.0':
     dependencies:
@@ -6337,11 +6340,6 @@ snapshots:
   stylelint-config-recommended@18.0.0(stylelint@17.11.0(typescript@6.0.3)):
     dependencies:
       stylelint: 17.11.0(typescript@6.0.3)
-
-  stylelint-config-tailwindcss@1.0.1(stylelint@17.11.0(typescript@6.0.3))(tailwindcss@4.3.0):
-    dependencies:
-      stylelint: 17.11.0(typescript@6.0.3)
-      tailwindcss: 4.3.0
 
   stylelint-order@6.0.4(stylelint@17.11.0(typescript@6.0.3)):
     dependencies:

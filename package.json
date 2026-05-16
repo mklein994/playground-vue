@@ -39,6 +39,7 @@
     "wavesurfer.js": "7.12.6"
   },
   "devDependencies": {
+    "@dreamsicle.io/stylelint-config-tailwindcss": "^1.2.2",
     "@eslint/js": "^10.0.1",
     "@heroicons/vue": "^2.2.0",
     "@highlightjs/vue-plugin": "^2.1.2",
@@ -82,7 +83,6 @@
     "stylelint-config-clean-order": "^8.0.1",
     "stylelint-config-recommended": "^18.0.0",
     "stylelint-config-recommended-vue": "^1.6.1",
-    "stylelint-config-tailwindcss": "^1.0.1",
     "tailwindcss": "^4.3.0",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.59.3",
