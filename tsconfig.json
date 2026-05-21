@@ -8,6 +8,7 @@
     "useDefineForClassFields": true,
     "verbatimModuleSyntax": true,
     "jsx": "preserve",
+    "jsxImportSource": "vue",
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
