@@ -26,6 +26,7 @@
     "**/coverage/**",
     "./src/workers/**",
     "./src/tokens/**",
-    "./sd.config.ts"
+    "./sd.config.ts",
+    "./functions/**/*"
   ]
 }
