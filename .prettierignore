@@ -8,3 +8,4 @@ coverage/
 tsconfig.*-temp.json
 src/tokens/vendor/
 src/assets/generated/
+.playwright-mcp/
