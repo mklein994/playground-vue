@@ -3,3 +3,8 @@ allowBuilds:
   "@sentry/cli": true
   esbuild: true
   workerd: true
+minimumReleaseAgeExclude:
+  - fast-uri@3.1.1
+  - fast-uri@3.1.2
+  - ws@8.20.1
+  - js-cookie@3.0.6
