@@ -60,6 +60,9 @@ export async function onRequestHead(
   }
 
   return new Response(null, {
-    headers: r2Headers(object.httpMetadata?.contentType),
+    headers: {
+      ...r2Headers(object.httpMetadata?.contentType),
+      "Content-Length": `${object.size}`,
+    },
   });
 }
