@@ -227,7 +227,7 @@ const handleResetClick = (event: Event) => {
   form.value = getInitialValues();
 };
 
-const animationHandle = ref<number | NodeJS.Timeout | null>(null);
+const animationHandle = ref<ReturnType<typeof setInterval> | null>(null);
 const animate = () => {
   currentPetals.value = 1;
   animationHandle.value = setInterval(() => {
