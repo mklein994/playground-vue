@@ -4,6 +4,7 @@ import tseslint from "typescript-eslint";
 import eslint from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
 import pluginPrettier from "eslint-config-prettier/flat";
+import { defineConfig } from "eslint/config";
 import { fileURLToPath, URL } from "node:url";
 
 const resolve = (path) => fileURLToPath(new URL(path, import.meta.url));
@@ -18,7 +19,7 @@ const noUnusedVarsRule = [
   },
 ];
 
-export default tseslint.config(
+export default defineConfig(
   {
     files: ["*.js", "*.mjs", "*.cjs"],
     plugins: {
@@ -43,50 +44,6 @@ export default tseslint.config(
   {
     files: ["**/*.ts", "**/*.vue"],
     ignores: ["dist/", "coverage/"],
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: [
-          "./tsconfig.app.json",
-          "./tsconfig.vite-config.json",
-          "./tsconfig.vitest.json",
-          "./tsconfig.workers.json",
-          "./tsconfig.cf-workers.json",
-        ],
-      },
-    },
-    rules: {
-      "simple-import-sort/imports": [
-        "warn",
-        {
-          // Based on the default groups defined in
-          // the docs:
-          // https://github.com/lydell/eslint-plugin-simple-import-sort
-          groups: [
-            // Side effect imports.
-            ["^\\u0000"],
-            // Node.js builtins prefixed with `node:`.
-            ["^node:"],
-            // Packages.
-            // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
-            ["^@?\\w"],
-            // Custom group: Vue components.
-            ["\\.vue\\u0000?$"],
-            // Absolute imports and other imports such as Vue-style `@/foo`.
-            // Anything not matched in another group.
-            ["^"],
-            // Relative imports.
-            // Anything that starts with a dot.
-            ["^\\."],
-          ],
-        },
-      ],
-      "simple-import-sort/exports": "warn",
-    },
-  },
-
-  {
-    files: ["**/*.ts", "**/*.vue"],
     extends: [
       eslint.configs.recommended,
       tseslint.configs.eslintRecommended,
@@ -127,6 +84,7 @@ export default tseslint.config(
       ],
       "simple-import-sort/exports": "warn",
 
+      "no-undef": "off",
       "@typescript-eslint/no-unused-vars": noUnusedVarsRule,
       "vue/block-order": [
         "error",
@@ -151,15 +109,6 @@ export default tseslint.config(
         ],
         extraFileExtensions: [".vue"],
         tsconfigRootDir: resolve("."),
-      },
-
-      globals: {
-        PositionOptions: "readonly",
-        GeolocationPosition: "readonly",
-        GeolocationPositionError: "readonly",
-        __PLAYGROUND_VUE_COVERAGE_EXISTS__: "readonly",
-        __PLAYGROUND_VUE_FILES_LIST__: "readonly",
-        __PLAYGROUND_VUE_TAILWIND_SUPPORTED__: "readonly",
       },
     },
   },
