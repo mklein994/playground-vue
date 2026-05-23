@@ -69,13 +69,17 @@ export default defineConfig(({ mode, command }) => {
         allow: [searchForWorkspaceRoot(cwd)],
       },
       host: env.BUILDTIME_HOST,
-      proxy: {
-        "/r2": {
-          target: env.BUILDTIME_ASSET_URL ?? "https://playground-vue.pages.dev",
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/r2/, ""),
-        },
-      },
+      proxy:
+        env.BUILDTIME_R2_LOCAL === "true"
+          ? undefined
+          : {
+              "/r2": {
+                target:
+                  env.BUILDTIME_ASSET_URL ?? "https://playground-vue.pages.dev",
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/r2/, ""),
+              },
+            },
     },
 
     css: {
