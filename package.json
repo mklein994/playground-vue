@@ -71,7 +71,7 @@
     "pitchy": "^4.1.0",
     "postcss": "^8.5.16",
     "postcss-html": "^1.8.1",
-    "prettier": "^3.9.4",
+    "prettier": "3.9.4",
     "sass": "^1.101.0",
     "style-dictionary": "^5.5.0",
     "stylelint": "^17.14.0",
