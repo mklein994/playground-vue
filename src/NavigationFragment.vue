@@ -38,8 +38,8 @@ const colorSchemes = [
 ] as const;
 
 const scheme = inject(schemeKey)!;
-const selectedScheme = computed(
-  () => colorSchemes.find((x) => x.id === scheme.value)!,
+const selectedScheme = computed(() =>
+  colorSchemes.find((x) => x.id === scheme.value)!,
 );
 watchEffect(() => {
   scheme.value = selectedScheme.value.value;
