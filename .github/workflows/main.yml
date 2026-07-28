@@ -28,7 +28,7 @@ jobs:
           toolchain: stable
           targets: wasm32-unknown-unknown
 
-      - run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - run: curl https://wasm-bindgen.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
