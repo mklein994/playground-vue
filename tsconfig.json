@@ -15,7 +15,8 @@
     "lib": ["ESNext"],
     "noEmit": true,
     "isolatedModules": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true
   },
   "references": [
     { "path": "./tsconfig.vite-config.json" },

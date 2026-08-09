@@ -11,11 +11,11 @@ import { defineConfig, loadEnv, searchForWorkspaceRoot } from "vite";
 import wasm from "vite-plugin-wasm";
 import { configDefaults } from "vitest/config";
 
-import vitePluginEruda from "./config/vite-plugin-eruda";
-import { vitePluginGoogleFonts } from "./config/vite-plugin-google-fonts";
-import sentryVitePlugin from "./config/vite-plugin-sentry";
-import { separateTailwind } from "./config/vite-plugin-separate-tailwind";
-import { wasmProject } from "./config/vite-plugin-wasm-project";
+import vitePluginEruda from "./config/vite-plugin-eruda.ts";
+import { vitePluginGoogleFonts } from "./config/vite-plugin-google-fonts.ts";
+import sentryVitePlugin from "./config/vite-plugin-sentry.ts";
+import { separateTailwind } from "./config/vite-plugin-separate-tailwind.ts";
+import { wasmProject } from "./config/vite-plugin-wasm-project.ts";
 
 const resolve = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
