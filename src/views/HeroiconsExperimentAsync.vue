@@ -70,7 +70,7 @@ const handleQuery = (event: Event) => {
     <div class="icon-grid">
       <template
         v-for="{ name, solid, outline, compact } of filteredIcons"
-        :key="name"
+        :key="name.kebabCase"
       >
         <div class="name">{{ name.wordCase }}</div>
         <Component
