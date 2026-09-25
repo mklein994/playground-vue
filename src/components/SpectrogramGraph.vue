@@ -72,8 +72,11 @@ const setupWaveSurfer = () => {
   }
 
   wave.value = WaveSurfer.create(getOptions());
-  wave.value.getMediaElement().controls = true;
-  audioBox.value?.replaceChildren(wave.value.getMediaElement());
+  const mediaElement = wave.value.getMediaElement();
+  if (mediaElement != null) {
+    mediaElement.controls = true;
+    audioBox.value?.replaceChildren(mediaElement);
+  }
 };
 
 onMounted(async () => {
