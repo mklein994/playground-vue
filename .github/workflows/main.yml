@@ -77,7 +77,6 @@ jobs:
       - name: Node Tests
         working-directory: playground-vue
         run: pnpm run test:node
-        continue-on-error: true
 
       - name: Test with Coverage
         working-directory: playground-vue
