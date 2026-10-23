@@ -2,6 +2,7 @@
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 import hljs from "highlight.js/lib/core";
 import typescript from "highlight.js/lib/languages/typescript";
+import { computed } from "vue";
 
 hljs.registerLanguage("ts", typescript);
 
@@ -55,6 +56,10 @@ const headerNames = Array.from(map[0].results, (_, i) => `t${i}`);
 
 // Convert functions to strings
 const testCode = tests.map((test) => test.toString());
+
+const formattedCode = computed(() =>
+  testCode.map((code, index) => `// ${index}\n${code}`),
+);
 </script>
 
 <template>
@@ -111,10 +116,10 @@ const testCode = tests.map((test) => test.toString());
     </div>
 
     <Highlightjs
-      v-for="(code, i) of testCode"
+      v-for="(code, i) of formattedCode"
       :key="i"
       language="ts"
-      :code="`// t${i}\n${code}`"
+      :code="code"
       class="code"
     ></Highlightjs>
   </div>
