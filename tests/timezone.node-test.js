@@ -12,7 +12,10 @@ test("Manitoba Standard Time", (ctx) => {
     });
     t.test("timeZoneName: short", () => {
       assert.deepEqual(
-        new Intl.DateTimeFormat("en-CA", { timeZoneName: "short" })
+        new Intl.DateTimeFormat("en-CA", {
+          timeZone: "America/Winnipeg",
+          timeZoneName: "short",
+        })
           .formatToParts(date.toInstant())
           .find((part) => part.type === "timeZoneName").value,
         "CDT",
@@ -20,7 +23,10 @@ test("Manitoba Standard Time", (ctx) => {
     });
     t.test("timeZoneName: shortOffset", () => {
       assert.deepEqual(
-        new Intl.DateTimeFormat("en-CA", { timeZoneName: "shortOffset" })
+        new Intl.DateTimeFormat("en-CA", {
+          timeZone: "America/Winnipeg",
+          timeZoneName: "shortOffset",
+        })
           .formatToParts(date.toInstant())
           .find((part) => part.type === "timeZoneName").value,
         "GMT-5",
@@ -28,7 +34,10 @@ test("Manitoba Standard Time", (ctx) => {
     });
     t.test("timeZoneName: long", () => {
       assert.deepEqual(
-        new Intl.DateTimeFormat("en-CA", { timeZoneName: "long" })
+        new Intl.DateTimeFormat("en-CA", {
+          timeZone: "America/Winnipeg",
+          timeZoneName: "long",
+        })
           .formatToParts(date.toInstant())
           .find((part) => part.type === "timeZoneName").value,
         "Central Daylight Time",
@@ -36,7 +45,10 @@ test("Manitoba Standard Time", (ctx) => {
     });
     t.test("timeZoneName: longOffset", () => {
       assert.deepEqual(
-        new Intl.DateTimeFormat("en-CA", { timeZoneName: "longOffset" })
+        new Intl.DateTimeFormat("en-CA", {
+          timeZone: "America/Winnipeg",
+          timeZoneName: "longOffset",
+        })
           .formatToParts(date.toInstant())
           .find((part) => part.type === "timeZoneName").value,
         "GMT-05:00",
