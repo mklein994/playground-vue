@@ -3,6 +3,7 @@ import { computed, ref } from "vue";
 
 import { useTimeZoneChecker } from "@/use/use-time-zone-checker";
 
+const userAgent = computed(() => navigator.userAgent);
 const supportsTemporal = computed(() => typeof Temporal !== "undefined");
 const implementationOptions = computed(() =>
   [
@@ -21,6 +22,10 @@ const { checker } = useTimeZoneChecker(implementation);
 
 <template>
   <div class="manitoba-standard-time-experiment">
+    <div>
+      User agent:
+      <pre class="user-agent">{{ userAgent }}</pre>
+    </div>
     <div>
       Supports <code class="pv-code">Temporal</code>: {{ supportsTemporal }}
     </div>
@@ -94,6 +99,10 @@ const { checker } = useTimeZoneChecker(implementation);
   gap: 1rem;
   place-content: start;
   padding: 1rem;
+
+  .user-agent {
+    white-space: pre-line;
+  }
 
   .implementation-group {
     max-inline-size: max-content;
