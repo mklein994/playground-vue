@@ -3,11 +3,11 @@ import { computed, ref } from "vue";
 
 import { useTimeZoneChecker } from "@/use/use-time-zone-checker";
 
-const override = ref<"temporal" | "date" | "auto">("auto");
-const { checker } = useTimeZoneChecker(() =>
-  override.value === "auto" ? undefined : override.value,
-);
 const supportsTemporal = computed(() => typeof Temporal !== "undefined");
+const implementation = ref<"temporal" | "date">(
+  supportsTemporal.value ? "temporal" : "date",
+);
+const { checker } = useTimeZoneChecker(implementation);
 </script>
 
 <template>
@@ -15,32 +15,24 @@ const supportsTemporal = computed(() => typeof Temporal !== "undefined");
     <div>
       Supports <code class="pv-code">Temporal</code>: {{ supportsTemporal }}
     </div>
-    <fieldset class="override-group">
-      <legend>Override</legend>
+    <fieldset class="implementation-group">
+      <legend>Implementation</legend>
       <input
-        id="checker-override-auto"
-        v-model="override"
+        id="checker-implementation-temporal"
+        v-model="implementation"
         type="radio"
-        name="checker-override"
-        value="auto"
-      />
-      <label for="checker-override-auto">Auto</label>
-      <input
-        id="checker-override-temporal"
-        v-model="override"
-        type="radio"
-        name="checker-override"
+        name="checker-implementation"
         value="temporal"
       />
-      <label for="checker-override-temporal">Temporal</label>
+      <label for="checker-implementation-temporal">Temporal</label>
       <input
-        id="checker-override-date"
-        v-model="override"
+        id="checker-implementation-date"
+        v-model="implementation"
         type="radio"
-        name="checker-override"
+        name="checker-implementation"
         value="date"
       />
-      <label for="checker-override-date">Date</label>
+      <label for="checker-implementation-date">Date</label>
     </fieldset>
     <table class="checker-table">
       <thead>
@@ -91,7 +83,7 @@ const supportsTemporal = computed(() => typeof Temporal !== "undefined");
   place-content: start;
   padding: 1rem;
 
-  .override-group {
+  .implementation-group {
     max-inline-size: max-content;
   }
 

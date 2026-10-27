@@ -7,13 +7,13 @@ import {
 } from "@/helpers/TimeZoneChecker";
 
 export const useTimeZoneChecker = (
-  override: MaybeRefOrGetter<"temporal" | "date" | undefined> = undefined,
+  implementation: MaybeRefOrGetter<"temporal" | "date">,
 ) => {
   const checker = ref<TimeZoneChecker>();
   watch(
-    () => toValue(override),
-    (override) => {
-      switch (override) {
+    () => toValue(implementation),
+    (impl) => {
+      switch (impl) {
         case "temporal":
           checker.value = new TemporalTimeZoneChecker();
           break;
@@ -21,11 +21,7 @@ export const useTimeZoneChecker = (
           checker.value = new DateTimeZoneChecker();
           break;
         default:
-          checker.value =
-            typeof Temporal === "undefined"
-              ? new DateTimeZoneChecker()
-              : new TemporalTimeZoneChecker();
-          break;
+          throw new Error("Unknown implementation passed");
       }
     },
     { immediate: true },
