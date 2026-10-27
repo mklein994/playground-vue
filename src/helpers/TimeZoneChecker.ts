@@ -21,7 +21,16 @@ export class TemporalTimeZoneChecker implements TimeZoneChecker {
   }
 
   format(timeZoneName: Intl.DateTimeFormatOptions["timeZoneName"]): string {
-    return this.date.toLocaleString("en-CA", { timeZoneName });
+    return this.date.toLocaleString("en-CA", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+      timeZoneName,
+    });
   }
 
   formatShort(): string {
@@ -55,6 +64,13 @@ export class DateTimeZoneChecker implements TimeZoneChecker {
 
   format(timeZoneName: Intl.DateTimeFormatOptions["timeZoneName"]): string {
     return new Intl.DateTimeFormat("en-CA", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
       timeZone: "America/Winnipeg",
       timeZoneName,
     }).format(this.date);
