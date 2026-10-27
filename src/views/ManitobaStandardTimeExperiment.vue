@@ -26,9 +26,11 @@ const { checker } = useTimeZoneChecker(implementation);
       User agent:
       <pre class="user-agent">{{ userAgent }}</pre>
     </div>
+
     <div>
       Supports <code class="pv-code">Temporal</code>: {{ supportsTemporal }}
     </div>
+
     <fieldset class="implementation-group">
       <legend>Implementation</legend>
       <div
@@ -49,6 +51,7 @@ const { checker } = useTimeZoneChecker(implementation);
         }}</label>
       </div>
     </fieldset>
+
     <div class="checker-table-wrapper">
       <table class="checker-table">
         <thead>
