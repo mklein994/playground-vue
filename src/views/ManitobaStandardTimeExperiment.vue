@@ -4,6 +4,9 @@ import { computed, ref } from "vue";
 import { useTimeZoneChecker } from "@/use/use-time-zone-checker";
 
 const userAgent = computed(() => navigator.userAgent);
+const browserTimeZone = computed(
+  () => Intl.DateTimeFormat().resolvedOptions().timeZone,
+);
 const supportsTemporal = computed(() => typeof Temporal !== "undefined");
 const implementationOptions = computed(() =>
   [
@@ -26,6 +29,8 @@ const { checker } = useTimeZoneChecker(implementation);
       User agent:
       <pre class="user-agent">{{ userAgent }}</pre>
     </div>
+
+    <div>Browser time zone: {{ browserTimeZone }}</div>
 
     <div>
       Supports <code class="pv-code">Temporal</code>: {{ supportsTemporal }}
