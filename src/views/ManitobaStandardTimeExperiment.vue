@@ -52,7 +52,7 @@ const { checker } = useTimeZoneChecker(implementation);
       </div>
     </fieldset>
 
-    <div class="checker-table-wrapper">
+    <div v-if="checker" class="checker-table-wrapper">
       <table class="checker-table">
         <thead>
           <tr>
@@ -65,9 +65,9 @@ const { checker } = useTimeZoneChecker(implementation);
             <td class="label">hasCorrectOffset:</td>
             <td
               class="value correct-offset"
-              :class="`${checker!.hasCorrectOffset()}`"
+              :class="`${checker.hasCorrectOffset()}`"
             >
-              {{ checker!.hasCorrectOffset() }}
+              {{ checker.hasCorrectOffset() }}
             </td>
           </tr>
           <tr>
@@ -76,19 +76,19 @@ const { checker } = useTimeZoneChecker(implementation);
           </tr>
           <tr>
             <td class="label">short:</td>
-            <td class="value">{{ checker!.formatShort() }}</td>
+            <td class="value">{{ checker.formatShort() }}</td>
           </tr>
           <tr>
             <td class="label">shortOffset:</td>
-            <td class="value">{{ checker!.formatShortOffset() }}</td>
+            <td class="value">{{ checker.formatShortOffset() }}</td>
           </tr>
           <tr>
             <td class="label">long:</td>
-            <td class="value">{{ checker!.formatLong() }}</td>
+            <td class="value">{{ checker.formatLong() }}</td>
           </tr>
           <tr>
             <td class="label">longOffset:</td>
-            <td class="value">{{ checker!.formatLongOffset() }}</td>
+            <td class="value">{{ checker.formatLongOffset() }}</td>
           </tr>
         </tbody>
       </table>
