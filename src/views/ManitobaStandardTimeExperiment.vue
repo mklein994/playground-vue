@@ -4,9 +4,6 @@ import { computed, ref } from "vue";
 import { useTimeZoneChecker } from "@/use/use-time-zone-checker";
 
 const userAgent = computed(() => navigator.userAgent);
-const browserTimeZone = computed(
-  () => Intl.DateTimeFormat().resolvedOptions().timeZone,
-);
 const supportsTemporal = computed(() => typeof Temporal !== "undefined");
 const implementationOptions = computed(() =>
   [
@@ -20,6 +17,16 @@ const implementationOptions = computed(() =>
 const implementation = ref<"temporal" | "date">(
   supportsTemporal.value ? "temporal" : "date",
 );
+const browserTimeZone = computed(() =>
+  implementation.value === "temporal"
+    ? Temporal.Now.timeZoneId()
+    : Intl.DateTimeFormat().resolvedOptions().timeZone,
+);
+const now = computed(() =>
+  implementation.value === "temporal"
+    ? Temporal.Now.zonedDateTimeISO()
+    : new Date(),
+);
 const { checker } = useTimeZoneChecker(implementation);
 </script>
 
@@ -28,12 +35,6 @@ const { checker } = useTimeZoneChecker(implementation);
     <div>
       User agent:
       <pre class="user-agent">{{ userAgent }}</pre>
-    </div>
-
-    <div>Browser time zone: {{ browserTimeZone }}</div>
-
-    <div>
-      Supports <code class="pv-code">Temporal</code>: {{ supportsTemporal }}
     </div>
 
     <fieldset class="implementation-group">
@@ -56,6 +57,13 @@ const { checker } = useTimeZoneChecker(implementation);
         }}</label>
       </div>
     </fieldset>
+
+    <div>Browser time zone: {{ browserTimeZone }}</div>
+    <div>Now: {{ now }}</div>
+
+    <div>
+      Supports <code class="pv-code">Temporal</code>: {{ supportsTemporal }}
+    </div>
 
     <div v-if="checker" class="checker-table-wrapper">
       <table class="checker-table">
