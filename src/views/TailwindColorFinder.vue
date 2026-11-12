@@ -64,8 +64,10 @@ const sortedColors = computed(() => {
 
     <div class="colors">
       <template v-for="color of sortedColors" :key="color[0]">
-        <code class="color-name">{{ color[0] }}</code
-        ><span class="swatch" :style="{ backgroundColor: color[1] }"></span
+        <code class="color-name">{{ color[0] }}</code><span
+          class="swatch"
+          :style="{ backgroundColor: color[1] }"
+        ></span
         ><code>{{ color[1] }}</code
         ><code>{{ color[2] }}</code>
       </template>

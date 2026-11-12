@@ -29,8 +29,8 @@ useEventListener("visibilitychange", () => {
 
     <ul class="log pv-list">
       <li v-for="item of log" :key="item.dtIso">
-        <time :datetime="item.dtIso">{{ item.dtDisplay }}</time
-        >: <span :class="item.state">{{ item.state }}</span>
+        <time :datetime="item.dtIso">{{ item.dtDisplay }}</time>:
+        <span :class="item.state">{{ item.state }}</span>
       </li>
     </ul>
   </div>
